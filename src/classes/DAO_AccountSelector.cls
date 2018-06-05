@@ -1,4 +1,4 @@
-public class DAO_AccountSelector extends DAO_SObjectSelectorAbs {
+public class DAO_AccountSelector extends XAP_DAO_SObjectSelectorAbs {
 	private DAO_AccountSelector() {
 	}
 
@@ -28,9 +28,9 @@ public class DAO_AccountSelector extends DAO_SObjectSelectorAbs {
     public List<Account> selectByBillingState(Set<String> stateSet) {
 		return (List<Account>) Database.query(
 			this.newQueryFactory()
-				.setCondition(new DAO_WHERE_BindingComparisonClause(
+				.setCondition(new XAP_DAO_WHERE_BindingComparisonClause(
 					Account.BillingState,
-					DAO_WHERE_ComparisonOperatorEnum.IS_IN,
+					XAP_DAO_WHERE_ComparisonOperatorEnum.IS_IN,
 					'stateSet'
 				))
 				.toSOQL() 

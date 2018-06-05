@@ -1,4 +1,4 @@
-public class DAO_TerritoryAssignmentSelector extends DAO_SObjectSelectorAbs {
+public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs {
 	CTM_RegionTypeEnumHelper regionTypeEnumHelper; 
 	CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
 
@@ -58,7 +58,7 @@ public class DAO_TerritoryAssignmentSelector extends DAO_SObjectSelectorAbs {
 
 		return (List<Territory_Assignment__c>) Database.query(
 			this.newQueryFactory()
-				.setCondition(new DAO_WHERE_ArbitraryStringClause(
+				.setCondition(new XAP_DAO_WHERE_ArbitraryStringClause(
 					'Territory_Start_Date__c <= :targetDateTime'
 					+ ' AND  Territory_End_Date__c >= :targetDateTime'
 					+ ' AND ('

@@ -1,0 +1,1 @@
+public class XAP_DESC_InvalidDescribeException extends XAP_DESC_DescribeException{}

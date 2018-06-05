@@ -1,0 +1,1 @@
+public class XAP_DAO_InvalidSubqueryRelationException extends Exception{}
