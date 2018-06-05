@@ -28,17 +28,6 @@ public class DAO_AccountSelector extends DAO_SObjectSelectorAbs {
     public List<Account> selectByBillingState(Set<String> stateSet) {
 		return (List<Account>) Database.query(
 			this.newQueryFactory()
-				.setCondition(new DAO_WHERE_VariableComparisonClause(
-					Account.BillingState,
-					DAO_WHERE_ComparisonOperatorEnum.IS_IN,
-					stateSet
-				))
-				.toSOQL() 
-		);
-
-/*    	
-		return (List<Account>) Database.query(
-			this.newQueryFactory()
 				.setCondition(new DAO_WHERE_BindingComparisonClause(
 					Account.BillingState,
 					DAO_WHERE_ComparisonOperatorEnum.IS_IN,
@@ -46,6 +35,5 @@ public class DAO_AccountSelector extends DAO_SObjectSelectorAbs {
 				))
 				.toSOQL() 
 		);
- */   	
     }
 }
