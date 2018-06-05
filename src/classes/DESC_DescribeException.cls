@@ -1,0 +1,1 @@
+public abstract class DESC_DescribeException extends Exception{}

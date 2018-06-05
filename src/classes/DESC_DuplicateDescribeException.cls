@@ -1,0 +1,1 @@
+public class DESC_DuplicateDescribeException extends DESC_DescribeException{}

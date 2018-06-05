@@ -1,0 +1,1 @@
+public class DESC_InvalidDescribeException extends DESC_DescribeException{}

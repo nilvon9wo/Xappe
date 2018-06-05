@@ -1,0 +1,1 @@
+public class DAO_NonReferenceFieldException extends Exception{}
