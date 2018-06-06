@@ -3,7 +3,7 @@ public virtual class XAP_UTIL_SetHelper {
 	protected XAP_UTIL_SetHelper() {
 	}
 	
-	public XAP_UTIL_SetHelper getInstance() {
+	public static XAP_UTIL_SetHelper getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new XAP_UTIL_SetHelper();
 		}

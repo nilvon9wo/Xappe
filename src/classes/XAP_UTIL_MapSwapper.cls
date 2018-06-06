@@ -3,7 +3,7 @@ public virtual class XAP_UTIL_MapSwapper {
 	protected XAP_UTIL_MapSwapper() { 
 	}
 	
-	public XAP_UTIL_MapSwapper getInstance() {
+	public static XAP_UTIL_MapSwapper getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new XAP_UTIL_MapSwapper();
 		}

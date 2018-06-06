@@ -3,7 +3,7 @@ public virtual class XAP_UTIL_ListExtractor {
 	protected XAP_UTIL_ListExtractor() {
 	}
 	
-	public XAP_UTIL_ListExtractor getInstance() {
+	public static XAP_UTIL_ListExtractor getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new XAP_UTIL_ListExtractor();
 		}

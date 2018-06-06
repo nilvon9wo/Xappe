@@ -3,7 +3,7 @@ public virtual class XAP_UTIL_MapFactory {
 	protected XAP_UTIL_MapFactory() { 
 	}
 	
-	public XAP_UTIL_MapFactory getInstance() {
+	public static XAP_UTIL_MapFactory getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new XAP_UTIL_MapFactory();
 		}

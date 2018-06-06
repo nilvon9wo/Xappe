@@ -3,7 +3,7 @@ public virtual class XAP_UTIL_ListSetter {
 	protected XAP_UTIL_ListSetter() {
 	}
 	
-	public XAP_UTIL_ListSetter getInstance() {
+	public static XAP_UTIL_ListSetter getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new XAP_UTIL_ListSetter();
 		}
