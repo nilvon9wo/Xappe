@@ -23,8 +23,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 	 
 	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerWrapper triggerWrapper) {
 		List<Account> newAccountList = (List<Account>) triggerWrapper.newSObjectList;
-		Map<CTM_RegionTypeEnum, List<String>> regionByRegionTypeMap = this.buildRegionByRegionTypeMap(newAccountList);
-		this.assignTerritories(newAccountList, this.territoryAssignmentSelector.selectCurrentByRegion(regionByRegionTypeMap));
+		Map<CTM_RegionTypeEnum, Set<String>> regionSetByRegionTypeMap = this.buildRegionSetByRegionTypeMap(newAccountList);
+		this.assignTerritories(newAccountList, this.territoryAssignmentSelector.selectCurrentByRegion(regionSetByRegionTypeMap));
 		return this;
 	} 
 	
@@ -51,10 +51,10 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 		return newAccountList;
 	}
 	
-	private Map<CTM_RegionTypeEnum, List<String>> buildRegionByRegionTypeMap(List<Account> newAccountList) {
-		Map<CTM_RegionTypeEnum, List<String>> regionByRegionTypeMap = new Map<CTM_RegionTypeEnum, List<String>> {
-			CTM_RegionTypeEnum.COUNTRY => new List<String>(),
-			CTM_RegionTypeEnum.STATE => new List<String>()
+	private Map<CTM_RegionTypeEnum, Set<String>> buildRegionSetByRegionTypeMap(List<Account> newAccountList) {
+		Map<CTM_RegionTypeEnum, Set<String>> regionByRegionTypeMap = new Map<CTM_RegionTypeEnum, Set<String>> {
+			CTM_RegionTypeEnum.COUNTRY => new Set<String>(),
+			CTM_RegionTypeEnum.STATE => new Set<String>()
 		}; 
 		for (Account newAccount : newAccountList) {
 			CTM_RegionTypeEnum regionType = this.regionTypeEnumHelper.toEnum(newAccount);
