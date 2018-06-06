@@ -18,11 +18,20 @@ public class XAP_DAO_WHERE_InStringSetClause implements XAP_DAO_WHERE_ClauseIntf
     	if (this.stringSet == null || this.stringSet.isEmpty()) {
     		return ALWAYS_FALSE;
     	}
-    	
+
+    	Set<String> escapedSingleQuotesSet = this.escapeSingleQuotes(this.stringSet);
 		return fieldName  
 			+ ' IN '
 			+ '(\'' 
-				+ String.join(new List<String>(stringSet), '\',\'')
+				+ String.join(new List<String>(escapedSingleQuotesSet), '\',\'')
 			 + '\')';    	 
+    } 
+    
+    private Set<String> escapeSingleQuotes(Set<String> stringSet) {
+    	Set<String> escapedStringSet = new Set<String>();
+    	for (String str : stringSet) {
+    		escapedStringSet.add(String.escapeSingleQuotes(str));
+    	}
+    	return escapedStringSet;
     }
-}
+} 
