@@ -70,16 +70,6 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs 
 						new XAP_DAO_WHERE_InStringSetClause(Territory_Assignment__c.Territory_Country__c, countrySet)
 					})
 				}))
-/*			
-				.setCondition(new XAP_DAO_WHERE_ArbitraryStringClause(
-					'Territory_Start_Date__c <= :targetDate'
-					+ ' AND  Territory_End_Date__c >= :targetDate'
-					+ ' AND ('
-					+ '      Territory_State__c IN :stateList ' 
-					+ '      OR Territory_Country__c IN :countryList'
-					+ ' )'
-				))
-*/				
 				.toSOQL() 
 		);
 	}
