@@ -12,7 +12,13 @@ public class XAP_DAO_WHERE_InStringSetClause implements XAP_DAO_WHERE_ClauseIntf
 		this.stringSet = stringSet;
 	}
   
+  	private static final String ALWAYS_FALSE = 'Id = null';
+  
     public String toSOQL() {
+    	if (this.stringSet == null || this.stringSet.isEmpty()) {
+    		return ALWAYS_FALSE;
+    	}
+    	
 		return fieldName  
 			+ ' IN '
 			+ '(\'' 

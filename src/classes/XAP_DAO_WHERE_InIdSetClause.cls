@@ -12,8 +12,13 @@ public class XAP_DAO_WHERE_InIdSetClause implements XAP_DAO_WHERE_ClauseIntf {
 		this.idSet = idSet;
 	}
 
+	private static final String ALWAYS_FALSE = 'Id = null';
   
     public String toSOQL() {
+    	if (this.idSet == null || this.idSet.isEmpty()) {
+    		return ALWAYS_FALSE;
+    	}
+
 		return fieldName  
 			+ ' IN '
 			+ '(\'' 
