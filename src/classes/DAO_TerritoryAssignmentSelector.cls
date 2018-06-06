@@ -77,11 +77,15 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs 
 	private Map<CTM_RegionTypeEnum, Map<String, Territory_Assignment__c>> buildTerritoryAssignmentByTerritoryRegionByRegionTypeMap(
 			List<Territory_Assignment__c> territoryAssignmentList
 		) {
+		System.debug('########### BTA territoryAssignmentList: ' + territoryAssignmentList);					
+
 		Map<CTM_RegionTypeEnum, Map<String, Territory_Assignment__c>> territoryAssignmentByTerritoryRegionByRegionTypeMap 
 			= new Map<CTM_RegionTypeEnum, Map<String, Territory_Assignment__c>>();
 			
 		for (Territory_Assignment__c territoryAssignment : territoryAssignmentList) {
+		System.debug('########### BTA territoryAssignment: ' + territoryAssignment);					
 			CTM_RegionTypeEnum regionType = this.regionTypeEnumHelper.toEnum(territoryAssignment);
+		System.debug('########### BTA regionType: ' + regionType);					
 			if (territoryAssignmentByTerritoryRegionByRegionTypeMap.get(regionType) == null) {
 				territoryAssignmentByTerritoryRegionByRegionTypeMap.put(regionType, new Map<String, Territory_Assignment__c>());
 			}
@@ -89,8 +93,8 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs 
 			String regionValue = this.getRegionValue(territoryAssignment, regionType, territoryAssignmentByTerritoryRegionByRegionTypeMap);
 			territoryAssignmentByTerritoryRegionByRegionTypeMap.get(regionType)
 				.put(regionValue, territoryAssignment);
-		}					
-			
+		}
+		System.debug('########### BTA territoryAssignmentByTerritoryRegionByRegionTypeMap: ' + territoryAssignmentByTerritoryRegionByRegionTypeMap);					
 		return territoryAssignmentByTerritoryRegionByRegionTypeMap;
 	}
 	
@@ -101,9 +105,14 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs 
 		) {
 		Map<String, Territory_Assignment__c> territoryAssignmentByRegionTypeMap 
 			= territoryAssignmentByTerritoryRegionByRegionTypeMap.get(regionType);
-		
 		SObjectField regionField = this.territoryRegionFieldHelper.getTerritoryAssignmentRegionField(regionType);
+
 		String regionValue = (String) territoryAssignment.get(regionField);
+		if (regionValue == null) {
+			throw new CTM_AmbiguousTerritoryException( 
+				'No suitable territory found for: ' + regionType + ': ' + regionValue
+			); 
+		}
 		if (territoryAssignmentByRegionTypeMap.get(regionValue) != null) {
 			throw new CTM_AmbiguousTerritoryException( 
 				'Multiple suitable territories found for: ' + regionType + ': ' + regionValue

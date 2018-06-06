@@ -10,27 +10,38 @@ public class CTM_RegionTypeEnumHelper {
 		}
 		return INSTANCE;
 	}
+
+	private static final Map<SObjectType, SObjectField> COUNTRY_FIELD_BY_SOBJECT_TYPE = new Map<SObjectType, SObjectField>{
+		Account.SObjectType => Account.BillingCountry,
+		Territory_Assignment__c.SObjectType => Territory_Assignment__c.Territory_Country__c
+	};
 	
-   	public static final Boolean HAS_COUNTRY = true;
-   	public static final Boolean NO_COUNTRY = false;
-   	
+	private static final Map<SObjectType, SObjectField> STATE_FIELD_BY_SOBJECT_TYPE = new Map<SObjectType, SObjectField>{
+		Account.SObjectType => Account.BillingState,
+		Territory_Assignment__c.SObjectType => Territory_Assignment__c.Territory_State__c
+	};
+	
 	public CTM_RegionTypeEnum toEnum(Account account) {
-		if (String.isBlank(account.BillingState)) {
-			return null;
-		}
-		return this.toEnum(!String.isBlank(account.BillingCountry));
+		return this.toEnum((SObject) account);
 	}
 
 	public CTM_RegionTypeEnum toEnum(Territory_Assignment__c territoryAssignment) {
-		if (String.isBlank(territoryAssignment.Territory_State__c)) {
-			return null;
-		}
-		return this.toEnum(!String.isBlank(territoryAssignment.Territory_Country__c));
+		return this.toEnum((SObject) territoryAssignment);
 	}
-   	
-   	public CTM_RegionTypeEnum toEnum(Boolean value) {
-   		return HAS_COUNTRY
-   			? CTM_RegionTypeEnum.COUNTRY
-   			: CTM_RegionTypeEnum.STATE;
-   	}
+
+	private CTM_RegionTypeEnum toEnum(SObject sObj) {
+		SObjectType sObjectType = sObj.getSObjectType();
+		String state = (String) sObj.get(STATE_FIELD_BY_SOBJECT_TYPE.get(sObjectType));
+		String country = (String) sObj.get(COUNTRY_FIELD_BY_SOBJECT_TYPE.get(sObjectType));
+		
+		if (!String.isBlank(state)) {
+			return CTM_RegionTypeEnum.STATE;
+		}
+
+		if (!String.isBlank(country)) {
+			return CTM_RegionTypeEnum.COUNTRY;
+		}
+
+		throw new CTM_AmbiguousTerritoryException('Region Type can not be identified for: ' + sObj);
+	}
 }
