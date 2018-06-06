@@ -10,6 +10,31 @@ public virtual class XAP_UTIL_ListExtractor {
 		return INSTANCE;
 	}
 	
+	// Extract true for predicate collection ----------------------------------------------------------------------
+	
+    public virtual List<SObject> extractWhereAllPredicatesTrue(List<SObject> sObjectList, List<XAP_FUNC_PredicateIntf> predicateList) {
+    	return (new AllPredicateListExtractor(predicateList)).extractFrom(sObjectList); 
+    }
+	
+	@testVisible
+	private class AllPredicateListExtractor extends ListExtractor { 
+		List<XAP_FUNC_PredicateIntf> predicateList;
+		
+		AllPredicateListExtractor(List<XAP_FUNC_PredicateIntf> predicateList) {
+			this.predicateList = predicateList;
+		} 
+		
+		override Boolean isTrueFor(SObject sObj) {
+			for(XAP_FUNC_PredicateIntf predicate : predicateList) {
+				if (!predicate.isTrue(sObj)) {
+					return false;
+				}
+			}
+			return true;
+		}
+	} 
+	
+	
 	// Extract where true  -----------------------------------------------------------------------------------------
 
     public virtual List<SObject> extractWhereTrueFrom(List<SObject> sObjectList, SObjectField booleanField) {
