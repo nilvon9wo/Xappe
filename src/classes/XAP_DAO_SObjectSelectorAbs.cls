@@ -155,7 +155,7 @@ public abstract class XAP_DAO_SObjectSelectorAbs implements XAP_DAO_SObjectSelec
 
     private String buildQuerySObjectById() {   
         return this.newQueryFactory()
-        	.setCondition(new XAP_DAO_WHERE_ArbitraryStringClause('id IN :idSet'))
+        	.setCondition(new XAP_DAO_WHERE_ArbitraryStringClause('Id IN :idSet'))
         	.toSOQL(); 
     }
     	
