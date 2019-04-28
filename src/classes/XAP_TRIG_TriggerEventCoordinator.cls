@@ -166,7 +166,7 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
 			&& OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(sObjectTypeOperation.sObjectType).size() == 1;
 	}
 
-	// Sequnece checker  ---------------------------------------------------------------------------------------------------------
+	// Sequence checker  ---------------------------------------------------------------------------------------------------------
 
 	public XAP_UTIL_ListComparison compare(List<XAP_TRIG_TriggerSObjectTypeOperation> needleSObjectTypeOperationList) {
 		List<XAP_TRIG_TriggerSObjectTypeOperation> inProgressSObjectTypeOperationList
