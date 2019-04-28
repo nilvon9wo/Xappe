@@ -1,11 +1,10 @@
 @IsTest
 public with sharing class XAP_TRIG_TriggerWrapperTest {
-	private static final User TEST_USER = null; // FIXME: TEST_DummyUserFactory.DEFAULT_USER;
-	
-	private static final Integer QUANTITY = 1; 
-	private static final List<Account> TEST_SOBJECT_LIST  
-		=  null; // FIXME:  TEST_DummyAccountFactory.createList(QUANTITY, TEST_InsertModeEnum.NEVER_INSERT);
-	private static final SObjectType EXPECTED_SOBJECT_TYPE = TEST_SOBJECT_LIST[0].getSObjectType(); 
+	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
+	private static final List<Account> TEST_SOBJECT_LIST = (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
+			.supplyList();
+
+	private static final SObjectType EXPECTED_SOBJECT_TYPE = TEST_SOBJECT_LIST[0].getSObjectType();
 
 	// Test default constructor -----------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 @IsTest
 public with sharing class XAP_UTIL_ListComparison_ContiguousTests {
-	private static final User TEST_USER = null; // FIXME: TEST_DummyUserFactory.DEFAULT_USER;
+    private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
 	@IsTest public static void  testIsContiguousShouldReturnTrueIfNeedleListIsNull()  {
     	// Arrange

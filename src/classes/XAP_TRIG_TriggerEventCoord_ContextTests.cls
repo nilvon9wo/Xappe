@@ -1,6 +1,6 @@
 @IsTest
 public with sharing class XAP_TRIG_TriggerEventCoord_ContextTests {
-	private static final User TEST_USER = null; // FIXME: TEST_DummyUserFactory.DEFAULT_USER;
+	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final XAP_TRIG_TriggerEventCoordinator COORDINATOR_UNDER_TEST = new XAP_TRIG_TriggerEventCoordinator();
 	private static final SObjectType TEST_SOBJECT_TYPE = Account.SObjectType;
 	private static final System.TriggerOperation TEST_OPERATION = System.TriggerOperation.BEFORE_INSERT;
