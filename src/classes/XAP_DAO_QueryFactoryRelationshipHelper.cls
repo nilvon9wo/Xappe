@@ -27,7 +27,7 @@ public class XAP_DAO_QueryFactoryRelationshipHelper {
             }   
         }
         throw new XAP_DAO_InvalidSubqueryRelationException(
-        	'Invalid call to subselectQuery.  Invalid relationship for sObjectType '+ query.sObjectType 
+        	'Invalid call to subselectQuery.  Invalid relationship for sObjectType '+ query.SObjectType
         	+ ' and sObjectType =' + thatSObjectType
         );
     }
@@ -45,7 +45,7 @@ public class XAP_DAO_QueryFactoryRelationshipHelper {
 
 	public List<String> transverseRelationships(XAP_DAO_Query query, String fieldName) { 
 		List<String> fieldPath = new List<String>();
-		Schema.sObjectType lastSObjectType = query.sObjectType;
+		Schema.SObjectType lastSObjectType = query.sObjectType;
 		Iterator<String> i = fieldName.split('\\.').iterator();
 		while(i.hasNext()){
 			String field = i.next();

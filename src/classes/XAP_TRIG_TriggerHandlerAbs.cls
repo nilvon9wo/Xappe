@@ -17,7 +17,7 @@ public abstract class XAP_TRIG_TriggerHandlerAbs implements XAP_TRIG_TriggerHand
     	Type triggerEventHandlerType = this.get(this.triggerWrapper.operation);
     	if (triggerEventHandlerType == null) {
     		throw new XAP_TRIG_UnassignedTriggerOpException(
-    			this.triggerWrapper.sObjectType + ' has no Trigger Event Handler for ' + this.triggerWrapper.operation
+    			this.triggerWrapper.SObjectType + ' has no Trigger Event Handler for ' + this.triggerWrapper.operation
     		);
     	}
     	

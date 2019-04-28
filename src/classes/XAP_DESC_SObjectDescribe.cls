@@ -1,5 +1,5 @@
 public class XAP_DESC_SObjectDescribe {
-	private XAP_DESC_SObjectDescribe(Schema.SObjectType sObjectType){	
+	private XAP_DESC_SObjectDescribe(Schema.SObjectType sObjectType){
 		if(sObjectType == null) {
 			throw new XAP_DESC_InvalidDescribeException('Invalid SObject type: null');
 		}
@@ -8,7 +8,7 @@ public class XAP_DESC_SObjectDescribe {
 			throw new XAP_DESC_DuplicateDescribeException(sObjectType + ' is already in the this.describe cache');
 		}
 			
-		this.sObjectType = sObjectType;
+		this.SObjectType = sObjectType;
 		INSTANCE_CACHE.put( String.valueOf(sObjectType).toLowerCase() , this);
 	}
 

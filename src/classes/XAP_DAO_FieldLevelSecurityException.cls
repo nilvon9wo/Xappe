@@ -2,10 +2,10 @@ public class XAP_DAO_FieldLevelSecurityException extends XAP_DAO_SecurityExcepti
    	private Schema.SObjectField sObjectField;
 
    	public XAP_DAO_FieldLevelSecurityException(
-   			Schema.SObjectType sObjectType, 
+   			Schema.SObjectType sObjectType,
    			Schema.SObjectField sObjectField
    		){
-   		this.sObjectType = sObjectType;
+   		this.SObjectType = sObjectType;
    		this.sObjectField = sObjectField; 
 
    		this.setMessage(
