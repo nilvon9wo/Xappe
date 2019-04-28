@@ -1,17 +1,17 @@
 public class XAP_TRIG_TriggerWrapper {     
-	@testVisible public Boolean 		 isExecuting 	   {get; private set;}
-	@testVisible public Boolean 		 isInsert   	   {get; private set;}
-	@testVisible public Boolean 		 isUpdate   	   {get; private set;}
-	@testVisible public Boolean 		 isDelete   	   {get; private set;}
-	@testVisible public Boolean 		 isUndelete 	   {get; private set;}  
-	@testVisible public Boolean 		 isBefore          {get; private set;}
-	@testVisible public Boolean 		 isAfter           {get; private set;}
-	@testVisible public List<sObject> 	 oldSObjectList    {get; private set;}
-	@testVisible public List<sObject>	 newSObjectList    {get; private set;}
-	@testVisible public Map<ID, sObject> oldSObjectByIdMap {get; private set;}
-	@testVisible public Map<ID, sObject> newSObjectByIdMap {get; private set;}
+	@TestVisible public Boolean 		 isExecuting 	   {get; private set;}
+	@TestVisible public Boolean 		 isInsert   	   {get; private set;}
+	@TestVisible public Boolean 		 isUpdate   	   {get; private set;}
+	@TestVisible public Boolean 		 isDelete   	   {get; private set;}
+	@TestVisible public Boolean 		 isUndelete 	   {get; private set;}
+	@TestVisible public Boolean 		 isBefore          {get; private set;}
+	@TestVisible public Boolean 		 isAfter           {get; private set;}
+	@TestVisible public List<sObject> 	 oldSObjectList    {get; private set;}
+	@TestVisible public List<sObject>	 newSObjectList    {get; private set;}
+	@TestVisible public Map<ID, sObject> oldSObjectByIdMap {get; private set;}
+	@TestVisible public Map<ID, sObject> newSObjectByIdMap {get; private set;}
 	
-	@testVisible public SObjectType sObjectType {
+	@TestVisible public SObjectType sObjectType {
 			get {
 				if (this.sObjectType == null) {
 					Boolean hasNewSObjectList = (this.newSObjectList != null && !this.newSObjectList.isEmpty()); 		
@@ -30,7 +30,7 @@ public class XAP_TRIG_TriggerWrapper {
 			private set;
 	}
 	 
-	@testVisible public XAP_TRIG_TriggerEventOperationEnum operation { 
+	@TestVisible public XAP_TRIG_TriggerEventOperationEnum operation {
 			get {
 				if (this.operation == null && this.isExecuting) {
 			        if( this.isBefore ) {

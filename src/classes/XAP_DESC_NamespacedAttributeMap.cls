@@ -1,6 +1,6 @@
 public abstract class XAP_DESC_NamespacedAttributeMap{
 	private static final Boolean IMPLY_NAMESPACE = true;
-	@testVisible
+	@TestVisible
 	protected String currentNamespace;
 	protected Map<String,Object> valueByNameMap;
 

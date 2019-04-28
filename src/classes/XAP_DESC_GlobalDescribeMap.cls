@@ -1,5 +1,5 @@
 public class XAP_DESC_GlobalDescribeMap extends XAP_DESC_NamespacedAttributeMap{
-	@testVisible
+	@TestVisible
 	public XAP_DESC_GlobalDescribeMap(Map<String,Schema.SObjectType> valueByNameMap){
 		super(valueByNameMap);
 	}

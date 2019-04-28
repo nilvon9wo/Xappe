@@ -16,7 +16,7 @@ public virtual class XAP_UTIL_ListExtractor {
     	return (new AllPredicateListExtractor(predicateList)).extractFrom(sObjectList); 
     }
 	
-	@testVisible
+	@TestVisible
 	private class AllPredicateListExtractor extends ListExtractor { 
 		List<XAP_FUNC_PredicateIntf> predicateList;
 		
@@ -41,7 +41,7 @@ public virtual class XAP_UTIL_ListExtractor {
     	return (new IsTrueListExtractor(booleanField)).extractFrom(sObjectList); 
     }
 
-	@testVisible
+	@TestVisible
 	private class IsTrueListExtractor extends ListExtractor { 
 		SObjectField sObjectField;
 		
@@ -64,7 +64,7 @@ public virtual class XAP_UTIL_ListExtractor {
     	return (new IsChangedToTrueListExtractor(oldSObjectByIdMap, booleanField)).extractFrom(newSObjectList); 
     }
 
-	@testVisible
+	@TestVisible
 	private class IsChangedToTrueListExtractor extends ListExtractor { 
 		Map<Id, SObject> oldSObjectByIdMap;
 		SObjectField sObjectField;
@@ -83,7 +83,7 @@ public virtual class XAP_UTIL_ListExtractor {
 			return hasNoOld || this.isChangedToTrue(newSObject, oldSObject);
 		}
 		
-		@testVisible
+		@TestVisible
 		private Boolean isChangedToTrue(SObject newSObject, SObject oldSObject) {
 			return (Boolean) newSObject.get(this.sObjectField)
 				&& (!(Boolean) oldSObject.get(this.sObjectField)); 
@@ -96,7 +96,7 @@ public virtual class XAP_UTIL_ListExtractor {
     	return (new IsNotNullListExtractor(sObjectField)).extractFrom(sObjectList); 
     }
     
-	@testVisible
+	@TestVisible
 	private class IsNotNullListExtractor extends ListExtractor { 
 		SObjectField sObjectField;
 		
@@ -115,7 +115,7 @@ public virtual class XAP_UTIL_ListExtractor {
     	return (new IsNullListExtractor(sObjectField)).extractFrom(sObjectList); 
     }
     
-	@testVisible
+	@TestVisible
 	private class IsNullListExtractor extends ListExtractor { 
 		SObjectField sObjectField;
 		
@@ -134,7 +134,7 @@ public virtual class XAP_UTIL_ListExtractor {
     	return (new ForIdListExtractor(sObjectField, id)).extractFrom(sObjectList); 
     }
     
-	@testVisible
+	@TestVisible
 	private class ForIdListExtractor extends ListExtractor { 
 		SObjectField sObjectField;
 		Id id;

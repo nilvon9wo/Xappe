@@ -1,7 +1,7 @@
 public class XAP_DAO_DatabaseResultWrapper {
-	@testVisible public Boolean isSuccess {get; private set;} 
-	@testVisible public List<Database.Error> errorList {get; private set;}
-	@testVisible public List<String> errorMessageList {get; private set;}
+	@TestVisible public Boolean isSuccess {get; private set;}
+	@TestVisible public List<Database.Error> errorList {get; private set;}
+	@TestVisible public List<String> errorMessageList {get; private set;}
 	
     public XAP_DAO_DatabaseResultWrapper(Database.SaveResult saveResult) {
     	this(saveResult.isSuccess(), saveResult.getErrors());
@@ -15,20 +15,20 @@ public class XAP_DAO_DatabaseResultWrapper {
     	this(upsertResult.isSuccess(), upsertResult.getErrors());
     }
 
-    @testVisible
+    @TestVisible
     private XAP_DAO_DatabaseResultWrapper(Boolean isSuccess, List<Database.Error> errorList) {
     	this.isSuccess = isSuccess;
     	this.errorList = errorList;
     	this.errorMessageList = this.convert(errorList);
     } 
     
-    @testVisible
+    @TestVisible
     private XAP_DAO_DatabaseResultWrapper(Boolean isSuccess, List<String> errorMessageList) {
     	this.isSuccess = isSuccess;
     	this.errorMessageList = errorMessageList;
     } 
     
-    @testVisible 
+    @TestVisible
     private List<String> convert(List<Database.Error> errorList) {
     	List<String> errorMessageList = new List<String>();
 		for (Database.Error error : errorList) {

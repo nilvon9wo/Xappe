@@ -1,6 +1,8 @@
 public virtual class XAP_DAO_GenericDmlWrapper {
 	private static XAP_DAO_GenericDmlWrapper INSTANCE;
-	private XAP_DAO_GenericDmlWrapper() {
+
+	@TestVisible
+	protected XAP_DAO_GenericDmlWrapper() {
 	}
 	
 	public XAP_DAO_GenericDmlWrapper getInstance() {
@@ -73,7 +75,7 @@ public virtual class XAP_DAO_GenericDmlWrapper {
 	
 	// Helper Methods --------------------------------------------------------------------------------------------
 	
-	@testVisible
+	@TestVisible
 	private List<XAP_DAO_DatabaseResultWrapper> convert(List<Database.SaveResult> saveResultList) {
 		List<XAP_DAO_DatabaseResultWrapper> resultWrapperList = new List<XAP_DAO_DatabaseResultWrapper>();
 		for (Database.SaveResult saveResult : saveResultList) {
@@ -82,7 +84,7 @@ public virtual class XAP_DAO_GenericDmlWrapper {
 		return resultWrapperList;
 	}
 
-	@testVisible
+	@TestVisible
 	private List<XAP_DAO_DatabaseResultWrapper> convert(List<Database.DeleteResult> deleteResultList) {
 		List<XAP_DAO_DatabaseResultWrapper> resultWrapperList = new List<XAP_DAO_DatabaseResultWrapper>();
 		for (Database.DeleteResult deleteResult : deleteResultList) {
@@ -91,7 +93,7 @@ public virtual class XAP_DAO_GenericDmlWrapper {
 		return resultWrapperList;
 	}
 
-	@testVisible
+	@TestVisible
 	private List<XAP_DAO_DatabaseResultWrapper> convert(List<Database.UpsertResult> upsertResultList) {
 		List<XAP_DAO_DatabaseResultWrapper> resultWrapperList = new List<XAP_DAO_DatabaseResultWrapper>();
 		for (Database.UpsertResult upsertResult : upsertResultList) {

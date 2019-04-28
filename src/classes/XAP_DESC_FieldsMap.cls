@@ -1,6 +1,6 @@
 public class XAP_DESC_FieldsMap extends XAP_DESC_NamespacedAttributeMap{
 
-	@testVisible
+	@TestVisible
 	public XAP_DESC_FieldsMap(Map<String,Schema.SObjectField> valueByNameMap){
 		super(valueByNameMap);
 	}
