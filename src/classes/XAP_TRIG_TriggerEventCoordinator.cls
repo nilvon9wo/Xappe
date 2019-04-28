@@ -40,7 +40,7 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
 	@TestVisible
 	private virtual Boolean isEnabledForProfile() {
         XAP_TRIG_TriggerSetting__c triggerSettings = triggerSettingSelector.get();
-    	Boolean isEnabled = returnValueOrTrue(triggerSettings.TriggersEnabled__c);
+    	Boolean isEnabled = this.returnValueOrTrue(triggerSettings.TriggersEnabled__c);
     	if (!isEnabled) {
     		System.debug(LoggingLevel.WARN, '!!! Triggers disabled for profile');
     	} 
@@ -55,7 +55,7 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
     		IS_ENABLED_BY_SOBJECT_TYPE_MAP = this.buildIsEnabledBySObjectTypeMap();
     	}	
     	
-    	Boolean isEnabled = returnValueOrTrue(IS_ENABLED_BY_SOBJECT_TYPE_MAP.get(sObjectType));
+    	Boolean isEnabled = this.returnValueOrTrue(IS_ENABLED_BY_SOBJECT_TYPE_MAP.get(sObjectType));
     	if (!isEnabled) {
     		System.debug(LoggingLevel.WARN, '!!! Triggers disabled for ' + sObjectType);
     	} 
