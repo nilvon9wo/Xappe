@@ -1,11 +1,11 @@
-public virtual class XAP_UTIL_MapFactory {
-	private static XAP_UTIL_MapFactory INSTANCE;
-	protected XAP_UTIL_MapFactory() { 
+public virtual class XAP_UTIL_SObjectMapFactory {
+	private static XAP_UTIL_SObjectMapFactory INSTANCE;
+	protected XAP_UTIL_SObjectMapFactory() {
 	}
 	
-	public static XAP_UTIL_MapFactory getInstance() {
+	public static XAP_UTIL_SObjectMapFactory getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_MapFactory();
+			INSTANCE = new XAP_UTIL_SObjectMapFactory();
 		}
 		return INSTANCE;
 	}

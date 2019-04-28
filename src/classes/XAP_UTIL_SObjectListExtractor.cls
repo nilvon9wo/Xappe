@@ -1,11 +1,11 @@
-public virtual class XAP_UTIL_ListExtractor {
-	private static XAP_UTIL_ListExtractor INSTANCE;
-	protected XAP_UTIL_ListExtractor() {
+public virtual class XAP_UTIL_SObjectListExtractor {
+	private static XAP_UTIL_SObjectListExtractor INSTANCE;
+	protected XAP_UTIL_SObjectListExtractor() {
 	}
 	
-	public static XAP_UTIL_ListExtractor getInstance() {
+	public static XAP_UTIL_SObjectListExtractor getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_ListExtractor();
+			INSTANCE = new XAP_UTIL_SObjectListExtractor();
 		}
 		return INSTANCE;
 	}

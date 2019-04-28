@@ -1,5 +1,5 @@
 @IsTest
-public class XAP_UTIL_ListExtractorMock extends XAP_UTIL_ListExtractor { 
+public class XAP_UTIL_SObjectListExtractorMock extends XAP_UTIL_SObjectListExtractor {
 	public List<SObject> receivedSObjectList;
 	public SObjectField receivedSObjectField;
 	public Id receivedId;

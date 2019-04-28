@@ -1,11 +1,11 @@
-public virtual class XAP_UTIL_ListSetter {
-	private static XAP_UTIL_ListSetter INSTANCE;
-	protected XAP_UTIL_ListSetter() {
+public virtual class XAP_UTIL_SObjectListSetter {
+	private static XAP_UTIL_SObjectListSetter INSTANCE;
+	protected XAP_UTIL_SObjectListSetter() {
 	}
 	
-	public static XAP_UTIL_ListSetter getInstance() {
+	public static XAP_UTIL_SObjectListSetter getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_ListSetter();
+			INSTANCE = new XAP_UTIL_SObjectListSetter();
 		}
 		return INSTANCE;
 	}
