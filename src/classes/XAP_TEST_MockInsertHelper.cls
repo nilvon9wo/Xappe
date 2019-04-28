@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class XAP_TEST_MockInsertHelper {
 	private static final Integer LENGTH_OF_SFDC_ID = 15;
 	 

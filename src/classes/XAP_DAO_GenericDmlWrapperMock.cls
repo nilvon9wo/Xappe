@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 public class XAP_DAO_GenericDmlWrapperMock extends XAP_DAO_GenericDmlWrapper {
 	public static final String DML_EXCEPTION_MESSAGE = 'Exception by Design';
 	public Boolean throwDmlException = false;

@@ -1,5 +1,5 @@
 //@see: https://github.com/jongpie/NebulaFramework/blob/dev/src/classes/TestingUtils.cls
-@isTest
+@IsTest
 public with sharing class XAP_TEST_ReadOnlyHelper {
     public static SObject setReadOnlyField(SObject sobj, Map<Schema.SObjectField, Object> changesToFields) {
         String serializedRecord = JSON.serialize(sobj);
