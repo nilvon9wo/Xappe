@@ -78,7 +78,7 @@ public virtual class XAP_ASYNC_ResultFactory {
                 RecordTypeId = SUCCESS_RECORD_TYPE_ID,
                 Async_Job_Id__c = asyncJobId,
                 Async_Request__c = asyncRequestId,
-                XAP_REST_Request__c = restRequestId
+                REST_Request__c = restRequestId
         );
     }
 
@@ -93,7 +93,7 @@ public virtual class XAP_ASYNC_ResultFactory {
                 RecordTypeId = FAILURE_RECORD_TYPE_ID,
                 Async_Job_Id__c = asyncJobId,
                 Async_Request__c = asyncRequestId,
-                XAP_REST_Request__c = restRequestId,
+                REST_Request__c = restRequestId,
 
                 Message__c = String.join(resultWrapper.getErrorList(), ';'),
                 DML_Errors__c = this.jsonHelper.serialize(resultWrapper.getErrorList()),
@@ -120,7 +120,7 @@ public virtual class XAP_ASYNC_ResultFactory {
                     RecordTypeId = FAILURE_RECORD_TYPE_ID,
                     Async_Job_Id__c = asyncJobId,
                     Async_Request__c = asyncRequestId,
-                    XAP_REST_Request__c = restRequestId,
+                    REST_Request__c = restRequestId,
 
                     Exception_Type_Name__c = ex.getTypeName(),
                     Message__c = ex.getMessage(),

@@ -26,7 +26,7 @@ public virtual class XAP_ASYNC_RequestFactory {
 			requestJobList.add(new XAP_ASYNC_Request__c(
 					Class_Name__c = this.classHelper.getClassName(queueable),
 					SObject_Id__c = sObj.Id,
-					XAP_REST_Request__c	= this.getCurrentRequestId(sObj),
+					REST_Request__c	= this.getCurrentRequestId(sObj),
 					Async_Job_Id__c = asyncJobId
 			));
 		}

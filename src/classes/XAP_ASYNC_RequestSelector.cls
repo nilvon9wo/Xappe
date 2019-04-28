@@ -20,7 +20,7 @@ public virtual class XAP_ASYNC_RequestSelector extends XAP_DAO_SOQL_SObjectSelec
                 XAP_ASYNC_Request__c.Id,
                 XAP_ASYNC_Request__c.Async_Job_Id__c,
                 XAP_ASYNC_Request__c.Class_Name__c,
-                XAP_ASYNC_Request__c.XAP_REST_Request__c,
+                XAP_ASYNC_Request__c.REST_Request__c,
                 XAP_ASYNC_Request__c.SObject_Id__c
         };
     }

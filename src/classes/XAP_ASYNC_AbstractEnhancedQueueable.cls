@@ -82,7 +82,7 @@ public abstract class XAP_ASYNC_AbstractEnhancedQueueable implements Queueable {
     private Map<Id, XAP_ASYNC_Request__c> mapAsyncRequestByRestRequestId(List<XAP_ASYNC_Request__c> asyncRequestList) {
         Map<Id, XAP_ASYNC_Request__c> asyncRequestByRestRequestIdMap = new Map<Id, XAP_ASYNC_Request__c>();
         for (XAP_ASYNC_Request__c asyncRequest : asyncRequestList) {
-            asyncRequestByRestRequestIdMap.put((Id) asyncRequest.get(XAP_ASYNC_Request__c.XAP_REST_Request__c), asyncRequest);
+            asyncRequestByRestRequestIdMap.put((Id) asyncRequest.get(XAP_ASYNC_Request__c.REST_Request__c), asyncRequest);
         }
         return asyncRequestByRestRequestIdMap;
     }
