@@ -1,12 +1,12 @@
-public class XAP_DAO_SecurityUtils {
-	private XAP_DAO_SecurityUtils() {
+public class XAP_SOQL_SecurityUtils {
+	private XAP_SOQL_SecurityUtils() {
 	}
 
-	private static XAP_DAO_SecurityUtils INSTANCE;
+	private static XAP_SOQL_SecurityUtils INSTANCE;
 	
-	public static XAP_DAO_SecurityUtils getInstance() {
+	public static XAP_SOQL_SecurityUtils getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_DAO_SecurityUtils();
+			INSTANCE = new XAP_SOQL_SecurityUtils();
 		}
 		return INSTANCE; 
 	}
@@ -27,7 +27,7 @@ public class XAP_DAO_SecurityUtils {
     		return true; 
     	} 
             
-   		throw new XAP_DAO_FieldLevelSecurityException(sObjectType, fieldDescribe.getSObjectField());
+   		throw new XAP_SOQL_FieldLevelSecurityException(sObjectType, fieldDescribe.getSObjectField());
     } 
     
     public Boolean checkObjectIsReadable(SObjectType sObjectType) {
@@ -35,6 +35,6 @@ public class XAP_DAO_SecurityUtils {
     		return true;
     	} 
             
-       	throw new XAP_DAO_SObjectReadException(sObjectType);
+       	throw new XAP_SOQL_SObjectReadException(sObjectType);
     }
 }

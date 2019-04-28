@@ -1,28 +1,28 @@
-public class XAP_DAO_QueryFactoryFieldHelper {
-	XAP_DAO_QueryFactoryRelationshipHelper relationshipHelper;
-	XAP_DAO_SecurityUtils securityUtils;
+public class XAP_SOQL_QueryFactoryFieldHelper {
+	XAP_SOQL_QueryFactoryRelationshipHelper relationshipHelper;
+	XAP_SOQL_SecurityUtils securityUtils;
 
-	private XAP_DAO_QueryFactoryFieldHelper(XAP_DAO_QueryFactoryRelationshipHelper relationshipHelper, 	XAP_DAO_SecurityUtils securityUtils) {
+	private XAP_SOQL_QueryFactoryFieldHelper(XAP_SOQL_QueryFactoryRelationshipHelper relationshipHelper, 	XAP_SOQL_SecurityUtils securityUtils) {
 		this.relationshipHelper = relationshipHelper;
 		this.securityUtils = securityUtils;
 	}
  
-	private XAP_DAO_QueryFactoryFieldHelper() {
-		this(XAP_DAO_QueryFactoryRelationshipHelper.getInstance(), XAP_DAO_SecurityUtils.getInstance());
+	private XAP_SOQL_QueryFactoryFieldHelper() {
+		this(XAP_SOQL_QueryFactoryRelationshipHelper.getInstance(), XAP_SOQL_SecurityUtils.getInstance());
 	}
 	
-	private static XAP_DAO_QueryFactoryFieldHelper INSTANCE;
+	private static XAP_SOQL_QueryFactoryFieldHelper INSTANCE;
 
-	public Set<String> selectFields(XAP_DAO_Query query, Schema.FieldSet fieldSet, Boolean allowCrossObject){
+	public Set<String> selectFields(XAP_SOQL_Query query, Schema.FieldSet fieldSet, Boolean allowCrossObject){
 		if(fieldSet.getSObjectType() != query.sObjectType) {
-			throw new XAP_DAO_InvalidFieldSetException(
+			throw new XAP_SOQL_InvalidFieldSetException(
 				'Field set "' + fieldSet.getName() + '" is not for SObject type "' + query.sObjectType+'"'
 			);
 		}
 			
 		for(Schema.FieldSetMember field: fieldSet.getFields()){
 			if(!allowCrossObject && field.getFieldPath().contains('.')) {
-				throw new XAP_DAO_InvalidFieldSetException(
+				throw new XAP_SOQL_InvalidFieldSetException(
 					'Cross-object query.fieldSet not allowed and field "'+field.getFieldPath()+'"" is a cross-object field.'
 				);
 			} 
@@ -31,10 +31,10 @@ public class XAP_DAO_QueryFactoryFieldHelper {
 		return query.fieldSet;
 	}
 
-	public Set<String> selectFields(XAP_DAO_Query query, Set<Schema.SObjectField> fieldSet){
+	public Set<String> selectFields(XAP_SOQL_Query query, Set<Schema.SObjectField> fieldSet){
 		for(Schema.SObjectField token : fieldSet){
 			if(token == null) {
-				throw new XAP_DAO_InvalidFieldException();
+				throw new XAP_SOQL_InvalidFieldException();
 			}
 					
 			if (query.enforceFLS) {
@@ -46,7 +46,7 @@ public class XAP_DAO_QueryFactoryFieldHelper {
 		return query.fieldSet;
 	}
 
-	public Set<String> selectFields(XAP_DAO_Query query, Set<String> fieldNames){
+	public Set<String> selectFields(XAP_SOQL_Query query, Set<String> fieldNames){
 		for(String fieldName : fieldNames){
 			query.fieldSet.add( this.getFieldPath(query, fieldName) );
 		}	
@@ -55,25 +55,25 @@ public class XAP_DAO_QueryFactoryFieldHelper {
 
 	// ------------------------------------------------------------------------------------
 	
-	public static XAP_DAO_QueryFactoryFieldHelper getInstance() {
+	public static XAP_SOQL_QueryFactoryFieldHelper getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_DAO_QueryFactoryFieldHelper();
+			INSTANCE = new XAP_SOQL_QueryFactoryFieldHelper();
 		}
 		return INSTANCE;  
 	}
  
 	public String getFieldTokenPath(Schema.SObjectField field){
 		if(field == null){
-			throw new XAP_DAO_InvalidFieldException('Invalid field: null');		
+			throw new XAP_SOQL_InvalidFieldException('Invalid field: null');
 		}
 		return field.getDescribe().getName();
 	}
 	
-	public String getFieldPath(XAP_DAO_Query query, String fieldName){
+	public String getFieldPath(XAP_SOQL_Query query, String fieldName){
 		if(!fieldName.contains('.')){ 
 			Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(query.sObjectType).getField(fieldName.toLowerCase());
 			if(token == null) {
-				throw new XAP_DAO_InvalidFieldException(fieldName,query.sObjectType);
+				throw new XAP_SOQL_InvalidFieldException(fieldName,query.sObjectType);
 			}
 				
 			if (query.enforceFLS) {

@@ -1,4 +1,4 @@
-public class DAO_AccountSelector extends XAP_DAO_SObjectSelectorAbs {
+public class DAO_AccountSelector extends XAP_SOQL_SObjectSelectorAbs {
 	private DAO_AccountSelector() {
 	}
 
@@ -28,7 +28,7 @@ public class DAO_AccountSelector extends XAP_DAO_SObjectSelectorAbs {
     public List<Account> selectByBillingState(Set<String> stateSet) {
 		return (List<Account>) Database.query(
 			this.newQueryFactory()
-				.setCondition(new XAP_DAO_WHERE_InStringSetClause(
+				.setCondition(new XAP_SOQL_WHERE_InStringSetClause(
 					Account.BillingState,
 					stateSet
 				))

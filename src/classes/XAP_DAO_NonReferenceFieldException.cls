@@ -1,1 +1,0 @@
-public class XAP_DAO_NonReferenceFieldException extends Exception{}

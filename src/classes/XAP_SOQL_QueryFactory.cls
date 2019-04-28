@@ -1,18 +1,18 @@
-public class XAP_DAO_QueryFactory {
+public class XAP_SOQL_QueryFactory {
 	private static final Boolean ALLOW_CROSS_OBJECT = true;
 	private static final Boolean NOT_ASSERTED_ACCESSIBLE = false;
 	private static final Boolean NULLS_FIRST = false;
 
-	private XAP_DAO_Query query;
-	private XAP_DAO_QueryFactoryFieldHelper fieldHelper;
-	private XAP_DAO_QueryFactoryRelationshipHelper relationshipHelper; 
-	private XAP_DAO_SecurityUtils securityUtils;
+	private XAP_SOQL_Query query;
+	private XAP_SOQL_QueryFactoryFieldHelper fieldHelper;
+	private XAP_SOQL_QueryFactoryRelationshipHelper relationshipHelper;
+	private XAP_SOQL_SecurityUtils securityUtils;
 
-	public XAP_DAO_QueryFactory(
-			XAP_DAO_Query query, 
-			XAP_DAO_QueryFactoryFieldHelper fieldHelper,
-			XAP_DAO_QueryFactoryRelationshipHelper relationshipHelper,
-			XAP_DAO_SecurityUtils securityUtils
+	public XAP_SOQL_QueryFactory(
+			XAP_SOQL_Query query,
+			XAP_SOQL_QueryFactoryFieldHelper fieldHelper,
+			XAP_SOQL_QueryFactoryRelationshipHelper relationshipHelper,
+			XAP_SOQL_SecurityUtils securityUtils
 		){
 		this.query = query;
 		this.fieldHelper = fieldHelper;
@@ -20,111 +20,111 @@ public class XAP_DAO_QueryFactory {
 		this.securityUtils = securityUtils;
 	} 
 
-	public XAP_DAO_QueryFactory(Schema.SObjectType sObjectType){
+	public XAP_SOQL_QueryFactory(Schema.SObjectType sObjectType){
 		this(
-			new XAP_DAO_Query(sObjectType), 
-			XAP_DAO_QueryFactoryFieldHelper.getInstance(), 
-			XAP_DAO_QueryFactoryRelationshipHelper.getInstance(),
-			XAP_DAO_SecurityUtils.getInstance() 
+			new XAP_SOQL_Query(sObjectType),
+			XAP_SOQL_QueryFactoryFieldHelper.getInstance(),
+			XAP_SOQL_QueryFactoryRelationshipHelper.getInstance(),
+			XAP_SOQL_SecurityUtils.getInstance()
 		);
 	} 
 
-	public XAP_DAO_QueryFactory(Schema.ChildRelationship relationship){
+	public XAP_SOQL_QueryFactory(Schema.ChildRelationship relationship){
 		this(relationship.getChildSObject());  
 		this.query.relationship = relationship; 
 	}
 
 	// setters -----------------------------------------------------------
-	public XAP_DAO_QueryFactory setCondition(XAP_DAO_WHERE_ClauseIntf conditionExpression){
+	public XAP_SOQL_QueryFactory setCondition(XAP_SOQL_WHERE_ClauseIntf conditionExpression){
 		this.query.conditionExpression = conditionExpression;
 		return this; 
 	}
 
-	public XAP_DAO_QueryFactory setLimit(Integer limitCount){
+	public XAP_SOQL_QueryFactory setLimit(Integer limitCount){
 		this.query.limitCount = limitCount;
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory setOffset(Integer offsetCount){
+	public XAP_SOQL_QueryFactory setOffset(Integer offsetCount){
 		this.query.offsetCount = offsetCount;
 		return this;
 	}
 
 	// sortSelectFields -----------------------------------------------------------
-	public XAP_DAO_QueryFactory setSortSelectFields(Boolean doSort){
+	public XAP_SOQL_QueryFactory setSortSelectFields(Boolean doSort){
 		this.query.sortSelectFields = doSort;
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory setQuerySortOrdering(XAP_DAO_QuerySortOrdering ordering){
-		this.query.setOrdering(new List<XAP_DAO_QuerySortOrdering>{ ordering });
+	public XAP_SOQL_QueryFactory setQuerySortOrdering(XAP_SOQL_QuerySortOrdering ordering){
+		this.query.setOrdering(new List<XAP_SOQL_QuerySortOrdering>{ ordering });
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory setQuerySortOrdering(SObjectField field, XAP_DAO_QuerySortOrderEnum direction, Boolean nullsLast){
+	public XAP_SOQL_QueryFactory setQuerySortOrdering(SObjectField field, XAP_SOQL_QuerySortOrderEnum direction, Boolean nullsLast){
 		this.query.setOrdering(field, direction, nullsLast);
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory setQuerySortOrdering(SObjectField field, XAP_DAO_QuerySortOrderEnum direction){
+	public XAP_SOQL_QueryFactory setQuerySortOrdering(SObjectField field, XAP_SOQL_QuerySortOrderEnum direction){
 		return this.setQuerySortOrdering(field, direction, NULLS_FIRST);
 	}
 
-	public XAP_DAO_QueryFactory setQuerySortOrdering(String fieldName, XAP_DAO_QuerySortOrderEnum direction, Boolean nullsLast){
+	public XAP_SOQL_QueryFactory setQuerySortOrdering(String fieldName, XAP_SOQL_QuerySortOrderEnum direction, Boolean nullsLast){
 		this.query.setOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, nullsLast);
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory setQuerySortOrdering(String fieldName, XAP_DAO_QuerySortOrderEnum direction){
+	public XAP_SOQL_QueryFactory setQuerySortOrdering(String fieldName, XAP_SOQL_QuerySortOrderEnum direction){
 		return this.setQuerySortOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, NULLS_FIRST);
 	} 
 	
-	public XAP_DAO_QueryFactory addOrdering(XAP_DAO_QuerySortOrdering ordering){
+	public XAP_SOQL_QueryFactory addOrdering(XAP_SOQL_QuerySortOrdering ordering){
 		this.query.addOrdering(ordering);
 		return this;
 	}
 	
-    public XAP_DAO_QueryFactory addOrdering(SObjectField field, XAP_DAO_QuerySortOrderEnum direction, Boolean nullsLast){
+    public XAP_SOQL_QueryFactory addOrdering(SObjectField field, XAP_SOQL_QuerySortOrderEnum direction, Boolean nullsLast){
 		this.query.addOrdering(field, direction, nullsLast);
 		return this;
     }
 
-    public XAP_DAO_QueryFactory addOrdering(SObjectField field, XAP_DAO_QuerySortOrderEnum direction){
+    public XAP_SOQL_QueryFactory addOrdering(SObjectField field, XAP_SOQL_QuerySortOrderEnum direction){
 		return this.addOrdering(field, direction, NULLS_FIRST);
     }
 
-    public XAP_DAO_QueryFactory addOrdering(String fieldName, XAP_DAO_QuerySortOrderEnum direction, Boolean nullsLast){
+    public XAP_SOQL_QueryFactory addOrdering(String fieldName, XAP_SOQL_QuerySortOrderEnum direction, Boolean nullsLast){
 		this.query.addOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, nullsLast);
 		return this; 
     }
 
-    public XAP_DAO_QueryFactory addOrdering(String fieldName, XAP_DAO_QuerySortOrderEnum direction){
+    public XAP_SOQL_QueryFactory addOrdering(String fieldName, XAP_SOQL_QuerySortOrderEnum direction){
 		return this.addOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, NULLS_FIRST);
     }
 
 	// SubselectQueries -------------------------------------------------------------------------------------
-	public XAP_DAO_QueryFactory subselectQuery(SObjectType related){ 
+	public XAP_SOQL_QueryFactory subselectQuery(SObjectType related){
 		Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related); 
 		return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
 	}
 
-	private XAP_DAO_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible){
+	private XAP_SOQL_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible){
 		if (relationship != null){
-			throw new XAP_DAO_InvalidSubqueryRelationException(
+			throw new XAP_SOQL_InvalidSubqueryException(
 				'Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.'
 			);
 		} 
 
 		if (this.query.queryFactoryByRelationshipMap == null){
-			this.query.queryFactoryByRelationshipMap = new Map<ChildRelationship, XAP_DAO_QueryFactory>();
+			this.query.queryFactoryByRelationshipMap = new Map<ChildRelationship, XAP_SOQL_QueryFactory>();
 		}
 		return (this.query.queryFactoryByRelationshipMap.containsKey(this.query.relationship))
 			? this.query.queryFactoryByRelationshipMap.get(this.query.relationship)
 			: this.setSubselectQuery(assertIsAccessible);
 	}
 	
-	private XAP_DAO_QueryFactory setSubselectQuery(Boolean assertIsAccessible) {
-		XAP_DAO_QueryFactory subselectQuery = new XAP_DAO_QueryFactory(this.query.relationship);
+	private XAP_SOQL_QueryFactory setSubselectQuery(Boolean assertIsAccessible) {
+		XAP_SOQL_QueryFactory subselectQuery = new XAP_SOQL_QueryFactory(this.query.relationship);
 		subSelectQuery.setSortSelectFields(this.query.sortSelectFields);
 		if(assertIsAccessible){
 			subSelectQuery.assertIsAccessible(); 
@@ -134,92 +134,92 @@ public class XAP_DAO_QueryFactory {
 	}
 	
 
-	public XAP_DAO_QueryFactory subselectQuery(String relationshipName){ 
+	public XAP_SOQL_QueryFactory subselectQuery(String relationshipName){
 		return subselectQuery(relationshipName, NOT_ASSERTED_ACCESSIBLE);
 	}
 
-	public XAP_DAO_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible){
+	public XAP_SOQL_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible){
 		ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, relationshipName);
 		if (relationship != null) {
 			return setSubselectQuery(relationship, assertIsAccessible);
 		}
 
-		throw new XAP_DAO_InvalidSubqueryRelationException(
+		throw new XAP_SOQL_InvalidSubqueryException(
 			'Invalid call to subselectQuery with this.query.relationshipName = ' + relationshipName 
 			+ '.  Relationship does not exist for ' + this.query.sObjectType.getDescribe().getName()
 		);	
 	} 
 
-	public XAP_DAO_QueryFactory subselectQuery(ChildRelationship relationship){ 
+	public XAP_SOQL_QueryFactory subselectQuery(ChildRelationship relationship){
 		return subselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
 	}
 
-	public XAP_DAO_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible){
+	public XAP_SOQL_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible){
 		return setSubselectQuery(relationship, assertIsAccessible);
 	}
 
 
 	// Setters -------------------------------------------------------------------------------------
 
-	public XAP_DAO_QueryFactory setEnforceFLS(Boolean enforce){
+	public XAP_SOQL_QueryFactory setEnforceFLS(Boolean enforce){
 		this.query.enforceFLS = enforce;
 		return this;
 	}
 
 	// assertions -------------------------------------------------------------------
 
-	public XAP_DAO_QueryFactory assertIsAccessible(){
+	public XAP_SOQL_QueryFactory assertIsAccessible(){
 		this.securityUtils.checkObjectIsReadable(this.query.sObjectType);
 		return this;
 	}
 
 	// Select Fields ----------------------------------------------------------------------------
 
-	public XAP_DAO_QueryFactory selectFields(Schema.FieldSet fieldSet, Boolean allowCrossObject){ 
+	public XAP_SOQL_QueryFactory selectFields(Schema.FieldSet fieldSet, Boolean allowCrossObject){
 		this.fieldHelper.selectFields(this.query, fieldSet, allowCrossObject);
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory selectFields(Schema.FieldSet fieldSet){
+	public XAP_SOQL_QueryFactory selectFields(Schema.FieldSet fieldSet){
 		return this.selectFields(fieldSet, ALLOW_CROSS_OBJECT);
 	}
 
-	public XAP_DAO_QueryFactory selectFields(Set<Schema.SObjectField> fieldSet){
+	public XAP_SOQL_QueryFactory selectFields(Set<Schema.SObjectField> fieldSet){
 		this.fieldHelper.selectFields(this.query, fieldSet);
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory selectFields(List<Schema.SObjectField> fieldList){
+	public XAP_SOQL_QueryFactory selectFields(List<Schema.SObjectField> fieldList){
 		return this.selectFields(new Set<Schema.SObjectField>(fieldList));
 	}
 
-	public XAP_DAO_QueryFactory selectField(Schema.SObjectField field){
+	public XAP_SOQL_QueryFactory selectField(Schema.SObjectField field){
 		return this.selectFields(new Set<Schema.SObjectField>{field});
 	}
 
-	public XAP_DAO_QueryFactory selectFields(Set<String> fieldNameSet){
+	public XAP_SOQL_QueryFactory selectFields(Set<String> fieldNameSet){
 		this.fieldHelper.selectFields(this.query, fieldNameSet);
 		return this;
 	}
 
-	public XAP_DAO_QueryFactory selectFields(List<String> fieldNameList){
+	public XAP_SOQL_QueryFactory selectFields(List<String> fieldNameList){
 		return this.selectFields(new Set<String>(fieldNameList));
 	}
 
-	public XAP_DAO_QueryFactory selectField(String fieldName){ 		
+	public XAP_SOQL_QueryFactory selectField(String fieldName){
 		return this.selectFields(new Set<String>{fieldName});
 	} 
 
-	public XAP_DAO_QueryFactory deepClone(){	
-		XAP_DAO_QueryFactory clone = new XAP_DAO_QueryFactory(this.query.sObjectType)
+	public XAP_SOQL_QueryFactory deepClone(){
+		XAP_SOQL_QueryFactory clone = new XAP_SOQL_QueryFactory(this.query.sObjectType)
 			.setLimit(this.query.limitCount)  
 			.setOffset(this.query.offsetCount)
 			.setCondition(this.query.conditionExpression)
 			.setEnforceFLS(this.query.enforceFLS);
 
-		Map<Schema.ChildRelationship, XAP_DAO_QueryFactory> subqueries = this.query.queryFactoryByRelationshipMap;
+		Map<Schema.ChildRelationship, XAP_SOQL_QueryFactory> subqueries = this.query.queryFactoryByRelationshipMap;
 		if(subqueries != null) {
-			Map<Schema.ChildRelationship, XAP_DAO_QueryFactory> clonedSubqueries = new Map<Schema.ChildRelationship, XAP_DAO_QueryFactory>();
+			Map<Schema.ChildRelationship, XAP_SOQL_QueryFactory> clonedSubqueries = new Map<Schema.ChildRelationship, XAP_SOQL_QueryFactory>();
 			for(Schema.ChildRelationship key : subqueries.keySet()) {
 				clonedSubqueries.put(key, subqueries.get(key).deepClone());
 			}

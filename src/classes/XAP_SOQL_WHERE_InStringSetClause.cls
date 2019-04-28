@@ -1,14 +1,14 @@
-public class XAP_DAO_WHERE_InStringSetClause implements XAP_DAO_WHERE_ClauseIntf {
-	XAP_DAO_WHERE_ComparisonOpEnumHelper comparisonHelper;
+public class XAP_SOQL_WHERE_InStringSetClause implements XAP_SOQL_WHERE_ClauseIntf {
+	XAP_SOQL_WHERE_ComparisonOpEnumHelper comparisonHelper;
 
 	String fieldName;
 	Set<String> stringSet;
 	 
-	public XAP_DAO_WHERE_InStringSetClause (
+	public XAP_SOQL_WHERE_InStringSetClause (
 			SObjectField sObjectField,
 			Set<String> stringSet
 		) {
-		this.fieldName = XAP_DAO_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField);
+		this.fieldName = XAP_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField);
 		this.stringSet = stringSet;
 	}
   

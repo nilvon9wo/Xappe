@@ -1,4 +1,4 @@
-public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs {
+public class DAO_TerritoryAssignmentSelector extends XAP_SOQL_SObjectSelectorAbs {
 	CTM_RegionTypeEnumHelper regionTypeEnumHelper; 
 	CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
 
@@ -58,16 +58,16 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SObjectSelectorAbs 
 
 		return (List<Territory_Assignment__c>) Database.query(
 			this.newQueryFactory()
-				.setCondition(new XAP_DAO_WHERE_AndClause(new List<XAP_DAO_WHERE_ClauseIntf>{
-					new XAP_DAO_WHERE_DateComparisonClause(
-						Territory_Assignment__c.Territory_Start_Date__c, XAP_DAO_WHERE_ComparisonOperatorEnum.LESS_THAN_OR_EQUAL, targetDate
+				.setCondition(new XAP_SOQL_WHERE_AndClause(new List<XAP_SOQL_WHERE_ClauseIntf>{
+					new XAP_SOQL_WHERE_DateComparisonClause(
+						Territory_Assignment__c.Territory_Start_Date__c, XAP_SOQL_WHERE_ComparisonOperatorEnum.LESS_THAN_OR_EQUAL, targetDate
 					),
-					new XAP_DAO_WHERE_DateComparisonClause(
-						Territory_Assignment__c.Territory_End_Date__c, XAP_DAO_WHERE_ComparisonOperatorEnum.GREATER_THAN_OR_EQUAL, targetDate
+					new XAP_SOQL_WHERE_DateComparisonClause(
+						Territory_Assignment__c.Territory_End_Date__c, XAP_SOQL_WHERE_ComparisonOperatorEnum.GREATER_THAN_OR_EQUAL, targetDate
 					),
-					new XAP_DAO_WHERE_OrClause(new List<XAP_DAO_WHERE_ClauseIntf>{
-						new XAP_DAO_WHERE_InStringSetClause(Territory_Assignment__c.Territory_State__c, stateSet),
-						new XAP_DAO_WHERE_InStringSetClause(Territory_Assignment__c.Territory_Country__c, countrySet)
+					new XAP_SOQL_WHERE_OrClause(new List<XAP_SOQL_WHERE_ClauseIntf>{
+						new XAP_SOQL_WHERE_InStringSetClause(Territory_Assignment__c.Territory_State__c, stateSet),
+						new XAP_SOQL_WHERE_InStringSetClause(Territory_Assignment__c.Territory_Country__c, countrySet)
 					})
 				}))
 				.toSOQL() 

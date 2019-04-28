@@ -1,5 +1,5 @@
-public class XAP_DAO_SObjectReadException extends XAP_DAO_SecurityException{
-   	public XAP_DAO_SObjectReadException(Schema.SObjectType sObjectType){
+public class XAP_SOQL_SObjectReadException extends XAP_SOQL_SecurityException{
+   	public XAP_SOQL_SObjectReadException(Schema.SObjectType sObjectType){
    		this.SObjectType = sObjectType;
 
    		this.setMessage(

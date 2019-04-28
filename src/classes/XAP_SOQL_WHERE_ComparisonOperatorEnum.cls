@@ -1,4 +1,4 @@
-public enum XAP_DAO_WHERE_ComparisonOperatorEnum {
+public enum XAP_SOQL_WHERE_ComparisonOperatorEnum {
     EQUALS,
     NOT_EQUALS,
     LESS_THAN,

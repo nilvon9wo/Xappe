@@ -1,38 +1,38 @@
-public class XAP_DAO_QueryFactoryRelationshipHelper {
-	XAP_DAO_SecurityUtils securityUtils;
+public class XAP_SOQL_QueryFactoryRelationshipHelper {
+	XAP_SOQL_SecurityUtils securityUtils;
 	
-	private XAP_DAO_QueryFactoryRelationshipHelper(XAP_DAO_SecurityUtils securityUtils) {
+	private XAP_SOQL_QueryFactoryRelationshipHelper(XAP_SOQL_SecurityUtils securityUtils) {
 		this.securityUtils = securityUtils;
 	}
 
-	private XAP_DAO_QueryFactoryRelationshipHelper() {
-		this(XAP_DAO_SecurityUtils.getInstance());
+	private XAP_SOQL_QueryFactoryRelationshipHelper() {
+		this(XAP_SOQL_SecurityUtils.getInstance());
 	}
 
-	private static XAP_DAO_QueryFactoryRelationshipHelper INSTANCE;
+	private static XAP_SOQL_QueryFactoryRelationshipHelper INSTANCE;
 	
-	public static XAP_DAO_QueryFactoryRelationshipHelper getInstance() {
+	public static XAP_SOQL_QueryFactoryRelationshipHelper getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_DAO_QueryFactoryRelationshipHelper();
+			INSTANCE = new XAP_SOQL_QueryFactoryRelationshipHelper();
 		}
 		return INSTANCE; 
 	}
 	 
 	// getChildRelationship --------------------------------------------------------------------------------------
 	    
- 	public Schema.ChildRelationship getChildRelationship(XAP_DAO_Query query, sObjectType thatSObjectType){
+ 	public Schema.ChildRelationship getChildRelationship(XAP_SOQL_Query query, sObjectType thatSObjectType){
         for (Schema.ChildRelationship childRow : query.sObjectType.getDescribe().getChildRelationships()) {
             if (childRow.getChildSObject() == thatSObjectType && childRow.getRelationshipName() != null) { 
                 return childRow;
             }   
         }
-        throw new XAP_DAO_InvalidSubqueryRelationException(
+        throw new XAP_SOQL_InvalidSubqueryException(
         	'Invalid call to subselectQuery.  Invalid relationship for sObjectType '+ query.SObjectType
         	+ ' and sObjectType =' + thatSObjectType
         );
     }
 
- 	public Schema.ChildRelationship getChildRelationship(XAP_DAO_Query query, String relationshipName){
+ 	public Schema.ChildRelationship getChildRelationship(XAP_SOQL_Query query, String relationshipName){
         for (Schema.ChildRelationship childRow : query.sObjectType.getDescribe().getChildRelationships()){
             if (childRow.getRelationshipName() == relationshipName){ 
                 return childRow;
@@ -43,7 +43,7 @@ public class XAP_DAO_QueryFactoryRelationshipHelper {
 
 	// transverseRelationships  -------------------------------------------------------------------------------------
 
-	public List<String> transverseRelationships(XAP_DAO_Query query, String fieldName) { 
+	public List<String> transverseRelationships(XAP_SOQL_Query query, String fieldName) {
 		List<String> fieldPath = new List<String>();
 		Schema.SObjectType lastSObjectType = query.sObjectType;
 		Iterator<String> i = fieldName.split('\\.').iterator();
@@ -65,8 +65,8 @@ public class XAP_DAO_QueryFactoryRelationshipHelper {
 			} 
 			else{
 				throw (token == null)
-					? (Exception) new XAP_DAO_InvalidFieldException(field,lastSObjectType)
-				    : (Exception) new XAP_DAO_NonReferenceFieldException(lastSObjectType+'.'+field+' is not a lookup or master-detail field but is used in a cross-object query field.');
+					? (Exception) new XAP_SOQL_InvalidFieldException(field,lastSObjectType)
+				    : (Exception) new XAP_SOQL_NonReferenceFieldException(lastSObjectType+'.'+field+' is not a lookup or master-detail field but is used in a cross-object query field.');
 			}
 		}
 		return fieldPath;
