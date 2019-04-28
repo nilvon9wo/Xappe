@@ -11,49 +11,22 @@ public class XAP_TRIG_TriggerWrapper {
 	@TestVisible public Map<Id, SObject> oldSObjectByIdMap {get; private set;}
 	@TestVisible public Map<Id, SObject> newSObjectByIdMap {get; private set;}
 	
-	@TestVisible public SObjectType SObjectType {
+	@TestVisible public SObjectType sObjectType {
 			get {
-				if (this.SObjectType == null) {
-					Boolean hasNewSObjectList = (this.newSObjectList != null && !this.newSObjectList.isEmpty()); 		
-					Boolean hasOldSObjectList = (this.oldSObjectList != null && !this.oldSObjectList.isEmpty()); 		
-				    
-				    SObject sampleSObject = hasNewSObjectList
-				        ? this.newSObjectList[0] 
-				        : ((hasOldSObjectList) ? this.oldSObjectList[0] : null); 
-				        
-			    	this.SObjectType = (sampleSObject != null)
-			    		? sampleSObject.getSObjectType()
-			    		: null;		
+				if (this.sObjectType == null) {
+					this.sObjectType = this.selectSObjectType();
 				}
-				return this.SObjectType;
+				return this.sObjectType;
 			} 
 			private set;
 	}
 	 
-	@TestVisible public TriggerOperation operation {
+	@TestVisible public System.TriggerOperation operationType {
 			get {
-				if (this.operation == null && this.isExecuting) {
-			        if( this.isBefore ) {
-			            if( this.isInsert ) {
-			                this.operation = TriggerOperation.BEFORE_INSERT;
-			            } else if( this.isUpdate ) {
-			                this.operation = TriggerOperation.BEFORE_UPDATE;
-			            } else if( this.isDelete ) {
-			                this.operation = TriggerOperation.BEFORE_DELETE;
-			            }
-			        } else if( this.isAfter ) {
-			            if( this.isInsert ) {
-			                this.operation = TriggerOperation.AFTER_INSERT;
-			            } else if( this.isUpdate ) {
-			                this.operation = TriggerOperation.AFTER_UPDATE;
-			            } else if( this.isDelete ) {
-			                this.operation = TriggerOperation.AFTER_DELETE;
-			            } else if( this.isUndelete ) {
-			                this.operation = TriggerOperation.AFTER_UNDELETE;
-			            }
-			        }
+				if (this.operationType == null) {
+					this.operationType = Trigger.operationType;
 				}
-				return this.operation;
+				return this.operationType;
 			} 
 			private set;
 	}
@@ -70,5 +43,20 @@ public class XAP_TRIG_TriggerWrapper {
 		this.newSObjectList 	= Trigger.new;
 		this.oldSObjectByIdMap 	= Trigger.oldMap;
 		this.newSObjectByIdMap 	= Trigger.newMap;
+	}
+
+	@TestVisible
+	private SObjectType selectSObjectType() {
+		// This assumes a homogenous list, which I think should always be true for triggers.
+		Boolean hasNewSObjectList = (this.newSObjectList != null && !this.newSObjectList.isEmpty());
+		Boolean hasOldSObjectList = (this.oldSObjectList != null && !this.oldSObjectList.isEmpty());
+
+		SObject sampleSObject = hasNewSObjectList
+				? this.newSObjectList[0]
+				: ((hasOldSObjectList) ? this.oldSObjectList[0] : null);
+
+		return (sampleSObject != null)
+				? sampleSObject.getSObjectType()
+				: null;
 	}
 }
