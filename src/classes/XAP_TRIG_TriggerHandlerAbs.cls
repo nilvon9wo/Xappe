@@ -29,5 +29,5 @@ public abstract class XAP_TRIG_TriggerHandlerAbs implements XAP_TRIG_TriggerHand
     		.handle(this.triggerWrapper);
     }
     
-    public abstract Type get(XAP_TRIG_TriggerEventOperationEnum triggerEventOperation); 
+    public abstract Type get(TriggerOperation triggerEventOperation);
 }

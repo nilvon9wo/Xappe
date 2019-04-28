@@ -30,26 +30,26 @@ public class XAP_TRIG_TriggerWrapper {
 			private set;
 	}
 	 
-	@TestVisible public XAP_TRIG_TriggerEventOperationEnum operation {
+	@TestVisible public TriggerOperation operation {
 			get {
 				if (this.operation == null && this.isExecuting) {
 			        if( this.isBefore ) {
 			            if( this.isInsert ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.BEFORE_INSERT;
+			                this.operation = TriggerOperation.BEFORE_INSERT;
 			            } else if( this.isUpdate ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.BEFORE_UPDATE;
+			                this.operation = TriggerOperation.BEFORE_UPDATE;
 			            } else if( this.isDelete ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.BEFORE_DELETE;
+			                this.operation = TriggerOperation.BEFORE_DELETE;
 			            }
 			        } else if( this.isAfter ) {
 			            if( this.isInsert ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.AFTER_INSERT;
+			                this.operation = TriggerOperation.AFTER_INSERT;
 			            } else if( this.isUpdate ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.AFTER_UPDATE;
+			                this.operation = TriggerOperation.AFTER_UPDATE;
 			            } else if( this.isDelete ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.AFTER_DELETE;
+			                this.operation = TriggerOperation.AFTER_DELETE;
 			            } else if( this.isUndelete ) {
-			                this.operation = XAP_TRIG_TriggerEventOperationEnum.AFTER_UNDELETE;
+			                this.operation = TriggerOperation.AFTER_UNDELETE;
 			            }
 			        }
 				}
