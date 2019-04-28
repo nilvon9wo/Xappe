@@ -15,7 +15,7 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
     }
 	
 	public XAP_TRIG_TriggerEventCoordinator() {
-		this(new XAP_TRIG_SObjectTypeOperationConvertor(), new XAP_TRIG_TriggerSettingSelector());
+		this(new XAP_TRIG_SObjectTypeOperationConvertor(), XAP_TRIG_TriggerSettingSelector.getInstance());
 	}
 
     @TestVisible
