@@ -6,14 +6,14 @@ public class XAP_TRIG_TriggerWrapper {
 	@TestVisible public Boolean 		 isUndelete 	   {get; private set;}
 	@TestVisible public Boolean 		 isBefore          {get; private set;}
 	@TestVisible public Boolean 		 isAfter           {get; private set;}
-	@TestVisible public List<sObject> 	 oldSObjectList    {get; private set;}
-	@TestVisible public List<sObject>	 newSObjectList    {get; private set;}
-	@TestVisible public Map<ID, sObject> oldSObjectByIdMap {get; private set;}
-	@TestVisible public Map<ID, sObject> newSObjectByIdMap {get; private set;}
+	@TestVisible public List<SObject> 	 oldSObjectList    {get; private set;}
+	@TestVisible public List<SObject>	 newSObjectList    {get; private set;}
+	@TestVisible public Map<Id, SObject> oldSObjectByIdMap {get; private set;}
+	@TestVisible public Map<Id, SObject> newSObjectByIdMap {get; private set;}
 	
-	@TestVisible public SObjectType sObjectType {
+	@TestVisible public SObjectType SObjectType {
 			get {
-				if (this.sObjectType == null) {
+				if (this.SObjectType == null) {
 					Boolean hasNewSObjectList = (this.newSObjectList != null && !this.newSObjectList.isEmpty()); 		
 					Boolean hasOldSObjectList = (this.oldSObjectList != null && !this.oldSObjectList.isEmpty()); 		
 				    
@@ -21,11 +21,11 @@ public class XAP_TRIG_TriggerWrapper {
 				        ? this.newSObjectList[0] 
 				        : ((hasOldSObjectList) ? this.oldSObjectList[0] : null); 
 				        
-			    	this.sObjectType = (sampleSObject != null)
+			    	this.SObjectType = (sampleSObject != null)
 			    		? sampleSObject.getSObjectType()
 			    		: null;		
 				}
-				return this.sObjectType;
+				return this.SObjectType;
 			} 
 			private set;
 	}
