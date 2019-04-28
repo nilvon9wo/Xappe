@@ -1,1 +1,0 @@
-public class XAP_SOQL_InvalidSubqueryException extends Exception{}

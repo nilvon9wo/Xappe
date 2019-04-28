@@ -1,1 +1,0 @@
-public class XAP_SOQL_NonReferenceFieldException extends Exception{}
