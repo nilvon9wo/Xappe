@@ -56,12 +56,20 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
    	}
    	 
     public abstract Schema.SObjectType getSObjectType();
-    abstract List<Schema.SObjectField> getSObjectFieldList();
+    private abstract List<Schema.SObjectField> getSObjectFieldList();
 
     public virtual List<Schema.FieldSet> getSObjectFieldSetList() {
         return null;
     }
-    
+
+    public virtual List<SObject> selectById(Set<Id> idSet) {
+        return (List<SObject>) Database.query(
+                this.newQueryFactory()
+                        .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                        .toSOQL()
+        );
+    }
+
     public virtual String getOrderBy() {
         if(this.orderBy == null) {
 	   		this.orderBy = 'CreatedDate';
@@ -118,7 +126,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
 			queryFactory.selectField(relationshipFieldPath + '.' + field.getDescribe().getName());
 		}		
         	
-        if(Userinfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
+        if(UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
         	queryFactory.selectField(relationshipFieldPath + '.' + CURRENCY_ISO_FIELDNAME);
         }
 	}
@@ -199,7 +207,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
 	            }
 	        } 
 	
-	        if(Userinfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
+	        if(UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
 	        	queryFactory.selectField(CURRENCY_ISO_FIELDNAME);
 	        }
         }
