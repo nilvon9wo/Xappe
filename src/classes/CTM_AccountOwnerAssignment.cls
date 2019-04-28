@@ -1,12 +1,12 @@
 public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerIntf {
-	XAP_UTIL_SetHelper setHelper;
+	XAP_UTIL_SetExtractor setHelper;
 
 	CTM_RegionTypeEnumHelper regionTypeEnumHelper;
 	CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
 	DAO_TerritoryAssignmentSelector territoryAssignmentSelector;
 	
 	public CTM_AccountOwnerAssignment(
-			XAP_UTIL_SetHelper setHelper,
+			XAP_UTIL_SetExtractor setHelper,
 
 			CTM_RegionTypeEnumHelper regionTypeEnumHelper, 
 			CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper,
@@ -21,7 +21,7 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 	 
 	public CTM_AccountOwnerAssignment() {
 		this(
-			XAP_UTIL_SetHelper.getInstance(), 
+			XAP_UTIL_SetExtractor.getInstance(),
 			
 			CTM_RegionTypeEnumHelper.getInstance(), 
 			CTM_TerritoryRegionFieldHelper.getInstance(), 

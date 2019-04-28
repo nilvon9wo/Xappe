@@ -1,5 +1,5 @@
 @IsTest
-public class XAP_UTIL_SetHelperMock extends XAP_UTIL_SetHelper {
+public class XAP_UTIL_SetExtractorMock extends XAP_UTIL_SetExtractor {
 
 	public List<SObject> receivedSObjectList;
 	public List<List<SObject>> receivedSObjectListList = new List<List<SObject>>();

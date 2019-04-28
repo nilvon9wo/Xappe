@@ -1,11 +1,11 @@
-public virtual class XAP_UTIL_SetHelper {
-	private static XAP_UTIL_SetHelper INSTANCE;
-	protected XAP_UTIL_SetHelper() {
+public virtual class XAP_UTIL_SetExtractor {
+	private static XAP_UTIL_SetExtractor INSTANCE;
+	protected XAP_UTIL_SetExtractor() {
 	}
 	
-	public static XAP_UTIL_SetHelper getInstance() {
+	public static XAP_UTIL_SetExtractor getInstance() {
 		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_SetHelper();
+			INSTANCE = new XAP_UTIL_SetExtractor();
 		}
 		return INSTANCE;
 	}
