@@ -9,7 +9,11 @@ public virtual class XAP_UTIL_SObjectListSetter {
 		}
 		return INSTANCE;
 	}
-	
+
+	public virtual List<SObject> setAllTrue(List<SObject> sObjectList, Set<SObjectField> booleanFieldSet) {
+		return this.setAllToValue(sObjectList, booleanFieldSet, true);
+	}
+
 	public virtual List<SObject> setAllTrue(List<SObject> sObjectList, SObjectField booleanField) {
 		return this.setAllToValue(sObjectList, booleanField, true);
 	} 
