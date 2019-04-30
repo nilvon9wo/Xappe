@@ -68,10 +68,18 @@ public class XAP_TRIG_TriggerWrapper {
                 : null;
     }
 
-    public List<SObject> extractSObjectsWithNewOrChangedValueInTargetField(SObjectField targetField, Object targetValue) {
+    public List<SObject> extractSObjectsNewlyTrue(SObjectField booleanField) {
         return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
-                new XAP_PRED_SObjectFieldHasValue(targetField, targetValue),
+                new XAP_PRED_SObjectFieldTargetFieldIsTrue(booleanField),
+                new XAP_PRED_SObjectFieldHasChanged(booleanField, this.oldSObjectByIdMap)
+        });
+    }
+
+    public List<SObject> extractSObjectsNewlyHavingValue(SObjectField targetField, Object targetValue) {
+        return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
+                new XAP_PRED_SObjectFieldHasTargetValue(targetField, targetValue),
                 new XAP_PRED_SObjectFieldHasChanged(targetField, this.oldSObjectByIdMap)
         });
     }
+
 }
