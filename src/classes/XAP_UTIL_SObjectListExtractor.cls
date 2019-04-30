@@ -1,167 +1,75 @@
 public virtual class XAP_UTIL_SObjectListExtractor {
-	private static XAP_UTIL_SObjectListExtractor INSTANCE;
-	protected XAP_UTIL_SObjectListExtractor() {
-	}
-	
-	public static XAP_UTIL_SObjectListExtractor getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_SObjectListExtractor();
-		}
-		return INSTANCE;
-	}
-	
-	// Extract true for predicate collection ----------------------------------------------------------------------
-	
-    public virtual List<SObject> extractWhereAllPredicatesTrue(List<SObject> sObjectList, List<XAP_PRED_SObjectPredicateIntf> predicateList) {
-    	return (new AllPredicateListExtractor(predicateList)).extractFrom(sObjectList); 
-    }
-	
-	@TestVisible
-	private class AllPredicateListExtractor extends ListExtractor { 
-		List<XAP_PRED_SObjectPredicateIntf> predicateList;
-		
-		AllPredicateListExtractor(List<XAP_PRED_SObjectPredicateIntf> predicateList) {
-			this.predicateList = predicateList;
-		}
-		
-		override Boolean isTrueFor(SObject sObj) {
-			for(XAP_PRED_SObjectPredicateIntf predicate : predicateList) {
-				if (!predicate.isTrueFor(sObj)) {
-					return false;
-				}
-			}
-			return true;
-		}
-	} 
-	
-	
-	// Extract where true  -----------------------------------------------------------------------------------------
-
-    public virtual List<SObject> extractWhereTrueFrom(List<SObject> sObjectList, SObjectField booleanField) {
-    	return (new IsTrueListExtractor(booleanField)).extractFrom(sObjectList); 
+    private static XAP_UTIL_SObjectListExtractor INSTANCE;
+    protected XAP_UTIL_SObjectListExtractor() {
     }
 
-	@TestVisible
-	private class IsTrueListExtractor extends ListExtractor { 
-		SObjectField sObjectField;
-		
-		IsTrueListExtractor(SObjectField sObjectField) {
-			this.sObjectField = sObjectField;
-		} 
-		
-		override Boolean isTrueFor(SObject sObj) {
-			return (Boolean) sObj.get(this.sObjectField);
-		}
-	} 
-
-	// Extract where changed to true  -----------------------------------------------------------------------------------------
-
-    public virtual List<SObject> extractWhereChangedToTrueFrom(
-    		List<SObject> newSObjectList, 
-    		Map<Id, SObject> oldSObjectByIdMap, 
-    		SObjectField booleanField
-    	) {
-    	return (new IsChangedToTrueListExtractor(oldSObjectByIdMap, booleanField)).extractFrom(newSObjectList); 
+    public static XAP_UTIL_SObjectListExtractor getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new XAP_UTIL_SObjectListExtractor();
+        }
+        return INSTANCE;
     }
 
-	@TestVisible
-	private class IsChangedToTrueListExtractor extends ListExtractor { 
-		Map<Id, SObject> oldSObjectByIdMap;
-		SObjectField sObjectField;
-		
-		IsChangedToTrueListExtractor(Map<Id, SObject> oldSObjectByIdMap, SObjectField sObjectField) {
-			this.oldSObjectByIdMap = oldSObjectByIdMap;
-			this.sObjectField = sObjectField;
-		} 
-		
-		override Boolean isTrueFor(SObject newSObject) {
-			SObject oldSObject = (this.oldSObjectByIdMap != null)
-				 ? this.oldSObjectByIdMap.get(newSObject.id)
-				 : null;
-				 
-			Boolean hasNoOld = oldSObject == null;
-			return hasNoOld || this.isChangedToTrue(newSObject, oldSObject);
-		}
-		
-		@TestVisible
-		private Boolean isChangedToTrue(SObject newSObject, SObject oldSObject) {
-			return (Boolean) newSObject.get(this.sObjectField)
-				&& (!(Boolean) oldSObject.get(this.sObjectField)); 
-		}
-	} 
-
-	// Extract where not null  -----------------------------------------------------------------------------------------
-
-    public virtual List<SObject> extractWhereNotNullFrom(List<SObject> sObjectList, SObjectField sObjectField) {
-    	return (new IsNotNullListExtractor(sObjectField)).extractFrom(sObjectList); 
+    public virtual List<SObject> extractWhereAllPredicatesTrue(
+            List<SObject> sObjectList,
+            List<XAP_PRED_SObjectPredicateIntf> predicateList
+    ) {
+        return new ListExtractor(new XAP_PRED_AllPredicatesTrue(predicateList))
+                .extractFrom(sObjectList);
     }
-    
-	@TestVisible
-	private class IsNotNullListExtractor extends ListExtractor { 
-		SObjectField sObjectField;
-		
-		IsNotNullListExtractor(SObjectField sObjectField) {
-			this.sObjectField = sObjectField;
-		}
 
-		override Boolean isTrueFor(SObject sObj) {
-			return (sObj.get(sObjectField) != null);
-		}
-	} 
-
-	// Extract where null  -----------------------------------------------------------------------------------------
-
-    public virtual List<SObject> extractWhereNullFrom(List<SObject> sObjectList, SObjectField sObjectField) {
-    	return (new IsNullListExtractor(sObjectField)).extractFrom(sObjectList); 
+    public virtual List<SObject> extractWhereAnyPredicatesTrue(
+            List<SObject> sObjectList,
+            List<XAP_PRED_SObjectPredicateIntf> predicateList
+    ) {
+        return new ListExtractor(new XAP_PRED_AnyPredicatesTrue(predicateList))
+                .extractFrom(sObjectList);
     }
-    
-	@TestVisible
-	private class IsNullListExtractor extends ListExtractor { 
-		SObjectField sObjectField;
-		
-		IsNullListExtractor(SObjectField sObjectField) {
-			this.sObjectField = sObjectField;
-		}
 
-		override Boolean isTrueFor(SObject sObj) {
-			return (sObj.get(sObjectField) == null);
-		}
-	} 
-
-	// Extract by Id  -----------------------------------------------------------------------------------------
-
-    public virtual List<SObject> extractByIdFrom(List<SObject> sObjectList, SObjectField sObjectField, Id id) {
-    	return (new ForIdListExtractor(sObjectField, id)).extractFrom(sObjectList); 
+    public virtual List<SObject> extractWhereSpecifiedValue(
+            List<SObject> sObjectList,
+            SObjectField sObjectField,
+            String value
+    ) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldHasTargetValue(sObjectField, value))
+                .extractFrom(sObjectList);
     }
-    
-	@TestVisible
-	private class ForIdListExtractor extends ListExtractor { 
-		SObjectField sObjectField;
-		Id id;
-		
-		ForIdListExtractor(SObjectField sObjectField, Id id) {
-			this.sObjectField = sObjectField;
-			this.id = id;
-		}
 
-		override Boolean isTrueFor(SObject sObj) {
-			return ((Id) sObj.get(sObjectField) == this.id);
-		}
-	} 
+    public virtual List<SObject> extractWhereTrue(List<SObject> sObjectList, SObjectField booleanField) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldTargetFieldIsTrue(booleanField))
+                .extractFrom(sObjectList);
+    }
 
-	// Abstract -----------------------------------------------------------------------------------------
+    public virtual List<SObject> extractWhereFalse(List<SObject> sObjectList, SObjectField booleanField) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldTargetFieldIsFalse(booleanField))
+                .extractFrom(sObjectList);
+    }
 
-    abstract private class ListExtractor {
-    	public List<SObject> extractFrom(List<SObject> sObjectList) {
-	    	List<SObject> resultList = new List<SObject>();
-	    	for (SObject sObj : sObjectList) {
-	    		if (this.isTrueFor(sObj)) {
-	    			resultList.add(sObj);
-	    		}
-	    	}
-	    	return resultList; 
-    	} 
-    	
-    	abstract Boolean isTrueFor(SObject sObj);
+    public virtual List<SObject> extractWhereNotNull(List<SObject> sObjectList, SObjectField sObjectField) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldHasNonNullValue(sObjectField))
+                .extractFrom(sObjectList);
+    }
+
+    public virtual List<SObject> extractWhereIsNull(List<SObject> sObjectList, SObjectField sObjectField) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldHasNullValue(sObjectField))
+                .extractFrom(sObjectList);
+    }
+
+    private class ListExtractor {
+        XAP_PRED_SObjectPredicateIntf predicate;
+
+        ListExtractor(XAP_PRED_SObjectPredicateIntf predicate) {
+            this.predicate = predicate;
+        }
+
+        public List<SObject> extractFrom(List<SObject> sObjectList) {
+            List<SObject> resultList = new List<SObject>();
+            for (SObject sObj : sObjectList) {
+                if (this.predicate.isTrueFor(sObj)) {
+                    resultList.add(sObj);
+                }
+            }
+            return resultList;
+        }
     }
 }
