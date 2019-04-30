@@ -1,8 +1,8 @@
-public class XAP_PRED_SObjectFieldHasValue implements XAP_PRED_SObjectPredicateIntf {
+public class XAP_PRED_SObjectFieldHasTargetValue implements XAP_PRED_SObjectPredicateIntf {
 	SObjectField targetField;
 	Object targetValue;
 
-	public XAP_PRED_SObjectFieldHasValue(SObjectField targetField, Object targetValue) {
+	public XAP_PRED_SObjectFieldHasTargetValue(SObjectField targetField, Object targetValue) {
 		this.targetField = targetField;
 		this.targetValue = targetValue;
 	}
