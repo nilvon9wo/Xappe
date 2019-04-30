@@ -17,7 +17,7 @@ public abstract class XAP_UTIL_SObjectBlenderAbs implements XAP_UTIL_SObjectBlen
             Map<SObjectField, SObjectField> providerFieldByTargetFieldMap
     ) {
         XAP_UTIL_SObjectBlendResult result
-                = new XAP_UTIL_SObjectBlendResult(this.cloneFactory.perfectClone(targetSObject));
+                = new XAP_UTIL_SObjectBlendResult(this.cloneFactory.perfectClone(targetSObject)); 
         if (providerSObject == null) {
             return result;
         }
