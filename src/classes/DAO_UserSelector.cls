@@ -69,4 +69,14 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
                         .toSOQL()
         );
     }
+
+    public virtual List<User> selectByMobilePhone(Set<String> mobilePhoneSet) {
+        return (List<User>) Database.query(
+                this.newQueryFactory()
+                        .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.MobilePhone, mobilePhoneSet))
+                        .subselectQuery(Contact.SObjectType)
+                        .toSOQL()
+        );
+    }
+
 }
