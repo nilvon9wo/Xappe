@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class XAP_TRIG_TriggerWrapperTest {
+public with sharing class XAP_TRIG_TriggerPropertiesTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final List<Account> TEST_SOBJECT_LIST = (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
 			.supplyList();
@@ -13,32 +13,32 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 		// Nothing to do here.
 		
     	// Act    
-		XAP_TRIG_TriggerWrapper resultTriggerWrapper;
+		XAP_TRIG_TriggerProperties resultTriggerProperties;
         Test.startTest(); 
         System.runAs(TEST_USER){
-	    	resultTriggerWrapper = new XAP_TRIG_TriggerWrapper();
+	    	resultTriggerProperties = new XAP_TRIG_TriggerProperties();
         }
         Test.stopTest();
  
     	// Assert
-    	System.assertEquals(null, resultTriggerWrapper.isBefore);
-    	System.assertEquals(null, resultTriggerWrapper.isAfter);
-    	System.assertEquals(null, resultTriggerWrapper.isInsert);
-    	System.assertEquals(null, resultTriggerWrapper.isUpdate);
-    	System.assertEquals(null, resultTriggerWrapper.isDelete);
-    	System.assertEquals(null, resultTriggerWrapper.isUndelete);
-    	System.assertEquals(false, resultTriggerWrapper.isExecuting);
-    	System.assertEquals(null, resultTriggerWrapper.oldSObjectList);
-    	System.assertEquals(null, resultTriggerWrapper.newSObjectList);
-    	System.assertEquals(null, resultTriggerWrapper.oldSObjectByIdMap);
-    	System.assertEquals(null, resultTriggerWrapper.newSObjectByIdMap);
+    	System.assertEquals(null, resultTriggerProperties.isBefore);
+    	System.assertEquals(null, resultTriggerProperties.isAfter);
+    	System.assertEquals(null, resultTriggerProperties.isInsert);
+    	System.assertEquals(null, resultTriggerProperties.isUpdate);
+    	System.assertEquals(null, resultTriggerProperties.isDelete);
+    	System.assertEquals(null, resultTriggerProperties.isUndelete);
+    	System.assertEquals(false, resultTriggerProperties.isExecuting);
+    	System.assertEquals(null, resultTriggerProperties.oldSObjectList);
+    	System.assertEquals(null, resultTriggerProperties.newSObjectList);
+    	System.assertEquals(null, resultTriggerProperties.oldSObjectByIdMap);
+    	System.assertEquals(null, resultTriggerProperties.newSObjectByIdMap);
 	}
 
 	// Test selectSObjectType -----------------------------------------------------------------
 
 	@IsTest public static void testSelectSObjectTypeShouldGetSObjectTypeFromNewListWhenAvailable() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.newSObjectList = TEST_SOBJECT_LIST;
 		
     	// Act    
@@ -55,7 +55,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 
 	@IsTest public static void testSelectSObjectTypeShouldGetSObjectTypeFromOldListWhenNewNotAvailable() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.oldSObjectList = TEST_SOBJECT_LIST;
 		
     	// Act    
@@ -72,7 +72,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 
 	@IsTest public static void testSelectSObjectTypeShouldSetSObjectTypeAsNullWhenNoListAvailable() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		
     	// Act    
 		SObjectType resultSObjectType;
@@ -91,7 +91,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 
 	@IsTest public static void testSelectOperationTypeShouldReturnNullWhenTriggerNotExecuting() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = false;
 		
     	// Act    
@@ -110,7 +110,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	// This shouldn't represent a valid use case and is only for coverage.
 	@IsTest public static void testSelectOperationTypeShouldReturnNullWhenTriggerExecutingButNeitherBeforeNorAfter() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = false;
 		wrapperUnderTest.isAfter = false;
@@ -130,7 +130,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 
 	@IsTest public static void testSelectOperationTypeShouldReturnBeforeInsertWhenAppropriate() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = true;
 		wrapperUnderTest.isInsert = true;
@@ -152,7 +152,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	
 	@IsTest public static void testSelectOperationTypeShouldReturnBeforeUpdateWhenAppropriate()  {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = true;
 		wrapperUnderTest.isInsert = false;
@@ -174,7 +174,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	
 	@IsTest public static void testSelectOperationTypeShouldReturnBeforeDeleteWhenAppropriate()  {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = true;
 		wrapperUnderTest.isInsert = false;
@@ -196,7 +196,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	
 	@IsTest public static void testSelectOperationTypeShouldReturnAfterInsertWhenAppropriate() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = false;
 		wrapperUnderTest.isAfter = true;
@@ -219,7 +219,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	
 	@IsTest public static void testSelectOperationTypeShouldReturnAfterUpdateWhenAppropriate()  {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = false;
 		wrapperUnderTest.isAfter = true;
@@ -242,7 +242,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	
 	@IsTest public static void testSelectOperationTypeShouldReturnAfterDeleteWhenAppropriate()  {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = false;
 		wrapperUnderTest.isAfter = true;
@@ -265,7 +265,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 	
 	@IsTest public static void testSelectOperationTypeShouldReturnAfterUndeleteWhenAppropriate()  {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = false;
 		wrapperUnderTest.isAfter = true;
@@ -290,7 +290,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 
 	@IsTest public static void testGetSObjectTypeShouldReturnAppropriateType()  {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.newSObjectList = TEST_SOBJECT_LIST;
 		
     	// Act    
@@ -307,7 +307,7 @@ public with sharing class XAP_TRIG_TriggerWrapperTest {
 
 	@IsTest public static void testGetOperationTypeShouldReturnAppropriateOperation() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper wrapperUnderTest = new XAP_TRIG_TriggerWrapper();
+		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = true;
 		wrapperUnderTest.isInsert = true;

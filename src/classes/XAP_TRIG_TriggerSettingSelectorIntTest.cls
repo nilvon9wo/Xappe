@@ -7,7 +7,7 @@ public with sharing class XAP_TRIG_TriggerSettingSelectorIntTest {
         new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
                 .setInsertMode(XFTY_InsertModeEnum.NOW)
                 .supplyBundle();
-        XAP_TRIG_TriggerSettingSelector selectorUnderTest = new XAP_TRIG_TriggerSettingSelector();
+        XAP_TRIG_TriggerSettingSelector selectorUnderTest = XAP_TRIG_TriggerSettingSelector.getInstance();
 
         // Act
         XAP_TRIG_TriggerSetting__c resultSetting;

@@ -26,17 +26,17 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 		System.assertEquals(TEST_OPERATION, result.operation);
 	}    
 
-	@IsTest public static void testConstructorShouldPopulatesInstancePropertiesFromTriggerWrapper() {
+	@IsTest public static void testConstructorShouldPopulatesInstancePropertiesFromTriggerProperties() {
 		// Arrange
-		XAP_TRIG_TriggerWrapper testTriggerWrapper = new XAP_TRIG_TriggerWrapper();
-		testTriggerWrapper.sObjectType = TEST_SOBJECT_TYPE;
-		testTriggerWrapper.operationType = TEST_OPERATION;
+		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+		testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
+		testTriggerProperties.operationType = TEST_OPERATION;
 		
 		// Act
 		XAP_TRIG_TriggerSObjectTypeOperation result;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			result = new XAP_TRIG_TriggerSObjectTypeOperation(testTriggerWrapper);
+			result = new XAP_TRIG_TriggerSObjectTypeOperation(testTriggerProperties);
 		}
 		Test.stopTest();
 		

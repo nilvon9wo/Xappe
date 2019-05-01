@@ -4,7 +4,7 @@ public with sharing class XAP_TRIG_TriggerEventCoord_CompareTest {
 	   
 	@IsTest public static void testCompareShouldReturnListComparison() {
 		// Arrange
-		XAP_TRIG_TriggerSettingSelector mockAutomationSettingSelector = new XAP_TRIG_TriggerSettingSelector();
+		XAP_TRIG_TriggerSettingSelector mockAutomationSettingSelector = XAP_TRIG_TriggerSettingSelector.getInstance();
 		XAP_TRIG_SObjectTypeOperationCnvtMock mockSObjectTypeOperationHelper
 			= new XAP_TRIG_SObjectTypeOperationCnvtMock();
 		XAP_TRIG_TriggerEventCoordinator coordinatorUnderTest
@@ -25,7 +25,7 @@ public with sharing class XAP_TRIG_TriggerEventCoord_CompareTest {
 		// Assert
 		System.assertEquals( 
 			XAP_TRIG_TriggerEventCoordinator.TRIGGER_IN_PROGRESS_LIST,
-			mockSObjectTypeOperationHelper.receivedTriggerWrapperList
+			mockSObjectTypeOperationHelper.receivedTriggerPropertiesList
 		);
 		System.assert(resultComparison.isExactMatch);
 	}

@@ -1,4 +1,4 @@
-public class XAP_TRIG_TriggerWrapper {
+public class XAP_TRIG_TriggerProperties {
     XAP_UTIL_SObjectListExtractor listExtractor;
 
     @TestVisible public Boolean isExecuting { get; private set; }
@@ -33,7 +33,7 @@ public class XAP_TRIG_TriggerWrapper {
         private set;
     }
 
-    public XAP_TRIG_TriggerWrapper(XAP_UTIL_SObjectListExtractor listExtractor) {
+    public XAP_TRIG_TriggerProperties(XAP_UTIL_SObjectListExtractor listExtractor) {
         this.listExtractor = listExtractor;
 
         this.isExecuting = Trigger.isExecuting;
@@ -49,7 +49,7 @@ public class XAP_TRIG_TriggerWrapper {
         this.newSObjectByIdMap = Trigger.newMap;
     }
 
-    public XAP_TRIG_TriggerWrapper() {
+    public XAP_TRIG_TriggerProperties() {
         this(XAP_UTIL_SObjectListExtractor.getInstance());
     }
 

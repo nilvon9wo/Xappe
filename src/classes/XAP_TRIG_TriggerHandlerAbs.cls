@@ -1,17 +1,17 @@
 public abstract class XAP_TRIG_TriggerHandlerAbs implements XAP_TRIG_TriggerHandlerIntf {
 	private XAP_TRIG_TriggerEventCoordinator triggerEventCoordinator;
-	XAP_TRIG_TriggerWrapper triggerWrapper;
+	XAP_TRIG_TriggerProperties triggerProperties;
 	
 	public XAP_TRIG_TriggerHandlerAbs(
 			XAP_TRIG_TriggerEventCoordinator triggerEventCoordinator,
-			XAP_TRIG_TriggerWrapper triggerWrapper
+			XAP_TRIG_TriggerProperties triggerProperties
 	) {
 		this.triggerEventCoordinator = triggerEventCoordinator;
-		this.triggerWrapper = triggerWrapper;
+		this.triggerProperties = triggerProperties;
 	}
 	
 	public XAP_TRIG_TriggerHandlerAbs() {
-		this(new XAP_TRIG_TriggerEventCoordinator(), new XAP_TRIG_TriggerWrapper());
+		this(new XAP_TRIG_TriggerEventCoordinator(), new XAP_TRIG_TriggerProperties());
 	}
 	
     private static final Map<Type, XAP_TRIG_TriggerEventHandlerIntf> EVENT_HANDLER_INSTANCE_BY_TYPE_MAP
@@ -19,10 +19,10 @@ public abstract class XAP_TRIG_TriggerHandlerAbs implements XAP_TRIG_TriggerHand
     };
 	 
     public XAP_TRIG_TriggerHandlerIntf invoke() {
-    	Type triggerEventHandlerType = this.get(this.triggerWrapper.operationType);
+    	Type triggerEventHandlerType = this.get(this.triggerProperties.operationType);
     	if (triggerEventHandlerType == null) {
     		throw new XAP_TRIG_UnassignedTriggerOpException(
-    			this.triggerWrapper.sObjectType + ' has no Trigger Event Handler for ' + this.triggerWrapper.operationType
+    			this.triggerProperties.sObjectType + ' has no Trigger Event Handler for ' + this.triggerProperties.operationType
     		);
     	}
     	
@@ -30,11 +30,11 @@ public abstract class XAP_TRIG_TriggerHandlerAbs implements XAP_TRIG_TriggerHand
     		EVENT_HANDLER_INSTANCE_BY_TYPE_MAP.put(triggerEventHandlerType, (XAP_TRIG_TriggerEventHandlerIntf) triggerEventHandlerType.newInstance());
     	}
 
-		if (this.triggerEventCoordinator.isExecutable(this.triggerWrapper)) {
-			this.triggerEventCoordinator.addToInProgress(this.triggerWrapper);
+		if (this.triggerEventCoordinator.isExecutable(this.triggerProperties)) {
+			this.triggerEventCoordinator.addToInProgress(this.triggerProperties);
 			EVENT_HANDLER_INSTANCE_BY_TYPE_MAP.get(triggerEventHandlerType)
-					.handle(this.triggerWrapper);
-			this.triggerEventCoordinator.removeFromInProgress(this.triggerWrapper);
+					.handle(this.triggerProperties);
+			this.triggerEventCoordinator.removeFromInProgress(this.triggerProperties);
 		}
 
 		return this;

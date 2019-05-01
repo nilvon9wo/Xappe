@@ -1,5 +1,6 @@
 public with sharing virtual class XAP_TRIG_TriggerSettingSelector {
-	private XAP_TRIG_TriggerSettingSelector() {
+	@TestVisible
+	protected XAP_TRIG_TriggerSettingSelector() {
 	}
 
 	private static XAP_TRIG_TriggerSettingSelector instance;

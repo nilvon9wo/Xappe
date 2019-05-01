@@ -23,16 +23,16 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
     		= new Map<SObjectType, Set<System.TriggerOperation>>();
     
     @TestVisible
-    private static final List<XAP_TRIG_TriggerWrapper> TRIGGER_IN_PROGRESS_LIST = new List<XAP_TRIG_TriggerWrapper>();
+    private static final List<XAP_TRIG_TriggerProperties> TRIGGER_IN_PROGRESS_LIST = new List<XAP_TRIG_TriggerProperties>();
     
 	
 	
 	// isExecutable ---------------------------------------------------------------------------------------------------------
 	
-    public virtual Boolean isExecutable(XAP_TRIG_TriggerWrapper triggerWrapper) {
+    public virtual Boolean isExecutable(XAP_TRIG_TriggerProperties triggerProperties) {
     	return this.isEnabledForProfile() 
-        	&& this.isEnabledForSObject(triggerWrapper.sObjectType)
-        	&& this.isNotAlreadyInProgress(triggerWrapper);
+        	&& this.isEnabledForSObject(triggerProperties.sObjectType)
+        	&& this.isNotAlreadyInProgress(triggerProperties);
     }
 	
 	// isEnabledForProfile ---------------------------------------------------------------------------------------------------------
@@ -96,9 +96,9 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
     // isNotAlreadyInProgress --------------------------------------------------------------------------------------------
 
     @TestVisible
-    private virtual Boolean isNotAlreadyInProgress(XAP_TRIG_TriggerWrapper triggerWrapper) {
-    	SObjectType sObjectType = triggerWrapper.sObjectType;
-		System.TriggerOperation operation = triggerWrapper.operationType;
+    private virtual Boolean isNotAlreadyInProgress(XAP_TRIG_TriggerProperties triggerProperties) {
+    	SObjectType sObjectType = triggerProperties.sObjectType;
+		System.TriggerOperation operation = triggerProperties.operationType;
 
     	Set<System.TriggerOperation> operationSet = OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(sObjectType);
     	Boolean inProgress = operationSet != null && operationSet.contains(operation);
@@ -108,42 +108,42 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
       	return !inProgress;
     }
     
-    public virtual Map<SObjectType, Set<System.TriggerOperation>> addToInProgress(XAP_TRIG_TriggerWrapper triggerWrapper) {
-    	SObjectType sObjectType = triggerWrapper.sObjectType;
+    public virtual Map<SObjectType, Set<System.TriggerOperation>> addToInProgress(XAP_TRIG_TriggerProperties triggerProperties) {
+    	SObjectType sObjectType = triggerProperties.sObjectType;
     	Set<System.TriggerOperation> operationSet = OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(sObjectType);
     	if (operationSet == null) {
     		OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(sObjectType, new Set<System.TriggerOperation>());
     	}
-    	OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(sObjectType).add(triggerWrapper.operationType);
+    	OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(sObjectType).add(triggerProperties.operationType);
     	
-    	TRIGGER_IN_PROGRESS_LIST.add(triggerWrapper);
+    	TRIGGER_IN_PROGRESS_LIST.add(triggerProperties);
     	return OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP; 
     }
 
-    public virtual Map<SObjectType, Set<System.TriggerOperation>> removeFromInProgress(XAP_TRIG_TriggerWrapper triggerWrapper) {
-    	SObjectType sObjectType = triggerWrapper.sObjectType;
+    public virtual Map<SObjectType, Set<System.TriggerOperation>> removeFromInProgress(XAP_TRIG_TriggerProperties triggerProperties) {
+    	SObjectType sObjectType = triggerProperties.sObjectType;
     	Set<System.TriggerOperation> operationSet = OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(sObjectType);
     	if (operationSet != null) {
-    		operationSet.remove(triggerWrapper.operationType);
+    		operationSet.remove(triggerProperties.operationType);
     	}
     	if (operationSet.isEmpty()) {
     		OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.remove(sObjectType);
     	}
-    	removeFromInProgressList(triggerWrapper);
+    	removeFromInProgressList(triggerProperties);
     	return OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP; 
     }
     
     @TestVisible
-    private List<XAP_TRIG_TriggerWrapper> removeFromInProgressList (XAP_TRIG_TriggerWrapper triggerWrapper) {
-    	Integer index = findInProgressIndex(triggerWrapper);
+    private List<XAP_TRIG_TriggerProperties> removeFromInProgressList (XAP_TRIG_TriggerProperties triggerProperties) {
+    	Integer index = findInProgressIndex(triggerProperties);
 	    TRIGGER_IN_PROGRESS_LIST.remove(index); 
     	return TRIGGER_IN_PROGRESS_LIST;
     }
     
     @TestVisible
-    private Integer findInProgressIndex (XAP_TRIG_TriggerWrapper needle) {
+    private Integer findInProgressIndex (XAP_TRIG_TriggerProperties needle) {
 		for (Integer i = 0; i < TRIGGER_IN_PROGRESS_LIST.size(); i++) {
-			XAP_TRIG_TriggerWrapper triggerItem = TRIGGER_IN_PROGRESS_LIST[i];
+			XAP_TRIG_TriggerProperties triggerItem = TRIGGER_IN_PROGRESS_LIST[i];
 			if (triggerItem.equals(needle)) {
 				return i;
 			}

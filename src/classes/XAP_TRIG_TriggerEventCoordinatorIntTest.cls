@@ -9,15 +9,15 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorIntTest {
 			.setInsertMode(XFTY_InsertModeEnum.NOW)
 			.supplyBundle();
     	
-    	XAP_TRIG_TriggerWrapper testTriggerWrapper = new XAP_TRIG_TriggerWrapper();
-    	testTriggerWrapper.sObjectType = Account.SObjectType;
-    	testTriggerWrapper.operationType = System.TriggerOperation.BEFORE_INSERT;
+    	XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+    	testTriggerProperties.sObjectType = Account.SObjectType;
+    	testTriggerProperties.operationType = System.TriggerOperation.BEFORE_INSERT;
  
     	// Act    
 		Boolean result;		
         Test.startTest();
         System.runAs(TEST_USER){
-	    	result = COORDINATOR_UNDER_TEST.isExecutable(testTriggerWrapper);
+	    	result = COORDINATOR_UNDER_TEST.isExecutable(testTriggerProperties);
         }
         Test.stopTest();
   
