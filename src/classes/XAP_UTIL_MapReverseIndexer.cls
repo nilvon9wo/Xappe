@@ -21,38 +21,30 @@ public class XAP_UTIL_MapReverseIndexer {
         this.valueObjectList = valueByKeyMap.values();
     }
 
-    private Map<Object, Object> keyByValueMap {
+    private Map<Object, List<Object>> keyListByValueMap {
         get{
-            if (this.keyByValueMap == null) {
-                this.keyByValueMap = this.buildKeyByValueMap();
+            if (this.keyListByValueMap == null) {
+                this.keyListByValueMap = this.buildKeyListByValueMap();
             }
-            return this.keyByValueMap;
+            return this.keyListByValueMap;
         }
         private set;
     }
 
     public Object get(Object value) {
-        return this.keyByValueMap.get(value);
+        return this.keyListByValueMap.get(value);
     }
 
-    private Map<Object, Object> buildKeyByValueMap() {
-        Map<Object, Object> keyByValueMap = new Map<Object, Object>();
+    private Map<Object, List<Object>> buildKeyListByValueMap() {
+        Map<Object, List<Object>> keyListByValueMap = new Map<Object, List<Object>>();
         for (Integer i = 0; i < this.keyObjectList.size(); i++) {
             Object key = this.keyObjectList[i];
             Object value = this.valueObjectList[i];
-
-            if (!keyByValueMap.containsKey(value)) {
-                keyByValueMap.put(value, key);
-            } else {
-                throw new XAP_UTIL_MapManyToOneException(
-                        'Reverse Index can only be used for maps with one-to-one relationships.  '
-                                + ' Conflicting values: '
-                                + ' Existing mapping for ' + value + ': ' + keyByValueMap.get(value)
-                                + '; new mapping for value: ' + key + '.'
-                );
+            if (!keyListByValueMap.containsKey(value)) {
+                keyListByValueMap.put(value, new List<Object>());
             }
+            keyListByValueMap.get(value).add(key);
         }
-        return keyByValueMap;
+        return keyListByValueMap;
     }
-
 }
