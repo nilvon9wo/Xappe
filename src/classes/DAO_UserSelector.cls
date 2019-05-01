@@ -3,13 +3,13 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     private DAO_UserSelector() {
     }
 
-    private static DAO_UserSelector INSTANCE;
+    private static DAO_UserSelector instance;
 
     public static DAO_UserSelector getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new DAO_UserSelector();
+        if (instance == null) {
+            instance = new DAO_UserSelector();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public override SObjectType getSObjectType() {

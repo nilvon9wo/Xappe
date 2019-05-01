@@ -1,13 +1,13 @@
 public virtual class XAP_UTIL_SObjectMapSwapper {
-	private static XAP_UTIL_SObjectMapSwapper INSTANCE;
+	private static XAP_UTIL_SObjectMapSwapper instance;
 	protected XAP_UTIL_SObjectMapSwapper() {
 	}
 	
 	public static XAP_UTIL_SObjectMapSwapper getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_SObjectMapSwapper();
+		if (instance == null) {
+			instance = new XAP_UTIL_SObjectMapSwapper();
 		}
-		return INSTANCE;
+		return instance;
 	}
 	
     public Map<SObjectField, SObjectField> swap(Map<SObjectField, SObjectField> valueByKeyMap) {

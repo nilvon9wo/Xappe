@@ -15,20 +15,20 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SOQL_SObjectSelecto
         this(CTM_RegionTypeEnumHelper.getInstance(), CTM_TerritoryRegionFieldHelper.getInstance());
     }
 
-    private static DAO_TerritoryAssignmentSelector INSTANCE;
+    private static DAO_TerritoryAssignmentSelector instance;
 
     public static DAO_TerritoryAssignmentSelector getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new DAO_TerritoryAssignmentSelector();
+        if (instance == null) {
+            instance = new DAO_TerritoryAssignmentSelector();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public override SObjectType getSObjectType() {
         return Territory_Assignment__c.SObjectType;
     }
 
-    public override List<Schema.SObjectField> getSObjectFieldList() {
+    public List<Schema.SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Territory_Assignment__c.Id,
                 Territory_Assignment__c.Territory__c,

@@ -8,16 +8,16 @@ public with sharing class XAP_TRIG_SObjectTypeOperationCnvtTest {
 		
 		SObjectType testSObjectType = Account.SObjectType;   
 		System.TriggerOperation testOperation = System.TriggerOperation.BEFORE_INSERT;
-		XAP_TRIG_TriggerWrapper testTriggerWrapper = new XAP_TRIG_TriggerWrapper();
-		testTriggerWrapper.sObjectType = testSObjectType;
-		testTriggerWrapper.operationType = testOperation;
-		List<XAP_TRIG_TriggerWrapper> testTriggerWrapperList = new List<XAP_TRIG_TriggerWrapper>{testTriggerWrapper};
+		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+		testTriggerProperties.sObjectType = testSObjectType;
+		testTriggerProperties.operationType = testOperation;
+		List<XAP_TRIG_TriggerProperties> testTriggerPropertiesList = new List<XAP_TRIG_TriggerProperties>{testTriggerProperties};
 		
 		// Act
 		List<XAP_TRIG_TriggerSObjectTypeOperation>  resultList;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultList = helperUnderTest.convert(testTriggerWrapperList);
+			resultList = helperUnderTest.convert(testTriggerPropertiesList);
 		}
 		Test.stopTest();
 		

@@ -9,21 +9,21 @@ public class XFTY_DummySObjectFactoryOutletLookup {
 					XAP_TRIG_TriggerSetting__c.SObjectType => TEST_DummyXapTriggerSettingFactoryOutlet.class
 			};
 
-	private static final Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf> OUTLET_INSTANCE_BY_SOBJECT_TYPE
+	private static final Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf> OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP
 			= new Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf>();
 
 	public static XFTY_DummyQueueSobjectFactoryOutletIntf get(SObjectType sObjectType) {
-		if (!OUTLET_INSTANCE_BY_SOBJECT_TYPE.containsKey(sObjectType)) {
+		if (!OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.containsKey(sObjectType)) {
 			if (!(OUTLET_TYPE_BY_SOBJECT_TYPE.containsKey(sObjectType))) {
 				new LookupException('No factory outlet found for : ' + sObjectType);
 			}
-			OUTLET_INSTANCE_BY_SOBJECT_TYPE.put(
+			OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.put(
 					sObjectType,
 					(XFTY_DummyQueueSobjectFactoryOutletIntf) (OUTLET_TYPE_BY_SOBJECT_TYPE.get(sObjectType))
 							.newInstance()
 			);
 		}
-		return OUTLET_INSTANCE_BY_SOBJECT_TYPE.get(sObjectType);
+		return OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.get(sObjectType);
 	}
 
 	// --------------------------------------------------------------------------

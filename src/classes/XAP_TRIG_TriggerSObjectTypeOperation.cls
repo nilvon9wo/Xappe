@@ -7,9 +7,9 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperation {
 		this.operation = operation; 
 	}
 	
-	public XAP_TRIG_TriggerSObjectTypeOperation(XAP_TRIG_TriggerWrapper triggerWrapper) {
-		this.sObjectType = triggerWrapper.sObjectType;
-		this.operation = triggerWrapper.operationType;
+	public XAP_TRIG_TriggerSObjectTypeOperation(XAP_TRIG_TriggerProperties triggerProperties) {
+		this.sObjectType = triggerProperties.sObjectType;
+		this.operation = triggerProperties.operationType;
 	}
  
 	public Boolean equals(Object obj) {

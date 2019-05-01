@@ -8,7 +8,7 @@ public class XAP_DESC_SObjectDescribe {
 			throw new XAP_DESC_DuplicateDescribeException(sObjectType + ' is already in the this.describe cache');
 		}
 			
-		this.SObjectType = sObjectType;
+		this.sObjectType = sObjectType;
 		INSTANCE_CACHE.put( String.valueOf(sObjectType).toLowerCase() , this);
 	}
 

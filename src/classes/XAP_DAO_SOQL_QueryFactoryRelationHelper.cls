@@ -9,13 +9,13 @@ public class XAP_DAO_SOQL_QueryFactoryRelationHelper {
 		this(XAP_DAO_SOQL_SecurityUtils.getInstance());
 	}
 
-	private static XAP_DAO_SOQL_QueryFactoryRelationHelper INSTANCE;
+	private static XAP_DAO_SOQL_QueryFactoryRelationHelper instance;
 	
 	public static XAP_DAO_SOQL_QueryFactoryRelationHelper getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_DAO_SOQL_QueryFactoryRelationHelper();
+		if (instance == null) {
+			instance = new XAP_DAO_SOQL_QueryFactoryRelationHelper();
 		}
-		return INSTANCE; 
+		return instance;
 	}
 	 
 	// getChildRelationship --------------------------------------------------------------------------------------

@@ -10,7 +10,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     private static final SObjectType TEST_SOBJECT_TYPE = Account.SObjectType;
     private static final System.TriggerOperation TEST_OPERATION = System.TriggerOperation.BEFORE_INSERT;
-    private static final XAP_TRIG_TriggerWrapper TEST_TRIGGER_WRAPPER = createTriggerWrapper();
+    private static final XAP_TRIG_TriggerProperties TEST_TRIGGER_WRAPPER = createTriggerProperties();
 
     // isExecutable tests --------------------------------------------------------------------------------------------
 
@@ -346,11 +346,11 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     // Helpers ------------------------------------------------------------------------------------------------------
 
-    private static XAP_TRIG_TriggerWrapper createTriggerWrapper() {
-        XAP_TRIG_TriggerWrapper testTriggerWrapper = new XAP_TRIG_TriggerWrapper();
-        testTriggerWrapper.sObjectType = TEST_SOBJECT_TYPE;
-        testTriggerWrapper.operationType = TEST_OPERATION;
-        return testTriggerWrapper;
+    private static XAP_TRIG_TriggerProperties createTriggerProperties() {
+        XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+        testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
+        testTriggerProperties.operationType = TEST_OPERATION;
+        return testTriggerProperties;
     }
 
     private static XAP_TRIG_TriggerEventCoordinator createMockTriggerEventCoordinator() {

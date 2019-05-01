@@ -1,12 +1,12 @@
 public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerIntf {
-	XAP_UTIL_SObjectSetExtractor setHelper;
+	XAP_UTIL_SObjectValueSetExtractor setHelper;
 
 	CTM_RegionTypeEnumHelper regionTypeEnumHelper;
 	CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
 	DAO_TerritoryAssignmentSelector territoryAssignmentSelector;
 	
 	public CTM_AccountOwnerAssignment(
-			XAP_UTIL_SObjectSetExtractor setHelper,
+			XAP_UTIL_SObjectValueSetExtractor setHelper,
 
 			CTM_RegionTypeEnumHelper regionTypeEnumHelper, 
 			CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper,
@@ -21,7 +21,7 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 	 
 	public CTM_AccountOwnerAssignment() {
 		this(
-			XAP_UTIL_SObjectSetExtractor.getInstance(),
+			XAP_UTIL_SObjectValueSetExtractor.getInstance(),
 			
 			CTM_RegionTypeEnumHelper.getInstance(), 
 			CTM_TerritoryRegionFieldHelper.getInstance(), 
@@ -29,8 +29,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 		);  
 	}	
 	 
-	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerWrapper triggerWrapper) {
-		List<Account> newAccountList = (List<Account>) triggerWrapper.newSObjectList;
+	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerProperties triggerProperties) {
+		List<Account> newAccountList = (List<Account>) triggerProperties.newSObjectList;
 		Map<CTM_RegionTypeEnum, Set<String>> regionSetByRegionTypeMap = this.buildRegionSetByRegionTypeMap(newAccountList);
 		this.assignTerritories(newAccountList, this.territoryAssignmentSelector.selectCurrentByRegion(regionSetByRegionTypeMap));
 		return this;
@@ -73,8 +73,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 	
 	private Map<CTM_RegionTypeEnum, Set<String>> buildRegionSetByRegionTypeMap(List<Account> newAccountList) {
 		return new Map<CTM_RegionTypeEnum, Set<String>> {
-			CTM_RegionTypeEnum.COUNTRY => this.setHelper.extractNonBlanksFrom(newAccountList, Account.BillingCountry),
-			CTM_RegionTypeEnum.STATE => this.setHelper.extractNonBlanksFrom(newAccountList, Account.BillingState)
+			CTM_RegionTypeEnum.COUNTRY => this.setHelper.extractNonBlankStringsFrom(newAccountList, Account.BillingCountry),
+			CTM_RegionTypeEnum.STATE => this.setHelper.extractNonBlankStringsFrom(newAccountList, Account.BillingState)
 		}; 
 	}
 }

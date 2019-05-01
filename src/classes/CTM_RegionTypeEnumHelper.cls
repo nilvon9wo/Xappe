@@ -2,13 +2,13 @@ public class CTM_RegionTypeEnumHelper {
 	private CTM_RegionTypeEnumHelper() {
 	}
 
-	private static CTM_RegionTypeEnumHelper INSTANCE; 
+	private static CTM_RegionTypeEnumHelper instance;
 	
 	public static CTM_RegionTypeEnumHelper getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new CTM_RegionTypeEnumHelper();
+		if (instance == null) {
+			instance = new CTM_RegionTypeEnumHelper();
 		}
-		return INSTANCE;
+		return instance;
 	}
 
 	private static final Map<SObjectType, SObjectField> COUNTRY_FIELD_BY_SOBJECT_TYPE = new Map<SObjectType, SObjectField>{
