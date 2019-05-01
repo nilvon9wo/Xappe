@@ -13,12 +13,8 @@ public virtual class XAP_UTIL_SObjectSharedKeyMapExtractor {
     public static Map<Id, List<SObject>> mapBySpecifiedIdField(List<SObject> homogeneousSObjectList, SObjectField idField) {
         Map<Object, List<SObject>> sObjectListBySpecifiedObjectMap
                 = new MapBySharedKeyExtractor(idField, new XAP_PRED_SObjectFieldHasNonNullValue(idField))
-                .extractFrom(homogeneousSObjectList);
-
-        String mapType = 'Map<Id, List<' + homogeneousSObjectList[0].getSObjectType() + '>>';
-        Map<Id, List<SObject>> concreteSObjectListByIdMap = (Map<Id, List<SObject>>) Type.forName(mapType).newInstance();
-        // FIXME: concreteSObjectListByIdMap.putAll(sObjectListBySpecifiedObjectMap);
-        return concreteSObjectListByIdMap;
+                        .extractFrom(homogeneousSObjectList);
+        return (Map<Id, List<SObject>>) JSON.deserialize(JSON.serialize(sObjectListBySpecifiedObjectMap), Map<Id, List<SObject>>.class);
     }
 
     private class MapBySharedKeyExtractor {

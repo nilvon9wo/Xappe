@@ -14,11 +14,7 @@ public virtual class XAP_UTIL_SObjectUniqueKeyMapExtractor {
         Map<Object, SObject> sObjectBySpecifiedObjectMap
                 = new MapByUniqueKeyExtractor(idField, new XAP_PRED_SObjectFieldHasNonNullValue(idField))
                         .extractFrom(homogeneousSObjectList);
-
-        String mapType = 'Map<Id, ' + homogeneousSObjectList[0].getSObjectType() + '>';
-        Map<Id, SObject> concreteSObjectListByIdMap = (Map<Id, SObject>) Type.forName(mapType).newInstance();
-        // FIXME: concreteSObjectListByIdMap.putAll(sObjectBySpecifiedObjectMap);
-        return concreteSObjectListByIdMap;
+        return (Map<Id, SObject>) JSON.deserialize(JSON.serialize(sObjectBySpecifiedObjectMap), Map<Id, SObject>.class);
     }
 
     private class MapByUniqueKeyExtractor {
