@@ -45,7 +45,7 @@ public class XAP_UTIL_MapReverseIndexer {
                 keyByValueMap.put(value, key);
             } else {
                 throw new XAP_UTIL_MapManyToOneException(
-                        'Swap can only be used for maps with one-to-one relationships.  '
+                        'Reverse Index can only be used for maps with one-to-one relationships.  '
                                 + ' Conflicting values: '
                                 + ' Existing mapping for ' + value + ': ' + keyByValueMap.get(value)
                                 + '; new mapping for value: ' + key + '.'
