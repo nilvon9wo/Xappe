@@ -1,5 +1,6 @@
 public class XAP_TRIG_TriggerProperties {
     XAP_UTIL_SObjectListExtractor listExtractor;
+    XAP_UTIL_SObjectValueSetExtractor setExtractor;
 
     @TestVisible public Boolean isExecuting { get; private set; }
     @TestVisible public Boolean isInsert { get; private set; }
@@ -33,8 +34,12 @@ public class XAP_TRIG_TriggerProperties {
         private set;
     }
 
-    public XAP_TRIG_TriggerProperties(XAP_UTIL_SObjectListExtractor listExtractor) {
+    public XAP_TRIG_TriggerProperties(
+            XAP_UTIL_SObjectListExtractor listExtractor,
+            XAP_UTIL_SObjectValueSetExtractor setExtractor
+    ) {
         this.listExtractor = listExtractor;
+        this.setExtractor = setExtractor;
 
         this.isExecuting = Trigger.isExecuting;
         this.isInsert = Trigger.isInsert;
@@ -50,7 +55,7 @@ public class XAP_TRIG_TriggerProperties {
     }
 
     public XAP_TRIG_TriggerProperties() {
-        this(XAP_UTIL_SObjectListExtractor.getInstance());
+        this(XAP_UTIL_SObjectListExtractor.getInstance(), XAP_UTIL_SObjectValueSetExtractor.getInstance());
     }
 
     @TestVisible
@@ -68,18 +73,26 @@ public class XAP_TRIG_TriggerProperties {
                 : null;
     }
 
-    public List<SObject> extractSObjectsNewlyTrue(SObjectField booleanField) {
+    public List<SObject> extractListForNewlyTrue(SObjectField booleanField) {
         return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
                 new XAP_PRED_SObjectFieldTargetFieldIsTrue(booleanField),
                 new XAP_PRED_SObjectFieldHasChanged(booleanField, this.oldSObjectByIdMap)
         });
     }
 
-    public List<SObject> extractSObjectsNewlyHavingValue(SObjectField targetField, Object targetValue) {
+    public List<SObject> extractListForNewlyHavingValue(SObjectField targetField, Object targetValue) {
         return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
                 new XAP_PRED_SObjectFieldHasTargetValue(targetField, targetValue),
                 new XAP_PRED_SObjectFieldHasChanged(targetField, this.oldSObjectByIdMap)
         });
+    }
+
+    public Set<Id> extractNewNonNullIdSetFor(SObjectField targetField) {
+        return this.setExtractor.extractNonNullIdsFrom(this.newSObjectList, targetField);
+    }
+
+    public Set<String> extractNewNonBlankStringSetFor(SObjectField targetField) {
+        return this.setExtractor.extractNonBlankStringsFrom(this.newSObjectList, targetField);
     }
 
 }

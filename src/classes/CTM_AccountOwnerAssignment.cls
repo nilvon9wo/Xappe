@@ -73,8 +73,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 	
 	private Map<CTM_RegionTypeEnum, Set<String>> buildRegionSetByRegionTypeMap(List<Account> newAccountList) {
 		return new Map<CTM_RegionTypeEnum, Set<String>> {
-			CTM_RegionTypeEnum.COUNTRY => this.setHelper.extractNonBlanksFrom(newAccountList, Account.BillingCountry),
-			CTM_RegionTypeEnum.STATE => this.setHelper.extractNonBlanksFrom(newAccountList, Account.BillingState)
+			CTM_RegionTypeEnum.COUNTRY => this.setHelper.extractNonBlankStringsFrom(newAccountList, Account.BillingCountry),
+			CTM_RegionTypeEnum.STATE => this.setHelper.extractNonBlankStringsFrom(newAccountList, Account.BillingState)
 		}; 
 	}
 }

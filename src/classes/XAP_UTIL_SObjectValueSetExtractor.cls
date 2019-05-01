@@ -17,7 +17,7 @@ public virtual class XAP_UTIL_SObjectValueSetExtractor {
         return (Set<Id>) JSON.deserialize(JSON.serialize(objectSet), Set<Id>.class);
     }
 
-    public virtual Set<String> extractNonBlanksFrom(List<SObject> sObjectList, SObjectField stringField) {
+    public virtual Set<String> extractNonBlankStringsFrom(List<SObject> sObjectList, SObjectField stringField) {
         Set<Object> objectSet = new SetExtractor(stringField)
                 .extractFrom(sObjectList);
         return (Set<String>) JSON.deserialize(JSON.serialize(objectSet), Set<String>.class);
