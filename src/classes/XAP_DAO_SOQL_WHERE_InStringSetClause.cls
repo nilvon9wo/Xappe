@@ -35,4 +35,3 @@ public class XAP_DAO_SOQL_WHERE_InStringSetClause implements XAP_DAO_SOQL_WHERE_
     	return escapedStringSet;
     }
 }
-
