@@ -1,13 +1,13 @@
 public class XAP_DAO_SOQL_WHERE_CompareOpEnumHelper {
     private XAP_DAO_SOQL_WHERE_CompareOpEnumHelper(){
     }
-    private static XAP_DAO_SOQL_WHERE_CompareOpEnumHelper INSTANCE;
+    private static XAP_DAO_SOQL_WHERE_CompareOpEnumHelper instance;
     
     public static XAP_DAO_SOQL_WHERE_CompareOpEnumHelper getInstance() {
-    	if (INSTANCE == null) {
-    		INSTANCE = new XAP_DAO_SOQL_WHERE_CompareOpEnumHelper();
+    	if (instance == null) {
+    		instance = new XAP_DAO_SOQL_WHERE_CompareOpEnumHelper();
     	}
-    	return INSTANCE;
+    	return instance;
     }
     
     private static final Map<XAP_DAO_SOQL_WHERE_CompareOperatorEnum, String> OPERATOR_BY_ENUM_MAP = new Map<XAP_DAO_SOQL_WHERE_CompareOperatorEnum, String>{

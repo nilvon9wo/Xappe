@@ -11,7 +11,7 @@ public class XAP_DAO_SOQL_QueryFactoryFieldHelper {
 		this(XAP_DAO_SOQL_QueryFactoryRelationHelper.getInstance(), XAP_DAO_SOQL_SecurityUtils.getInstance());
 	}
 	
-	private static XAP_DAO_SOQL_QueryFactoryFieldHelper INSTANCE;
+	private static XAP_DAO_SOQL_QueryFactoryFieldHelper instance;
 
 	public Set<String> selectFields(XAP_DAO_SOQL_Query query, Schema.FieldSet fieldSet, Boolean allowCrossObject){
 		if(fieldSet.getSObjectType() != query.sObjectType) {
@@ -56,10 +56,10 @@ public class XAP_DAO_SOQL_QueryFactoryFieldHelper {
 	// ------------------------------------------------------------------------------------
 	
 	public static XAP_DAO_SOQL_QueryFactoryFieldHelper getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_DAO_SOQL_QueryFactoryFieldHelper();
+		if (instance == null) {
+			instance = new XAP_DAO_SOQL_QueryFactoryFieldHelper();
 		}
-		return INSTANCE;  
+		return instance;
 	}
  
 	public String getFieldTokenPath(Schema.SObjectField field){

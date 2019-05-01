@@ -3,13 +3,13 @@ public virtual class DAO_ContactSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     private DAO_ContactSelector() {
     }
 
-    private static DAO_ContactSelector INSTANCE;
+    private static DAO_ContactSelector instance;
 
     public static DAO_ContactSelector getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new DAO_ContactSelector();
+        if (instance == null) {
+            instance = new DAO_ContactSelector();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public override SObjectType getSObjectType() {

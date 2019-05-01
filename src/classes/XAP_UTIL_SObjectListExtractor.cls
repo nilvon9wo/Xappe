@@ -1,13 +1,13 @@
 public virtual class XAP_UTIL_SObjectListExtractor {
-    private static XAP_UTIL_SObjectListExtractor INSTANCE;
+    private static XAP_UTIL_SObjectListExtractor instance;
     protected XAP_UTIL_SObjectListExtractor() {
     }
 
     public static XAP_UTIL_SObjectListExtractor getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new XAP_UTIL_SObjectListExtractor();
+        if (instance == null) {
+            instance = new XAP_UTIL_SObjectListExtractor();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public virtual List<SObject> extractWhereAllPredicatesTrue(

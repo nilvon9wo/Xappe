@@ -14,7 +14,7 @@ public abstract class XAP_TRIG_TriggerHandlerAbs implements XAP_TRIG_TriggerHand
 		this(new XAP_TRIG_TriggerEventCoordinator(), new XAP_TRIG_TriggerWrapper());
 	}
 	
-    private static final Map<Type, XAP_TRIG_TriggerEventHandlerIntf> EVENT_HANDLER_INSTANCE_BY_TYPE_MAP 
+    private static final Map<Type, XAP_TRIG_TriggerEventHandlerIntf> EVENT_HANDLER_INSTANCE_BY_TYPE_MAP
     	= new Map<Type, XAP_TRIG_TriggerEventHandlerIntf>{
     };
 	 

@@ -1,13 +1,13 @@
 public virtual class XAP_UTIL_SObjectMapFactory {
-	private static XAP_UTIL_SObjectMapFactory INSTANCE;
+	private static XAP_UTIL_SObjectMapFactory instance;
 	protected XAP_UTIL_SObjectMapFactory() {
 	}
 	
 	public static XAP_UTIL_SObjectMapFactory getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_SObjectMapFactory();
+		if (instance == null) {
+			instance = new XAP_UTIL_SObjectMapFactory();
 		}
-		return INSTANCE;
+		return instance;
 	}
 	 
     public static Map<Id, List<SObject>> mapBySpecifiedIdField (List<SObject> homogeneousSObjectList, SObjectField idField) {

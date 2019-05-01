@@ -1,13 +1,13 @@
 public virtual class XAP_UTIL_SObjectListSetter {
-	private static XAP_UTIL_SObjectListSetter INSTANCE;
+	private static XAP_UTIL_SObjectListSetter instance;
 	protected XAP_UTIL_SObjectListSetter() {
 	}
 	
 	public static XAP_UTIL_SObjectListSetter getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_UTIL_SObjectListSetter();
+		if (instance == null) {
+			instance = new XAP_UTIL_SObjectListSetter();
 		}
-		return INSTANCE;
+		return instance;
 	}
 
 	public virtual List<SObject> setAllTrue(List<SObject> sObjectList, Set<SObjectField> booleanFieldSet) {

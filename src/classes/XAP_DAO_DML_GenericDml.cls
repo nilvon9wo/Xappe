@@ -6,13 +6,13 @@ public virtual class XAP_DAO_DML_GenericDml {
     protected XAP_DAO_DML_GenericDml() {
     }
 
-    private static XAP_DAO_DML_GenericDml INSTANCE;
+    private static XAP_DAO_DML_GenericDml instance;
 
     public static XAP_DAO_DML_GenericDml getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new XAP_DAO_DML_GenericDml();
+        if (instance == null) {
+            instance = new XAP_DAO_DML_GenericDml();
         }
-        return INSTANCE;
+        return instance;
     }
 
     // Insert Methods -----------------------------------------------------------------------------------------

@@ -2,13 +2,13 @@ public virtual class DAO_AccountSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     private DAO_AccountSelector() {
     }
 
-    private static DAO_AccountSelector INSTANCE;
+    private static DAO_AccountSelector instance;
 
     public static DAO_AccountSelector getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new DAO_AccountSelector();
+        if (instance == null) {
+            instance = new DAO_AccountSelector();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public override SObjectType getSObjectType() {

@@ -2,13 +2,13 @@ public class CTM_TerritoryRegionFieldHelper {
 	private CTM_TerritoryRegionFieldHelper() {
 	}
 	
-	private static CTM_TerritoryRegionFieldHelper INSTANCE;
+	private static CTM_TerritoryRegionFieldHelper instance;
 	
 	public static CTM_TerritoryRegionFieldHelper getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new CTM_TerritoryRegionFieldHelper();
+		if (instance == null) {
+			instance = new CTM_TerritoryRegionFieldHelper();
 		}
-		return INSTANCE;
+		return instance;
 	}
 	 
 	

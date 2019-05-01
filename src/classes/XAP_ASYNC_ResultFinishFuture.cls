@@ -5,7 +5,7 @@ public class XAP_ASYNC_ResultFinishFuture {
     XAP_TRIG_TriggerEventCoordinator triggerEventCoordinator;
     XAP_UTIL_SObjectListExtractor listExtractor;
     XAP_UTIL_SObjectListSetter listSetter;
-    XAP_UTIL_SObjectSetExtractor setHelper;
+    XAP_UTIL_SObjectValueSetExtractor setHelper;
     XAP_UTIL_JsonHelper jsonHelper;
 
     public XAP_ASYNC_ResultFinishFuture(
@@ -15,7 +15,7 @@ public class XAP_ASYNC_ResultFinishFuture {
             XAP_TRIG_TriggerEventCoordinator triggerEventCoordinator,
             XAP_UTIL_SObjectListExtractor listExtractor,
             XAP_UTIL_SObjectListSetter listSetter,
-            XAP_UTIL_SObjectSetExtractor setHelper,
+            XAP_UTIL_SObjectValueSetExtractor setHelper,
             XAP_UTIL_JsonHelper jsonHelper
     ) {
         this.userSelector = userSelector;
@@ -36,7 +36,7 @@ public class XAP_ASYNC_ResultFinishFuture {
                 new XAP_TRIG_TriggerEventCoordinator(),
                 XAP_UTIL_SObjectListExtractor.getInstance(),
                 XAP_UTIL_SObjectListSetter.getInstance(),
-                XAP_UTIL_SObjectSetExtractor.getInstance(),
+                XAP_UTIL_SObjectValueSetExtractor.getInstance(),
                 new XAP_UTIL_JsonHelper()
         );
     }

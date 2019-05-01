@@ -2,13 +2,13 @@ public virtual class XAP_REST_RequestSelector extends XAP_DAO_SOQL_SObjectSelect
     private XAP_REST_RequestSelector() {
     }
 
-    private static XAP_REST_RequestSelector INSTANCE;
+    private static XAP_REST_RequestSelector instance;
 
     public static XAP_REST_RequestSelector getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new XAP_REST_RequestSelector();
+        if (instance == null) {
+            instance = new XAP_REST_RequestSelector();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public override SObjectType getSObjectType() {

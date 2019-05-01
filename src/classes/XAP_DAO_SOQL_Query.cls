@@ -7,7 +7,7 @@ public class XAP_DAO_SOQL_Query {
 
     public XAP_DAO_SOQL_Query (Schema.SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
     	this.securityUtils = securityUtils;
-		this.SObjectType = sObjectType;
+		this.sObjectType = sObjectType;
 		this.enforceFLS = DEFAULT_ENFORCE_FLS; 
 		this.fieldSet = new Set<String>();
 		this.orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>();
@@ -61,7 +61,7 @@ public class XAP_DAO_SOQL_Query {
 
 	public Boolean equals(Object obj){
 		if( !(obj instanceof XAP_DAO_SOQL_Query)
-			|| ((XAP_DAO_SOQL_Query) obj).SObjectType != this.SObjectType
+			|| ((XAP_DAO_SOQL_Query) obj).SObjectType != this.sObjectType
 			|| ((XAP_DAO_SOQL_Query) obj).fieldSet.size() != this.fieldSet.size()
 		) {
 			return false;

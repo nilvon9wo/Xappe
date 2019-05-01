@@ -2,13 +2,13 @@ public virtual class XAP_ASYNC_RequestSelector extends XAP_DAO_SOQL_SObjectSelec
     private XAP_ASYNC_RequestSelector() {
     }
 
-    private static XAP_ASYNC_RequestSelector INSTANCE;
+    private static XAP_ASYNC_RequestSelector instance;
 
     public static XAP_ASYNC_RequestSelector getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new XAP_ASYNC_RequestSelector();
+        if (instance == null) {
+            instance = new XAP_ASYNC_RequestSelector();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public override SObjectType getSObjectType() {

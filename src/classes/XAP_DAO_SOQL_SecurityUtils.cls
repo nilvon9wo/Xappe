@@ -2,13 +2,13 @@ public class XAP_DAO_SOQL_SecurityUtils {
 	private XAP_DAO_SOQL_SecurityUtils() {
 	}
 
-	private static XAP_DAO_SOQL_SecurityUtils INSTANCE;
+	private static XAP_DAO_SOQL_SecurityUtils instance;
 	
 	public static XAP_DAO_SOQL_SecurityUtils getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new XAP_DAO_SOQL_SecurityUtils();
+		if (instance == null) {
+			instance = new XAP_DAO_SOQL_SecurityUtils();
 		}
-		return INSTANCE; 
+		return instance;
 	}
 	
 	
