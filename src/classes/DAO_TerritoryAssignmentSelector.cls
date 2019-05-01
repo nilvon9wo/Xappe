@@ -28,7 +28,7 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SOQL_SObjectSelecto
         return Territory_Assignment__c.SObjectType;
     }
 
-    public override List<Schema.SObjectField> getSObjectFieldList() {
+    public List<Schema.SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Territory_Assignment__c.Id,
                 Territory_Assignment__c.Territory__c,

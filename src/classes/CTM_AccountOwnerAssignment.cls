@@ -29,8 +29,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 		);  
 	}	
 	 
-	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerWrapper triggerWrapper) {
-		List<Account> newAccountList = (List<Account>) triggerWrapper.newSObjectList;
+	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerProperties triggerProperties) {
+		List<Account> newAccountList = (List<Account>) triggerProperties.newSObjectList;
 		Map<CTM_RegionTypeEnum, Set<String>> regionSetByRegionTypeMap = this.buildRegionSetByRegionTypeMap(newAccountList);
 		this.assignTerritories(newAccountList, this.territoryAssignmentSelector.selectCurrentByRegion(regionSetByRegionTypeMap));
 		return this;
