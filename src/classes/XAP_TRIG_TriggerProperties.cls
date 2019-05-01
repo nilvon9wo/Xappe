@@ -73,26 +73,25 @@ public class XAP_TRIG_TriggerProperties {
                 : null;
     }
 
-    public List<SObject> extractListForNewlyTrue(SObjectField booleanField) {
+    public List<SObject> collectListForNewlyTrue(SObjectField booleanField) {
         return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
                 new XAP_PRED_SObjectFieldTargetFieldIsTrue(booleanField),
                 new XAP_PRED_SObjectFieldHasChanged(booleanField, this.oldSObjectByIdMap)
         });
     }
 
-    public List<SObject> extractListForNewlyHavingValue(SObjectField targetField, Object targetValue) {
+    public List<SObject> collectListForNewlyHavingValue(SObjectField targetField, Object targetValue) {
         return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
                 new XAP_PRED_SObjectFieldHasTargetValue(targetField, targetValue),
                 new XAP_PRED_SObjectFieldHasChanged(targetField, this.oldSObjectByIdMap)
         });
     }
 
-    public Set<Id> extractNewNonNullIdSetFor(SObjectField targetField) {
+    public Set<Id> collectNonNullIdSetForNew(SObjectField targetField) {
         return this.setExtractor.extractNonNullIdsFrom(this.newSObjectList, targetField);
     }
 
-    public Set<String> extractNewNonBlankStringSetFor(SObjectField targetField) {
+    public Set<String> collectNonBlankStringSetForNew(SObjectField targetField) {
         return this.setExtractor.extractNonBlankStringsFrom(this.newSObjectList, targetField);
     }
-
 }
