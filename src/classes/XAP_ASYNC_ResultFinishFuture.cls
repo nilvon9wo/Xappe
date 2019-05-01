@@ -72,7 +72,7 @@ public class XAP_ASYNC_ResultFinishFuture {
         List<XAP_ASYNC_Request__c> asyncRequestList = this.asyncRequestSelector.selectById(asyncRequestIdSet);
 
         Collections collections = new Collections(
-                this.listExtractor.extractWhereNotNullFrom(asyncRequestList, XAP_ASYNC_Request__c.REST_Request__c)
+                this.listExtractor.extractWhereNotNull(asyncRequestList, XAP_ASYNC_Request__c.REST_Request__c)
         );
         List<SObject> sObjectList = collections.sObjectList;
         sObjectList.addAll((List<SObject>) this.prepareContacts(collections.userIdSet));
