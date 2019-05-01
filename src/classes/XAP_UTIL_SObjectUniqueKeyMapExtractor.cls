@@ -39,10 +39,10 @@ public virtual class XAP_UTIL_SObjectUniqueKeyMapExtractor {
                     Object key = sObj.get(this.keyField);
                     if (sObjectListByKeyMap.containsKey(key)) {
                         throw new XAP_UTIL_MapManyToOneException(
-                                'Many-to-one relationships.  '
-                                        + ' Id ' + sObj.Id + ' is assigned to both'
+                                'Unique key is expected: '
+                                        + 'Key ' + key + ' is assigned to both'
                                         + ' 1: ' + sObj + ' and '
-                                        + ' 2: ' + sObjectListByKeyMap.get(sObj.Id)
+                                        + ' 2: ' + sObjectListByKeyMap.get(key)
                         );
                     }
                     sObjectListByKeyMap.put(key, sObj);
