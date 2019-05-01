@@ -1,11 +1,11 @@
-public virtual class XAP_UTIL_SObjectMapSwapper {
-    private static XAP_UTIL_SObjectMapSwapper instance;
-    protected XAP_UTIL_SObjectMapSwapper() {
+public virtual class XAP_UTIL_MapSwapper {
+    private static XAP_UTIL_MapSwapper instance;
+    protected XAP_UTIL_MapSwapper() {
     }
 
-    public static XAP_UTIL_SObjectMapSwapper getInstance() {
+    public static XAP_UTIL_MapSwapper getInstance() {
         if (instance == null) {
-            instance = new XAP_UTIL_SObjectMapSwapper();
+            instance = new XAP_UTIL_MapSwapper();
         }
         return instance;
     }
