@@ -11,20 +11,27 @@ public virtual class XAP_UTIL_SObjectMapSharedKeyExtractor {
     }
 
     public Map<Id, List<SObject>> mapBySpecifiedIdField(List<SObject> sObjectList, SObjectField idField) {
-        Map<Object, List<SObject>> sObjectListBySpecifiedObjectMap
-                = new MapExtractor(idField, new XAP_PRED_SObjectFieldHasNonNullValue(idField))
-                        .extractFrom(sObjectList);
         return (Map<Id, List<SObject>>) JSON.deserialize(
-                JSON.serialize(sObjectListBySpecifiedObjectMap), Map<Id, List<SObject>>.class
+                this.extractToMapJson(sObjectList, idField, new XAP_PRED_SObjectFieldHasNonNullValue(idField)),
+                Map<Id, List<SObject>>.class
         );
     }
 
     public Map<String, List<SObject>> mapBySpecifiedStringField(List<SObject> sObjectList, SObjectField stringField) {
-        Map<Object, List<SObject>> sObjectListBySpecifiedObjectMap
-                = new MapExtractor(stringField, new XAP_PRED_SObjectFieldHasNonBlankValue(stringField))
-                        .extractFrom(sObjectList);
         return (Map<String, List<SObject>>) JSON.deserialize(
-                JSON.serialize(sObjectListBySpecifiedObjectMap), Map<String, List<SObject>>.class
+                this.extractToMapJson(sObjectList, stringField, new XAP_PRED_SObjectFieldHasNonBlankValue(stringField)),
+                Map<String, List<SObject>>.class
+        );
+    }
+
+    private String extractToMapJson(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return JSON.serialize(
+                new MapExtractor(keyField, predicate)
+                        .extractFrom(sObjectList)
         );
     }
 
