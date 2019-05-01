@@ -11,40 +11,49 @@ public virtual class XAP_UTIL_SObjectValueSetExtractor {
         return instance;
     }
 
-    public virtual Set<Id> extractNonNullIdsFrom(List<SObject> sObjectList, SObjectField idField) {
-        Set<Object> objectSet = new SetExtractor(idField)
-                .extractFrom(sObjectList);
-        return (Set<Id>) JSON.deserialize(JSON.serialize(objectSet), Set<Id>.class);
+    public virtual Set<Id> extractNonNullIdsFrom(List<SObject> sObjectList, SObjectField extractedField) {
+        return this.extractIdSet(sObjectList, extractedField, new XAP_PRED_SObjectFieldHasNonNullValue(extractedField));
     }
 
-    public virtual Set<String> extractNonBlankStringsFrom(List<SObject> sObjectList, SObjectField stringField) {
-        Set<Object> objectSet = new SetExtractor(stringField)
-                .extractFrom(sObjectList);
-        return (Set<String>) JSON.deserialize(JSON.serialize(objectSet), Set<String>.class);
+    public Set<Id> extractIdSet(
+            List<SObject> sObjectList,
+            SObjectField extractedField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return new Set<Id>((List<Id>) new ListForSetExtractor(extractedField, predicate)
+                .extractFrom(sObjectList));
     }
 
+    public virtual Set<String> extractNonBlankStringsFrom(List<SObject> sObjectList, SObjectField extractedField) {
+        return this.extractStringSet(sObjectList, extractedField, new XAP_PRED_SObjectFieldHasNonBlankValue(extractedField));
+    }
 
-    private class SetExtractor {
+    public Set<String> extractStringSet(
+            List<SObject> sObjectList,
+            SObjectField extractedField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return new Set<String>((List<String>) new ListForSetExtractor(extractedField, predicate)
+                .extractFrom(sObjectList));
+    }
+
+    private class ListForSetExtractor {
         SObjectField extractionField;
         XAP_PRED_SObjectPredicateIntf predicate;
 
-        SetExtractor(SObjectField extractionField, XAP_PRED_SObjectPredicateIntf predicate) {
-            this.extractionField = extractionField;
+        ListForSetExtractor(SObjectField extractedField, XAP_PRED_SObjectPredicateIntf predicate) {
+            this.extractionField = extractedField;
             this.predicate = predicate;
         }
 
-        SetExtractor(SObjectField extractionField) {
-            this(extractionField, new XAP_PRED_SObjectFieldHasNonBlankValue(extractionField));
-        }
-
-        public Set<Object> extractFrom(List<SObject> sObjectList) {
+        public List<Object> extractFrom(List<SObject> sObjectList) {
             Set<Object> resultSet = new Set<Object>();
             for (SObject sObj : sObjectList) {
                 if (this.predicate.isTrueFor(sObj)) {
                     resultSet.add(sObj.get(extractionField));
                 }
             }
-            return resultSet;
+            return new List<Object>(resultSet);
         }
     }
 
