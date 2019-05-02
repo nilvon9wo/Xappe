@@ -45,6 +45,23 @@ public virtual class XAP_UTIL_SObjectMapSharedKeyExtractor {
         return this.toSObjectListByIdMap(sObjectList, keyField, new XAP_PRED_SObjectFieldHasNonNullValue(keyField));
     }
 
+    public Map<Id, List<SObject>> toDereferencedSObjectListByIdMap(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return (Map<Id, List<SObject>>) JSON.deserialize(
+                this.toJson(sObjectList, keyField, predicate),
+                Map<Id, List<SObject>>.class
+        );
+    }
+
+    public Map<Id, List<SObject>> toDereferencedSObjectListByIdMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toDereferencedSObjectListByIdMap(
+                sObjectList, keyField, new XAP_PRED_SObjectFieldHasNonNullValue(keyField)
+        );
+    }
+
     // Return by String -- Inefficient --------------------------------------------------------------------------------
 
     public Map<String, List<SObject>> toSObjectListByStringMap(
@@ -64,6 +81,21 @@ public virtual class XAP_UTIL_SObjectMapSharedKeyExtractor {
 
     public Map<String, List<SObject>> toSObjectListByStringMap(List<SObject> sObjectList, SObjectField keyField) {
         return this.toSObjectListByStringMap(sObjectList, keyField);
+    }
+
+    public Map<String, List<SObject>> toDereferencedSObjectListByStringMap(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return (Map<String, List<SObject>>) JSON.deserialize(
+                this.toJson(sObjectList, keyField, predicate),
+                Map<String, List<SObject>>.class
+        );
+    }
+
+    public Map<String, List<SObject>> toDereferencedSObjectListByStringMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toDereferencedSObjectListByStringMap(sObjectList, keyField);
     }
 
     // Return as Json: Inefficient and Breaks Object references -------------------------------------------------------

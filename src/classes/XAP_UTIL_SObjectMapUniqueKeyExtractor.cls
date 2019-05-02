@@ -46,6 +46,23 @@ public virtual class XAP_UTIL_SObjectMapUniqueKeyExtractor {
         return this.toSObjectByIdMap(sObjectList, keyField, new XAP_PRED_SObjectFieldHasNonNullValue(keyField));
     }
 
+    public Map<Id, SObject> toDereferencedSObjectByIdMap(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return (Map<Id, SObject>) JSON.deserialize(
+                this.toJson(sObjectList, keyField, predicate),
+                Map<Id, SObject>.class
+        );
+    }
+
+    public Map<Id, SObject> toDereferencedSObjectByIdMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toDereferencedSObjectByIdMap(
+                sObjectList, keyField, new XAP_PRED_SObjectFieldHasNonNullValue(keyField)
+        );
+    }
+
     // Return by String -- Inefficient --------------------------------------------------------------------------------
 
     public Map<String, SObject> toSObjectByStringMap(
@@ -65,6 +82,21 @@ public virtual class XAP_UTIL_SObjectMapUniqueKeyExtractor {
 
     public Map<String, SObject> toSObjectByStringMap(List<SObject> sObjectList, SObjectField keyField) {
         return this.toSObjectByStringMap(sObjectList, keyField);
+    }
+
+    public Map<String, SObject> toDereferencedSObjectByStringMap(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        return (Map<String, SObject>) JSON.deserialize(
+                this.toJson(sObjectList, keyField, predicate),
+                Map<String, SObject>.class
+        );
+    }
+
+    public Map<String, SObject> toDereferencedSObjectByStringMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toDereferencedSObjectByStringMap(sObjectList, keyField);
     }
 
     // Return as Json: Inefficient and Breaks Object references -------------------------------------------------------
