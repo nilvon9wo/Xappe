@@ -1,39 +1,80 @@
 public virtual class XAP_UTIL_SObjectMapSharedKeyExtractor {
-    private static XAP_UTIL_SObjectMapSharedKeyExtractor instance;
-    protected XAP_UTIL_SObjectMapSharedKeyExtractor() {
+    private XAP_UTIL_SObjectMapSharedKeyExtractor() {
     }
 
+    private static XAP_UTIL_SObjectMapSharedKeyExtractor instance;
     public static XAP_UTIL_SObjectMapSharedKeyExtractor getInstance() {
         if (instance == null) {
             instance = new XAP_UTIL_SObjectMapSharedKeyExtractor();
         }
         return instance;
     }
+    // Return by Object -- Most efficient -----------------------------------------------------------------------------
 
-    public Map<Id, List<SObject>> mapBySpecifiedIdField(List<SObject> sObjectList, SObjectField idField) {
-        return (Map<Id, List<SObject>>) JSON.deserialize(
-                this.extractToMapJson(sObjectList, idField, new XAP_PRED_SObjectFieldHasNonNullValue(idField)),
-                Map<Id, List<SObject>>.class
-        );
-    }
-
-    public Map<String, List<SObject>> mapBySpecifiedStringField(List<SObject> sObjectList, SObjectField stringField) {
-        return (Map<String, List<SObject>>) JSON.deserialize(
-                this.extractToMapJson(sObjectList, stringField, new XAP_PRED_SObjectFieldHasNonBlankValue(stringField)),
-                Map<String, List<SObject>>.class
-        );
-    }
-
-    private String extractToMapJson(
+    public Map<Object, List<SObject>> toSObjectListByObjectMap(
             List<SObject> sObjectList,
             SObjectField keyField,
             XAP_PRED_SObjectPredicateIntf predicate
     ) {
+        return new MapExtractor(keyField, predicate)
+                .extractFrom(sObjectList);
+    }
+
+    public Map<Object, List<SObject>> toSObjectListByObjectMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toSObjectListByObjectMap(sObjectList, keyField, new XAP_PRED_SObjectFieldHasNonBlankValue(keyField));
+    }
+
+    // Return by Id -- Inefficient ------------------------------------------------------------------------------------
+
+    public Map<Id, List<SObject>> toSObjectListByIdMap(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        Map<Object, List<SObject>> sObjectListByObjectMap
+                = this.toSObjectListByObjectMap(sObjectList, keyField, predicate);
+
+        Map<Id, List<SObject>> sObjectListByIdMap = new Map<Id, List<SObject>>();
+        for (Object key : sObjectListByObjectMap.keySet()) {
+            sObjectListByIdMap.put((Id) key, sObjectListByObjectMap.get(key));
+        }
+        return sObjectListByIdMap;
+    }
+
+    public Map<Id, List<SObject>> toSObjectListByIdMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toSObjectListByIdMap(sObjectList, keyField, new XAP_PRED_SObjectFieldHasNonNullValue(keyField));
+    }
+
+    // Return by String -- Inefficient --------------------------------------------------------------------------------
+
+    public Map<String, List<SObject>> toSObjectListByStringMap(
+            List<SObject> sObjectList,
+            SObjectField keyField,
+            XAP_PRED_SObjectPredicateIntf predicate
+    ) {
+        Map<Object, List<SObject>> sObjectListByObjectMap
+                = this.toSObjectListByObjectMap(sObjectList, keyField, predicate);
+
+        Map<String, List<SObject>> sObjectListByStringMap = new Map<String, List<SObject>>();
+        for (Object key : sObjectListByObjectMap.keySet()) {
+            sObjectListByStringMap.put((String) key, sObjectListByObjectMap.get(key));
+        }
+        return sObjectListByStringMap;
+    }
+
+    public Map<String, List<SObject>> toSObjectListByStringMap(List<SObject> sObjectList, SObjectField keyField) {
+        return this.toSObjectListByStringMap(sObjectList, keyField);
+    }
+
+    // Return as Json: Inefficient and Breaks Object references -------------------------------------------------------
+
+    public String toJson(List<SObject> sObjectList, SObjectField keyField, XAP_PRED_SObjectPredicateIntf predicate) {
         return JSON.serialize(
-                new MapExtractor(keyField, predicate)
-                        .extractFrom(sObjectList)
+                this.toSObjectListByObjectMap(sObjectList, keyField, predicate)
         );
     }
+
+    // Extractor class ------------------------------------------------------------------------------------------------
 
     private class MapExtractor {
         SObjectField keyField;
