@@ -35,10 +35,8 @@ public virtual class DAO_ContactSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     }
 
     public virtual List<Contact> selectByEmail(Set<String> emailSet) {
-        return (List<Contact>) Database.query(
-                this.newQueryFactory()
-                        .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(Contact.Email, emailSet))
-                        .toSOQL()
-        );
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(Contact.Email, emailSet))
+                .query();
     }
 }

@@ -54,22 +54,20 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SOQL_SObjectSelecto
         Set<String> countrySet = regionSetByRegionTypeMap.get(CTM_RegionTypeEnum.COUNTRY);
         Set<String> stateSet = regionSetByRegionTypeMap.get(CTM_RegionTypeEnum.STATE);
 
-        return (List<Territory_Assignment__c>) Database.query(
-                this.newQueryFactory()
-                        .setCondition(new XAP_DAO_SOQL_WHERE_AndClause(new List<XAP_DAO_SOQL_WHERE_ClauseIntf>{
-                                new XAP_DAO_SOQL_WHERE_DateComparisonClause(
-                                        Territory_Assignment__c.Territory_Start_Date__c, XAP_DAO_SOQL_WHERE_CompareOperatorEnum.LESS_THAN_OR_EQUAL, targetDate
-                                ),
-                                new XAP_DAO_SOQL_WHERE_DateComparisonClause(
-                                        Territory_Assignment__c.Territory_End_Date__c, XAP_DAO_SOQL_WHERE_CompareOperatorEnum.GREATER_THAN_OR_EQUAL, targetDate
-                                ),
-                                new XAP_DAO_SOQL_WHERE_OrClause(new List<XAP_DAO_SOQL_WHERE_ClauseIntf>{
-                                        new XAP_DAO_SOQL_WHERE_InStringSetClause(Territory_Assignment__c.Territory_State__c, stateSet),
-                                        new XAP_DAO_SOQL_WHERE_InStringSetClause(Territory_Assignment__c.Territory_Country__c, countrySet)
-                                })
-                        }))
-                        .toSOQL()
-        );
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_AndClause(new List<XAP_DAO_SOQL_WHERE_ClauseIntf>{
+                        new XAP_DAO_SOQL_WHERE_DateComparisonClause(
+                                Territory_Assignment__c.Territory_Start_Date__c, XAP_DAO_SOQL_WHERE_CompareOperatorEnum.LESS_THAN_OR_EQUAL, targetDate
+                        ),
+                        new XAP_DAO_SOQL_WHERE_DateComparisonClause(
+                                Territory_Assignment__c.Territory_End_Date__c, XAP_DAO_SOQL_WHERE_CompareOperatorEnum.GREATER_THAN_OR_EQUAL, targetDate
+                        ),
+                        new XAP_DAO_SOQL_WHERE_OrClause(new List<XAP_DAO_SOQL_WHERE_ClauseIntf>{
+                                new XAP_DAO_SOQL_WHERE_InStringSetClause(Territory_Assignment__c.Territory_State__c, stateSet),
+                                new XAP_DAO_SOQL_WHERE_InStringSetClause(Territory_Assignment__c.Territory_Country__c, countrySet)
+                        })
+                }))
+                .query();
     }
 
     private Map<CTM_RegionTypeEnum, Map<String, Territory_Assignment__c>> buildTerritoryAssignmentByTerritoryRegionByRegionTypeMap(
