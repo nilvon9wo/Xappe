@@ -63,11 +63,10 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
     }
 
     public virtual List<SObject> selectById(Set<Id> idSet) {
-        return (List<SObject>) Database.query(
+        return (List<SObject>)
                 this.newQueryFactory()
                         .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
-                        .toSOQL()
-        );
+                        .query();
     }
 
     public virtual String getOrderBy() {
@@ -164,7 +163,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
     private String buildQuerySObjectById() {   
         return this.newQueryFactory()
         	.setCondition(new XAP_DAO_SOQL_WHERE_ArbitraryStringClause('Id IN :idSet'))
-        	.toSOQL(); 
+        	.toSoql();
     }
     	
     private XAP_DAO_SOQL_QueryFactory configureQueryFactory(

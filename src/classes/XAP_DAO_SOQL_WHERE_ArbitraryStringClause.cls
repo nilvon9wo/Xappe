@@ -5,7 +5,7 @@ public class XAP_DAO_SOQL_WHERE_ArbitraryStringClause implements XAP_DAO_SOQL_WH
 		this.clause = clause;
 	}
  
-    public String toSOQL() {
-		return clause;    	
-    }
+	public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
+		return new XAP_DAO_SOQL_QueryInterpolation(clause, new Map<String, Object>());
+	}
 }

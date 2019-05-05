@@ -1,4 +1,15 @@
-public class XAP_DAO_SOQL_Querier {
+public virtual class XAP_DAO_SOQL_Querier {
+    private XAP_DAO_SOQL_Querier() {
+    }
+
+    private static XAP_DAO_SOQL_Querier instance;
+    public static XAP_DAO_SOQL_Querier getInstance() {
+        if (instance == null) {
+            instance = new XAP_DAO_SOQL_Querier();
+        }
+        return instance;
+    }
+
     private static Object object0;
     private static Object object1;
     private static Object object2;
@@ -13,11 +24,11 @@ public class XAP_DAO_SOQL_Querier {
 
     public List<SObject> selectFor(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
         return Database.query(
-                this.rebind(queryInterpolation)
+                this.toSoql(queryInterpolation)
         );
     }
 
-    private String rebind(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
+    public String toSoql(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
         Integer requiredBindingSize = queryInterpolation.objectsByKeyMap.keySet().size();
         if (requiredBindingSize > LAST_OBJECT_NUMBER) {
             throw new RebindObjectsLimitException(

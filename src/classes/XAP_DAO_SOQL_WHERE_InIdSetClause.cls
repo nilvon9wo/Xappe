@@ -1,6 +1,4 @@
 public class XAP_DAO_SOQL_WHERE_InIdSetClause implements XAP_DAO_SOQL_WHERE_ClauseIntf {
-    XAP_DAO_SOQL_WHERE_CompareOpEnumHelper comparisonHelper;
-
     String fieldName;
     Set<Id> idSet;
 
@@ -17,18 +15,10 @@ public class XAP_DAO_SOQL_WHERE_InIdSetClause implements XAP_DAO_SOQL_WHERE_Clau
         this('Id', idSet);
     }
 
-
-    private static final String ALWAYS_FALSE = 'Id = null';
-
-    public String toSOQL() {
-        if (this.idSet == null || this.idSet.isEmpty()) {
-            return ALWAYS_FALSE;
-        }
-
-        return fieldName
-                + ' IN '
-                + '(\''
-                + String.join(new List<Id>(idSet), '\',\'')
-                + '\')';
+    public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
+        String template = fieldName + ' IN ${idSet}';
+        return new XAP_DAO_SOQL_QueryInterpolation(template, new Map<String, Object>{
+                'idSet' => this.idSet
+        });
     }
 }
