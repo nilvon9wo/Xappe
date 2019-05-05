@@ -1,5 +1,4 @@
-public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
-        implements XAP_DAO_ByContactIdSelectorIntf {
+public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
     private DAO_UserSelector() {
     }
 
@@ -37,12 +36,6 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     public override List<SObject> selectById(Set<Id> idSet) {
         return this.newQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
-                .query();
-    }
-
-    public virtual List<User> selectByContactId(Set<Id> contactIdSet) {
-        return this.newQueryFactory()
-                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(User.ContactId, contactIdSet))
                 .query();
     }
 
