@@ -57,4 +57,5 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
                 .query();
     }
 
+
 }
