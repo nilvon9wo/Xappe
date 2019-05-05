@@ -96,11 +96,11 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
     }
     
     public List<SObject> selectSObjectsById(Set<Id> idSet) { 
-        return Database.query(buildQuerySObjectById());
+        return Database.query(this.buildQuerySObjectById(idSet));
     }
         
     public Database.QueryLocator queryLocatorById(Set<Id> idSet) {
-        return Database.getQueryLocator(buildQuerySObjectById());
+        return Database.getQueryLocator(this.buildQuerySObjectById(idSet));
     }
     
     public XAP_DAO_SOQL_QueryFactory newQueryFactory() {
@@ -160,9 +160,9 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
 		);
 	}
 
-    private String buildQuerySObjectById() {   
+    private String buildQuerySObjectById(Set<Id> idSet) {
         return this.newQueryFactory()
-        	.setCondition(new XAP_DAO_SOQL_WHERE_ArbitraryStringClause('Id IN :idSet'))
+        	.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
         	.toSoql();
     }
     	
