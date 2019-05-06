@@ -26,7 +26,7 @@
 
 
 @IsTest
-private class fflib_ApplicationTest 
+private class A00_ApplicationTest
 {
 	@IsTest
 	private static void callingDomainFactoryShouldGiveRegisteredImplsAndMocks()
@@ -486,7 +486,7 @@ private class fflib_ApplicationTest
 	// Configure and create the DomainFactory for this Application
 	public static final fflib_Application.DomainFactory Domain = 
 		new fflib_Application.DomainFactory(
-			fflib_ApplicationTest.Selector,
+			A00_ApplicationTest.Selector,
 			new Map<SObjectType, Type> {
 					Account.SObjectType => AccountsConstructor.class,
 					Opportunity.SObjectType => OpportuntiesConstructor.class,
@@ -563,7 +563,7 @@ private class fflib_ApplicationTest
 
 	}		
 
-	class OpportuntiesSelector extends fflib_SObjectSelector
+	class OpportuntiesSelector extends A00_SObjectSelector
 	{
 		public List<Schema.SObjectField> getSObjectFieldList()
 		{
@@ -579,7 +579,7 @@ private class fflib_ApplicationTest
 		}
 	}
 	
-	class AccountsSelector extends fflib_SObjectSelector
+	class AccountsSelector extends A00_SObjectSelector
 	{
 		public List<Schema.SObjectField> getSObjectFieldList()
 		{

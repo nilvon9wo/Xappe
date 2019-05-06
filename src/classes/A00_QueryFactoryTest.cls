@@ -25,11 +25,11 @@
 **/
 
 @isTest
-private class fflib_QueryFactoryTest {
+private class A00_QueryFactoryTest {
 
 	@isTest
 	static void fieldSelections(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('firstName');
 		qf.selectField(Schema.Contact.SObjectType.fields.lastName);
 		qf.selectFields( new Set<String>{'acCounTId', 'account.name'} );
@@ -49,7 +49,7 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void simpleFieldSelection() {
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('NAMe').selectFields( new Set<String>{'naMe', 'email'});
 		String query = qf.toSOQL();
 		System.assert( Pattern.matches('SELECT.*Name.*FROM.*',query), 'Expected Name field in query, got '+query);
@@ -62,7 +62,7 @@ private class fflib_QueryFactoryTest {
 	@isTest
 	static void simpleFieldCondition(){
 		String whereClause = 'name = \'test\'';
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		qf.selectField('email');
 		qf.setCondition( whereClause );
@@ -73,7 +73,7 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void duplicateFieldSelection() {
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('NAMe').selectFields( new Set<String>{'naMe', 'email'});
 		String query = qf.toSOQL();
 		System.assertEquals(1, query.countMatches('Name'), 'Expected one name field in query: '+query );
@@ -81,8 +81,8 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void equalityCheck(){
-		fflib_QueryFactory qf1 = new fflib_QueryFactory(Contact.SObjectType);
-		fflib_QueryFactory qf2 = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf1 = new A00_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf2 = new A00_QueryFactory(Contact.SObjectType);
 		System.assertEquals(qf1,qf2);
 		qf1.selectField('name');
 		System.assertNotEquals(qf1,qf2);
@@ -94,11 +94,11 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void nonReferenceField(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		fflib_QueryFactory.NonReferenceFieldException e;
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory.NonReferenceFieldException e;
 		try{
 			qf.selectField('name.title');
-		}catch(fflib_QueryFactory.NonReferenceFieldException ex){
+		}catch(A00_QueryFactory.NonReferenceFieldException ex){
 			e = ex;
 		}
 		System.assertNotEquals(null,e,'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
@@ -106,11 +106,11 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void invalidCrossObjectField(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		fflib_QueryFactory.InvalidFieldException e;
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory.InvalidFieldException e;
 		try{
 			qf.selectField('account.NOT_A_REAL_FIELD');
-		}catch(fflib_QueryFactory.InvalidFieldException ex){
+		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
 		System.assertNotEquals(null,e,'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
@@ -118,26 +118,26 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void invalidFieldTests(){
-		List<fflib_QueryFactory.InvalidFieldException> exceptions = new List<fflib_QueryFactory.InvalidFieldException>();
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		List<A00_QueryFactory.InvalidFieldException> exceptions = new List<A00_QueryFactory.InvalidFieldException>();
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		try{
 			qf.selectField('Not_a_field');
-		}catch(fflib_QueryFactory.InvalidFieldException e){
+		}catch(A00_QueryFactory.InvalidFieldException e){
 			exceptions.add(e);
 		}
 		try{
 			qf.selectFields( new Set<String>{ 'Not_a_field','alsoNotreal'});
-		}catch(fflib_QueryFactory.InvalidFieldException e){
+		}catch(A00_QueryFactory.InvalidFieldException e){
 			exceptions.add(e);
 		}
 		try{
 			qf.selectFields( new Set<Schema.SObjectField>{ null });
-		}catch(fflib_QueryFactory.InvalidFieldException e){
+		}catch(A00_QueryFactory.InvalidFieldException e){
 			exceptions.add(e);
 		}
 		try{
 			qf.selectFields( new List<Schema.SObjectField>{ null, Contact.title });
-		}catch(fflib_QueryFactory.InvalidFieldException e){
+		}catch(A00_QueryFactory.InvalidFieldException e){
 			exceptions.add(e);
 		}
 		System.assertEquals(4,exceptions.size());
@@ -145,16 +145,16 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void ordering(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		qf.selectField('email');
 		qf.setCondition( 'name = \'test\'' );
-		qf.addOrdering( new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) ).addOrdering( new fflib_QueryFactory.Ordering('Contact','CreatedDATE',fflib_QueryFactory.SortOrder.DESCENDING) );
+		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering( new A00_QueryFactory.Ordering('Contact','CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING) );
 		String query = qf.toSOQL();
 
 		System.assertEquals(2,qf.getOrderings().size());
 		System.assertEquals('Name',qf.getOrderings()[0].getField() );
-		System.assertEquals(fflib_QueryFactory.SortOrder.DESCENDING,qf.getOrderings()[1].getDirection() );
+		System.assertEquals(A00_QueryFactory.SortOrder.DESCENDING,qf.getOrderings()[1].getDirection() );
 
 		
 		System.assert( Pattern.matches('SELECT.*Name.*FROM.*',query), 'Expected Name field in query, got '+query);
@@ -163,56 +163,56 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void setOrdering_ReplacesPreviousOrderingsWithExpectedOrdering(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		qf.selectField('email');
 		qf.setCondition( 'name = \'test\'' );
 
 		//test base method with ordeting by OwnerId Descending
-		qf.setOrdering( new fflib_QueryFactory.Ordering('Contact','OwnerId',fflib_QueryFactory.SortOrder.DESCENDING) );
+		qf.setOrdering( new A00_QueryFactory.Ordering('Contact','OwnerId', A00_QueryFactory.SortOrder.DESCENDING) );
 
 		System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace default Orderings');
 		System.assertEquals(Contact.OwnerId.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field OwnerId');
-		System.assertEquals(fflib_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+		System.assertEquals(A00_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
 
 		//test method overload with ordering by LastModifiedDate Ascending
-		qf.setOrdering('LastModifiedDate', fflib_QueryFactory.SortOrder.ASCENDING, true);
+		qf.setOrdering('LastModifiedDate', A00_QueryFactory.SortOrder.ASCENDING, true);
 
 		System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
 		System.assertEquals(Contact.LastModifiedDate.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field LastModifiedDate');
-		System.assertEquals(fflib_QueryFactory.SortOrder.ASCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+		System.assertEquals(A00_QueryFactory.SortOrder.ASCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
 
 		//test method overload with ordering by CreatedDate Descending
-		qf.setOrdering(Contact.CreatedDate, fflib_QueryFactory.SortOrder.DESCENDING, true);
+		qf.setOrdering(Contact.CreatedDate, A00_QueryFactory.SortOrder.DESCENDING, true);
 
 		System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
 		System.assertEquals(Contact.CreatedDate.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field CreatedDate');
-		System.assertEquals(fflib_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+		System.assertEquals(A00_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
 
 		//test method overload with ordering by CreatedBy.Name Descending
-		qf.setOrdering('CreatedBy.Name', fflib_QueryFactory.SortOrder.DESCENDING);
+		qf.setOrdering('CreatedBy.Name', A00_QueryFactory.SortOrder.DESCENDING);
 
 		System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
-		System.assertEquals(fflib_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+		System.assertEquals(A00_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
 
 		//test method overload with ordering by Birthdate Ascending
-		qf.setOrdering(Contact.Birthdate, fflib_QueryFactory.SortOrder.ASCENDING);
+		qf.setOrdering(Contact.Birthdate, A00_QueryFactory.SortOrder.ASCENDING);
 
 		System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
 		System.assertEquals(Contact.Birthdate.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field Birthdate');
-		System.assertEquals(fflib_QueryFactory.SortOrder.ASCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+		System.assertEquals(A00_QueryFactory.SortOrder.ASCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
 
 		String query = qf.toSOQL();
 	}
 
 	@isTest
 	static void invalidField_string(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		Exception e;
 		try{
 			qf.selectField('not_a__field');
-		}catch(fflib_QueryFactory.InvalidFieldException ex){
+		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
 		System.assertNotEquals(null,e);
@@ -220,12 +220,12 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void invalidFields_string(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		Exception e; 
 		try{
 			qf.selectFields( new List<String>{'not_a__field'} );
-		}catch(fflib_QueryFactory.InvalidFieldException ex){
+		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
 		System.assertNotEquals(null,e);
@@ -233,13 +233,13 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void invalidField_nullToken(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		Exception e;
 		Schema.SObjectField token = null;
 		try{
 			qf.selectField( token );
-		}catch(fflib_QueryFactory.InvalidFieldException ex){
+		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
 		System.assertNotEquals(null,e);
@@ -247,7 +247,7 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void invalidFields_nullToken(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		Exception e;
 		List<Schema.SObjectField> token = new List<Schema.SObjectField>{
@@ -255,7 +255,7 @@ private class fflib_QueryFactoryTest {
 		};
 		try{
 			qf.selectFields( token );
-		}catch(fflib_QueryFactory.InvalidFieldException ex){
+		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
 		System.assertNotEquals(null,e);
@@ -264,10 +264,10 @@ private class fflib_QueryFactoryTest {
 	@isTest
 	static void invalidFields_noQueryField(){
 		try {
-			String path = fflib_QueryFactory.getFieldTokenPath(null);
+			String path = A00_QueryFactory.getFieldTokenPath(null);
 			System.assert(false,'Expected InvalidFieldException; none was thrown');
 		} 
-		catch (fflib_QueryFactory.InvalidFieldException ife) {
+		catch (A00_QueryFactory.InvalidFieldException ife) {
 			//Expected
 		}
 		catch (Exception e){
@@ -277,8 +277,8 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void queryFieldsNotEquals(){
-		String qfld = fflib_QueryFactory.getFieldTokenPath(Contact.Name);
-		String qfld2 = fflib_QueryFactory.getFieldTokenPath(Contact.LastName);
+		String qfld = A00_QueryFactory.getFieldTokenPath(Contact.Name);
+		String qfld2 = A00_QueryFactory.getFieldTokenPath(Contact.LastName);
 		System.assert(!qfld.equals(qfld2));	
 	}
 
@@ -298,12 +298,12 @@ private class fflib_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING, true);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		//explicitly assert object accessibility when creating the subselect
 		qf.subselectQuery('Tasks', true).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
-		List<fflib_QueryFactory> queries = qf.getSubselectQueries();
+		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
 		System.assert(contacts != null && contacts.size() == 1);
@@ -327,11 +327,11 @@ private class fflib_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING, true);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		//explicitly assert object accessibility when creating the subselect
 		qf.subselectQuery('Tasks').selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
-		List<fflib_QueryFactory> queries = qf.getSubselectQueries();
+		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		String soql = qf.toSOQL();
 		System.debug(soql);
@@ -357,8 +357,8 @@ private class fflib_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING, true);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		Schema.ChildRelationship relationship;
 		for (Schema.ChildRelationship childRow : descResult.getChildRelationships()){
@@ -370,7 +370,7 @@ private class fflib_QueryFactoryTest {
         }
        	//explicitly assert object accessibility when creating the subselect
 		qf.subselectQuery(relationship, true).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
-		List<fflib_QueryFactory> queries = qf.getSubselectQueries();
+		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
 		System.assert(contacts != null && contacts.size() == 1);
@@ -394,8 +394,8 @@ private class fflib_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING, true);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		Schema.ChildRelationship relationship;
 		for (Schema.ChildRelationship childRow : descResult.getChildRelationships()){
@@ -407,7 +407,7 @@ private class fflib_QueryFactoryTest {
         }
        	//explicitly assert object accessibility when creating the subselect
 		qf.subselectQuery(relationship).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
-		List<fflib_QueryFactory> queries = qf.getSubselectQueries();
+		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
 		System.assert(contacts != null && contacts.size() == 1);
@@ -431,15 +431,15 @@ private class fflib_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING, true);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		//explicitly assert object accessibility when creating the subselect
 		//
 		Exception e;
 		try {
 			qf.subselectQuery('Tas').selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
-		} catch (fflib_QueryFactory.InvalidSubqueryRelationshipException ex) {
+		} catch (A00_QueryFactory.InvalidSubqueryRelationshipException ex) {
 			e = ex;   
 		}	
 		System.assertNotEquals(e, null);
@@ -461,12 +461,12 @@ private class fflib_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING, true);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		//explicitly assert object accessibility when creating the subselect
 		qf.subselectQuery(Task.SObjectType, true).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
-		List<fflib_QueryFactory> queries = qf.getSubselectQueries();
+		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
 		System.assert(contacts != null && contacts.size() == 1);
@@ -489,11 +489,11 @@ private class fflib_QueryFactoryTest {
         tsk.Subject = 'test';
         tsk.ActivityDate = System.today();
         insert tsk;
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		qf.selectField('Id');
 		qf.setCondition( 'name like \'%test%\'' );
-		qf.addOrdering( new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) ).addOrdering('CreatedBy.Name',fflib_QueryFactory.SortOrder.DESCENDING);
+		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering('CreatedBy.Name', A00_QueryFactory.SortOrder.DESCENDING);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
        	ChildRelationship relationship;
         for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
@@ -502,12 +502,12 @@ private class fflib_QueryFactoryTest {
             }
         }
         System.assert(qf.getSubselectQueries() == null);
-		fflib_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
+		A00_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
 		childQf.assertIsAccessible();
 		childQf.setEnforceFLS(true);
 		childQf.selectField('Id');
-		fflib_QueryFactory childQf2 = qf.subselectQuery(Task.SObjectType);
-		List<fflib_QueryFactory> queries = qf.getSubselectQueries();
+		A00_QueryFactory childQf2 = qf.subselectQuery(Task.SObjectType);
+		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		System.assert(queries.size() == 1);
 	}
@@ -522,18 +522,18 @@ private class fflib_QueryFactoryTest {
 		cont.LastName = 'test';
 		cont.AccountId = acct.Id;
 		insert cont;
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		qf.selectField('email');
 		qf.setCondition( 'name like \'%test%\'' );
-		qf.addOrdering( new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) ).addOrdering( 'CreatedDATE',fflib_QueryFactory.SortOrder.DESCENDING);
+		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering( 'CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING);
 		Schema.DescribeSObjectResult descResult = Account.SObjectType.getDescribe();
         Exception e;
 		try {
 			SObjectType invalidType = null;
-			fflib_QueryFactory childQf = qf.subselectQuery(invalidType);
+			A00_QueryFactory childQf = qf.subselectQuery(invalidType);
 			childQf.selectField('Id');
-		} catch (fflib_QueryFactory.InvalidSubqueryRelationshipException ex) {
+		} catch (A00_QueryFactory.InvalidSubqueryRelationshipException ex) {
 			e = ex;
 		}	
 		System.assertNotEquals(e, null);
@@ -549,20 +549,20 @@ private class fflib_QueryFactoryTest {
 		cont.LastName = 'test';
 		cont.AccountId = acct.Id;
 		insert cont;
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.selectField('name');
 		qf.selectField('email');
 		qf.setCondition( 'name like \'%test%\'' );
-		qf.addOrdering( new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) ).addOrdering('CreatedDATE',fflib_QueryFactory.SortOrder.DESCENDING);
+		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering('CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
   
-		fflib_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
+		A00_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
 		childQf.selectField('Id');
 		childQf.selectField('Subject');
 		Exception e;
 		try {
-			fflib_QueryFactory subChildQf = childQf.subselectQuery(Task.SObjectType);
-		} catch (fflib_QueryFactory.InvalidSubqueryRelationshipException ex) {
+			A00_QueryFactory subChildQf = childQf.subselectQuery(Task.SObjectType);
+		} catch (A00_QueryFactory.InvalidSubqueryRelationshipException ex) {
 			e = ex;   
 		}	
 		System.assertNotEquals(e, null);
@@ -570,7 +570,7 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void checkFieldObjectReadSort_success(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.assertIsAccessible()
 		  .setEnforceFLS(true) 
 		  .selectField('createdby.name')
@@ -582,11 +582,11 @@ private class fflib_QueryFactoryTest {
 		  .setCondition( 'name like \'%test%\'' )
 		  .setEnforceFLS(true)
 		  .selectFields(new Set<SObjectField>{Contact.FirstName})
-		  .addOrdering(new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) )
-		  .addOrdering(Contact.LastModifiedDate,fflib_QueryFactory.SortOrder.DESCENDING)
-		  .addOrdering(Contact.CreatedDate,fflib_QueryFactory.SortOrder.DESCENDING, true);
+		  .addOrdering(new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) )
+		  .addOrdering(Contact.LastModifiedDate, A00_QueryFactory.SortOrder.DESCENDING)
+		  .addOrdering(Contact.CreatedDate, A00_QueryFactory.SortOrder.DESCENDING, true);
 		Set<String> fields = qf.getSelectedFields();  
-		fflib_QueryFactory.Ordering ordering = new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING);
+		A00_QueryFactory.Ordering ordering = new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING);
 		System.assertEquals('Name',ordering.getField());
 
 		System.assertEquals(new Set<String>{
@@ -607,7 +607,7 @@ private class fflib_QueryFactoryTest {
 		if (usr != null){
 			System.runAs(usr){
 				//create a query factory object for Account.  
-				fflib_QueryFactory qf = new fflib_QueryFactory(Account.SObjectType);
+				A00_QueryFactory qf = new A00_QueryFactory(Account.SObjectType);
 				Boolean excThrown = false;
 				try {
 					//check to see if this record is accessible, it isn't.
@@ -626,7 +626,7 @@ private class fflib_QueryFactoryTest {
 		if (usr != null){
 			System.runAs(usr){
 				//create a query factory object for Account. 
-				fflib_QueryFactory qf = new fflib_QueryFactory(Account.SObjectType);
+				A00_QueryFactory qf = new A00_QueryFactory(Account.SObjectType);
 				Boolean excThrown = false;
 				try {
 					//set field to enforce FLS, then try to add a field.  
@@ -642,17 +642,17 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void queryWith_noFields(){
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType);
-		qf.assertIsAccessible().setEnforceFLS(true).setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate',fflib_QueryFactory.SortOrder.DESCENDING);
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
+		qf.assertIsAccessible().setEnforceFLS(true).setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING);
 		String query = qf.toSOQL();
 		System.assert(query.containsIgnoreCase('SELECT Id FROM Contact'),'Expected \'SELECT Id FROM Contact\' in the SOQL, found: ' + query);
 	}  
 
 	@isTest
 	static void deterministic_toSOQL(){
-		fflib_QueryFactory qf1 = new fflib_QueryFactory(User.SObjectType);
-		fflib_QueryFactory qf2 = new fflib_QueryFactory(User.SObjectType);
-		for(fflib_QueryFactory qf:new Set<fflib_QueryFactory>{qf1,qf2}){
+		A00_QueryFactory qf1 = new A00_QueryFactory(User.SObjectType);
+		A00_QueryFactory qf2 = new A00_QueryFactory(User.SObjectType);
+		for(A00_QueryFactory qf:new Set<A00_QueryFactory>{qf1,qf2}){
 			qf.selectFields(new List<String>{
 				'Id',
 				'FirstName',
@@ -673,15 +673,15 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void deepCloneBasicNoChanges() {
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType)	
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType)
 		.setLimit(10)
 		.setCondition('id=12345')
 		.selectField('Description')
-		.addOrdering(new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) )
-		.addOrdering( new fflib_QueryFactory.Ordering('Contact','CreatedDATE',fflib_QueryFactory.SortOrder.DESCENDING))
+		.addOrdering(new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) )
+		.addOrdering( new A00_QueryFactory.Ordering('Contact','CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING))
 		.setEnforceFLS(true);
 
-		fflib_QueryFactory qf2 = qf.deepClone();
+		A00_QueryFactory qf2 = qf.deepClone();
 
 		System.assertEquals(qf2, qf);
 
@@ -693,17 +693,17 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void deepCloneSubqueryNoChanges() {
-		fflib_QueryFactory qf = new fflib_QueryFactory(Account.SObjectType)	
+		A00_QueryFactory qf = new A00_QueryFactory(Account.SObjectType)
 		.setLimit(10)
 		.setCondition('id=12345')
 		.selectField('Description')
-		.addOrdering(new fflib_QueryFactory.Ordering('Account','Name',fflib_QueryFactory.SortOrder.ASCENDING) )
-		.addOrdering( new fflib_QueryFactory.Ordering('Account','Description',fflib_QueryFactory.SortOrder.DESCENDING))
+		.addOrdering(new A00_QueryFactory.Ordering('Account','Name', A00_QueryFactory.SortOrder.ASCENDING) )
+		.addOrdering( new A00_QueryFactory.Ordering('Account','Description', A00_QueryFactory.SortOrder.DESCENDING))
 		.setEnforceFLS(true);
 
 		qf.subselectQuery('Contacts', true);	
 
-		fflib_QueryFactory qf2 = qf.deepClone();
+		A00_QueryFactory qf2 = qf.deepClone();
 
 		System.assertEquals(qf, qf2);
 
@@ -716,20 +716,20 @@ private class fflib_QueryFactoryTest {
 
 	@isTest
 	static void deepCloneBasic() {
-		fflib_QueryFactory qf = new fflib_QueryFactory(Contact.SObjectType)	
+		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType)
 		.setLimit(10)
 		.setCondition('id=12345')
 		.selectField('Description')
-		.addOrdering(new fflib_QueryFactory.Ordering('Contact','name',fflib_QueryFactory.SortOrder.ASCENDING) )
-		.addOrdering( new fflib_QueryFactory.Ordering('Contact','CreatedDATE',fflib_QueryFactory.SortOrder.DESCENDING))
+		.addOrdering(new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) )
+		.addOrdering( new A00_QueryFactory.Ordering('Contact','CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING))
 		.setEnforceFLS(true);
 
 
-		fflib_QueryFactory qf2 = qf.deepClone()
+		A00_QueryFactory qf2 = qf.deepClone()
 			.setLimit(200)
 			.setCondition('id=54321')
 			.selectField('Fax')
-			.addOrdering( new fflib_QueryFactory.Ordering('Contact','Fax',fflib_QueryFactory.SortOrder.ASCENDING))
+			.addOrdering( new A00_QueryFactory.Ordering('Contact','Fax', A00_QueryFactory.SortOrder.ASCENDING))
 			.setEnforceFLS(false);
 
 		qf2.getOrderings().remove(0);
@@ -750,28 +750,28 @@ private class fflib_QueryFactoryTest {
 
 		System.assertEquals(2, qf.getOrderings().size());
 		System.assertEquals('Name', qf.getOrderings()[0].getField() );
-		System.assertEquals(fflib_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[1].getDirection());
+		System.assertEquals(A00_QueryFactory.SortOrder.DESCENDING, qf.getOrderings()[1].getDirection());
 
 		System.assertEquals(2, qf2.getOrderings().size());
 		System.assertEquals('Fax', qf2.getOrderings()[1].getField());
-		System.assertEquals(fflib_QueryFactory.SortOrder.ASCENDING, qf2.getOrderings()[1].getDirection());
+		System.assertEquals(A00_QueryFactory.SortOrder.ASCENDING, qf2.getOrderings()[1].getDirection());
 
 	}
 
 	@isTest
 	static void deepCloneSubquery() {
-		fflib_QueryFactory qf = new fflib_QueryFactory(Account.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(Account.SObjectType);
 		qf.subselectQuery('Contacts', true);
 
-		fflib_QueryFactory qf2 = qf.deepClone();
+		A00_QueryFactory qf2 = qf.deepClone();
 		qf2.subselectQuery('Opportunities', true);
 
-		List<fflib_QueryFactory> subqueries = qf.getSubselectQueries();
-		List<fflib_QueryFactory> subqueries2 = qf2.getSubselectQueries();
+		List<A00_QueryFactory> subqueries = qf.getSubselectQueries();
+		List<A00_QueryFactory> subqueries2 = qf2.getSubselectQueries();
 
-		fflib_QueryFactory subquery2_0 = subqueries2.get(0);
+		A00_QueryFactory subquery2_0 = subqueries2.get(0);
 
-		subquery2_0.addOrdering(new fflib_QueryFactory.Ordering('Contact','Name',fflib_QueryFactory.SortOrder.ASCENDING));
+		subquery2_0.addOrdering(new A00_QueryFactory.Ordering('Contact','Name', A00_QueryFactory.SortOrder.ASCENDING));
 
 		System.assert(subqueries.size() == 1);
 		System.assert(subqueries2.size() == 2);
@@ -783,7 +783,7 @@ private class fflib_QueryFactoryTest {
 	@isTest
 	static void testSoql_unsortedSelectFields(){
 		//Given
-		fflib_QueryFactory qf = new fflib_QueryFactory(User.SObjectType);
+		A00_QueryFactory qf = new A00_QueryFactory(User.SObjectType);
 		qf.selectFields(new List<String>{
 			'Id',
 			'FirstName',

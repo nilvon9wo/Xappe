@@ -1,7 +1,7 @@
 @IsTest
-public class DAO_Product2SelectorIntTest {
+public class AAA_Product2SelectorIntTest {
     private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
-    private static final DAO_Product2Selector SELECTOR_UNDER_TEST = new DAO_Product2Selector();
+    private static final AAA_Product2Selector SELECTOR_UNDER_TEST = new AAA_Product2Selector();
 
     @IsTest public static void testSelectByIdShouldReturnValuesPerExampleFieldSet() {
         // Arrange
@@ -23,7 +23,7 @@ public class DAO_Product2SelectorIntTest {
         List<Product2> resultList;
         Test.startTest();
         System.runAs(TEST_USER) {
-            resultList = SELECTOR_UNDER_TEST.selectById(new Set<Id>{
+            resultList = SELECTOR_UNDER_TEST.selectSObjectsById(new Set<Id>{
                     testProduct.Id
             });
         }

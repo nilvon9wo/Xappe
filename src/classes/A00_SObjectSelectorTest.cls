@@ -25,7 +25,7 @@
 **/
 
 @IsTest
-private with sharing class fflib_SObjectSelectorTest 
+private with sharing class A00_SObjectSelectorTest
 {
 	
 	static testMethod void testGetSObjectName()
@@ -196,7 +196,7 @@ private with sharing class fflib_SObjectSelectorTest
 	{
 		//Given
 		Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, false);
-		fflib_QueryFactory qf = selector.newQueryFactory();
+		A00_QueryFactory qf = selector.newQueryFactory();
 		
 		Set<String> expectedSelectFields = new Set<String>{ 'Name', 'Id', 'AccountNumber', 'AnnualRevenue' };
 		if (UserInfo.isMultiCurrencyOrganization())
@@ -222,7 +222,7 @@ private with sharing class fflib_SObjectSelectorTest
 	{
 		// Build the selector to test with
 		Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, false);
-		fflib_QueryFactory qf = selector.newQueryFactory();
+		A00_QueryFactory qf = selector.newQueryFactory();
 		
 		// Add in the expected fields
 		Set<String> expectedSelectFields = new Set<String>{ 'Name', 'Id', 'AccountNumber', 'AnnualRevenue' };
@@ -248,7 +248,7 @@ private with sharing class fflib_SObjectSelectorTest
 		System.assertEquals(expected, actual);
 	}
 	
-	private class Testfflib_SObjectSelector extends fflib_SObjectSelector
+	private class Testfflib_SObjectSelector extends A00_SObjectSelector
 	{
 		public Testfflib_SObjectSelector()
 		{

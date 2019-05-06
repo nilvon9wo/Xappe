@@ -27,7 +27,7 @@
 /**
  * Class providing common database query support for abstracting and encapsulating query logic
  **/
-public abstract with sharing class fflib_SObjectSelector
+public abstract with sharing class A00_SObjectSelector
 	implements fflib_ISObjectSelector
 {
     /**
@@ -95,7 +95,7 @@ public abstract with sharing class fflib_SObjectSelector
     /**
      * Constructs the Selector, defaults to not including any FieldSet fields automatically
      **/
-    public fflib_SObjectSelector()
+    public A00_SObjectSelector()
     {
         this(false);
     }
@@ -105,7 +105,7 @@ public abstract with sharing class fflib_SObjectSelector
      *
      * @param includeFieldSetFields Set to true if the Selector queries are to include Fieldset fields as well 
      **/
-    public fflib_SObjectSelector(Boolean includeFieldSetFields)
+    public A00_SObjectSelector(Boolean includeFieldSetFields)
     {
         this(includeFieldSetFields, true, false);
     }
@@ -115,7 +115,7 @@ public abstract with sharing class fflib_SObjectSelector
      *
      * @param includeFieldSetFields Set to true if the Selector queries are to include Fieldset fields as well 
      **/
-    public fflib_SObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS)
+    public A00_SObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS)
     {
         this(includeFieldSetFields, enforceCRUD, enforceFLS, true);
     }
@@ -128,7 +128,7 @@ public abstract with sharing class fflib_SObjectSelector
      * @param enforeFLS Enforce Field Level Security
      * @param sortSelectFields Set to false if selecting many columns to skip sorting select fields and improve performance
      **/
-    public fflib_SObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS, Boolean sortSelectFields)
+    public A00_SObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS, Boolean sortSelectFields)
     {
         m_includeFieldSetFields = includeFieldSetFields;
         m_enforceCRUD = enforceCRUD;
@@ -295,7 +295,7 @@ public abstract with sharing class fflib_SObjectSelector
     /**
      * Returns a QueryFactory configured with the Selectors object, fields, fieldsets and default order by
      **/
-    public fflib_QueryFactory newQueryFactory()
+    public A00_QueryFactory newQueryFactory()
     {    
         return newQueryFactory(m_enforceCRUD, m_enforceFLS, true);
     }
@@ -303,7 +303,7 @@ public abstract with sharing class fflib_SObjectSelector
     /**
      * Returns a QueryFactory configured with the Selectors object, fields, fieldsets and default order by
      **/
-    public fflib_QueryFactory newQueryFactory(Boolean includeSelectorFields)
+    public A00_QueryFactory newQueryFactory(Boolean includeSelectorFields)
     {    
         return newQueryFactory(m_enforceCRUD, m_enforceFLS, includeSelectorFields);
     }
@@ -312,11 +312,11 @@ public abstract with sharing class fflib_SObjectSelector
      * Returns a QueryFactory configured with the Selectors object, fields, fieldsets and default order by
      * CRUD and FLS read security will be checked if the corresponding inputs are true (overrides that defined in the selector).
      **/
-    public fflib_QueryFactory newQueryFactory(Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields)
+    public A00_QueryFactory newQueryFactory(Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields)
     {
     	// Construct QueryFactory around the given SObject
         return configureQueryFactory(
-        	new fflib_QueryFactory(getSObjectType2()), 
+        	new A00_QueryFactory(getSObjectType2()),
         		assertCRUD, enforceFLS, includeSelectorFields);
     }
 
@@ -325,7 +325,7 @@ public abstract with sharing class fflib_SObjectSelector
 	 *
 	 * // TODO: This should be consistant (ideally) with configureQueryFactory below
 	 **/
-	public void configureQueryFactoryFields(fflib_QueryFactory queryFactory, String relationshipFieldPath)
+	public void configureQueryFactoryFields(A00_QueryFactory queryFactory, String relationshipFieldPath)
 	{
 		// Add fields from selector prefixing the relationship path		
 		for(SObjectField field : getSObjectFieldList())		
@@ -338,7 +338,7 @@ public abstract with sharing class fflib_SObjectSelector
     /**
      * Adds a subselect QueryFactory based on this selector to the given QueryFactor, returns the parentQueryFactory
      **/
-    public fflib_QueryFactory addQueryFactorySubselect(fflib_QueryFactory parentQueryFactory)
+    public A00_QueryFactory addQueryFactorySubselect(A00_QueryFactory parentQueryFactory)
     {    
     	return addQueryFactorySubselect(parentQueryFactory, true);
     }
@@ -346,9 +346,9 @@ public abstract with sharing class fflib_SObjectSelector
     /**
      * Adds a subselect QueryFactory based on this selector to the given QueryFactor
      **/
-    public fflib_QueryFactory addQueryFactorySubselect(fflib_QueryFactory parentQueryFactory, Boolean includeSelectorFields)
+    public A00_QueryFactory addQueryFactorySubselect(A00_QueryFactory parentQueryFactory, Boolean includeSelectorFields)
     {    	
-    	fflib_QueryFactory subSelectQueryFactory = 
+    	A00_QueryFactory subSelectQueryFactory =
     		parentQueryFactory.subselectQuery(getSObjectType2());
     	return configureQueryFactory(
     		subSelectQueryFactory, 
@@ -360,7 +360,7 @@ public abstract with sharing class fflib_SObjectSelector
 	/**
 	 * Adds a subselect QueryFactory based on this selector to the given QueryFactor, returns the parentQueryFactory
 	 **/
-	public fflib_QueryFactory addQueryFactorySubselect(fflib_QueryFactory parentQueryFactory, String relationshipName)
+	public A00_QueryFactory addQueryFactorySubselect(A00_QueryFactory parentQueryFactory, String relationshipName)
 	{
 		return addQueryFactorySubselect(parentQueryFactory, relationshipName, TRUE);
 	}
@@ -368,9 +368,9 @@ public abstract with sharing class fflib_SObjectSelector
 	/**
 	 * Adds a subselect QueryFactory based on this selector to the given QueryFactor
 	 **/
-	public fflib_QueryFactory addQueryFactorySubselect(fflib_QueryFactory parentQueryFactory, String relationshipName, Boolean includeSelectorFields)
+	public A00_QueryFactory addQueryFactorySubselect(A00_QueryFactory parentQueryFactory, String relationshipName, Boolean includeSelectorFields)
 	{
-		fflib_QueryFactory subSelectQueryFactory = parentQueryFactory.subselectQuery(relationshipName);
+		A00_QueryFactory subSelectQueryFactory = parentQueryFactory.subselectQuery(relationshipName);
 		return configureQueryFactory(subSelectQueryFactory, m_enforceCRUD, m_enforceFLS, includeSelectorFields);
 	}
 
@@ -385,7 +385,7 @@ public abstract with sharing class fflib_SObjectSelector
 	/**
 	 * Configures a QueryFactory instance according to the configuration of this selector
 	 **/        
-    private fflib_QueryFactory configureQueryFactory(fflib_QueryFactory queryFactory, Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields)
+    private A00_QueryFactory configureQueryFactory(A00_QueryFactory queryFactory, Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields)
     {
         // CRUD and FLS security required?
         if (assertCRUD)
@@ -423,13 +423,13 @@ public abstract with sharing class fflib_SObjectSelector
             List<String> orderByParts = orderBy.trim().split(' ');
             String fieldNamePart = orderByParts[0];
             String fieldSortOrderPart = orderByParts.size() > 1 ? orderByParts[1] : null;
-            fflib_QueryFactory.SortOrder fieldSortOrder = fflib_QueryFactory.SortOrder.ASCENDING;
+            A00_QueryFactory.SortOrder fieldSortOrder = A00_QueryFactory.SortOrder.ASCENDING;
             if(fieldSortOrderPart==null)
-                fieldSortOrder = fflib_QueryFactory.SortOrder.ASCENDING;
+                fieldSortOrder = A00_QueryFactory.SortOrder.ASCENDING;
             else if(fieldSortOrderPart.equalsIgnoreCase('DESC'))
-                fieldSortOrder = fflib_QueryFactory.SortOrder.DESCENDING;
+                fieldSortOrder = A00_QueryFactory.SortOrder.DESCENDING;
             else if(fieldSortOrderPart.equalsIgnoreCase('ASC'))
-                fieldSortOrder = fflib_QueryFactory.SortOrder.ASCENDING;
+                fieldSortOrder = A00_QueryFactory.SortOrder.ASCENDING;
             queryFactory.addOrdering(fieldNamePart, fieldSortOrder, orderBy.containsIgnoreCase('NULLS LAST'));
         }           
         

@@ -4,34 +4,33 @@
     <bookmark url="file://$PROJECT_DIR$/src/classes/NestValidator1.cls" line="47" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls-meta.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls-meta.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Querier.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Querier.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryFieldHelper.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryFieldHelper.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryRelationHelper.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryRelationHelper.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SecurityUtils.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SecurityUtils.cls" afterDir="false" />
+    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="Created some tests for Product Selector">
+      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_ApplicationTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_ApplicationTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactory.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactory.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactory.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactoryTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactoryTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls-meta.xml" afterDir="false" />
     </list>
-    <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!">
-      <change afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls-meta.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/NestValidator1UnitTest.cls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/NestValidator1UnitTest.cls-meta.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/NestValidator3UnitTest.cls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/NestValidator3UnitTest.cls-meta.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/SOR_DynamicContactUpdater.cls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/classes/SOR_DynamicContactUpdater.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_ArbitraryStringClause.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_AuthProviderSelector.cls-meta.xml" afterDir="false" />
-    </list>
+    <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,33 +41,39 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryRelationHelper.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
@@ -156,18 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/classes/XAP_UTIL_InterpolationIntf.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_UTIL_MapInterpolation.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_UTIL_DynamicSoqlWhereInterpolation.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_BindingsIntf.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_Binding.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryInterpolationIntf.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryInterpolation.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_ClauseIntf.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_CompareOpEnumHelper.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_VariableCompareClause.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_BindingCompareClause.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_ArbitraryStringClause.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_ConjunctionOpEnum.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_OrClause.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_AndClause.cls" />
@@ -193,20 +186,32 @@
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_StringCompareClause.cls" />
         <option value="$PROJECT_DIR$/src/classes/XFTY_DummySObjectFactoryOutletLookup.cls" />
         <option value="$PROJECT_DIR$/src/classes/TEST_DummyProduct2FactoryOutlet.cls" />
-        <option value="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls" />
-        <option value="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryFieldHelper.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Querier.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SecurityUtils.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryRelationHelper.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" />
+        <option value="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/fflib_ApplicationTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/fflib_QueryFactoryTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls" />
       </list>
     </option>
   </component>
@@ -216,7 +221,7 @@
         <entry key="Xappe">
           <value>
             <ModuleWorkspaceSettings>
-              <option name="moduleContentsLastModified" value="1557170336171" />
+              <option name="moduleContentsLastModified" value="1557181813426" />
             </ModuleWorkspaceSettings>
           </value>
         </entry>
@@ -237,6 +242,16 @@
                 <ConnectionWorkspaceSettings>
                   <option name="buildSuccessDatesBySourceRootRelativePath">
                     <map>
+                      <entry key="CLASSES/A00_APPLICATIONTEST.CLS" value="1557186140000" />
+                      <entry key="CLASSES/A00_QUERYFACTORY.CLS" value="1557186113000" />
+                      <entry key="CLASSES/A00_QUERYFACTORYTEST.CLS" value="1557186154000" />
+                      <entry key="CLASSES/A00_SOBJECTSELECTOR.CLS" value="1557186113000" />
+                      <entry key="CLASSES/A00_SOBJECTSELECTORTEST.CLS" value="1557186113000" />
+                      <entry key="CLASSES/AAA_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557186052000" />
+                      <entry key="CLASSES/AAA_OPPORTUNITYSELECTOR.CLS" value="1557186113000" />
+                      <entry key="CLASSES/AAA_PRICEBOOK2SELECTOR.CLS" value="1557186052000" />
+                      <entry key="CLASSES/AAA_PRICEBOOKENRTRYSELECTOR.CLS" value="1557186052000" />
+                      <entry key="CLASSES/AAA_PRODUCT2SELECTOR.CLS" value="1557186052000" />
                       <entry key="CLASSES/ACN_TRIGGEREVENTCOORDINATORINTTEST.CLS" value="1556453100000" />
                       <entry key="CLASSES/ACN_TRIGGEREVENTCOORDINATORTEST.CLS" value="1556453382000" />
                       <entry key="CLASSES/AUTOCREATEDCONFIGSELFREG1556310153652.CLS" value="1556730883000" />
@@ -261,12 +276,6 @@
                       <entry key="CLASSES/DAO_AUTHPROVIDERSELECTOR.CLS" value="1557086024000" />
                       <entry key="CLASSES/DAO_CONTACTSELECTOR.CLS" value="1557164370000" />
                       <entry key="CLASSES/DAO_FOOSELECTOR.CLS" value="1557086024000" />
-                      <entry key="CLASSES/DAO_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557170465000" />
-                      <entry key="CLASSES/DAO_OPPORTUNITYSELECTOR.CLS" value="1557179752000" />
-                      <entry key="CLASSES/DAO_PRICEBOOK2SELECTOR.CLS" value="1557170465000" />
-                      <entry key="CLASSES/DAO_PRICEBOOKENRTRYSELECTOR.CLS" value="1557170465000" />
-                      <entry key="CLASSES/DAO_PRODUCT2SELECTOR.CLS" value="1557178990000" />
-                      <entry key="CLASSES/DAO_PRODUCT2SELECTORINTTEST.CLS" value="1557169266000" />
                       <entry key="CLASSES/DAO_SAVEPOINTHELPER.CLS" value="1556462051000" />
                       <entry key="CLASSES/DAO_TERRITORYASSIGNMENTSELECTOR.CLS" value="1557085952000" />
                       <entry key="CLASSES/DAO_THIRDPARTYACCOUNTLINKSELECTOR.CLS" value="1557086024000" />
@@ -356,7 +365,7 @@
                       <entry key="CLASSES/XAP_DAO_SOQL_NONREFERENCEFIELDEXCEPTION.CLS" value="1557085025000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERIER.CLS" value="1557180364000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERY.CLS" value="1557177357000" />
-                      <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORY.CLS" value="1557180824000" />
+                      <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORY.CLS" value="1557180863000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORYFIELDHELPER.CLS" value="1557180364000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORYRELATIONHELPER.CLS" value="1557180704000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERYINTERPOLATION.CLS" value="1557177357000" />
@@ -365,7 +374,7 @@
                       <entry key="CLASSES/XAP_DAO_SOQL_SECURITYEXCEPTION.CLS" value="1557177357000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_SECURITYUTILS.CLS" value="1557180364000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_SOBJECTREADEXCEPTION.CLS" value="1557177357000" />
-                      <entry key="CLASSES/XAP_DAO_SOQL_SOBJECTSELECTORABS.CLS" value="1557179752000" />
+                      <entry key="CLASSES/XAP_DAO_SOQL_SOBJECTSELECTORABS.CLS" value="1557181814000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_SOBJECTSELECTORINTF.CLS" value="1557116626000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_WHERE_ABSCONJUNCTIONCLAUSE.CLS" value="1557166085000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_WHERE_ANDCLAUSE.CLS" value="1557085025000" />
@@ -556,7 +565,7 @@
                         <value>
                           <BuildViewToggles>
                             <option name="showLocalAndServer" value="true" />
-                            <option name="showLocalOnly" value="false" />
+                            <option name="showLocalOnly" value="true" />
                             <option name="showServerOnly" value="true" />
                             <option name="showSubscribedOnly" value="true" />
                           </BuildViewToggles>
@@ -736,9 +745,80 @@
             <entry key="TrailheadPlayground15">
               <value>
                 <MetadataContents>
-                  <option name="lastPopulated" value="1556738404237" />
+                  <option name="lastPopulated" value="1557170336171" />
                   <option name="metadataTypes">
                     <set>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Account" />
+                            <option value="Company" />
+                            <option value="Address" />
+                            <option value="Macro" />
+                            <option value="Product" />
+                            <option value="Security" />
+                            <option value="Knowledge" />
+                            <option value="Ideas" />
+                            <option value="Case" />
+                            <option value="Name" />
+                            <option value="IoT" />
+                            <option value="FieldService" />
+                            <option value="OmniChannel" />
+                            <option value="Opportunity" />
+                            <option value="Search" />
+                            <option value="FileUploadAndDownloadSecurity" />
+                            <option value="Activities" />
+                            <option value="Order" />
+                            <option value="OrgPreference" />
+                            <option value="BusinessHours" />
+                            <option value="Mobile" />
+                            <option value="Forecasting" />
+                            <option value="Quote" />
+                            <option value="LiveAgent" />
+                            <option value="Entitlement" />
+                            <option value="PathAssistant" />
+                            <option value="Contract" />
+                          </set>
+                        </option>
+                        <option name="name" value="Settings" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="DataCloudGeoLocation" />
+                          </set>
+                        </option>
+                        <option name="name" value="CleanDataService" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="PT1_profileSessionSetting1479361192857" />
+                          </set>
+                        </option>
+                        <option name="name" value="ProfileSessionSetting" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Salesforce1" />
+                            <option value="AppSwitcher" />
+                          </set>
+                        </option>
+                        <option name="name" value="AppMenu" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="setStartUrl" />
+                            <option value="selfRegister" />
+                            <option value="loginForm" />
+                            <option value="forgotPassword" />
+                            <option value="setExpId" />
+                          </set>
+                        </option>
+                        <option name="name" value="AuraDefinitionBundle" />
+                      </MetadataType>
                       <MetadataType>
                         <option name="members">
                           <set>
@@ -746,9 +826,9 @@
                             <option value="Customer Community Plus Login User" />
                             <option value="High Volume Customer Portal User" />
                             <option value="Analytics Cloud Integration User" />
-                            <option value="NTO Customers Profile" />
                             <option value="Cross Org Data Proxy User" />
                             <option value="Force%2Ecom - Free User" />
+                            <option value="NTO Customers Profile" />
                             <option value="PlatformPortal" />
                             <option value="External Identity User" />
                             <option value="Force%2Ecom - App Subscription User" />
@@ -769,15 +849,15 @@
                             <option value="Chatter Free User" />
                             <option value="Guest" />
                             <option value="HighVolumePortal" />
-                            <option value="MarketingProfile" />
                             <option value="Customer Portal Manager Standard" />
+                            <option value="MarketingProfile" />
                             <option value="Customer Community Login User" />
-                            <option value="NTO Customer" />
                             <option value="Analytics Cloud Security User" />
+                            <option value="NTO Customer" />
                             <option value="Admin" />
-                            <option value="Partner App Subscription User" />
                             <option value="Silver Partner User" />
                             <option value="Work%2Ecom Only User" />
+                            <option value="Partner App Subscription User" />
                             <option value="Authenticated Website" />
                             <option value="Customer Community User" />
                             <option value="Custom%3A Marketing Profile" />
@@ -797,10 +877,440 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Partner_Managers_and_Channel_Director" />
+                            <option value="Contact.Standard_Rule_for_Contacts_with_Duplicate_Leads" />
+                            <option value="Lead.Standard_Rule_for_Leads_with_Duplicate_Contacts" />
                           </set>
                         </option>
-                        <option name="name" value="Group" />
+                        <option name="name" value="DuplicateRule" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Case" />
+                          </set>
+                        </option>
+                        <option name="name" value="EscalationRules" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="trailshredRecordForm" />
+                          </set>
+                        </option>
+                        <option name="name" value="LightningComponentBundle" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Case.Standard" />
+                          </set>
+                        </option>
+                        <option name="name" value="EscalationRule" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="share_opportunities" />
+                          </set>
+                        </option>
+                        <option name="name" value="AccountRelationshipShareRule" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Account-Account %28Sales%29 Layout" />
+                            <option value="Contact-Contact %28Support%29 Layout" />
+                            <option value="Product2-Product Layout" />
+                            <option value="Lead-Lead Layout" />
+                            <option value="Contact-Contact Layout" />
+                            <option value="Case-Case %28Sales%29 Layout" />
+                            <option value="Lead-Lead %28Support%29 Layout" />
+                            <option value="DandBCompany-D%26B Company Layout" />
+                            <option value="AssetRelationship-Asset Relationship Layout" />
+                            <option value="Case-Case %28Support%29 Layout" />
+                            <option value="Macro-Macro Layout" />
+                            <option value="Order-Order Layout" />
+                            <option value="Solution-Solution Layout" />
+                            <option value="ScorecardMetric-Scorecard Metric Layout" />
+                            <option value="UserProvisioningRequest-User Provisioning Request Layout" />
+                            <option value="Pricebook2-Price Book Layout" />
+                            <option value="Event-Event Layout" />
+                            <option value="UserProvisioningLog-User Provisioning Log Layout" />
+                            <option value="UserProvAccount-User Provisioning Account Layout" />
+                            <option value="Contact-Contact %28Marketing%29 Layout" />
+                            <option value="Task-Task Layout" />
+                            <option value="AccountRelationship-Account RelationshipLayout" />
+                            <option value="Foo__c-Foo Layout" />
+                            <option value="WorkBadgeDefinition-Badge Layout" />
+                            <option value="Opportunity-Opportunity Layout" />
+                            <option value="Asset-Asset Layout" />
+                            <option value="OrderItem-Order Product Layout" />
+                            <option value="DuplicateRecordSet-Duplicate Record Set Layout" />
+                            <option value="OpportunityLineItem-Opportunity Product Layout" />
+                            <option value="Case-Case Layout" />
+                            <option value="Contract-Contract Layout" />
+                            <option value="Account-Account Layout" />
+                            <option value="Campaign-Campaign Layout" />
+                            <option value="WorkBadge-Badge Received Layout" />
+                            <option value="UserAlt-User Profile Layout" />
+                            <option value="CommunityMemberLayout-Community Member Layout" />
+                            <option value="ScorecardAssociation-Scorecard Association Layout" />
+                            <option value="Async_Result__c-Async Result Layout" />
+                            <option value="Opportunity-Opportunity %28Sales%29 Layout" />
+                            <option value="SocialPersona-Social Persona Layout" />
+                            <option value="Scorecard-Scorecard Layout" />
+                            <option value="Case-Case %28Marketing%29 Layout" />
+                            <option value="PricebookEntry-Price Book Entry Layout" />
+                            <option value="CaseClose-Close Case Layout" />
+                            <option value="Idea-Idea Layout" />
+                            <option value="ContentVersion-Content Version Layout" />
+                            <option value="Opportunity-Opportunity %28Support%29 Layout" />
+                            <option value="Global-Global Layout" />
+                            <option value="WorkAccess-Access Layout" />
+                            <option value="Account-Account %28Marketing%29 Layout" />
+                            <option value="Lead-Lead %28Sales%29 Layout" />
+                            <option value="EmailMessage-Email Message Layout" />
+                            <option value="SocialPost-Social Post Layout" />
+                            <option value="WorkThanks-Thanks Layout" />
+                            <option value="Account-Account %28Support%29 Layout" />
+                            <option value="CampaignMember-Campaign Member Page Layout" />
+                            <option value="QuickText-Quick Text Layout" />
+                            <option value="Contact-Contact %28Sales%29 Layout" />
+                            <option value="User-User Layout" />
+                            <option value="Lead-Lead %28Marketing%29 Layout" />
+                            <option value="Territory__c-Territory Layout" />
+                            <option value="Trailshred_Setting__mdt-Trailshred Setting Layout" />
+                            <option value="AccountBrand-Account Brand Layout" />
+                            <option value="Territory_Assignment__c-Territory Assignment Layout" />
+                            <option value="Opportunity-Opportunity %28Marketing%29 Layout" />
+                          </set>
+                        </option>
+                        <option name="name" value="Layout" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="ChangePassword" />
+                            <option value="SiteTemplate" />
+                            <option value="InMaintenance" />
+                            <option value="StdExceptionTemplate" />
+                            <option value="FileNotFound" />
+                            <option value="SiteRegister" />
+                            <option value="CommunitiesSelfReg" />
+                            <option value="AnswersHome" />
+                            <option value="ForgotPassword" />
+                            <option value="Exception" />
+                            <option value="IdeasHome" />
+                            <option value="ForgotPasswordConfirm" />
+                            <option value="BandwidthExceeded" />
+                            <option value="CommunitiesLogin" />
+                            <option value="CommunitiesTemplate" />
+                            <option value="MyProfilePage" />
+                            <option value="CommunitiesSelfRegConfirm" />
+                            <option value="CommunitiesLanding" />
+                            <option value="SiteLogin" />
+                            <option value="Unauthorized" />
+                            <option value="SiteRegisterConfirm" />
+                            <option value="UnderConstruction" />
+                          </set>
+                        </option>
+                        <option name="name" value="ApexPage" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="SiteFooter" />
+                            <option value="SitePoweredBy" />
+                            <option value="SiteLogin" />
+                            <option value="SiteHeader" />
+                          </set>
+                        </option>
+                        <option name="name" value="ApexComponent" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="ACN_AutomationSetting__c.ACN_CampaignTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ActivityWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ContactValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AttachmentTriggerEnabled__c" />
+                            <option value="Trailshred_Setting__mdt.Object_Name__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountReviewWorkflowEnabled__c" />
+                            <option value="Account.NumberofLocations__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DecisionConditionValidation__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_CampaignValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunitySecurityValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ApplicationLogWorkflowEnabled__c" />
+                            <option value="Foo__c.User__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OppLineItemTriggerTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_PaymentScheduleValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ContactWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ClientCoverageMemberWorkflowEnabled__c" />
+                            <option value="Opportunity.OrderNumber__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_BankAccountWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemValidationEnabled__c" />
+                            <option value="Case.PotentialLiability__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_InteractionContactWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_WorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ApplicationLogValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ClientCoverageMemberTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DocumentValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DocumentWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityAssetValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountContactRelationshipWorkflow__c" />
+                            <option value="CaseComment.ParentOrigin" />
+                            <option value="ACN_AutomationSetting__c.ACN_ProcessingRequestWorkflowEnabled__c" />
+                            <option value="Opportunity.DeliveryInstallationStatus__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_SICWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_BankAccountValidationRule__c" />
+                            <option value="Territory_Assignment__c.Territory__c" />
+                            <option value="Goal.OrigGoalId__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_EmployeeTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DocumentFolderWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_TriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_EventWorkflowEnabled__c" />
+                            <option value="Account.SLA__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_EventTriggerEnabled__c" />
+                            <option value="Foo__c.Custom_Field_2__c" />
+                            <option value="XAP_TRIG_TriggerSetting__c.AccountTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ContactTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_CampaignWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_CampaignMemberValidationEnabled__c" />
+                            <option value="Lead.Custom_Field_2__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAccountRelationshipWorkflow__c" />
+                            <option value="Trailshred_Setting__mdt.Audio_Static_Resource_Path__c" />
+                            <option value="CaseComment.CommentBody" />
+                            <option value="ACN_AutomationSetting__c.ACN_EmployeeWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_UnderwritingRequestWorkflowEnabled__c" />
+                            <option value="Opportunity.CurrentGenerators__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityTeamMemberWorkflow__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAddHistoryValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_Checklist_ItemEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_File_Prevention_Trigger_TextEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunitySecurityWorkflowEnabled__c" />
+                            <option value="Lead.ProductInterest__c" />
+                            <option value="Lead.NumberofLocations__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_LeadValidationEnabled__c" />
+                            <option value="Case.Product__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityAssetWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityConditionWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityProductWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAddressHistory_TriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityProductValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ContactTeamMember_Validation_Enabled__c" />
+                            <option value="Case.SLAViolation__c" />
+                            <option value="Lead.Primary__c" />
+                            <option value="Lead.Custom_Field_3__c" />
+                            <option value="Lead.CurrentGenerators__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_Acc_Acc_Relationship_TriggerEnabled__c" />
+                            <option value="Territory_Assignment__c.Territory_Owner__c" />
+                            <option value="Opportunity.MainCompetitors__c" />
+                            <option value="Territory_Assignment__c.Territory_End_Date__c" />
+                            <option value="Account.SLASerialNumber__c" />
+                            <option value="Account.UpsellOpportunity__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_EventValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AsyncResultTriggerEnabled__c" />
+                            <option value="Account.CustomerPriority__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemAdminValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_SearchTriggerTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_LeadWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAssetWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAssetValidationEnabled__c" />
+                            <option value="XAP_TRIG_TriggerSetting__c.TriggersEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_UserRequestTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_SearchWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_CompanySICValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_UnderwritingRequestValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_InteractionWorkflowEnabled__c" />
+                            <option value="Metric.OrigMetricId__c" />
+                            <option value="Case.EngineeringReqNumber__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_UserValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DocumentTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ProductWorkflowEnabled__c" />
+                            <option value="Account.SLAExpirationDate__c" />
+                            <option value="Trailshred_Setting__mdt.Field_Value__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAccountRelationshipValidation__c" />
+                            <option value="Foo__c.Custom_Field_1__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ActivityValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountAddressHistoryWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ContentVersionTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_EmployeeValidationEnabled__c" />
+                            <option value="Lead.Foo_User__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DebugEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccoContactRelationshipValidation__c" />
+                            <option value="Opportunity.TrackingNumber__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_SearchValidationEnabled__c" />
+                            <option value="Account.Active__c" />
+                            <option value="Lead.Custom_Field_1__c" />
+                            <option value="Trailshred_Setting__mdt.Active__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemAdminWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_CompanySICWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ExceptionEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_PaymentScheduleWorkflowEnabled__c" />
+                            <option value="Contact.Level__c" />
+                            <option value="Trailshred_Setting__mdt.Field_Name__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountReviewValidationEnabled__c" />
+                            <option value="Account.Territory__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_SICValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_UserTriggerEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ProductValidationEnabled__c" />
+                            <option value="Lead.SICCode__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_CampaignMemberWorkflowEnabled__c" />
+                            <option value="Contact.Languages__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DocumentFolderValidationEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_AccountTriggerEnabled__c" />
+                            <option value="Territory_Assignment__c.Territory_Start_Date__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_UserWorkflowEnabled__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityEnabled__c" />
+                            <option value="Territory_Assignment__c.Territory_State__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_OpportunityTeamMemberValidation__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_DecisionConditionWorkflow__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_ProcessingRequestValidationEnabled__c" />
+                            <option value="Foo__c.Custom_Field_3__c" />
+                            <option value="ACN_AutomationSetting__c.ACN_TestEnabled__c" />
+                            <option value="Territory_Assignment__c.Territory_Country__c" />
+                          </set>
+                        </option>
+                        <option name="name" value="CustomField" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Territory__c" />
+                            <option value="Account" />
+                            <option value="Task" />
+                            <option value="CollaborationGroup" />
+                            <option value="OpportunityLineItem" />
+                            <option value="ForecastingCategoryMapping" />
+                            <option value="CaseContactRole" />
+                            <option value="Activity" />
+                            <option value="Image" />
+                            <option value="Document" />
+                            <option value="ChannelProgram" />
+                            <option value="ContactCleanInfo" />
+                            <option value="ScorecardMetric" />
+                            <option value="PushTopic" />
+                            <option value="PartnerFundAllocation" />
+                            <option value="FeedItem" />
+                            <option value="ContractContactRole" />
+                            <option value="ExchangeUserMapping" />
+                            <option value="SocialPersona" />
+                            <option value="Asset" />
+                            <option value="CampaignMember" />
+                            <option value="PartnerFundClaim" />
+                            <option value="CollaborationGroupMember" />
+                            <option value="Order" />
+                            <option value="StreamingChannel" />
+                            <option value="AccountContactRole" />
+                            <option value="WorkBadge" />
+                            <option value="EmailMessage" />
+                            <option value="AccountCleanInfo" />
+                            <option value="Pricebook2" />
+                            <option value="AccountRelationship" />
+                            <option value="UserProvisioningRequest" />
+                            <option value="PartnerFundRequest" />
+                            <option value="XAP_TRIG_TriggerSetting__c" />
+                            <option value="PricebookEntry" />
+                            <option value="OrgDeleteRequest" />
+                            <option value="Campaign" />
+                            <option value="LeadCleanInfo" />
+                            <option value="Idea" />
+                            <option value="WorkThanks" />
+                            <option value="Trailshred_Setting__mdt" />
+                            <option value="ChatterActivity" />
+                            <option value="ScorecardAssociation" />
+                            <option value="Contract" />
+                            <option value="PartnerRole" />
+                            <option value="OpportunityCompetitor" />
+                            <option value="MacroAction" />
+                            <option value="Site" />
+                            <option value="User" />
+                            <option value="AccountBrand" />
+                            <option value="Product2" />
+                            <option value="PartnerMarketingBudget" />
+                            <option value="Macro" />
+                            <option value="MacroInstruction" />
+                            <option value="Async_Result__c" />
+                            <option value="DuplicateRecordItem" />
+                            <option value="ACN_AutomationSetting__c" />
+                            <option value="CaseComment" />
+                            <option value="Case" />
+                            <option value="NetworkMember" />
+                            <option value="ContentVersion" />
+                            <option value="Opportunity" />
+                            <option value="Lead" />
+                            <option value="DuplicateRecordSet" />
+                            <option value="Topic" />
+                            <option value="Scorecard" />
+                            <option value="Territory_Assignment__c" />
+                            <option value="Solution" />
+                            <option value="Foo__c" />
+                            <option value="QuickText" />
+                            <option value="AssetRelationship" />
+                            <option value="StreamActivityAccess" />
+                            <option value="DandBCompany" />
+                            <option value="OpportunityContactRole" />
+                            <option value="Contact" />
+                            <option value="ChannelProgramLevel" />
+                            <option value="RequestsForAccessSIQ" />
+                            <option value="OrderItem" />
+                            <option value="AssistantProgress" />
+                            <option value="WorkBadgeDefinition" />
+                            <option value="Event" />
+                            <option value="RecordAction" />
+                            <option value="TopicAssignment" />
+                            <option value="ChannelProgramMember" />
+                          </set>
+                        </option>
+                        <option name="name" value="CustomObject" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="ExpressLogisticsandTransportPartnerExecutive" />
+                            <option value="SVPSalesMarketing" />
+                            <option value="MarketingTeam" />
+                            <option value="InstallationRepairServices" />
+                            <option value="SVPCustomerServiceSupport" />
+                            <option value="VPInternationalSales" />
+                            <option value="ChannelSalesTeam" />
+                            <option value="CFO" />
+                            <option value="CustomerSupportInternational" />
+                            <option value="EdgeCommunicationsPartnerManager" />
+                            <option value="CustomerSupportNorthAmerica" />
+                            <option value="ExpressLogisticsandTransportPartnerUser" />
+                            <option value="ExpressLogisticsandTransportPartnerManager" />
+                            <option value="EdgeCommunicationsPartnerUser" />
+                            <option value="VPMarketing" />
+                            <option value="DirectorDirectSales" />
+                            <option value="COO" />
+                            <option value="DirectorChannelSales" />
+                            <option value="PyramidConstructionIncPartnerManager" />
+                            <option value="SVPHumanResources" />
+                            <option value="NTO_Customer_Manager" />
+                            <option value="PyramidConstructionIncPartnerUser" />
+                            <option value="CEO" />
+                            <option value="EasternSalesTeam" />
+                            <option value="WesternSalesTeam" />
+                            <option value="VPNorthAmericanSales" />
+                          </set>
+                        </option>
+                        <option name="name" value="Role" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="cbUrsa_Major" />
+                            <option value="cbNTO_Customers" />
+                          </set>
+                        </option>
+                        <option name="name" value="NetworkBranding" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
@@ -809,6 +1319,15 @@
                           </set>
                         </option>
                         <option name="name" value="InstalledPackage" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Ursa_Major" />
+                            <option value="NTO_Customers" />
+                          </set>
+                        </option>
+                        <option name="name" value="CustomSite" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
@@ -875,15 +1394,6 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Ursa_Major" />
-                            <option value="NTO_Customers" />
-                          </set>
-                        </option>
-                        <option name="name" value="CustomSite" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
                             <option value="Sales_Home_Page" />
                             <option value="LightningSalesConsole_UtilityBar" />
                             <option value="Opportunity_Record_Page" />
@@ -895,19 +1405,162 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Verification_History" />
+                            <option value="PT1_profilePasswordPolicy1479361192949" />
                           </set>
                         </option>
-                        <option name="name" value="ReportType" />
+                        <option name="name" value="ProfilePasswordPolicy" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Contact.Standard_Rule_for_Contacts_with_Duplicate_Leads" />
-                            <option value="Lead.Standard_Rule_for_Leads_with_Duplicate_Contacts" />
+                            <option value="Territory__c-en_US" />
+                            <option value="Foo__c-en_US" />
+                            <option value="XAP_TRIG_TriggerSetting__c-en_US" />
+                            <option value="Territory_Assignment__c-en_US" />
+                            <option value="Trailshred_Setting__mdt-en_US" />
+                            <option value="ACN_AutomationSetting__c-en_US" />
+                            <option value="Async_Result__c-en_US" />
                           </set>
                         </option>
-                        <option name="name" value="DuplicateRule" />
+                        <option name="name" value="CustomObjectTranslation" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="sound1" />
+                            <option value="SiteSamples" />
+                          </set>
+                        </option>
+                        <option name="name" value="StaticResource" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="CustomLabels" />
+                          </set>
+                        </option>
+                        <option name="name" value="CustomLabels" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="NTO Customers.Freeze_for_frequent_posting" />
+                            <option value="Ursa Major.Review_the_first_post" />
+                            <option value="Ursa Major.Replace_banned" />
+                            <option value="NTO Customers.Flag_banned" />
+                            <option value="NTO Customers.Block_banned_keywords" />
+                            <option value="Ursa Major.Freeze_for_frequent_posting" />
+                            <option value="NTO Customers.Replace_banned" />
+                            <option value="Ursa Major.Block_banned_keywords" />
+                            <option value="NTO Customers.Review_the_first_post" />
+                            <option value="Ursa Major.Flag_banned" />
+                          </set>
+                        </option>
+                        <option name="name" value="ModerationRule" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="fflib_security_error_object_not_updateable" />
+                            <option value="fflib_QueryFactory_subquery_invalid_relationship" />
+                            <option value="fflib_security_error_field_not_insertable" />
+                            <option value="fflib_security_error_object_not_readable" />
+                            <option value="fflib_security_error_field_not_readable" />
+                            <option value="fflib_security_error_field_not_updateable" />
+                            <option value="fflib_QueryFactory_crossobject_fieldsets_not_allowed_error" />
+                            <option value="fflib_QueryFactory_fieldset_wrong_sobject_error" />
+                            <option value="fflib_security_error_object_not_deletable" />
+                            <option value="fflib_security_error_object_not_insertable" />
+                            <option value="fflib_QueryFactory_recursive_subquery_error" />
+                          </set>
+                        </option>
+                        <option name="name" value="CustomLabel" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Facebook" />
+                          </set>
+                        </option>
+                        <option name="name" value="AuthProvider" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Account" />
+                            <option value="Lead" />
+                            <option value="Contact" />
+                          </set>
+                        </option>
+                        <option name="name" value="MatchingRules" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Contact.Standard_Contact_Match_Rule_v1_1" />
+                            <option value="Lead.Standard_Lead_Match_Rule_v1_0" />
+                            <option value="Account.Standard_Account_Match_Rule_v1_0" />
+                          </set>
+                        </option>
+                        <option name="name" value="MatchingRule" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Case.Standard" />
+                            <option value="Lead.Standard" />
+                          </set>
+                        </option>
+                        <option name="name" value="AssignmentRule" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Lead" />
+                            <option value="Case" />
+                          </set>
+                        </option>
+                        <option name="name" value="AssignmentRules" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="trailhead_SAML_SSO_Setting" />
+                          </set>
+                        </option>
+                        <option name="name" value="SamlSsoConfig" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="th_con_app__Trailhead_Playground" />
+                            <option value="standard__Sales" />
+                            <option value="standard__LightningService" />
+                            <option value="standard__ServiceConsole" />
+                            <option value="standard__Community" />
+                            <option value="standard__AppLauncher" />
+                            <option value="standard__LightningInstrumentation" />
+                            <option value="standard__Chatter" />
+                            <option value="standard__Platform" />
+                            <option value="standard__LightningSales" />
+                            <option value="standard__Service" />
+                            <option value="standard__Sites" />
+                            <option value="standard__Content" />
+                            <option value="standard__Marketing" />
+                            <option value="standard__Insights" />
+                            <option value="standard__LightningSalesConsole" />
+                            <option value="standard__LightningBolt" />
+                          </set>
+                        </option>
+                        <option name="name" value="CustomApplication" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Partner_Managers_and_Channel_Director" />
+                          </set>
+                        </option>
+                        <option name="name" value="Group" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
@@ -920,139 +1573,30 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Case.Standard" />
-                          </set>
-                        </option>
-                        <option name="name" value="EscalationRule" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="share_opportunities" />
-                          </set>
-                        </option>
-                        <option name="name" value="AccountRelationshipShareRule" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Account-Account %28Sales%29 Layout" />
-                            <option value="Contact-Contact %28Support%29 Layout" />
-                            <option value="Product2-Product Layout" />
-                            <option value="Lead-Lead Layout" />
-                            <option value="Case-Case %28Sales%29 Layout" />
-                            <option value="Contact-Contact Layout" />
-                            <option value="Lead-Lead %28Support%29 Layout" />
-                            <option value="DandBCompany-D%26B Company Layout" />
-                            <option value="Case-Case %28Support%29 Layout" />
-                            <option value="AssetRelationship-Asset Relationship Layout" />
-                            <option value="Macro-Macro Layout" />
-                            <option value="Order-Order Layout" />
-                            <option value="ScorecardMetric-Scorecard Metric Layout" />
-                            <option value="Solution-Solution Layout" />
-                            <option value="UserProvisioningRequest-User Provisioning Request Layout" />
-                            <option value="Pricebook2-Price Book Layout" />
-                            <option value="Event-Event Layout" />
-                            <option value="UserProvisioningLog-User Provisioning Log Layout" />
-                            <option value="UserProvAccount-User Provisioning Account Layout" />
-                            <option value="Contact-Contact %28Marketing%29 Layout" />
-                            <option value="Task-Task Layout" />
-                            <option value="AccountRelationship-Account RelationshipLayout" />
-                            <option value="Foo__c-Foo Layout" />
-                            <option value="WorkBadgeDefinition-Badge Layout" />
-                            <option value="Asset-Asset Layout" />
-                            <option value="Opportunity-Opportunity Layout" />
-                            <option value="DuplicateRecordSet-Duplicate Record Set Layout" />
-                            <option value="OrderItem-Order Product Layout" />
-                            <option value="OpportunityLineItem-Opportunity Product Layout" />
-                            <option value="Case-Case Layout" />
-                            <option value="Contract-Contract Layout" />
-                            <option value="Account-Account Layout" />
-                            <option value="Campaign-Campaign Layout" />
-                            <option value="WorkBadge-Badge Received Layout" />
-                            <option value="UserAlt-User Profile Layout" />
-                            <option value="CommunityMemberLayout-Community Member Layout" />
-                            <option value="Async_Result__c-Async Result Layout" />
-                            <option value="ScorecardAssociation-Scorecard Association Layout" />
-                            <option value="Opportunity-Opportunity %28Sales%29 Layout" />
-                            <option value="SocialPersona-Social Persona Layout" />
-                            <option value="Scorecard-Scorecard Layout" />
-                            <option value="Case-Case %28Marketing%29 Layout" />
-                            <option value="PricebookEntry-Price Book Entry Layout" />
-                            <option value="CaseClose-Close Case Layout" />
-                            <option value="Idea-Idea Layout" />
-                            <option value="ContentVersion-Content Version Layout" />
-                            <option value="Opportunity-Opportunity %28Support%29 Layout" />
-                            <option value="Global-Global Layout" />
-                            <option value="WorkAccess-Access Layout" />
-                            <option value="Lead-Lead %28Sales%29 Layout" />
-                            <option value="Account-Account %28Marketing%29 Layout" />
-                            <option value="EmailMessage-Email Message Layout" />
-                            <option value="SocialPost-Social Post Layout" />
-                            <option value="WorkThanks-Thanks Layout" />
-                            <option value="Account-Account %28Support%29 Layout" />
-                            <option value="CampaignMember-Campaign Member Page Layout" />
-                            <option value="QuickText-Quick Text Layout" />
-                            <option value="Contact-Contact %28Sales%29 Layout" />
-                            <option value="User-User Layout" />
-                            <option value="Lead-Lead %28Marketing%29 Layout" />
-                            <option value="Trailshred_Setting__mdt-Trailshred Setting Layout" />
-                            <option value="Territory__c-Territory Layout" />
-                            <option value="AccountBrand-Account Brand Layout" />
-                            <option value="Territory_Assignment__c-Territory Assignment Layout" />
-                            <option value="Opportunity-Opportunity %28Marketing%29 Layout" />
-                          </set>
-                        </option>
-                        <option name="name" value="Layout" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="SiteFooter" />
-                            <option value="SitePoweredBy" />
-                            <option value="SiteLogin" />
-                            <option value="SiteHeader" />
-                          </set>
-                        </option>
-                        <option name="name" value="ApexComponent" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="ChangePassword" />
-                            <option value="SiteTemplate" />
-                            <option value="InMaintenance" />
-                            <option value="StdExceptionTemplate" />
-                            <option value="FileNotFound" />
-                            <option value="SiteRegister" />
-                            <option value="CommunitiesSelfReg" />
-                            <option value="AnswersHome" />
-                            <option value="ForgotPassword" />
-                            <option value="Exception" />
-                            <option value="IdeasHome" />
-                            <option value="ForgotPasswordConfirm" />
-                            <option value="BandwidthExceeded" />
-                            <option value="CommunitiesLogin" />
-                            <option value="CommunitiesTemplate" />
-                            <option value="MyProfilePage" />
-                            <option value="CommunitiesSelfRegConfirm" />
-                            <option value="CommunitiesLanding" />
-                            <option value="SiteLogin" />
-                            <option value="Unauthorized" />
-                            <option value="SiteRegisterConfirm" />
-                            <option value="UnderConstruction" />
-                          </set>
-                        </option>
-                        <option name="name" value="ApexPage" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
                             <option value="Metric.Progress" />
                             <option value="Metric.Completion" />
                           </set>
                         </option>
                         <option name="name" value="RecordType" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Opportunity.DeliveryStatus" />
+                            <option value="Campaign.ViewCampaignInfluenceReport" />
+                            <option value="Case.UpsellCrosssellOpportunity" />
+                            <option value="Account.Billing" />
+                          </set>
+                        </option>
+                        <option name="name" value="WebLink" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="User.NoUsernameChangesAllowed" />
+                          </set>
+                        </option>
+                        <option name="name" value="ValidationRule" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
@@ -1096,11 +1640,11 @@
                             <option value="Solution.AllUnreviewedSolutions" />
                             <option value="Activity.UpcomingEvents" />
                             <option value="Account.NewLastWeek" />
-                            <option value="AccountRelationship.All_Account_Relationships" />
                             <option value="Account.MyAccounts" />
+                            <option value="AccountRelationship.All_Account_Relationships" />
                             <option value="Opportunity.AllOpportunities" />
-                            <option value="Task.OpenTasks" />
                             <option value="ChannelProgramLevel.My_Channel_Program_Levels" />
+                            <option value="Task.OpenTasks" />
                             <option value="Task.OverdueTasks" />
                             <option value="Contact.BirthdaysThisMonth" />
                             <option value="Account.AllAccounts" />
@@ -1110,27 +1654,27 @@
                             <option value="Contact.NewThisWeek" />
                             <option value="Activity.AllActivities" />
                             <option value="Opportunity.NewLastWeek" />
-                            <option value="Asset.AllAssets" />
                             <option value="Async_Result__c.All" />
+                            <option value="Asset.AllAssets" />
                             <option value="User.AdminUsers" />
                             <option value="Scorecard.AllScorecards" />
-                            <option value="Campaign.MyActiveCampaigns" />
                             <option value="Opportunity.MyOpportunities" />
+                            <option value="Campaign.MyActiveCampaigns" />
                             <option value="Lead.MyUnreadLeads" />
-                            <option value="Product2.AllProducts" />
                             <option value="Campaign.AllActiveCampaigns" />
+                            <option value="Product2.AllProducts" />
                             <option value="ChannelProgram.All_Channel_Programs" />
                             <option value="Contact.MyContacts" />
                             <option value="Activity.TodaysTasks" />
                             <option value="ChannelProgram.My_Channel_Programs" />
                             <option value="Task.RecurringTasks" />
-                            <option value="Case.AllClosedCases" />
                             <option value="Opportunity.Won" />
+                            <option value="Case.AllClosedCases" />
                             <option value="ChannelProgramLevel.All_Channel_Program_Levels" />
                             <option value="Solution.AllReviewedSolutions" />
                             <option value="Account.PlatinumandGoldSLACustomers" />
-                            <option value="Activity.MyActivities" />
                             <option value="Task.TodaysTasks" />
+                            <option value="Activity.MyActivities" />
                             <option value="Contract.MyInApprovalContracts" />
                             <option value="PartnerFundAllocation.My_Partner_Fund_Allocations" />
                             <option value="Contract.AllInApprovalContracts" />
@@ -1158,44 +1702,10 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="ExpressLogisticsandTransportPartnerExecutive" />
-                            <option value="SVPSalesMarketing" />
-                            <option value="MarketingTeam" />
-                            <option value="InstallationRepairServices" />
-                            <option value="SVPCustomerServiceSupport" />
-                            <option value="VPInternationalSales" />
-                            <option value="ChannelSalesTeam" />
-                            <option value="CFO" />
-                            <option value="CustomerSupportInternational" />
-                            <option value="EdgeCommunicationsPartnerManager" />
-                            <option value="CustomerSupportNorthAmerica" />
-                            <option value="ExpressLogisticsandTransportPartnerUser" />
-                            <option value="ExpressLogisticsandTransportPartnerManager" />
-                            <option value="EdgeCommunicationsPartnerUser" />
-                            <option value="VPMarketing" />
-                            <option value="DirectorDirectSales" />
-                            <option value="COO" />
-                            <option value="DirectorChannelSales" />
-                            <option value="PyramidConstructionIncPartnerManager" />
-                            <option value="SVPHumanResources" />
-                            <option value="NTO_Customer_Manager" />
-                            <option value="PyramidConstructionIncPartnerUser" />
-                            <option value="EasternSalesTeam" />
-                            <option value="CEO" />
-                            <option value="WesternSalesTeam" />
-                            <option value="VPNorthAmericanSales" />
+                            <option value="Product2.Example_Field_Set" />
                           </set>
                         </option>
-                        <option name="name" value="Role" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="cbUrsa_Major" />
-                            <option value="cbNTO_Customers" />
-                          </set>
-                        </option>
-                        <option name="name" value="NetworkBranding" />
+                        <option name="name" value="FieldSet" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
@@ -1206,8 +1716,8 @@
                             <option value="Task" />
                             <option value="PartnerMarketingBudget" />
                             <option value="Async_Result__c" />
-                            <option value="ChannelProgram" />
                             <option value="PartnerFundRequest" />
+                            <option value="ChannelProgram" />
                             <option value="Contact" />
                             <option value="Case" />
                             <option value="ChannelProgramLevel" />
@@ -1216,8 +1726,8 @@
                             <option value="Campaign" />
                             <option value="Opportunity" />
                             <option value="Lead" />
-                            <option value="Asset" />
                             <option value="Event" />
+                            <option value="Asset" />
                             <option value="PartnerFundClaim" />
                             <option value="Contract" />
                             <option value="Foo__c" />
@@ -1239,107 +1749,34 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="setStartUrl" />
-                            <option value="selfRegister" />
-                            <option value="loginForm" />
-                            <option value="forgotPassword" />
-                            <option value="setExpId" />
+                            <option value="Verification_History" />
                           </set>
                         </option>
-                        <option name="name" value="AuraDefinitionBundle" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="PT1_profileSessionSetting1479361192857" />
-                          </set>
-                        </option>
-                        <option name="name" value="ProfileSessionSetting" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Salesforce1" />
-                            <option value="AppSwitcher" />
-                          </set>
-                        </option>
-                        <option name="name" value="AppMenu" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="PT1_profilePasswordPolicy1479361192949" />
-                          </set>
-                        </option>
-                        <option name="name" value="ProfilePasswordPolicy" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Territory__c-en_US" />
-                            <option value="XAP_TRIG_TriggerSetting__c-en_US" />
-                            <option value="Foo__c-en_US" />
-                            <option value="Territory_Assignment__c-en_US" />
-                            <option value="Trailshred_Setting__mdt-en_US" />
-                            <option value="Async_Result__c-en_US" />
-                            <option value="ACN_AutomationSetting__c-en_US" />
-                          </set>
-                        </option>
-                        <option name="name" value="CustomObjectTranslation" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="sound1" />
-                            <option value="SiteSamples" />
-                          </set>
-                        </option>
-                        <option name="name" value="StaticResource" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="CustomLabels" />
-                          </set>
-                        </option>
-                        <option name="name" value="CustomLabels" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="NTO Customers.Freeze_for_frequent_posting" />
-                            <option value="NTO Customers.Block_banned_keywords" />
-                            <option value="Ursa Major.Replace_banned" />
-                            <option value="NTO Customers.Flag_banned" />
-                            <option value="Ursa Major.Review_the_first_post" />
-                            <option value="Ursa Major.Freeze_for_frequent_posting" />
-                            <option value="NTO Customers.Replace_banned" />
-                            <option value="Ursa Major.Block_banned_keywords" />
-                            <option value="NTO Customers.Review_the_first_post" />
-                            <option value="Ursa Major.Flag_banned" />
-                          </set>
-                        </option>
-                        <option name="name" value="ModerationRule" />
+                        <option name="name" value="ReportType" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
                           <set>
                             <option value="XAP_UTIL_SObjectValueSetExtractor" />
+                            <option value="XAP_DAO_SOQL_WHERE_ObjectCompareClause" />
                             <option value="DAO_UserSelector" />
                             <option value="XFTY_DummyDefaultRelationshipRequired" />
                             <option value="XAP_UTIL_ListComparison_ContiguousTests" />
                             <option value="XAP_UTIL_ListComparison_SameOrderTests" />
                             <option value="ForgotPasswordControllerTest" />
-                            <option value="XAP_DAO_SOQL_WHERE_ArbitraryStringClause" />
                             <option value="XAP_UTIL_ListComparison_SameSizeTests" />
                             <option value="XAP_UTIL_ListComparison_IllMatchedTests" />
                             <option value="CommunitiesSelfRegConfirmControllerTest" />
+                            <option value="fflib_SObjectDomain" />
                             <option value="XAP_DAO_DML_ResultListWrapperIntf" />
                             <option value="XAP_DAO_DML_UndeleteResultListWrapper" />
+                            <option value="fflib_MatchTest" />
+                            <option value="fflib_MatcherDefinitions" />
                             <option value="DAO_ThirdPartyAccountLinkSelector" />
                             <option value="DAO_ContactSelector" />
                             <option value="XFTY_DummyDefaultValueUniqueStringLength" />
                             <option value="XAP_PRED_AllPredicatesFalse" />
+                            <option value="XAP_UTIL_InterpolationIntf" />
                             <option value="XAP_TRIG_SObjectTypeOperationCnvtMock" />
                             <option value="XAP_PRED_SObjectFieldHasChanged" />
                             <option value="XAP_DAO_DML_UndeleteResultWrapper" />
@@ -1350,69 +1787,105 @@
                             <option value="XAP_UTIL_SObjectCloneFactory" />
                             <option value="XAP_UTIL_SObjectFieldNonnullTranscriber" />
                             <option value="XAP_PRED_SObjectFieldHasNullValue" />
-                            <option value="XAP_DAO_SOQL_InvalidFieldSetException" />
                             <option value="XAP_DESC_DuplicateDescribeException" />
+                            <option value="XAP_DAO_SOQL_InvalidFieldSetException" />
                             <option value="XAP_DAO_DML_UpsertResultListWrapIntTest" />
                             <option value="CTM_AccountOwnerAssignment" />
+                            <option value="fflib_Mocks" />
                             <option value="XAP_TRIG_TriggerSObjectTypeOperationTest" />
                             <option value="SiteLoginControllerTest" />
                             <option value="XAP_DAO_SOQL_QuerySortOrdering" />
+                            <option value="NestValidator2" />
                             <option value="XAP_DAO_SOQL_WHERE_DateComparisonClause" />
                             <option value="XAP_DAO_DML_ResultWrapperIntf" />
+                            <option value="NestValidator3" />
                             <option value="XAP_DESC_NamespacedAttributeMap" />
                             <option value="XAP_DAO_SOQL_WHERE_OrClause" />
+                            <option value="NestValidator4" />
                             <option value="XAP_UTIL_UserInfoWrapper" />
-                            <option value="XAP_DAO_SOQL_WHERE_BindingCompareClause" />
+                            <option value="SOR_DyanmicSObjectUpdater" />
+                            <option value="NestValidator1" />
+                            <option value="fflib_Inheritor" />
+                            <option value="XAP_UTIL_MapInterpolation" />
+                            <option value="fflib_Answer" />
+                            <option value="fflib_MethodCountRecorder" />
+                            <option value="NestValidator2UnitTest" />
+                            <option value="fflib_MethodArgValues" />
                             <option value="XAP_DESC_DescribeException" />
                             <option value="XAP_TRIG_TriggerPropertiesTest" />
+                            <option value="fflib_SObjectDomainTest" />
                             <option value="FOO_LeadUserAssignment" />
-                            <option value="XAP_DAO_DML_SaveResultListWrapper" />
                             <option value="XAP_DAO_DML_SaveResultListWrapperIntTest" />
+                            <option value="XAP_DAO_DML_SaveResultListWrapper" />
+                            <option value="fflib_InvocationOnMock" />
+                            <option value="DAO_PricebookEnrtrySelector" />
+                            <option value="fflib_ApexMocksUtilsTest" />
                             <option value="XAP_DAO_SOQL_DomainSecurityException" />
+                            <option value="XAP_DAO_SOQL_QueryInterpolation" />
                             <option value="XAP_DAO_DML_DatabaseErrorWrapperIntTest" />
                             <option value="XAP_DESC_FieldsMap" />
                             <option value="XAP_UTIL_ListComparison" />
-                            <option value="XAP_TRIG_TriggerSettingSelector" />
                             <option value="XAP_TRIG_TriggerEventHandlerIntf" />
+                            <option value="XAP_TRIG_TriggerSettingSelector" />
                             <option value="AutocreatedConfigSelfReg1556310153652" />
                             <option value="XFTY_DummyDefaultIncrementingDecimal" />
+                            <option value="DAO_Product2Selector" />
                             <option value="XAP_DAO_BatchableHelper" />
+                            <option value="fflib_MatchersReturnValue" />
+                            <option value="fflib_IMatcher" />
                             <option value="XAP_DAO_DML_GenericDml" />
-                            <option value="XFTY_DummySObjectFactory" />
                             <option value="TrailshredController" />
+                            <option value="XFTY_DummySObjectFactory" />
+                            <option value="fflib_MethodVerifier" />
+                            <option value="fflib_ArgumentCaptor" />
                             <option value="XAP_PRED_AnyPredicatesFalse" />
+                            <option value="fflib_QualifiedMethodAndArgValues" />
                             <option value="CTM_RegionTypeEnumHelper" />
                             <option value="XAP_UTIL_Randomizer" />
+                            <option value="fflib_MyList" />
                             <option value="XAP_UTIL_SObjectMapSharedKeyExtractor" />
                             <option value="XAP_DAO_SOQL_QueryFactory" />
                             <option value="XAP_DESC_SObjectDescribe" />
                             <option value="TriggerOperation" />
                             <option value="LightningForgotPasswordControllerTest" />
+                            <option value="TEST_DummyProduct2FactoryOutlet" />
+                            <option value="fflib_SObjectSelectorTest" />
                             <option value="XAP_UTIL_SObjectBlenderAbs" />
                             <option value="IMCC_LoginDiscoveryIntf" />
                             <option value="CommunitiesSelfRegControllerTest" />
                             <option value="CommunitiesLoginControllerTest" />
+                            <option value="fflib_QueryFactoryTest" />
                             <option value="XAP_DAO_SOQL_InvalidFieldException" />
                             <option value="ForgotPasswordController" />
                             <option value="XAP_DAO_SOQL_WHERE_CompareOpEnumHelper" />
                             <option value="UTIL_GenericValueHelper" />
+                            <option value="fflib_SObjectMocks" />
                             <option value="XAP_DESC_GlobalDescribeMap" />
                             <option value="IMCC_UserWrapper" />
                             <option value="XAP_UTIL_SObjectCensusTaker" />
                             <option value="XAP_DAO_DML_DeleteResultWrapperIntTest" />
                             <option value="XAP_PRED_SObjectFieldHasNonBlankValue" />
-                            <option value="XAP_DAO_DML_DeleteResultListWrapper" />
                             <option value="DAO_FooSelector" />
+                            <option value="XAP_DAO_DML_DeleteResultListWrapper" />
                             <option value="XAP_UTIL_MapManyToOneException" />
                             <option value="XAP_DAO_SOQL_WHERE_InStringSetClause" />
+                            <option value="fflib_Application" />
                             <option value="LightningSelfRegisterController" />
                             <option value="TRIG_AccountTriggerHandler" />
+                            <option value="fflib_QualifiedMethod" />
                             <option value="XAP_DAO_SOQL_SecurityUtils" />
+                            <option value="fflib_QualifiedMethodTest" />
                             <option value="XAP_UTIL_SObjectListExtractor" />
                             <option value="XAP_TRIG_TriggerEventCoordinatorMock" />
+                            <option value="fflib_InOrder" />
                             <option value="XAP_TRIG_TriggerSettingSelectorIntTest" />
                             <option value="XFTY_DummySObjectSupplier" />
+                            <option value="fflib_SecurityUtils" />
+                            <option value="XAP_DAO_SOQL_WHERE_AbsConjunctionClause" />
+                            <option value="fflib_IDGenerator" />
                             <option value="XAP_UTIL_SObjectFieldNonnullTrsbMock" />
+                            <option value="fflib_MethodArgValuesTest" />
+                            <option value="SOR_DynamicContactUpdater" />
                             <option value="XAP_DAO_DML_SaveResultWrapperIntTest" />
                             <option value="LightningLoginFormControllerTest" />
                             <option value="XAP_UTIL_ListComparison_ExactMatchTests" />
@@ -1420,21 +1893,27 @@
                             <option value="XAP_DAO_SOQL_QuerySortOrderEnum" />
                             <option value="XAP_TRIG_SObjectTypeOperationConvertor" />
                             <option value="XAP_PRED_SObjectPredicateIntf" />
-                            <option value="MyProfilePageControllerTest" />
                             <option value="XFTY_DummyDefaultValueExact" />
+                            <option value="MyProfilePageControllerTest" />
                             <option value="XFTY_DummyQueueSobjectFactoryOutletIntf" />
                             <option value="XAP_DAO_SOQL_NonReferenceFieldException" />
+                            <option value="fflib_SystemTest" />
                             <option value="XAP_UTIL_JsonHelper" />
+                            <option value="fflib_AnyOrder" />
                             <option value="XAP_DAO_SOQL_SObjectSelectorIntf" />
-                            <option value="IMCC_LoginDiscoveryAbs" />
                             <option value="SiteLoginController" />
                             <option value="XAP_DAO_DML_UndeleteResultWrapperIntTest" />
+                            <option value="IMCC_LoginDiscoveryAbs" />
+                            <option value="fflib_ApplicationTest" />
                             <option value="XAP_UTIL_ListComparison_SameEndTests" />
+                            <option value="DAO_Pricebook2Selector" />
                             <option value="XAP_UTIL_RandomizerMock" />
                             <option value="DAO_AuthProviderSelector" />
-                            <option value="XAP_DAO_SOQL_WHERE_VariableCompareClause" />
+                            <option value="fflib_ApexMocksTest" />
                             <option value="XAP_TRIG_TriggerHandlerAbs" />
                             <option value="XAP_UTIL_SObjectListSetterMock" />
+                            <option value="fflib_ISObjectDomain" />
+                            <option value="NestValidator1UnitTest" />
                             <option value="TEST_DummyContactFactoryOutlet" />
                             <option value="XFTY_DummySObjectMasterTemplate" />
                             <option value="XAP_PRED_AnyPredicatesTrue" />
@@ -1442,17 +1921,23 @@
                             <option value="XFTY_DummyDefaultValueUniqueEmail" />
                             <option value="XAP_UTIL_MapReverseIndexer" />
                             <option value="IMCC_LoginDiscoveryByEmail" />
+                            <option value="fflib_SObjectUnitOfWork" />
                             <option value="XAP_PRED_Not" />
-                            <option value="XFTY_DummyDefaultRelationshipOptional" />
+                            <option value="DAO_OpportunityLineItemsSelector" />
+                            <option value="fflib_System" />
                             <option value="XAP_DAO_TransactionHelper" />
+                            <option value="XFTY_DummyDefaultRelationshipOptional" />
                             <option value="CTM_AmbiguousTerritoryException" />
                             <option value="XFTY_DummyDefaultValueIncrementingString" />
                             <option value="MyProfilePageController" />
                             <option value="DAO_TerritoryAssignmentSelector" />
                             <option value="XFTY_DummySObjectBundle" />
+                            <option value="fflib_MatcherDefinitionsTest" />
                             <option value="LightningLoginFormController" />
-                            <option value="XAP_DAO_DML_GenericDmlMock" />
                             <option value="XAP_TEST_MockInsertHelper" />
+                            <option value="fflib_SObjectUnitOfWorkTest" />
+                            <option value="XAP_DAO_DML_GenericDmlMock" />
+                            <option value="fflib_SObjectDescribe" />
                             <option value="LightningSelfRegisterControllerTest" />
                             <option value="DAO_TwoFactorMethodsInfoSelector" />
                             <option value="XAP_DAO_DML_UpsertResultListWrapper" />
@@ -1461,6 +1946,7 @@
                             <option value="CommunitiesLandingControllerTest" />
                             <option value="XAP_DAO_SOQL_InvalidSubqueryException" />
                             <option value="XAP_TRIG_TriggerProperties" />
+                            <option value="fflib_SObjectDescribeTest" />
                             <option value="XAP_DESC_InvalidDescribeException" />
                             <option value="XAP_TRIG_TriggerEventCoord_CompareTest" />
                             <option value="AutocreatedRegHandler1556318907800" />
@@ -1469,30 +1955,42 @@
                             <option value="XAP_DAO_SOQL_SObjectReadException" />
                             <option value="XAP_UTIL_SObjectMapUniqueKeyExtractor" />
                             <option value="XAP_PRED_AllPredicatesTrue" />
-                            <option value="XAP_DAO_SOQL_SObjectSelectorAbs" />
                             <option value="XAP_DAO_DML_DatabaseErrorWrapper" />
+                            <option value="XAP_DAO_SOQL_SObjectSelectorAbs" />
+                            <option value="fflib_IDGeneratorTest" />
                             <option value="XAP_TRIG_SObjectTypeOperationCnvtTest" />
                             <option value="XAP_TRIG_TriggerEventCoord_ContextTests" />
+                            <option value="fflib_ApexMocksUtils" />
+                            <option value="XFTY_DummyDefaultValueIntf" />
                             <option value="XAP_UTIL_SObjectBlenderIntf" />
                             <option value="CommunitiesLandingController" />
-                            <option value="XFTY_DummyDefaultValueIntf" />
                             <option value="TEST_DummyAccountFactoryOutlet" />
                             <option value="XAP_DAO_DML_DatabaseErrorRewrapper" />
                             <option value="XAP_TRIG_TriggerEventCoordinator" />
+                            <option value="XAP_DAO_SOQL_Querier" />
+                            <option value="DAO_OpportunitySelector" />
                             <option value="XFTY_DummySObjectSupplierTests" />
                             <option value="XAP_DAO_SOQL_QueryFactoryRelationHelper" />
                             <option value="XFTY_DummyDefaultValueUniqueString" />
+                            <option value="fflib_ISObjectUnitOfWork" />
                             <option value="XAP_DAO_SOQL_WHERE_AndClause" />
                             <option value="XAP_ENC_EncodingUtilWrapper" />
                             <option value="XFTY_InsertModeEnum" />
                             <option value="XAP_UTIL_SObjectListSetter" />
+                            <option value="fflib_StringBuilder" />
+                            <option value="fflib_InOrderTest" />
                             <option value="SiteRegisterControllerTest" />
                             <option value="XFTY_InsertMocker" />
                             <option value="IMCC_LoginDiscoveryBySms" />
+                            <option value="NestValidator3UnitTest" />
                             <option value="XAP_UTIL_ListComparison_SameMemberTests" />
+                            <option value="fflib_MethodReturnValue" />
                             <option value="ChangePasswordControllerTest" />
                             <option value="XAP_DAO_SOQL_SecurityException" />
+                            <option value="fflib_ArgumentCaptorTest" />
+                            <option value="fflib_ApexMocks" />
                             <option value="TEST_DummyXapTriggerSettingFactoryOutlet" />
+                            <option value="DAO_Product2SelectorIntTest" />
                             <option value="XAP_PRED_SObjectFieldHasBlankValue" />
                             <option value="XFTY_DummyDefaultRelationshipIntf" />
                             <option value="XAP_PRED_SObjectFieldHasTargetValue" />
@@ -1505,31 +2003,44 @@
                             <option value="UTIL_CryptoSha2Helper" />
                             <option value="XAP_DAO_DML_SaveResultWrapper" />
                             <option value="TEST_DummyUserFactoryOutlet" />
-                            <option value="XAP_DAO_DML_GenericDmlIntTest" />
+                            <option value="fflib_AnyOrderTest" />
+                            <option value="fflib_MethodReturnValueRecorder" />
                             <option value="DAO_AccountSelector" />
+                            <option value="fflib_SecurityUtilsTest" />
+                            <option value="XAP_DAO_DML_GenericDmlIntTest" />
+                            <option value="XAP_DAO_SOQL_WHERE_StringCompareClause" />
                             <option value="XAP_DAO_DML_UpsertResultWrapperIntTest" />
-                            <option value="CTM_TerritoryRegionFieldHelper" />
                             <option value="XAP_TRIG_TriggerSObjectTypeOperation" />
+                            <option value="CTM_TerritoryRegionFieldHelper" />
                             <option value="XAP_TRIG_UnassignedTriggerOpException" />
-                            <option value="XAP_PRED_SObjectFieldHasNonNullValue" />
                             <option value="CommunitiesSelfRegConfirmController" />
+                            <option value="XAP_PRED_SObjectFieldHasNonNullValue" />
                             <option value="XAP_DAO_SOQL_FieldLevelSecurityException" />
                             <option value="XAP_TRIG_TriggerHandlerIntf" />
                             <option value="CTM_RegionTypeEnum" />
                             <option value="XAP_DAO_SOQL_WHERE_ClauseIntf" />
                             <option value="XAP_UTIL_ListComparison_SameStartTests" />
                             <option value="XAP_DAO_ByContactIdSelectorIntf" />
+                            <option value="fflib_InheritorTest" />
                             <option value="LSS_LongestSubstringFinder" />
                             <option value="XAP_DAO_SOQL_QueryFactoryFieldHelper" />
                             <option value="XAP_UTIL_ClassHelper" />
-                            <option value="XAP_DAO_DML_DeleteResultListWrapIntTest" />
                             <option value="XAP_TRIG_TriggerEventCoordinatorTest" />
+                            <option value="fflib_StringBuilderTest" />
+                            <option value="XAP_DAO_DML_DeleteResultListWrapIntTest" />
                             <option value="CommunitiesLoginController" />
+                            <option value="fflib_QueryFactory" />
+                            <option value="fflib_ApexMocksConfig" />
                             <option value="XAP_UTIL_SObjectFieldSyncer" />
+                            <option value="fflib_SObjectSelector" />
                             <option value="XAP_DAO_SOQL_WHERE_CompareOperatorEnum" />
+                            <option value="fflib_VerificationMode" />
+                            <option value="fflib_Match" />
+                            <option value="fflib_ISObjectSelector" />
                             <option value="XAP_TRIG_TriggerEventCoordinatorIntTest" />
-                            <option value="TrailshredControllerTest" />
+                            <option value="fflib_AnswerTest" />
                             <option value="XAP_PRED_SObjectFieldTargetFieldIsTrue" />
+                            <option value="TrailshredControllerTest" />
                             <option value="XAP_DAO_SOQL_WHERE_InIdSetClause" />
                             <option value="XAP_DAO_SOQL_Query" />
                             <option value="XAP_TRIG_TriggerSettingSelectorMock" />
@@ -1560,84 +2071,6 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Facebook" />
-                          </set>
-                        </option>
-                        <option name="name" value="AuthProvider" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Account" />
-                            <option value="Lead" />
-                            <option value="Contact" />
-                          </set>
-                        </option>
-                        <option name="name" value="MatchingRules" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Contact.Standard_Contact_Match_Rule_v1_1" />
-                            <option value="Lead.Standard_Lead_Match_Rule_v1_0" />
-                            <option value="Account.Standard_Account_Match_Rule_v1_0" />
-                          </set>
-                        </option>
-                        <option name="name" value="MatchingRule" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Lead" />
-                            <option value="Case" />
-                          </set>
-                        </option>
-                        <option name="name" value="AssignmentRules" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Case.Standard" />
-                            <option value="Lead.Standard" />
-                          </set>
-                        </option>
-                        <option name="name" value="AssignmentRule" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="trailhead_SAML_SSO_Setting" />
-                          </set>
-                        </option>
-                        <option name="name" value="SamlSsoConfig" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="th_con_app__Trailhead_Playground" />
-                            <option value="standard__Sales" />
-                            <option value="standard__LightningService" />
-                            <option value="standard__ServiceConsole" />
-                            <option value="standard__Community" />
-                            <option value="standard__AppLauncher" />
-                            <option value="standard__LightningInstrumentation" />
-                            <option value="standard__Chatter" />
-                            <option value="standard__Platform" />
-                            <option value="standard__Service" />
-                            <option value="standard__LightningSales" />
-                            <option value="standard__Marketing" />
-                            <option value="standard__Sites" />
-                            <option value="standard__Content" />
-                            <option value="standard__LightningSalesConsole" />
-                            <option value="standard__Insights" />
-                            <option value="standard__LightningBolt" />
-                          </set>
-                        </option>
-                        <option name="name" value="CustomApplication" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
                             <option value="Ursa Major" />
                             <option value="NTO Customers" />
                           </set>
@@ -1655,15 +2088,6 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Ursa Major" />
-                            <option value="NTO Customers" />
-                          </set>
-                        </option>
-                        <option name="name" value="Network" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
                             <option value="NewGroup" />
                             <option value="SendEmail" />
                             <option value="NewLead" />
@@ -1673,11 +2097,11 @@
                             <option value="NewAccount" />
                             <option value="Task.UpdatePriority_1" />
                             <option value="Task.UpdatePriority" />
-                            <option value="NewCommunityCase" />
                             <option value="Task.UpdatePriority_0" />
+                            <option value="NewCommunityCase" />
                             <option value="Task.Defer" />
-                            <option value="Task.EditDescription" />
                             <option value="Task.EditDescription_2" />
+                            <option value="Task.EditDescription" />
                             <option value="FeedItem.NewTaskFromFeedItem" />
                             <option value="NewNote" />
                             <option value="CollaborationGroup.NewGroupMember" />
@@ -1691,13 +2115,13 @@
                             <option value="Task.Defer_1" />
                             <option value="Task.UpdateStatus_1" />
                             <option value="Task.UpdateStatus_2" />
-                            <option value="Case.LogACall" />
                             <option value="Case.NewChildCase" />
+                            <option value="Case.LogACall" />
                             <option value="NewContact" />
                             <option value="NewCase" />
                             <option value="GuestCommunityCase" />
-                            <option value="NewEvent" />
                             <option value="LogACall" />
+                            <option value="NewEvent" />
                           </set>
                         </option>
                         <option name="name" value="QuickAction" />
@@ -1718,312 +2142,17 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Account" />
-                            <option value="Company" />
-                            <option value="Address" />
-                            <option value="Macro" />
-                            <option value="Product" />
-                            <option value="Security" />
-                            <option value="Knowledge" />
-                            <option value="Ideas" />
-                            <option value="Case" />
-                            <option value="IoT" />
-                            <option value="Name" />
-                            <option value="FieldService" />
-                            <option value="OmniChannel" />
-                            <option value="Search" />
-                            <option value="Opportunity" />
-                            <option value="FileUploadAndDownloadSecurity" />
-                            <option value="Activities" />
-                            <option value="Order" />
-                            <option value="OrgPreference" />
-                            <option value="BusinessHours" />
-                            <option value="Forecasting" />
-                            <option value="Mobile" />
-                            <option value="Quote" />
-                            <option value="LiveAgent" />
-                            <option value="Entitlement" />
-                            <option value="PathAssistant" />
-                            <option value="Contract" />
+                            <option value="Ursa Major" />
+                            <option value="NTO Customers" />
                           </set>
                         </option>
-                        <option name="name" value="Settings" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="DataCloudGeoLocation" />
-                          </set>
-                        </option>
-                        <option name="name" value="CleanDataService" />
+                        <option name="name" value="Network" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
                           <set>
                             <option value="Territory__c" />
-                            <option value="Account" />
-                            <option value="CollaborationGroup" />
-                            <option value="Task" />
-                            <option value="OpportunityLineItem" />
-                            <option value="ForecastingCategoryMapping" />
-                            <option value="CaseContactRole" />
-                            <option value="Activity" />
-                            <option value="Image" />
-                            <option value="Document" />
-                            <option value="ChannelProgram" />
-                            <option value="ContactCleanInfo" />
-                            <option value="ScorecardMetric" />
-                            <option value="PushTopic" />
-                            <option value="PartnerFundAllocation" />
-                            <option value="ContractContactRole" />
-                            <option value="FeedItem" />
-                            <option value="ExchangeUserMapping" />
-                            <option value="SocialPersona" />
-                            <option value="Asset" />
-                            <option value="PartnerFundClaim" />
-                            <option value="CampaignMember" />
                             <option value="Order" />
-                            <option value="CollaborationGroupMember" />
-                            <option value="AccountContactRole" />
-                            <option value="StreamingChannel" />
-                            <option value="EmailMessage" />
-                            <option value="WorkBadge" />
-                            <option value="Pricebook2" />
-                            <option value="AccountCleanInfo" />
-                            <option value="AccountRelationship" />
-                            <option value="UserProvisioningRequest" />
-                            <option value="OrgDeleteRequest" />
-                            <option value="PartnerFundRequest" />
-                            <option value="PricebookEntry" />
-                            <option value="XAP_TRIG_TriggerSetting__c" />
-                            <option value="Campaign" />
-                            <option value="LeadCleanInfo" />
-                            <option value="Idea" />
-                            <option value="WorkThanks" />
-                            <option value="Trailshred_Setting__mdt" />
-                            <option value="Contract" />
-                            <option value="ScorecardAssociation" />
-                            <option value="ChatterActivity" />
-                            <option value="PartnerRole" />
-                            <option value="OpportunityCompetitor" />
-                            <option value="Site" />
-                            <option value="MacroAction" />
-                            <option value="User" />
-                            <option value="Product2" />
-                            <option value="AccountBrand" />
-                            <option value="Macro" />
-                            <option value="PartnerMarketingBudget" />
-                            <option value="MacroInstruction" />
-                            <option value="Async_Result__c" />
-                            <option value="DuplicateRecordItem" />
-                            <option value="ACN_AutomationSetting__c" />
-                            <option value="CaseComment" />
-                            <option value="Case" />
-                            <option value="NetworkMember" />
-                            <option value="ContentVersion" />
-                            <option value="Opportunity" />
-                            <option value="Lead" />
-                            <option value="DuplicateRecordSet" />
-                            <option value="Scorecard" />
-                            <option value="Topic" />
-                            <option value="Foo__c" />
-                            <option value="Solution" />
-                            <option value="Territory_Assignment__c" />
-                            <option value="StreamActivityAccess" />
-                            <option value="AssetRelationship" />
-                            <option value="QuickText" />
-                            <option value="DandBCompany" />
-                            <option value="OpportunityContactRole" />
-                            <option value="Contact" />
-                            <option value="ChannelProgramLevel" />
-                            <option value="RequestsForAccessSIQ" />
-                            <option value="OrderItem" />
-                            <option value="AssistantProgress" />
-                            <option value="WorkBadgeDefinition" />
-                            <option value="Event" />
-                            <option value="RecordAction" />
-                            <option value="TopicAssignment" />
-                            <option value="ChannelProgramMember" />
-                          </set>
-                        </option>
-                        <option name="name" value="CustomObject" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="ACN_AutomationSetting__c.ACN_CampaignTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ActivityWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ContactValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AttachmentTriggerEnabled__c" />
-                            <option value="Trailshred_Setting__mdt.Object_Name__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountReviewWorkflowEnabled__c" />
-                            <option value="Account.NumberofLocations__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DecisionConditionValidation__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_CampaignValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunitySecurityValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ApplicationLogWorkflowEnabled__c" />
-                            <option value="Foo__c.User__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OppLineItemTriggerTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_PaymentScheduleValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ContactWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ClientCoverageMemberWorkflowEnabled__c" />
-                            <option value="Opportunity.OrderNumber__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_BankAccountWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemValidationEnabled__c" />
-                            <option value="Case.PotentialLiability__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_InteractionContactWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_WorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ApplicationLogValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ClientCoverageMemberTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DocumentWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DocumentValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityAssetValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountContactRelationshipWorkflow__c" />
-                            <option value="CaseComment.ParentOrigin" />
-                            <option value="Opportunity.DeliveryInstallationStatus__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ProcessingRequestWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_SICWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_BankAccountValidationRule__c" />
-                            <option value="Territory_Assignment__c.Territory__c" />
-                            <option value="Goal.OrigGoalId__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_EmployeeTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DocumentFolderWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_EventWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_TriggerEnabled__c" />
-                            <option value="Account.SLA__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_EventTriggerEnabled__c" />
-                            <option value="Foo__c.Custom_Field_2__c" />
-                            <option value="XAP_TRIG_TriggerSetting__c.AccountTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ContactTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_CampaignWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_CampaignMemberValidationEnabled__c" />
-                            <option value="Lead.Custom_Field_2__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountValidationEnabled__c" />
-                            <option value="Trailshred_Setting__mdt.Audio_Static_Resource_Path__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAccountRelationshipWorkflow__c" />
-                            <option value="CaseComment.CommentBody" />
-                            <option value="ACN_AutomationSetting__c.ACN_EmployeeWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_UnderwritingRequestWorkflowEnabled__c" />
-                            <option value="Opportunity.CurrentGenerators__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityTeamMemberWorkflow__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAddHistoryValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_Checklist_ItemEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_File_Prevention_Trigger_TextEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunitySecurityWorkflowEnabled__c" />
-                            <option value="Lead.ProductInterest__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_LeadValidationEnabled__c" />
-                            <option value="Lead.NumberofLocations__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityAssetWorkflowEnabled__c" />
-                            <option value="Case.Product__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityConditionWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityProductWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAddressHistory_TriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ContactTeamMember_Validation_Enabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityProductValidationEnabled__c" />
-                            <option value="Case.SLAViolation__c" />
-                            <option value="Lead.Primary__c" />
-                            <option value="Lead.Custom_Field_3__c" />
-                            <option value="Lead.CurrentGenerators__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_Acc_Acc_Relationship_TriggerEnabled__c" />
-                            <option value="Territory_Assignment__c.Territory_Owner__c" />
-                            <option value="Opportunity.MainCompetitors__c" />
-                            <option value="Account.UpsellOpportunity__c" />
-                            <option value="Account.SLASerialNumber__c" />
-                            <option value="Territory_Assignment__c.Territory_End_Date__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_EventValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AsyncResultTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemAdminValidationEnabled__c" />
-                            <option value="Account.CustomerPriority__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_SearchTriggerTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAssetWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_LeadWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAssetValidationEnabled__c" />
-                            <option value="XAP_TRIG_TriggerSetting__c.TriggersEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_UserRequestTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_SearchWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_CompanySICValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_InteractionWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_UnderwritingRequestValidationEnabled__c" />
-                            <option value="Case.EngineeringReqNumber__c" />
-                            <option value="Metric.OrigMetricId__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_UserValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DocumentTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ProductWorkflowEnabled__c" />
-                            <option value="Account.SLAExpirationDate__c" />
-                            <option value="Trailshred_Setting__mdt.Field_Value__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAccountRelationshipValidation__c" />
-                            <option value="Foo__c.Custom_Field_1__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ActivityValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountAddressHistoryWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_EmployeeValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ContentVersionTriggerEnabled__c" />
-                            <option value="Lead.Foo_User__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DebugEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccoContactRelationshipValidation__c" />
-                            <option value="Opportunity.TrackingNumber__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_SearchValidationEnabled__c" />
-                            <option value="Account.Active__c" />
-                            <option value="Lead.Custom_Field_1__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ChecklistItemAdminWorkflowEnabled__c" />
-                            <option value="Trailshred_Setting__mdt.Active__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_CompanySICWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ExceptionEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_PaymentScheduleWorkflowEnabled__c" />
-                            <option value="Contact.Level__c" />
-                            <option value="Trailshred_Setting__mdt.Field_Name__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountReviewValidationEnabled__c" />
-                            <option value="Account.Territory__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_SICValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_UserTriggerEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ProductValidationEnabled__c" />
-                            <option value="Lead.SICCode__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_CampaignMemberWorkflowEnabled__c" />
-                            <option value="Contact.Languages__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DocumentFolderValidationEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_AccountTriggerEnabled__c" />
-                            <option value="Territory_Assignment__c.Territory_Start_Date__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_UserWorkflowEnabled__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityEnabled__c" />
-                            <option value="Territory_Assignment__c.Territory_State__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_OpportunityTeamMemberValidation__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_DecisionConditionWorkflow__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_ProcessingRequestValidationEnabled__c" />
-                            <option value="Territory_Assignment__c.Territory_Country__c" />
-                            <option value="Foo__c.Custom_Field_3__c" />
-                            <option value="ACN_AutomationSetting__c.ACN_TestEnabled__c" />
-                          </set>
-                        </option>
-                        <option name="name" value="CustomField" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Campaign.ViewCampaignInfluenceReport" />
-                            <option value="Opportunity.DeliveryStatus" />
-                            <option value="Case.UpsellCrosssellOpportunity" />
-                            <option value="Account.Billing" />
-                          </set>
-                        </option>
-                        <option name="name" value="WebLink" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="User.NoUsernameChangesAllowed" />
-                          </set>
-                        </option>
-                        <option name="name" value="ValidationRule" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Order" />
-                            <option value="Territory__c" />
                             <option value="Account" />
                             <option value="User" />
                             <option value="PartnerMarketingBudget" />
@@ -2032,8 +2161,8 @@
                             <option value="ChannelProgram" />
                             <option value="XAP_TRIG_TriggerSetting__c" />
                             <option value="PartnerFundRequest" />
-                            <option value="Case" />
                             <option value="Contact" />
+                            <option value="Case" />
                             <option value="FlowInterview" />
                             <option value="PartnerFundAllocation" />
                             <option value="Campaign" />
@@ -2050,14 +2179,6 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Account.High_Priority_Energy_Accounts" />
-                          </set>
-                        </option>
-                        <option name="name" value="SharingCriteriaRule" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
                             <option value="Opportunity.Share_Edge_Opportunities" />
                           </set>
                         </option>
@@ -2066,18 +2187,10 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="trailshredRecordForm" />
+                            <option value="Account.High_Priority_Energy_Accounts" />
                           </set>
                         </option>
-                        <option name="name" value="LightningComponentBundle" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
-                            <option value="Case" />
-                          </set>
-                        </option>
-                        <option name="name" value="EscalationRules" />
+                        <option name="name" value="SharingCriteriaRule" />
                       </MetadataType>
                       <MetadataType>
                         <option name="members">
@@ -2168,18 +2281,10 @@
                       <MetadataType>
                         <option name="members">
                           <set>
-                            <option value="Communities_Shared_Document_Folder/logo_nto_png.png" />
-                          </set>
-                        </option>
-                        <option name="name" value="Document" />
-                      </MetadataType>
-                      <MetadataType>
-                        <option name="members">
-                          <set>
                             <option value="unfiled$public/CommunityForgotPasswordEmailTemplate" />
                             <option value="unfiled$public/SUPPORTSelfServiceResetPasswordSAMPLE" />
-                            <option value="unfiled$public/SupportSelfServiceResetPassword" />
                             <option value="unfiled$public/CommunityChangePasswordEmailTemplate" />
+                            <option value="unfiled$public/SupportSelfServiceResetPassword" />
                             <option value="unfiled$public/SupportCaseCreatedPhoneInquiries" />
                             <option value="unfiled$public/SupportSelfServiceNewLoginandPassword" />
                             <option value="unfiled$public/SUPPORTSelfServiceNewUserLoginInformationSAMPLE" />
@@ -2188,15 +2293,23 @@
                             <option value="unfiled$public/SalesNewCustomerEmail" />
                             <option value="unfiled$public/SUPPORTSelfServiceNewCommentNotificationSAMPLE" />
                             <option value="unfiled$public/SupportCaseCreatedWebInquiries" />
-                            <option value="unfiled$public/SupportEscalatedCaseNotification" />
                             <option value="unfiled$public/CommunityWelcomeEmailTemplate" />
+                            <option value="unfiled$public/SupportEscalatedCaseNotification" />
                             <option value="unfiled$public/CommunityVerificationEmailTemplate" />
-                            <option value="unfiled$public/SupportEscalatedCaseReassignment" />
                             <option value="unfiled$public/MarketingProductInquiryResponse" />
+                            <option value="unfiled$public/SupportEscalatedCaseReassignment" />
                             <option value="unfiled$public/CommunityLockoutEmailTemplate" />
                           </set>
                         </option>
                         <option name="name" value="EmailTemplate" />
+                      </MetadataType>
+                      <MetadataType>
+                        <option name="members">
+                          <set>
+                            <option value="Communities_Shared_Document_Folder/logo_nto_png.png" />
+                          </set>
+                        </option>
+                        <option name="name" value="Document" />
                       </MetadataType>
                     </set>
                   </option>
@@ -2257,6 +2370,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
@@ -2518,7 +2632,8 @@
       <workItem from="1557122476070" duration="1603000" />
       <workItem from="1557162296624" duration="4069000" />
       <workItem from="1557167815356" duration="9610000" />
-      <workItem from="1557177444919" duration="3416000" />
+      <workItem from="1557177444919" duration="4623000" />
+      <workItem from="1557185225679" duration="999000" />
     </task>
     <task id="LOCAL-00044" summary="Refactored set extractor to make it more flexible.">
       <created>1556697617832</created>
@@ -2899,13 +3014,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133436000" />
+    <option name="totallyTimeSpent" value="135642000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.25746268" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.22121535" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -2917,12 +3032,12 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Log Viewer" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.7707889" weight="0.32978722" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.77025586" weight="0.32978722" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="SOQL Query" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.19616205" side_tool="true" visible="true" weight="0.49574468" />
-      <window_info active="true" anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.80383795" visible="true" weight="0.49574468" />
-      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6497868" weight="0.52021277" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.35127932" side_tool="true" visible="true" weight="0.40106383" />
+      <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.80383795" weight="0.29893616" />
+      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6487207" visible="true" weight="0.40106383" />
       <window_info anchor="bottom" id="Messages" order="15" />
       <window_info anchor="bottom" id="Illuminated Cloud" order="16" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -2981,26 +3096,6 @@
     <SUITE FILE_PATH="coverage/Xappe$DAO_Product2SelectorIntTest_testSelectByIdShouldReturnValuesPerExampleFieldSet.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557168978509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_Binding.cls" />
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_UTIL_InterpolationIntf.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_UTIL_MapInterpolation.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="38" selection-start-column="13" selection-end-column="38" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_ConjunctionOpEnum.cls" />
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_OrClause.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -3047,12 +3142,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/SOR_DyanmicSObjectUpdater.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider editor-type-id="text-editor">
         <state>
           <caret column="51" selection-start-column="26" selection-end-column="51" />
         </state>
       </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/DAO_UserSelector.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3060,12 +3155,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/SOR_DynamicContactUpdater.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="50" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="50" />
         </state>
       </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorIntf.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3085,21 +3180,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryInterpolation.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider editor-type-id="text-editor">
         <state>
           <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_AbsConjunctionClause.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider editor-type-id="text-editor">
         <state>
           <caret column="61" selection-start-column="22" selection-end-column="61" />
         </state>
       </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_InIdSetClause.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3150,34 +3245,6 @@
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="true" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="35" selection-start-column="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -3193,33 +3260,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryFieldHelper.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Querier.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="66" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="66" />
         </state>
       </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SecurityUtils.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
@@ -3227,22 +3281,87 @@
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls">
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state>
+          <caret column="35" selection-start-column="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="9" lean-forward="true" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
