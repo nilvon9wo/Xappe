@@ -25,11 +25,10 @@ public virtual class DAO_AccountSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
 
     public List<Account> selectByBillingState(Set<String> stateSet) {
         return this.newQueryFactory()
-                        .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
-                                Account.BillingState,
-                                stateSet
-                        ))
-                        .query();
-
+                .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
+                        Account.BillingState,
+                        stateSet
+                ))
+                .query();
     }
 }
