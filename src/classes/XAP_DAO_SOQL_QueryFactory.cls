@@ -109,7 +109,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     // SubselectQueries -------------------------------------------------------------------------------------
-    public XAP_DAO_SOQL_QueryFactory subselectQuery(SObjectType related) {
+    public XAP_DAO_SOQL_QueryFactory subSelectQuery(SObjectType related) {
         Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related);
         return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
     }
@@ -140,11 +140,11 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
 
-    public XAP_DAO_SOQL_QueryFactory subselectQuery(String relationshipName) {
-        return subselectQuery(relationshipName, NOT_ASSERTED_ACCESSIBLE);
+    public XAP_DAO_SOQL_QueryFactory subSelectQuery(String relationshipName) {
+        return subSelectQuery(relationshipName, NOT_ASSERTED_ACCESSIBLE);
     }
 
-    public XAP_DAO_SOQL_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible) {
+    public XAP_DAO_SOQL_QueryFactory subSelectQuery(String relationshipName, Boolean assertIsAccessible) {
         ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, relationshipName);
         if (relationship != null) {
             return setSubselectQuery(relationship, assertIsAccessible);

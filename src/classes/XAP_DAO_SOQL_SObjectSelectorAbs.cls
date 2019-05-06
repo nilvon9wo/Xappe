@@ -136,7 +136,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
         
     public XAP_DAO_SOQL_QueryFactory addQueryFactorySubselect(XAP_DAO_SOQL_QueryFactory parentQueryFactory, Boolean includeSelectorFields) {
     	return this.configureQueryFactory(
-    		parentQueryFactory.subselectQuery(getSObjectType()), 
+    		parentQueryFactory.subSelectQuery(getSObjectType()),
     		this.isEnforcingCRUD, 
     		this.isEnforcingFLS, 
     		includeSelectorFields
@@ -153,7 +153,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
 			Boolean includeSelectorFields
 		) {
 		return this.configureQueryFactory(
-			parentQueryFactory.subselectQuery(relationshipName),  
+			parentQueryFactory.subSelectQuery(relationshipName),
 			this.isEnforcingCRUD, 
 			this.isEnforcingFLS, 
 			includeSelectorFields
