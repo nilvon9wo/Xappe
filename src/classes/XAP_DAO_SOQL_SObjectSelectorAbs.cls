@@ -98,7 +98,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
                 .query();
     }
 
-    public Database.QueryLocator queryLocatorById(Set<Id> idSet) {
+    public Database.QueryLocator getQueryLocatorById(Set<Id> idSet) {
         return this.newQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                 .getQueryLocator();
