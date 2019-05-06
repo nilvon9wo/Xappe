@@ -1,6 +1,9 @@
 public class XAP_DAO_SOQL_Query {
-    private static transient final Boolean DEFAULT_ENFORCE_FLS = false;
-    private static transient final Boolean DEFAULT_SORT_SELECT_FIELDS = true;
+    private static transient final Boolean INCLUDING_ENFORCE_FLS = true;
+    private static transient final Boolean EXCLUDING_ENFORCE_FLS = false;
+
+    private static transient final Boolean SORTTED_SELECT_FIELDS = true;
+    private static transient final Boolean UNSORTTED_SELECT_FIELDS = false;
 
     private XAP_DAO_SOQL_SecurityUtils securityUtils;
     public Schema.SObjectType sObjectType { get; private set; }
@@ -8,10 +11,10 @@ public class XAP_DAO_SOQL_Query {
     public XAP_DAO_SOQL_Query(Schema.SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
         this.securityUtils = securityUtils;
         this.sObjectType = sObjectType;
-        this.enforceFLS = DEFAULT_ENFORCE_FLS;
+        this.enforceFLS = EXCLUDING_ENFORCE_FLS;
         this.fieldSet = new Set<String>();
         this.orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>();
-        this.sortSelectFields = DEFAULT_SORT_SELECT_FIELDS;
+        this.sortSelectFields = SORTTED_SELECT_FIELDS;
     }
 
     public XAP_DAO_SOQL_Query(Schema.SObjectType sObjectType) {
@@ -20,6 +23,8 @@ public class XAP_DAO_SOQL_Query {
 
     public Set<String> fieldSet;
     public List<XAP_DAO_SOQL_QuerySortOrdering> orderingList;
+
+    public Schema.ChildRelationship relationship;
     public Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> queryFactoryByRelationshipMap;
 
     public XAP_DAO_SOQL_WHERE_ClauseIntf conditionExpression;
@@ -27,7 +32,6 @@ public class XAP_DAO_SOQL_Query {
     public Integer offsetCount;
     public Boolean enforceFLS;
     public Boolean sortSelectFields;
-    public Schema.ChildRelationship relationship;
 
     public List<XAP_DAO_SOQL_QuerySortOrdering> setOrdering(List<XAP_DAO_SOQL_QuerySortOrdering> orderingList) {
         this.orderingList = orderingList;
@@ -40,11 +44,19 @@ public class XAP_DAO_SOQL_Query {
         });
     }
 
-    public List<XAP_DAO_SOQL_QuerySortOrdering> setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public List<XAP_DAO_SOQL_QuerySortOrdering> setOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         return this.setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(field, direction, nullsLast));
     }
 
-    public List<XAP_DAO_SOQL_QuerySortOrdering> setOrdering(String field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public List<XAP_DAO_SOQL_QuerySortOrdering> setOrdering(
+            String field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         return this.setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(field, direction, nullsLast));
     }
 
@@ -53,23 +65,28 @@ public class XAP_DAO_SOQL_Query {
         return this.orderingList;
     }
 
-    public List<XAP_DAO_SOQL_QuerySortOrdering> addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public List<XAP_DAO_SOQL_QuerySortOrdering> addOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         return this.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering(field, direction, nullsLast));
     }
 
-    public List<XAP_DAO_SOQL_QuerySortOrdering> addOrdering(String field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public List<XAP_DAO_SOQL_QuerySortOrdering> addOrdering(
+            String field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         return this.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering(field, direction, nullsLast));
     }
 
     public Boolean equals(Object obj) {
-        if (!(obj instanceof XAP_DAO_SOQL_Query)
-                || ((XAP_DAO_SOQL_Query) obj).SObjectType != this.sObjectType
-                || ((XAP_DAO_SOQL_Query) obj).fieldSet.size() != this.fieldSet.size()
-                ) {
-            return false;
-        }
-
-        return ((XAP_DAO_SOQL_Query) obj).toQueryInterpolation() == this.toQueryInterpolation();
+        System.debug('####### equals : ' + obj);
+        return (obj instanceof XAP_DAO_SOQL_Query)
+                && (((XAP_DAO_SOQL_Query) obj).sObjectType == this.sObjectType)
+                && (((XAP_DAO_SOQL_Query) obj).fieldSet.size() == this.fieldSet.size())
+                && (((XAP_DAO_SOQL_Query) obj).toQueryInterpolation() == this.toQueryInterpolation());
     }
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {

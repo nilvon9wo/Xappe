@@ -1,5 +1,28 @@
 public virtual class DAO_OpportunitySelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
+    DAO_OpportunityLineItemsSelector opportunityLineItemsSelector;
+    DAO_PricebookEnrtrySelector pricebookEnrtrySelector;
+    DAO_Pricebook2Selector pricebook2Selector;
+    DAO_Product2Selector product2SelectorSelector;
+
+    private DAO_OpportunitySelector(
+            DAO_OpportunityLineItemsSelector opportunityLineItemsSelector,
+            DAO_PricebookEnrtrySelector pricebookEnrtrySelector,
+            DAO_Pricebook2Selector pricebook2Selector,
+            DAO_Product2Selector product2SelectorSelector
+    ) {
+        this.opportunityLineItemsSelector = opportunityLineItemsSelector;
+        this.pricebookEnrtrySelector = pricebookEnrtrySelector;
+        this.pricebook2Selector = pricebook2Selector;
+        this.product2SelectorSelector = product2SelectorSelector;
+    }
+
     private DAO_OpportunitySelector() {
+        this(
+                DAO_OpportunityLineItemsSelector.getInstance(),
+                DAO_PricebookEnrtrySelector.getInstance(),
+                DAO_Pricebook2Selector.getInstance(),
+                DAO_Product2Selector.getInstance()
+        );
     }
 
     private static DAO_OpportunitySelector instance;
@@ -23,14 +46,34 @@ public virtual class DAO_OpportunitySelector extends XAP_DAO_SOQL_SObjectSelecto
         };
     }
 
-    public List<Opportunity> selectWithAccountById(Set<Id> idSet) {
+    public List<Opportunity> selectByIdWithAccount(Set<Id> idSet) {
         return this.newQueryFactory(XAP_DAO_SOQL_SObjectSelectorAbs.EXCLUDE_SELECTOR_FIELDS)
-                .selectField(Opportunity.Id)
-                .selectField(Opportunity.Amount)
-                .selectField(Opportunity.StageName)
-                .selectField('Account.Name')
-                .selectField('Account.AccountNumber')
-                .selectField('Account.Owner.Name')
+                .addField(Opportunity.Id)
+                .addField(Opportunity.Amount)
+                .addField(Opportunity.StageName)
+                .addField('Account.Name')
+                .addField('Account.AccountNumber')
+                .addField('Account.Owner.Name')
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .query();
+    }
+
+    public List<Opportunity> selectByIdWithProducts(Set<Id> idSet) {
+        XAP_DAO_SOQL_QueryFactory opportunityQueryFactory = this.newQueryFactory();
+        System.debug('######### selectByIdWithProducts opportunityQueryFactory: ' + opportunityQueryFactory);
+        XAP_DAO_SOQL_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
+                .addQueryFactorySubselect(opportunityQueryFactory, 'OpportunityLineItems');
+
+        this.pricebookEnrtrySelector
+                .configureQueryFactoryFields(opportunityLineItemsQueryFactory, 'PricebookEntry');
+
+        this.pricebook2Selector
+                .configureQueryFactoryFields(opportunityLineItemsQueryFactory, 'PricebookEntry.Pricebook2');
+
+        this.product2SelectorSelector
+                .configureQueryFactoryFields(opportunityLineItemsQueryFactory, 'PricebookEntry.Product2');
+
+        return opportunityQueryFactory
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                 .query();
     }

@@ -32,6 +32,13 @@ public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAb
         };
     }
 
+    public List<Product2> selectById(Set<Id> idSet, Schema.FieldSet fieldSet) {
+        return this.newQueryFactory()
+                .addFields(fieldSet)
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .query();
+    }
+
     public List<Product2> selectRecentlyUpdated(Integer recordLimit) {
         return this.newQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_StringCompareClause(

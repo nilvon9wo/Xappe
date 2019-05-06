@@ -1,6 +1,11 @@
 public class XAP_DAO_SOQL_QueryFactory {
     private static final Boolean ALLOW_CROSS_OBJECT = true;
+    private static final Boolean PREVENT_CROSS_OBJECT = false;
+
+    private static final Boolean ASSERTED_ACCESSIBLE = true;
     private static final Boolean NOT_ASSERTED_ACCESSIBLE = false;
+
+    private static final Boolean NOT_NULLS_FIRST = true;
     private static final Boolean NULLS_FIRST = false;
 
     private XAP_DAO_SOQL_Query query;
@@ -67,21 +72,35 @@ public class XAP_DAO_SOQL_QueryFactory {
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         this.query.setOrdering(field, direction, nullsLast);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction
+    ) {
         return this.setQuerySortOrdering(field, direction, NULLS_FIRST);
     }
 
-    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(
+            String fieldName,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         this.query.setOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, nullsLast);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+    public XAP_DAO_SOQL_QueryFactory setQuerySortOrdering(
+            String fieldName,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction
+    ) {
         return this.setQuerySortOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, NULLS_FIRST);
     }
 
@@ -90,7 +109,11 @@ public class XAP_DAO_SOQL_QueryFactory {
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public XAP_DAO_SOQL_QueryFactory addOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         this.query.addOrdering(field, direction, nullsLast);
         return this;
     }
@@ -99,7 +122,11 @@ public class XAP_DAO_SOQL_QueryFactory {
         return this.addOrdering(field, direction, NULLS_FIRST);
     }
 
-    public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+    public XAP_DAO_SOQL_QueryFactory addOrdering(
+            String fieldName,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
         this.query.addOrdering(this.fieldHelper.getFieldPath(this.query, fieldName), direction, nullsLast);
         return this;
     }
@@ -109,13 +136,18 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     // SubselectQueries -------------------------------------------------------------------------------------
-    public XAP_DAO_SOQL_QueryFactory subSelectQuery(SObjectType related) {
-        Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related);
-        return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
-    }
+
+//    public XAP_DAO_SOQL_QueryFactory subSelectQuery(SObjectType related) {
+//        System.debug('######### subSelectQuery1 related: ' + related);
+//        Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related);
+//        System.debug('######### subSelectQuery1 relationship: ' + relationship);
+//        return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
+//    }
 
     private XAP_DAO_SOQL_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
-        if (relationship != null) {
+        System.debug('######### subSelectQuery2 relationship: ' + relationship);
+        System.debug('######### subSelectQuery2 assertIsAccessible: ' + assertIsAccessible);
+        if (relationship == null) {
             throw new XAP_DAO_SOQL_InvalidSubqueryException(
                     'Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.'
             );
@@ -124,6 +156,9 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (this.query.queryFactoryByRelationshipMap == null) {
             this.query.queryFactoryByRelationshipMap = new Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
         }
+        System.debug('######### subSelectQuery2 queryFactoryByRelationshipMap: ' +  this.query.queryFactoryByRelationshipMap);
+        System.debug('######### subSelectQuery2 this.query.relationship: ' +  this.query.relationship);
+        System.debug('######### this.query.queryFactoryByRelationshipMap.get(this.query.relationship): ' +  this.query.queryFactoryByRelationshipMap.get(this.query.relationship));
         return (this.query.queryFactoryByRelationshipMap.containsKey(this.query.relationship))
                 ? this.query.queryFactoryByRelationshipMap.get(this.query.relationship)
                 : this.setSubselectQuery(assertIsAccessible);
@@ -141,13 +176,17 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryFactory subSelectQuery(String relationshipName) {
-        return subSelectQuery(relationshipName, NOT_ASSERTED_ACCESSIBLE);
+        System.debug('######### subSelectQuery2 relationshipName: ' + relationshipName);
+        return this.subSelectQuery(relationshipName, NOT_ASSERTED_ACCESSIBLE);
     }
 
     public XAP_DAO_SOQL_QueryFactory subSelectQuery(String relationshipName, Boolean assertIsAccessible) {
+        System.debug('######### subSelectQuery3 relationshipName: ' + relationshipName);
+        System.debug('######### subSelectQuery3 assertIsAccessible: ' + assertIsAccessible);
         ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, relationshipName);
+        System.debug('######### subSelectQuery3 relationship: ' + relationship);
         if (relationship != null) {
-            return setSubselectQuery(relationship, assertIsAccessible);
+            return this.setSubselectQuery(relationship, assertIsAccessible);
         }
 
         throw new XAP_DAO_SOQL_InvalidSubqueryException(
@@ -157,10 +196,13 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship) {
+        System.debug('######### subSelectQuery4 relationship: ' + relationship);
         return subselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
     }
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
+        System.debug('######### subSelectQuery5 relationship: ' + relationship);
+        System.debug('######### subSelectQuery5 assertIsAccessible: ' + assertIsAccessible);
         return setSubselectQuery(relationship, assertIsAccessible);
     }
 
@@ -181,41 +223,41 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     // Select Fields ----------------------------------------------------------------------------
 
-    public XAP_DAO_SOQL_QueryFactory selectFields(Schema.FieldSet fieldSet, Boolean allowCrossObject) {
-        this.fieldHelper.selectFields(this.query, fieldSet, allowCrossObject);
+    public XAP_DAO_SOQL_QueryFactory addFields(Schema.FieldSet fieldSet, Boolean allowCrossObject) {
+        this.fieldHelper.addFields(this.query, fieldSet, allowCrossObject);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectFields(Schema.FieldSet fieldSet) {
-        return this.selectFields(fieldSet, ALLOW_CROSS_OBJECT);
+    public XAP_DAO_SOQL_QueryFactory addFields(Schema.FieldSet fieldSet) {
+        return this.addFields(fieldSet, ALLOW_CROSS_OBJECT);
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectFields(Set<Schema.SObjectField> fieldSet) {
-        this.fieldHelper.selectFields(this.query, fieldSet);
+    public XAP_DAO_SOQL_QueryFactory addFields(Set<Schema.SObjectField> fieldSet) {
+        this.fieldHelper.addFields(this.query, fieldSet);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectFields(List<Schema.SObjectField> fieldList) {
-        return this.selectFields(new Set<Schema.SObjectField>(fieldList));
+    public XAP_DAO_SOQL_QueryFactory addFields(List<Schema.SObjectField> fieldList) {
+        return this.addFields(new Set<Schema.SObjectField>(fieldList));
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectField(Schema.SObjectField field) {
-        return this.selectFields(new Set<Schema.SObjectField>{
+    public XAP_DAO_SOQL_QueryFactory addField(Schema.SObjectField field) {
+        return this.addFields(new Set<Schema.SObjectField>{
                 field
         });
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectFields(Set<String> fieldNameSet) {
-        this.fieldHelper.selectFields(this.query, fieldNameSet);
+    public XAP_DAO_SOQL_QueryFactory addFields(Set<String> fieldNameSet) {
+        this.fieldHelper.addFields(this.query, fieldNameSet);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectFields(List<String> fieldNameList) {
-        return this.selectFields(new Set<String>(fieldNameList));
+    public XAP_DAO_SOQL_QueryFactory addFields(List<String> fieldNameList) {
+        return this.addFields(new Set<String>(fieldNameList));
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectField(String fieldName) {
-        return this.selectFields(new Set<String>{
+    public XAP_DAO_SOQL_QueryFactory addField(String fieldName) {
+        return this.addFields(new Set<String>{
                 fieldName
         });
     }
@@ -229,7 +271,8 @@ public class XAP_DAO_SOQL_QueryFactory {
 
         Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> subqueries = this.query.queryFactoryByRelationshipMap;
         if (subqueries != null) {
-            Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> clonedSubqueries = new Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
+            Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> clonedSubqueries
+                    = new Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
             for (Schema.ChildRelationship key : subqueries.keySet()) {
                 clonedSubqueries.put(key, subqueries.get(key).deepClone());
             }
@@ -260,5 +303,11 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
         return this.query.toQueryInterpolation();
+    }
+
+    public Boolean equals(Object obj) {
+        System.debug('####### equals : ' + obj);
+        return obj instanceof XAP_DAO_SOQL_QueryFactory
+                && ((XAP_DAO_SOQL_QueryFactory) obj).query == this.query;
     }
 }

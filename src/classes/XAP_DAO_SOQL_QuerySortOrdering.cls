@@ -15,7 +15,11 @@ public class XAP_DAO_SOQL_QuerySortOrdering{
 		this(XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(field), direction, NULLS_FIRST);
 	} 
 
-	public XAP_DAO_SOQL_QuerySortOrdering(Schema.SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast){
+	public XAP_DAO_SOQL_QuerySortOrdering(
+			Schema.SObjectField field,
+			XAP_DAO_SOQL_QuerySortOrderEnum direction,
+			Boolean nullsLast
+	){
 		this(XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(field), direction, nullsLast);
 	}
 	
