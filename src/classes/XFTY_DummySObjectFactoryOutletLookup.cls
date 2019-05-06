@@ -4,6 +4,7 @@ public class XFTY_DummySObjectFactoryOutletLookup {
 			= new Map<SObjectType, Type>{
 					Account.SObjectType => TEST_DummyAccountFactoryOutlet.class,
 					Contact.SObjectType => TEST_DummyContactFactoryOutlet.class,
+					Product2.SObjectType => TEST_DummyProduct2FactoryOutlet.class,
 					// QueueSobject => Can NOT be created because SFDC gets confused about QueueSobject.SObjectType
 					User.SObjectType => TEST_DummyUserFactoryOutlet.class,
 					XAP_TRIG_TriggerSetting__c.SObjectType => TEST_DummyXapTriggerSettingFactoryOutlet.class
