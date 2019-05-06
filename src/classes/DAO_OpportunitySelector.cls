@@ -17,7 +17,21 @@ public virtual class DAO_OpportunitySelector extends XAP_DAO_SOQL_SObjectSelecto
 
     private List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
-                Opportunity.Id
+                Opportunity.Amount,
+                Opportunity.Id,
+                Opportunity.StageName
         };
+    }
+
+    public List<Opportunity> selectWithAccountById(Set<Id> idSet) {
+        return this.newQueryFactory(XAP_DAO_SOQL_SObjectSelectorAbs.EXCLUDE_SELECTOR_FIELDS)
+                .selectField(Opportunity.Id)
+                .selectField(Opportunity.Amount)
+                .selectField(Opportunity.StageName)
+                .selectField('Account.Name')
+                .selectField('Account.AccountNumber')
+                .selectField('Account.Owner.Name')
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .query();
     }
 }

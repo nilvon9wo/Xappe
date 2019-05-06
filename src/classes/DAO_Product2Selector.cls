@@ -1,18 +1,25 @@
 public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAbs {
-    private DAO_Product2Selector() {
+    public DAO_Product2Selector(Boolean includeFieldSetFields) {
+        super(includeFieldSetFields);
     }
 
-    private static DAO_Product2Selector instance;
+    public DAO_Product2Selector() {
+        super(XAP_DAO_SOQL_SObjectSelectorAbs.INCLUDE_FIELDSET_FIELDS);
+    }
 
     public static DAO_Product2Selector getInstance() {
-        if (instance == null) {
-            instance = new DAO_Product2Selector();
-        }
-        return instance;
+        return new DAO_Product2Selector();
     }
 
     public override SObjectType getSObjectType() {
         return Product2.SObjectType;
+    }
+
+    public override List<Schema.FieldSet> getSObjectFieldSetList() {
+        return new List<Schema.FieldSet>{
+                SObjectType.Product2.FieldSets.getMap()
+                        .get('example_field_set')
+        };
     }
 
     private List<SObjectField> getSObjectFieldList() {
