@@ -30,8 +30,8 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void fieldSelections(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('firstName');
-		qf.selectField(Schema.Contact.SObjectType.fields.lastName);
+		qf.addField('firstName');
+		qf.addField(Schema.Contact.SObjectType.fields.lastName);
 		qf.selectFields( new Set<String>{'acCounTId', 'account.name'} );
 		qf.selectFields( new List<String>{'homePhonE','fAX'} );
 		qf.selectFields( new List<Schema.SObjectField>{ Contact.Email, Contact.Title } );
@@ -50,7 +50,7 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void simpleFieldSelection() {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('NAMe').selectFields( new Set<String>{'naMe', 'email'});
+		qf.addField('NAMe').selectFields( new Set<String>{'naMe', 'email'});
 		String query = qf.toSOQL();
 		System.assert( Pattern.matches('SELECT.*Name.*FROM.*',query), 'Expected Name field in query, got '+query);
 		System.assert( Pattern.matches('SELECT.*Email.*FROM.*',query), 'Expected Name field in query, got '+query);
@@ -63,8 +63,8 @@ private class A00_QueryFactoryTest {
 	static void simpleFieldCondition(){
 		String whereClause = 'name = \'test\'';
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
-		qf.selectField('email');
+		qf.addField('name');
+		qf.addField('email');
 		qf.setCondition( whereClause );
 		System.assertEquals(whereClause,qf.getCondition()); 
 		String query = qf.toSOQL();
@@ -74,7 +74,7 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void duplicateFieldSelection() {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('NAMe').selectFields( new Set<String>{'naMe', 'email'});
+		qf.addField('NAMe').selectFields( new Set<String>{'naMe', 'email'});
 		String query = qf.toSOQL();
 		System.assertEquals(1, query.countMatches('Name'), 'Expected one name field in query: '+query );
 	}
@@ -84,11 +84,11 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf1 = new A00_QueryFactory(Contact.SObjectType);
 		A00_QueryFactory qf2 = new A00_QueryFactory(Contact.SObjectType);
 		System.assertEquals(qf1,qf2);
-		qf1.selectField('name');
+		qf1.addField('name');
 		System.assertNotEquals(qf1,qf2);
-		qf2.selectField('NAmE');
+		qf2.addField('NAmE');
 		System.assertEquals(qf1,qf2);
-		qf1.selectField('name').selectFields( new Set<String>{ 'NAME', 'name' }).selectFields( new Set<Schema.SObjectField>{ Contact.Name, Contact.Name} );
+		qf1.addField('name').selectFields( new Set<String>{ 'NAME', 'name' }).selectFields( new Set<Schema.SObjectField>{ Contact.Name, Contact.Name} );
 		System.assertEquals(qf1,qf2);
 	}
 
@@ -97,7 +97,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		A00_QueryFactory.NonReferenceFieldException e;
 		try{
-			qf.selectField('name.title');
+			qf.addField('name.title');
 		}catch(A00_QueryFactory.NonReferenceFieldException ex){
 			e = ex;
 		}
@@ -109,7 +109,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		A00_QueryFactory.InvalidFieldException e;
 		try{
-			qf.selectField('account.NOT_A_REAL_FIELD');
+			qf.addField('account.NOT_A_REAL_FIELD');
 		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
@@ -121,7 +121,7 @@ private class A00_QueryFactoryTest {
 		List<A00_QueryFactory.InvalidFieldException> exceptions = new List<A00_QueryFactory.InvalidFieldException>();
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		try{
-			qf.selectField('Not_a_field');
+			qf.addField('Not_a_field');
 		}catch(A00_QueryFactory.InvalidFieldException e){
 			exceptions.add(e);
 		}
@@ -146,8 +146,8 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void ordering(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
-		qf.selectField('email');
+		qf.addField('name');
+		qf.addField('email');
 		qf.setCondition( 'name = \'test\'' );
 		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering( new A00_QueryFactory.Ordering('Contact','CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING) );
 		String query = qf.toSOQL();
@@ -164,8 +164,8 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void setOrdering_ReplacesPreviousOrderingsWithExpectedOrdering(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
-		qf.selectField('email');
+		qf.addField('name');
+		qf.addField('email');
 		qf.setCondition( 'name = \'test\'' );
 
 		//test base method with ordeting by OwnerId Descending
@@ -208,10 +208,10 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void invalidField_string(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
+		qf.addField('name');
 		Exception e;
 		try{
-			qf.selectField('not_a__field');
+			qf.addField('not_a__field');
 		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
@@ -221,7 +221,7 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void invalidFields_string(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
+		qf.addField('name');
 		Exception e; 
 		try{
 			qf.selectFields( new List<String>{'not_a__field'} );
@@ -234,11 +234,11 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void invalidField_nullToken(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
+		qf.addField('name');
 		Exception e;
 		Schema.SObjectField token = null;
 		try{
-			qf.selectField( token );
+			qf.addField( token );
 		}catch(A00_QueryFactory.InvalidFieldException ex){
 			e = ex;
 		}
@@ -248,7 +248,7 @@ private class A00_QueryFactoryTest {
 	@isTest
 	static void invalidFields_nullToken(){
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
+		qf.addField('name');
 		Exception e;
 		List<Schema.SObjectField> token = new List<Schema.SObjectField>{
 			null
@@ -299,10 +299,10 @@ private class A00_QueryFactoryTest {
         insert tsk;
 
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
+		qf.addField('name').addField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		//explicitly assert object accessibility when creating the subselect
-		qf.subselectQuery('Tasks', true).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
+		qf.subselectQuery('Tasks', true).addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
 		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
@@ -328,9 +328,9 @@ private class A00_QueryFactoryTest {
         insert tsk;
 
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
+		qf.addField('name').addField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		//explicitly assert object accessibility when creating the subselect
-		qf.subselectQuery('Tasks').selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
+		qf.subselectQuery('Tasks').addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
 		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		String soql = qf.toSOQL();
@@ -358,7 +358,7 @@ private class A00_QueryFactoryTest {
         insert tsk;
 
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
+		qf.addField('name').addField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		Schema.ChildRelationship relationship;
 		for (Schema.ChildRelationship childRow : descResult.getChildRelationships()){
@@ -369,7 +369,7 @@ private class A00_QueryFactoryTest {
             }   
         }
        	//explicitly assert object accessibility when creating the subselect
-		qf.subselectQuery(relationship, true).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
+		qf.subselectQuery(relationship, true).addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
 		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
@@ -395,7 +395,7 @@ private class A00_QueryFactoryTest {
         insert tsk;
 
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
+		qf.addField('name').addField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		Schema.ChildRelationship relationship;
 		for (Schema.ChildRelationship childRow : descResult.getChildRelationships()){
@@ -406,7 +406,7 @@ private class A00_QueryFactoryTest {
             }   
         }
        	//explicitly assert object accessibility when creating the subselect
-		qf.subselectQuery(relationship).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
+		qf.subselectQuery(relationship).addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
 		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
@@ -432,13 +432,13 @@ private class A00_QueryFactoryTest {
         insert tsk;
 
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
+		qf.addField('name').addField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		//explicitly assert object accessibility when creating the subselect
 		//
 		Exception e;
 		try {
-			qf.subselectQuery('Tas').selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
+			qf.subselectQuery('Tas').addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
 		} catch (A00_QueryFactory.InvalidSubqueryRelationshipException ex) {
 			e = ex;   
 		}	
@@ -462,10 +462,10 @@ private class A00_QueryFactoryTest {
         insert tsk;
 
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name').selectField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
+		qf.addField('name').addField('Id').setCondition( 'name like \'%test%\'' ).addOrdering('CreatedDate', A00_QueryFactory.SortOrder.DESCENDING, true);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 		//explicitly assert object accessibility when creating the subselect
-		qf.subselectQuery(Task.SObjectType, true).selectField('Id').selectField('Subject').setCondition(' IsDeleted = false ');
+		qf.subselectQuery(Task.SObjectType, true).addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
 		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
 		List<Contact> contacts = Database.query(qf.toSOQL());
@@ -490,8 +490,8 @@ private class A00_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
-		qf.selectField('Id');
+		qf.addField('name');
+		qf.addField('Id');
 		qf.setCondition( 'name like \'%test%\'' );
 		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering('CreatedBy.Name', A00_QueryFactory.SortOrder.DESCENDING);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
@@ -505,7 +505,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
 		childQf.assertIsAccessible();
 		childQf.setEnforceFLS(true);
-		childQf.selectField('Id');
+		childQf.addField('Id');
 		A00_QueryFactory childQf2 = qf.subselectQuery(Task.SObjectType);
 		List<A00_QueryFactory> queries = qf.getSubselectQueries();
 		System.assert(queries != null);
@@ -523,8 +523,8 @@ private class A00_QueryFactoryTest {
 		cont.AccountId = acct.Id;
 		insert cont;
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
-		qf.selectField('email');
+		qf.addField('name');
+		qf.addField('email');
 		qf.setCondition( 'name like \'%test%\'' );
 		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering( 'CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING);
 		Schema.DescribeSObjectResult descResult = Account.SObjectType.getDescribe();
@@ -532,7 +532,7 @@ private class A00_QueryFactoryTest {
 		try {
 			SObjectType invalidType = null;
 			A00_QueryFactory childQf = qf.subselectQuery(invalidType);
-			childQf.selectField('Id');
+			childQf.addField('Id');
 		} catch (A00_QueryFactory.InvalidSubqueryRelationshipException ex) {
 			e = ex;
 		}	
@@ -550,15 +550,15 @@ private class A00_QueryFactoryTest {
 		cont.AccountId = acct.Id;
 		insert cont;
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
-		qf.selectField('name');
-		qf.selectField('email');
+		qf.addField('name');
+		qf.addField('email');
 		qf.setCondition( 'name like \'%test%\'' );
 		qf.addOrdering( new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) ).addOrdering('CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING);
 		Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
   
 		A00_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
-		childQf.selectField('Id');
-		childQf.selectField('Subject');
+		childQf.addField('Id');
+		childQf.addField('Subject');
 		Exception e;
 		try {
 			A00_QueryFactory subChildQf = childQf.subselectQuery(Task.SObjectType);
@@ -573,11 +573,11 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType);
 		qf.assertIsAccessible()
 		  .setEnforceFLS(true) 
-		  .selectField('createdby.name')
-		  .selectField(Contact.LastModifiedById)
+		  .addField('createdby.name')
+		  .addField(Contact.LastModifiedById)
 		  .selectFields(new List<SObjectField>{Contact.LastModifiedDate})
 		  .setEnforceFLS(false)
-		  .selectField(Contact.LastName)
+		  .addField(Contact.LastName)
 		  .selectFields(new List<SObjectField>{Contact.Id})
 		  .setCondition( 'name like \'%test%\'' )
 		  .setEnforceFLS(true)
@@ -631,7 +631,7 @@ private class A00_QueryFactoryTest {
 				try {
 					//set field to enforce FLS, then try to add a field.  
 					qf.setEnforceFLS(true);
-					qf.selectField('Name');
+					qf.addField('Name');
 				} catch (fflib_SecurityUtils.FlsException e) {
 					excThrown = true;
 				}	
@@ -676,7 +676,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType)
 		.setLimit(10)
 		.setCondition('id=12345')
-		.selectField('Description')
+		.addField('Description')
 		.addOrdering(new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) )
 		.addOrdering( new A00_QueryFactory.Ordering('Contact','CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING))
 		.setEnforceFLS(true);
@@ -696,7 +696,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf = new A00_QueryFactory(Account.SObjectType)
 		.setLimit(10)
 		.setCondition('id=12345')
-		.selectField('Description')
+		.addField('Description')
 		.addOrdering(new A00_QueryFactory.Ordering('Account','Name', A00_QueryFactory.SortOrder.ASCENDING) )
 		.addOrdering( new A00_QueryFactory.Ordering('Account','Description', A00_QueryFactory.SortOrder.DESCENDING))
 		.setEnforceFLS(true);
@@ -719,7 +719,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf = new A00_QueryFactory(Contact.SObjectType)
 		.setLimit(10)
 		.setCondition('id=12345')
-		.selectField('Description')
+		.addField('Description')
 		.addOrdering(new A00_QueryFactory.Ordering('Contact','name', A00_QueryFactory.SortOrder.ASCENDING) )
 		.addOrdering( new A00_QueryFactory.Ordering('Contact','CreatedDATE', A00_QueryFactory.SortOrder.DESCENDING))
 		.setEnforceFLS(true);
@@ -728,7 +728,7 @@ private class A00_QueryFactoryTest {
 		A00_QueryFactory qf2 = qf.deepClone()
 			.setLimit(200)
 			.setCondition('id=54321')
-			.selectField('Fax')
+			.addField('Fax')
 			.addOrdering( new A00_QueryFactory.Ordering('Contact','Fax', A00_QueryFactory.SortOrder.ASCENDING))
 			.setEnforceFLS(false);
 

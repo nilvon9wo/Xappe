@@ -35,7 +35,7 @@ public virtual class AAA_Product2Selector extends A00_SObjectSelector {
     public List<Product2> selectById(Set<Id> idSet, Schema.FieldSet fieldSet) {
         return (List<Product2>) Database.query(
                 this.newQueryFactory()
-                        .selectFieldSet(fieldSet)
+                        .addFields(fieldSet)
                         //.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                         .setCondition('Id IN :idSet')
                         //.query();

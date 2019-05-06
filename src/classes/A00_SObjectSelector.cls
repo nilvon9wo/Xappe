@@ -325,14 +325,14 @@ public abstract with sharing class A00_SObjectSelector
 	 *
 	 * // TODO: This should be consistant (ideally) with configureQueryFactory below
 	 **/
-	public void configureQueryFactoryFields(A00_QueryFactory queryFactory, String relationshipFieldPath)
+	public void injectChildFactoryFor(A00_QueryFactory queryFactory, String relationshipFieldPath)
 	{
 		// Add fields from selector prefixing the relationship path		
 		for(SObjectField field : getSObjectFieldList())		
-        	queryFactory.selectField(relationshipFieldPath + '.' + field.getDescribe().getName());
+        	queryFactory.addField(relationshipFieldPath + '.' + field.getDescribe().getName());
         // Automatically select the CurrencyIsoCode for MC orgs (unless the object is a known exception to the rule)
         if(Userinfo.isMultiCurrencyOrganization() && CURRENCY_ISO_CODE_ENABLED)
-            queryFactory.selectField(relationshipFieldPath+'.CurrencyIsoCode');		
+            queryFactory.addField(relationshipFieldPath+'.CurrencyIsoCode');
 	}
     
     /**
@@ -360,7 +360,7 @@ public abstract with sharing class A00_SObjectSelector
 	/**
 	 * Adds a subselect QueryFactory based on this selector to the given QueryFactor, returns the parentQueryFactory
 	 **/
-	public A00_QueryFactory addQueryFactorySubselect(A00_QueryFactory parentQueryFactory, String relationshipName)
+	public A00_QueryFactory injectParentFactoryFor(A00_QueryFactory parentQueryFactory, String relationshipName)
 	{
 		return addQueryFactorySubselect(parentQueryFactory, relationshipName, TRUE);
 	}
@@ -410,11 +410,11 @@ public abstract with sharing class A00_SObjectSelector
 	        List<Schema.FieldSet> fieldSetList = getSObjectFieldSetList();
 	        if(m_includeFieldSetFields && fieldSetList != null)
 	            for(Schema.FieldSet fieldSet : fieldSetList)
-	                queryFactory.selectFieldSet(fieldSet);
+	                queryFactory.addFields(fieldSet);
 	
 	        // Automatically select the CurrencyIsoCode for MC orgs (unless the object is a known exception to the rule)
 	        if(Userinfo.isMultiCurrencyOrganization() && CURRENCY_ISO_CODE_ENABLED)
-	            queryFactory.selectField('CurrencyIsoCode');
+	            queryFactory.addField('CurrencyIsoCode');
         }
         
         // Parse the getOrderBy()

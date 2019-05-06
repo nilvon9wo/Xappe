@@ -203,7 +203,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 	 * Selecting fields is idempotent, if this field is already selected calling this method will have no additional impact.
 	 * @param fieldName the API name of the field to add to the query's SELECT clause.
 	 **/
-	public A00_QueryFactory selectField(String fieldName){
+	public A00_QueryFactory addField(String fieldName){
 		fields.add( getFieldPath(fieldName) );
 		return this;
 	} 
@@ -213,7 +213,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 	 * @param field the {@link Schema.SObjectField} to select with this query.
 	 * @exception InvalidFieldException If the field is null {@code field}.
 	**/
-	public A00_QueryFactory selectField(Schema.SObjectField field){
+	public A00_QueryFactory addField(Schema.SObjectField field){
 		if(field == null)
 			throw new InvalidFieldException(null,this.table);
 		if (enforceFLS) 
@@ -273,7 +273,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 	/**
 	 * @see #selectFieldSet(Schema.FieldSet,Boolean)
 	**/
-	public A00_QueryFactory selectFieldSet(Schema.FieldSet fieldSet){
+	public A00_QueryFactory addFields(Schema.FieldSet fieldSet){
 		return selectFieldSet(fieldSet,true);
 	}
 	/**

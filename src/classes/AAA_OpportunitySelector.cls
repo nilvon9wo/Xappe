@@ -49,12 +49,12 @@ public virtual class AAA_OpportunitySelector extends A00_SObjectSelector {
     public List<Opportunity> selectByIdWithAccount(Set<Id> idSet) {
         return (List<Opportunity>) Database.query(
                 this.newQueryFactory(XAP_DAO_SOQL_SObjectSelectorAbs.EXCLUDE_SELECTOR_FIELDS)
-                        .selectField(Opportunity.Id)
-                        .selectField(Opportunity.Amount)
-                        .selectField(Opportunity.StageName)
-                        .selectField('Account.Name')
-                        .selectField('Account.AccountNumber')
-                        .selectField('Account.Owner.Name')
+                        .addField(Opportunity.Id)
+                        .addField(Opportunity.Amount)
+                        .addField(Opportunity.StageName)
+                        .addField('Account.Name')
+                        .addField('Account.AccountNumber')
+                        .addField('Account.Owner.Name')
                         //.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                         .setCondition('Id IN :idSet')
                         //.query();
@@ -66,19 +66,18 @@ public virtual class AAA_OpportunitySelector extends A00_SObjectSelector {
         A00_QueryFactory opportunityQueryFactory = this.newQueryFactory();
         System.debug('######### selectByIdWithProducts opportunityQueryFactory: ' + opportunityQueryFactory);
         A00_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
-                .addQueryFactorySubselect(opportunityQueryFactory, 'OpportunityLineItems');
+                .injectParentFactoryFor(opportunityQueryFactory, 'OpportunityLineItems');
 
         this.pricebookEnrtrySelector
-                .configureQueryFactoryFields(opportunityLineItemsQueryFactory, 'PricebookEntry');
+                .injectChildFactoryFor(opportunityLineItemsQueryFactory, 'PricebookEntry');
 
         this.pricebook2Selector
-                .configureQueryFactoryFields(opportunityLineItemsQueryFactory, 'PricebookEntry.Pricebook2');
+                .injectChildFactoryFor(opportunityLineItemsQueryFactory, 'PricebookEntry.Pricebook2');
 
         this.product2SelectorSelector
-                .configureQueryFactoryFields(opportunityLineItemsQueryFactory, 'PricebookEntry.Product2');
-
+                .injectChildFactoryFor(opportunityLineItemsQueryFactory, 'PricebookEntry.Product2');
+ 
         return (List<Opportunity>) Database.query(
-
                 opportunityQueryFactory
                         //.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                         .setCondition('Id IN :idSet')

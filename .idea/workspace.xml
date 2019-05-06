@@ -4,31 +4,13 @@
     <bookmark url="file://$PROJECT_DIR$/src/classes/NestValidator1.cls" line="47" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="Created some tests for Product Selector">
-      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
+    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_ApplicationTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_ApplicationTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactory.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactory.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactory.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactoryTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_QueryFactoryTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/A00_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactory.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" afterDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,6 +30,33 @@
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/IlluminatedCloud/TrailheadPlayground15/OfflineSymbolTable.zip!/PricebookEntry.cls">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classes/A00_QueryFactory.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -60,7 +69,7 @@
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -202,16 +211,16 @@
         <option value="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls" />
-        <option value="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls" />
-        <option value="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/fflib_ApplicationTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/fflib_QueryFactoryTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/A00_QueryFactoryTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" />
       </list>
     </option>
   </component>
@@ -231,8 +240,8 @@
       <ProjectWorkspaceSettings>
         <option name="anonymousApexSettings">
           <AnonymousApexSettings>
-            <option name="documentText" value="Set&lt;Id&gt; oppIdSet = new Map&lt;Id, Opportunity&gt;([&#10;        SELECT Id&#10;        FROM Opportunity&#10;        LIMIT 10&#10;]).keySet();&#10;&#10;DAO_OpportunitySelector selector = DAO_OpportunitySelector.getInstance();&#10;&#10;System.debug('## :' + selector.selectByIdWithProducts(oppIdSet));" />
-            <option name="splitterProportion" value="0.080080755" />
+            <option name="documentText" value="Set&lt;Id&gt; oppLineIdSet = new Map&lt;Id, OpportunityLineItem&gt;([&#10;        SELECT Id&#10;        FROM OpportunityLineItem&#10;        LIMIT 100&#10;]).keySet();&#10;&#10;Set&lt;Id&gt; oppIdSet = new Map&lt;Id, Opportunity&gt;([&#10;        SELECT Id&#10;        FROM Opportunity&#10;]).keySet();&#10;&#10;&#10;AAA_OpportunitySelector selector = AAA_OpportunitySelector.getInstance();&#10;&#10;System.debug('## :' + selector.selectByIdWithProducts(oppIdSet));" />
+            <option name="splitterProportion" value="0.38903925" />
           </AnonymousApexSettings>
         </option>
         <option name="connectionWorkspaceSettings">
@@ -242,16 +251,17 @@
                 <ConnectionWorkspaceSettings>
                   <option name="buildSuccessDatesBySourceRootRelativePath">
                     <map>
-                      <entry key="CLASSES/A00_APPLICATIONTEST.CLS" value="1557186140000" />
-                      <entry key="CLASSES/A00_QUERYFACTORY.CLS" value="1557186113000" />
-                      <entry key="CLASSES/A00_QUERYFACTORYTEST.CLS" value="1557186154000" />
-                      <entry key="CLASSES/A00_SOBJECTSELECTOR.CLS" value="1557186113000" />
-                      <entry key="CLASSES/A00_SOBJECTSELECTORTEST.CLS" value="1557186113000" />
-                      <entry key="CLASSES/AAA_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557186052000" />
-                      <entry key="CLASSES/AAA_OPPORTUNITYSELECTOR.CLS" value="1557186113000" />
-                      <entry key="CLASSES/AAA_PRICEBOOK2SELECTOR.CLS" value="1557186052000" />
-                      <entry key="CLASSES/AAA_PRICEBOOKENRTRYSELECTOR.CLS" value="1557186052000" />
-                      <entry key="CLASSES/AAA_PRODUCT2SELECTOR.CLS" value="1557186052000" />
+                      <entry key="CLASSES/A00_APPLICATIONTEST.CLS" value="1557187098000" />
+                      <entry key="CLASSES/A00_QUERYFACTORY.CLS" value="1557187098000" />
+                      <entry key="CLASSES/A00_QUERYFACTORYTEST.CLS" value="1557187098000" />
+                      <entry key="CLASSES/A00_SOBJECTSELECTOR.CLS" value="1557187109000" />
+                      <entry key="CLASSES/A00_SOBJECTSELECTORTEST.CLS" value="1557187098000" />
+                      <entry key="CLASSES/AAA_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557187098000" />
+                      <entry key="CLASSES/AAA_OPPORTUNITYSELECTOR.CLS" value="1557187109000" />
+                      <entry key="CLASSES/AAA_PRICEBOOK2SELECTOR.CLS" value="1557187098000" />
+                      <entry key="CLASSES/AAA_PRICEBOOKENRTRYSELECTOR.CLS" value="1557187098000" />
+                      <entry key="CLASSES/AAA_PRODUCT2SELECTOR.CLS" value="1557187098000" />
+                      <entry key="CLASSES/AAA_PRODUCT2SELECTORINTTEST.CLS" value="1557187098000" />
                       <entry key="CLASSES/ACN_TRIGGEREVENTCOORDINATORINTTEST.CLS" value="1556453100000" />
                       <entry key="CLASSES/ACN_TRIGGEREVENTCOORDINATORTEST.CLS" value="1556453382000" />
                       <entry key="CLASSES/AUTOCREATEDCONFIGSELFREG1556310153652.CLS" value="1556730883000" />
@@ -2633,14 +2643,7 @@
       <workItem from="1557162296624" duration="4069000" />
       <workItem from="1557167815356" duration="9610000" />
       <workItem from="1557177444919" duration="4623000" />
-      <workItem from="1557185225679" duration="999000" />
-    </task>
-    <task id="LOCAL-00044" summary="Refactored set extractor to make it more flexible.">
-      <created>1556697617832</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1556697617832</updated>
+      <workItem from="1557185225679" duration="1909000" />
     </task>
     <task id="LOCAL-00045" summary="Deleted useless mock.">
       <created>1556697670499</created>
@@ -2978,7 +2981,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557169069649</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Refactored some DAOs to use FFLib; renamed interesting FFLib classes to make them &quot;stand out&quot;.">
+      <created>1557186312690</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1557186312690</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3014,13 +3024,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135642000" />
+    <option name="totallyTimeSpent" value="136552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.22121535" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.22121535" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -3035,9 +3045,9 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.77025586" weight="0.32978722" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="SOQL Query" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.35127932" side_tool="true" visible="true" weight="0.40106383" />
-      <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.80383795" weight="0.29893616" />
-      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6487207" visible="true" weight="0.40106383" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.19669509" side_tool="true" visible="true" weight="0.43723404" />
+      <window_info active="true" anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.8033049" visible="true" weight="0.43723404" />
+      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6487207" weight="0.40106383" />
       <window_info anchor="bottom" id="Messages" order="15" />
       <window_info anchor="bottom" id="Illuminated Cloud" order="16" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -3065,7 +3075,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Renamed MapSwapper since it doesn't have much to do with SObjects." />
     <MESSAGE value="Created a method to reverse index maps.  Doesn't exactly replace the MapSwapper, but it achieves much the same purpose in a reusable way." />
     <MESSAGE value="Fixed error message." />
     <MESSAGE value="Enabled supporting none one-to-one key-value relationships in reverse index." />
@@ -3090,20 +3099,13 @@
     <MESSAGE value="Created Constants for abstract selector." />
     <MESSAGE value="Created more example Selectors." />
     <MESSAGE value="Created some tests for Product Selector" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created some tests for Product Selector" />
+    <MESSAGE value="Refactored some DAOs to use FFLib; renamed interesting FFLib classes to make them &quot;stand out&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored some DAOs to use FFLib; renamed interesting FFLib classes to make them &quot;stand out&quot;." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Xappe$DAO_Product2SelectorIntTest_testSelectByIdShouldReturnValuesPerExampleFieldSet.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557168978509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_OrClause.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_CompareOpEnumHelper.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_AndClause.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -3302,15 +3304,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-end-line="22" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -3320,31 +3313,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelectorTest.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/A00_ApplicationTest.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3360,6 +3331,48 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_QueryFactory.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectSelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/IlluminatedCloud/TrailheadPlayground15/OfflineSymbolTable.zip!/PricebookEntry.cls">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
         </state>
       </provider>
     </entry>
