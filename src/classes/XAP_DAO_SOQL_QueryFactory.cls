@@ -247,6 +247,11 @@ public class XAP_DAO_SOQL_QueryFactory {
         return this.querier.selectFor(this.query.toQueryInterpolation());
     }
 
+
+    public Database.QueryLocator getQueryLocator() {
+        return this.querier.getQueryLocatorFor(this.query.toQueryInterpolation());
+    }
+
     // Convert ------------------------------------------------------------------------------------------------
 
     public String toSoql() {

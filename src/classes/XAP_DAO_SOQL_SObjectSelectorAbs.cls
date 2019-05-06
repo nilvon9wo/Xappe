@@ -93,17 +93,16 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
     }
 
     public virtual List<SObject> selectById(Set<Id> idSet) {
-        return (List<SObject>)
-                this.newQueryFactory()
-                        .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
-                        .query();
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .query();
     }
 
-    /* FIXME:
     public Database.QueryLocator queryLocatorById(Set<Id> idSet) {
-        return Database.getQueryLocator(this.buildQuerySObjectById(idSet));
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .getQueryLocator();
     }
-     */
 
     public XAP_DAO_SOQL_QueryFactory newQueryFactory() {
         return this.newQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, DEFAULT_INCLUDE_SELECTOR_FIELDS);

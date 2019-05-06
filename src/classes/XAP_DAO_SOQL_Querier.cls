@@ -28,12 +28,18 @@ public virtual class XAP_DAO_SOQL_Querier {
         );
     }
 
+    public Database.QueryLocator getQueryLocatorFor(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
+        return Database.getQueryLocator(
+                this.toSoql(queryInterpolation)
+        );
+    }
+
     public String toSoql(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
         Integer requiredBindingSize = queryInterpolation.objectsByKeyMap.keySet().size();
         if (requiredBindingSize > LAST_OBJECT_NUMBER) {
             throw new RebindObjectsLimitException(
-                    'XAP_DAO_SOQL_Querier currently only supports ' + LAST_OBJECT_NUMBER +' bindings.'
-                    + '  Attempted query requires ' + requiredBindingSize + ' bindings'
+                    'XAP_DAO_SOQL_Querier currently only supports ' + LAST_OBJECT_NUMBER + ' bindings.'
+                            + '  Attempted query requires ' + requiredBindingSize + ' bindings'
             );
         }
 
