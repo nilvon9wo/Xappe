@@ -1,9 +1,25 @@
 public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SObjectSelectorIntf {
-    private static final Boolean DEFAULT_INCLUDE_FIELDSET_FIELDS = false;
-    private static final Boolean DEFAULT_INCLUDE_SELECTOR_FIELDS = true;
-    private static final Boolean DEFAULT_ENFORCE_CRUD = true;
-    private static final Boolean DEFAULT_ENFORCE_FLS = false;
-    private static final Boolean DEFAULT_SORT_SELECT_FIELDS = true;
+    public static final Boolean INCLUDE_SELECTOR_FIELDS = true;
+    public static final Boolean EXCLUDE_SELECTOR_FIELDS = false;
+
+    public static final Boolean INCLUDE_FIELDSET_FIELDS = true;
+    public static final Boolean EXCLUDE_FIELDSET_FIELDS = false;
+
+    public static final Boolean INCLUDE_ENFORCE_CRUD = true;
+    public static final Boolean EXCLUDE_ENFORCE_CRUD = false;
+
+    public static final Boolean INCLUDE_ENFORCE_FLS = true;
+    public static final Boolean EXCLUDE_ENFORCE_FLS = false;
+
+    public static final Boolean SORTTED_SELECT_FIELDS = true;
+    public static final Boolean UNSORTTED_SELECT_FIELDS = false;
+
+
+    private static final Boolean DEFAULT_INCLUDE_FIELDSET_FIELDS = EXCLUDE_FIELDSET_FIELDS;
+    private static final Boolean DEFAULT_INCLUDE_SELECTOR_FIELDS = INCLUDE_SELECTOR_FIELDS;
+    private static final Boolean DEFAULT_ENFORCE_CRUD = INCLUDE_ENFORCE_CRUD;
+    private static final Boolean DEFAULT_ENFORCE_FLS = EXCLUDE_ENFORCE_FLS;
+    private static final Boolean DEFAULT_SORT_SELECT_FIELDS = SORTTED_SELECT_FIELDS;
     private static final String CURRENCY_ISO_FIELDNAME = 'CurrencyIsoCode';
 
     public XAP_DAO_SOQL_SObjectSelectorAbs(
