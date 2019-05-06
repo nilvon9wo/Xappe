@@ -66,7 +66,7 @@ public virtual class XAP_DAO_SOQL_Querier {
         public abstract String rebind(String localizedTemplate, String key, Object value);
 
         protected String rebind(String localizedTemplate, String oldKey, String newKey) {
-            return localizedTemplate.replace('${' + oldKey + '}', ':' + newKey);
+            return localizedTemplate.replace('${' + oldKey + '}', newKey);
         }
     }
 

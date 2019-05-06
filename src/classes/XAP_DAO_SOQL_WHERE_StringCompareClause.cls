@@ -15,9 +15,8 @@ public class XAP_DAO_SOQL_WHERE_StringCompareClause implements XAP_DAO_SOQL_WHER
 
 	public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
 		String comparisonOperator = XAP_DAO_SOQL_WHERE_CompareOpEnumHelper.get(this.comparisonOperator);
-		String template = fieldName + comparisonOperator + '${stringValue}';
+		String template = fieldName + comparisonOperator + ' ' + this.stringValue;
 		return new XAP_DAO_SOQL_QueryInterpolation(template, new Map<String, Object>{
-				'stringValue' => this.stringValue
 		});
 	}
 }

@@ -15,7 +15,7 @@ public class XAP_DAO_SOQL_WHERE_DateComparisonClause implements XAP_DAO_SOQL_WHE
  
 	public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
 		String comparisonOperator = XAP_DAO_SOQL_WHERE_CompareOpEnumHelper.get(this.comparisonOperator);
-		String template = fieldName + comparisonOperator + '${dateValue}';
+		String template = fieldName + comparisonOperator + ':${dateValue}';
 		return new XAP_DAO_SOQL_QueryInterpolation(template, new Map<String, Object>{
 				'dateValue' => this.dateValue
 		});

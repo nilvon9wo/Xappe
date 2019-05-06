@@ -16,7 +16,7 @@ public class XAP_DAO_SOQL_WHERE_InIdSetClause implements XAP_DAO_SOQL_WHERE_Clau
     }
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        String template = fieldName + ' IN ${idSet}';
+        String template = fieldName + ' IN :${idSet}';
         return new XAP_DAO_SOQL_QueryInterpolation(template, new Map<String, Object>{
                 'idSet' => this.idSet
         });

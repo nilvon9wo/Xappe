@@ -8,7 +8,7 @@ public class XAP_DAO_SOQL_WHERE_InStringSetClause implements XAP_DAO_SOQL_WHERE_
     }
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        String template = fieldName + ' IN  ${stringSet}';
+        String template = fieldName + ' IN  :${stringSet}';
         return new XAP_DAO_SOQL_QueryInterpolation(template, new Map<String, Object>{
                 'stringSet' => this.stringSet
         });
