@@ -11,18 +11,14 @@ public class XAP_DAO_SOQL_Query {
     public XAP_DAO_SOQL_Query(Schema.SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
         this.securityUtils = securityUtils;
         this.sObjectType = sObjectType;
-        this.enforceFLS = EXCLUDING_ENFORCE_FLS;
-        this.fieldSet = new Set<String>();
-        this.orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>();
-        this.sortSelectFields = SORTTED_SELECT_FIELDS;
     }
 
     public XAP_DAO_SOQL_Query(Schema.SObjectType sObjectType) {
         this(sObjectType, XAP_DAO_SOQL_SecurityUtils.getInstance());
     }
 
-    public Set<String> fieldSet;
-    public List<XAP_DAO_SOQL_QuerySortOrdering> orderingList;
+    public Set<String> fieldSet = new Set<String>();
+    public List<XAP_DAO_SOQL_QuerySortOrdering> orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>();
 
     public Schema.ChildRelationship relationship;
     public Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> queryFactoryByRelationshipMap;
@@ -30,8 +26,8 @@ public class XAP_DAO_SOQL_Query {
     public XAP_DAO_SOQL_WHERE_ClauseIntf conditionExpression;
     public Integer limitCount;
     public Integer offsetCount;
-    public Boolean enforceFLS;
-    public Boolean sortSelectFields;
+    public Boolean enforceFLS = EXCLUDING_ENFORCE_FLS;
+    public Boolean sortSelectFields = SORTTED_SELECT_FIELDS;
 
     public List<XAP_DAO_SOQL_QuerySortOrdering> setOrdering(List<XAP_DAO_SOQL_QuerySortOrdering> orderingList) {
         this.orderingList = orderingList;
