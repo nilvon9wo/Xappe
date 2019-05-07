@@ -11,6 +11,14 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
     public static final Boolean SORTTED_SELECT_FIELDS = true;
     public static final Boolean UNSORTTED_SELECT_FIELDS = false;
 
+    public static final Boolean INCLUDE_SELECTOR_FIELDS = true;
+    public static final Boolean EXCLUDE_SELECTOR_FIELDS = false;
+
+    private static final String CURRENCY_CODE_FIELDNAME = 'CurrencyIsoCode';
+    private static final String DEFAULT_ORDER_FIELDNAME = 'CreatedDate';
+
+    private String orderBy;
+
     private Boolean isIncludingFieldSetFields;
     private Boolean isEnforcingFLS;
     private Boolean isEnforcingCRUD;
@@ -41,26 +49,17 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
         this(EXCLUDE_FIELDSET_FIELDS);
     }
 
-    private static final String CURRENCY_ISO_CODE_FIELD_NAME = 'currencyisocode';
-    private static final String CURRENCY_ISO_CODE_PATH = '.CurrencyIsoCode';
-    private static final String DEFAULT_ORDER_BY = 'CreatedDate';
-
-    public static final Boolean INCLUDE_SELECTOR_FIELDS = true;
-    public static final Boolean EXCLUDE_SELECTOR_FIELDS = false;
-
     private Boolean isCurrencyIsoCodeEnabled {
         get {
             if (this.isCurrencyIsoCodeEnabled == null) {
                 this.isCurrencyIsoCodeEnabled = this.describeWrapper.getFieldsMap()
                         .keySet()
-                        .contains(CURRENCY_ISO_CODE_FIELD_NAME);
+                        .contains(CURRENCY_CODE_FIELDNAME.toLowerCase());
             }
             return this.isCurrencyIsoCodeEnabled;
         }
         set;
     }
-
-    private String orderBy;
 
     private XAP_DESC_SObjectDescribe describeWrapper {
         get {
@@ -81,7 +80,7 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
 
     public virtual String getOrderBy() {
         if (String.isBlank(this.orderBy)) {
-            this.orderBy = DEFAULT_ORDER_BY;
+            this.orderBy = DEFAULT_ORDER_FIELDNAME;
             if (this.describeWrapper.getNameField() != null) {
                 this.orderBy = this.describeWrapper.getNameField()
                         .getDescribe()
@@ -107,20 +106,34 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
         return this.describeWrapper.getDescribe().getName();
     }
 
+    /*
+    public virtual List<SObject> selectById(Set<Id> idSet) {
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .query();
+    }
+     */
     public List<SObject> selectById(Set<Id> idSet) {
         return Database.query(this.buildQuerySObjectById());
     }
 
+    /*
+    public Database.QueryLocator getQueryLocatorById(Set<Id> idSet) {
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .getQueryLocator();
+    }
+     */
     public Database.QueryLocator queryLocatorById(Set<Id> idSet) {
         return Database.getQueryLocator(this.buildQuerySObjectById());
     }
 
     public A00_QueryFactory createQueryFactory() {
-        return createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, INCLUDE_SELECTOR_FIELDS);
+        return this.createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, INCLUDE_SELECTOR_FIELDS);
     }
 
     public A00_QueryFactory createQueryFactory(Boolean includeSelectorFields) {
-        return createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, includeSelectorFields);
+        return this.createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, includeSelectorFields);
     }
 
     public A00_QueryFactory createQueryFactory(Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields) {
@@ -138,7 +151,7 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
         }
 
         if (UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
-            queryFactory.addField(relationshipFieldPath + CURRENCY_ISO_CODE_PATH);
+            queryFactory.addField(relationshipFieldPath + '.' + CURRENCY_CODE_FIELDNAME);
         }
     }
 
@@ -201,7 +214,7 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
             }
 
             if (UserInfo.isMultiCurrencyOrganization() && isCurrencyIsoCodeEnabled) {
-                queryFactory.addField(CURRENCY_ISO_CODE_FIELD_NAME);
+                queryFactory.addField(CURRENCY_CODE_FIELDNAME);
             }
         }
 

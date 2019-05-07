@@ -129,7 +129,7 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
             Boolean includeSelectorFields
     ) {
         return this.configureQueryFactory(
-                new XAP_DAO_SOQL_QueryFactory(this.getSObjectType2()),
+                new XAP_DAO_SOQL_QueryFactory(this.getSObjectType()),
                 assertCRUD,
                 enforceFLS,
                 includeSelectorFields
