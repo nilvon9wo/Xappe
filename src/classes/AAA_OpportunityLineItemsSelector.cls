@@ -1,4 +1,4 @@
-public class AAA_OpportunityLineItemsSelector extends A00_SObjectSelector {
+public class AAA_OpportunityLineItemsSelector extends A00_SObjectSelectorAbs {
     private AAA_OpportunityLineItemsSelector() {
     }
 

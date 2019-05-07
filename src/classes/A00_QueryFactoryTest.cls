@@ -612,7 +612,7 @@ private class A00_QueryFactoryTest {
 				try {
 					//check to see if this record is accessible, it isn't.
 					qf.assertIsAccessible();
-				} catch (fflib_SecurityUtils.CrudException e) {
+				} catch (A00_SecurityUtils.CrudException e) {
 					excThrown = true;
 				}	
 				System.assert(excThrown);
@@ -632,7 +632,7 @@ private class A00_QueryFactoryTest {
 					//set field to enforce FLS, then try to add a field.  
 					qf.setEnforceFLS(true);
 					qf.addField('Name');
-				} catch (fflib_SecurityUtils.FlsException e) {
+				} catch (A00_SecurityUtils.FlsException e) {
 					excThrown = true;
 				}	
 				System.assert(excThrown);

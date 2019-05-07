@@ -1,4 +1,4 @@
-public virtual class AAA_OpportunitySelector extends A00_SObjectSelector {
+public virtual class AAA_OpportunitySelector extends A00_SObjectSelectorAbs {
     AAA_OpportunityLineItemsSelector opportunityLineItemsSelector;
     AAA_PricebookEnrtrySelector pricebookEnrtrySelector;
     AAA_Pricebook2Selector pricebook2Selector;
@@ -48,7 +48,7 @@ public virtual class AAA_OpportunitySelector extends A00_SObjectSelector {
 
     public List<Opportunity> selectByIdWithAccount(Set<Id> idSet) {
         return (List<Opportunity>) Database.query(
-                this.newQueryFactory(XAP_DAO_SOQL_SObjectSelectorAbs.EXCLUDE_SELECTOR_FIELDS)
+                this.createQueryFactory(XAP_DAO_SOQL_SObjectSelectorAbs.EXCLUDE_SELECTOR_FIELDS)
                         .addField(Opportunity.Id)
                         .addField(Opportunity.Amount)
                         .addField(Opportunity.StageName)
@@ -63,7 +63,7 @@ public virtual class AAA_OpportunitySelector extends A00_SObjectSelector {
     }
 
     public List<Opportunity> selectByIdWithProducts(Set<Id> idSet) {
-        A00_QueryFactory opportunityQueryFactory = this.newQueryFactory();
+        A00_QueryFactory opportunityQueryFactory = this.createQueryFactory();
         System.debug('######### selectByIdWithProducts opportunityQueryFactory: ' + opportunityQueryFactory);
         A00_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
                 .injectParentFactoryFor(opportunityQueryFactory, 'OpportunityLineItems');
@@ -76,7 +76,7 @@ public virtual class AAA_OpportunitySelector extends A00_SObjectSelector {
 
         this.product2SelectorSelector
                 .injectChildFactoryFor(opportunityLineItemsQueryFactory, 'PricebookEntry.Product2');
- 
+
         return (List<Opportunity>) Database.query(
                 opportunityQueryFactory
                         //.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))

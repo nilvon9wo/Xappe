@@ -29,19 +29,19 @@
  * 
  * NOTE: Aspects of this where developed before recent improvements to String handling, as such could likely be enhanced at this stage.
  **/
-public virtual class fflib_StringBuilder
+public virtual class A00_StringBuilder
 {
 	protected List<String> buffer = new List<String>();
 	
 	/**
 	 * Construct an empty StringBuilder
 	 **/
-	public fflib_StringBuilder() {}
+	public A00_StringBuilder() {}
 	
 	/**
 	 * Construct a StringBuilder with the given values
 	 **/
-	public fflib_StringBuilder(List<String> values)
+	public A00_StringBuilder(List<String> values)
 	{
 		add(values);
 	}
@@ -78,7 +78,7 @@ public virtual class fflib_StringBuilder
 	/**
 	 * Subclasses the StringBuilder to produce a comma delimited contactination of strings
 	 **/
-	public virtual with sharing class CommaDelimitedListBuilder extends fflib_StringBuilder
+	public virtual with sharing class CommaDelimitedListBuilder extends A00_StringBuilder
 	{
 		String itemPrefix = '';
 		String delimiter = ',';

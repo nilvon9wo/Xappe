@@ -9,7 +9,7 @@
 * Copyright (c) 2013 FinancialForce.com, inc. All rights reserved.
 */
 
-public interface fflib_ISObjectSelector
+public interface A00_SObjectSelectorIntf
 {
 	/**
 	 * Provides the SObjectType for the object the given Selector is providing query logic for

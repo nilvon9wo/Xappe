@@ -25,7 +25,7 @@
 **/
 
 @isTest
-private class fflib_SecurityUtilsTest {
+private class A00_SecurityUtilsTest {
 	static User setupTestUser(String profileName){
 		//username global uniqueness is still enforced in tests 
 		//make sure we get something unique to avoid issues with parallel tests
@@ -56,40 +56,40 @@ private class fflib_SecurityUtilsTest {
 		User testUser = setupTestUser('Read Only');
 		System.runAs(testUser){
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkFieldIsInsertable(Account.SObjectType, 'naMe');
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkFieldIsInsertable(Account.SObjectType, 'naMe');
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to insert Account.Name');
-				System.assert(ex instanceof fflib_SecurityUtils.FlsException, 'Expected an FlsException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.FlsException, 'Expected an FlsException, got '+ex.getTypeName());
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkFieldIsReadable(Contact.SObjectType, 'LastNAME');
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkFieldIsReadable(Contact.SObjectType, 'LastNAME');
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertEquals(null, ex, 'Read only profile should be able to read Contact.LastName');
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkFieldIsUpdateable(Lead.SObjectType, 'cOMPANY');
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkFieldIsUpdateable(Lead.SObjectType, 'cOMPANY');
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to update Lead.Company');
-				System.assert(ex instanceof fflib_SecurityUtils.FlsException, 'Expected an FlsException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.FlsException, 'Expected an FlsException, got '+ex.getTypeName());
 			}
 
-			fflib_SecurityUtils.BYPASS_INTERNAL_FLS_AND_CRUD = true;
+			A00_SecurityUtils.BYPASS_INTERNAL_FLS_AND_CRUD = true;
 			{ //no exceptions, despite no rights
-				fflib_SecurityUtils.checkFieldIsInsertable(Account.SObjectType, 'naMe');
-				fflib_SecurityUtils.checkFieldIsReadable(Contact.SObjectType, 'LastNAME');
-				fflib_SecurityUtils.checkFieldIsUpdateable(Lead.SObjectType, 'cOMPANY');
+				A00_SecurityUtils.checkFieldIsInsertable(Account.SObjectType, 'naMe');
+				A00_SecurityUtils.checkFieldIsReadable(Contact.SObjectType, 'LastNAME');
+				A00_SecurityUtils.checkFieldIsUpdateable(Lead.SObjectType, 'cOMPANY');
 			}
 		}
 	}
@@ -99,51 +99,51 @@ private class fflib_SecurityUtilsTest {
 		User testUser = setupTestUser('Read Only');
 		System.runAs(testUser){
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkObjectIsInsertable(Account.SObjectType);
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkObjectIsInsertable(Account.SObjectType);
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to insert Account');
-				System.assert(ex instanceof fflib_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkObjectIsReadable(Contact.SObjectType);
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkObjectIsReadable(Contact.SObjectType);
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertEquals(null, ex, 'Read only profile should be able to read Contact');
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkObjectIsUpdateable(Lead.SObjectType);
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkObjectIsUpdateable(Lead.SObjectType);
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to update Lead');
-				System.assert(ex instanceof fflib_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkObjectIsDeletable(Opportunity.SObjectType);
-				}catch(fflib_SecurityUtils.SecurityException e){
+					A00_SecurityUtils.checkObjectIsDeletable(Opportunity.SObjectType);
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to delete Opportunity');
-				System.assert(ex instanceof fflib_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
 			}
 
-			fflib_SecurityUtils.BYPASS_INTERNAL_FLS_AND_CRUD = true;
+			A00_SecurityUtils.BYPASS_INTERNAL_FLS_AND_CRUD = true;
 			{ //no exceptions, despite no rights
-				fflib_SecurityUtils.checkObjectIsInsertable(Account.SObjectType);
-				fflib_SecurityUtils.checkObjectIsReadable(Contact.SObjectType);
-				fflib_SecurityUtils.checkObjectIsUpdateable(Lead.SObjectType);
-				fflib_SecurityUtils.checkObjectIsDeletable(Opportunity.SObjectType);
+				A00_SecurityUtils.checkObjectIsInsertable(Account.SObjectType);
+				A00_SecurityUtils.checkObjectIsReadable(Contact.SObjectType);
+				A00_SecurityUtils.checkObjectIsUpdateable(Lead.SObjectType);
+				A00_SecurityUtils.checkObjectIsDeletable(Opportunity.SObjectType);
 			}
 		}
 	}
@@ -153,9 +153,9 @@ private class fflib_SecurityUtilsTest {
 		User testUser = setupTestUser('Read Only');
 		System.runAs(testUser){
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkInsert(
+					A00_SecurityUtils.checkInsert(
 						Account.SObjectType,
 						new List<String>{
 							'Name',
@@ -163,16 +163,16 @@ private class fflib_SecurityUtilsTest {
 							'ownerId'
 						}
 					);
-				}catch(fflib_SecurityUtils.SecurityException e){
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to insert Account');
-				System.assert(ex instanceof fflib_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkRead(
+					A00_SecurityUtils.checkRead(
 						Contact.SObjectType,
 						new List<String>{
 							'LastName',
@@ -180,15 +180,15 @@ private class fflib_SecurityUtilsTest {
 							'ownerId'
 						}
 					);
-				}catch(fflib_SecurityUtils.SecurityException e){
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertEquals(null, ex, 'Read only profile should be able to read Contact');
 			}
 			{
-				fflib_SecurityUtils.SecurityException ex;
+				A00_SecurityUtils.SecurityException ex;
 				try{
-					fflib_SecurityUtils.checkUpdate(
+					A00_SecurityUtils.checkUpdate(
 						Lead.SObjectType,
 						new List<String>{
 							'LastName',
@@ -196,16 +196,16 @@ private class fflib_SecurityUtilsTest {
 							'cOMPANY'
 						}
 					);
-				}catch(fflib_SecurityUtils.SecurityException e){
+				}catch(A00_SecurityUtils.SecurityException e){
 					ex = e;
 				}
 				System.assertNotEquals(null, ex, 'Read only profile should not be able to update Lead');
-				System.assert(ex instanceof fflib_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
+				System.assert(ex instanceof A00_SecurityUtils.CrudException, 'Expected an CrudException, got '+ex.getTypeName());
 			}
 
-			fflib_SecurityUtils.BYPASS_INTERNAL_FLS_AND_CRUD = true;
+			A00_SecurityUtils.BYPASS_INTERNAL_FLS_AND_CRUD = true;
 			{ //no exceptions, despite no rights
-				fflib_SecurityUtils.checkInsert(
+				A00_SecurityUtils.checkInsert(
 					Account.SObjectType,
 					new List<String>{
 						'Name',
@@ -213,7 +213,7 @@ private class fflib_SecurityUtilsTest {
 						'ownerId'
 					}
 				);
-				fflib_SecurityUtils.checkRead(
+				A00_SecurityUtils.checkRead(
 					Contact.SObjectType,
 					new List<String>{
 						'LastName',
@@ -221,7 +221,7 @@ private class fflib_SecurityUtilsTest {
 						'ownerId'
 					}
 				);
-				fflib_SecurityUtils.checkUpdate(
+				A00_SecurityUtils.checkUpdate(
 					Lead.SObjectType,
 					new List<String>{
 						'LastName',
@@ -237,7 +237,7 @@ private class fflib_SecurityUtilsTest {
 	static void sysadmin_objectAndField_access() {
 		User testUser = setupTestUser('System Administrator');
 		System.runAs(testUser){
-			fflib_SecurityUtils.checkInsert(
+			A00_SecurityUtils.checkInsert(
 				Account.SObjectType,
 				new List<Schema.SObjectField>{
 					Account.SObjectType.fields.Name,
@@ -245,7 +245,7 @@ private class fflib_SecurityUtilsTest {
 					Account.SObjectType.fields.ownerId
 				}
 			);
-			fflib_SecurityUtils.checkRead(
+			A00_SecurityUtils.checkRead(
 				Contact.SObjectType,
 				new List<Schema.SObjectField>{
 					Contact.SObjectType.fields.LastName,
@@ -253,7 +253,7 @@ private class fflib_SecurityUtilsTest {
 					Contact.SObjectType.fields.ownerId
 				}
 			);
-			fflib_SecurityUtils.checkUpdate(
+			A00_SecurityUtils.checkUpdate(
 				Lead.SObjectType,
 				new List<Schema.SObjectField>{
 					Lead.SObjectType.fields.LastName,

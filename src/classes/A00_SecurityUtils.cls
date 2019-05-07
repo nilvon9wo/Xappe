@@ -28,7 +28,7 @@
  * Utility class for checking FLS/CRUD. NOTE: all "check" methods will throw a SecurityException (or subclass) if the
  * user does not have the proper security granted.
  **/
-public class fflib_SecurityUtils  
+public class A00_SecurityUtils
 {
     @testVisible 
     private Enum OperationType { CREATE, READ, MODIFY, DEL } //UPDATE and DELETE are reserved words
@@ -207,7 +207,7 @@ public class fflib_SecurityUtils
     **/
     public static void checkFieldIsInsertable(SObjectType objType, String fieldName)
     {
-        checkFieldIsInsertable(objType, fflib_SObjectDescribe.getDescribe(objType).getField(fieldName));
+        checkFieldIsInsertable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**
@@ -237,7 +237,7 @@ public class fflib_SecurityUtils
     **/
     public static void checkFieldIsReadable(SObjectType objType, String fieldName)
     {
-    	checkFieldIsReadable(objType, fflib_SObjectDescribe.getDescribe(objType).getField(fieldName));
+    	checkFieldIsReadable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**
@@ -268,7 +268,7 @@ public class fflib_SecurityUtils
     **/    
     public static void checkFieldIsUpdateable(SObjectType objType, String fieldName)
     {
-        checkFieldIsUpdateable(objType, fflib_SObjectDescribe.getDescribe(objType).getField(fieldName));
+        checkFieldIsUpdateable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**

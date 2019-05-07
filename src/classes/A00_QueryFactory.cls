@@ -86,11 +86,11 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 
 	private String getFieldPath(String fieldName){
 		if(!fieldName.contains('.')){ //single field
-			Schema.SObjectField token = fflib_SObjectDescribe.getDescribe(table).getField(fieldName.toLowerCase());
+			Schema.SObjectField token = A00_SObjectDescribe.getDescribe(table).getField(fieldName.toLowerCase());
 			if(token == null)
 				throw new InvalidFieldException(fieldName,this.table);
 			if (enforceFLS) 
-				fflib_SecurityUtils.checkFieldIsReadable(this.table, token);	
+				A00_SecurityUtils.checkFieldIsReadable(this.table, token);
 			return token.getDescribe().getName();
 		}
 
@@ -100,11 +100,11 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 		Iterator<String> i = fieldName.split('\\.').iterator();
 		while(i.hasNext()){
 			String field = i.next();
-			Schema.SObjectField token = fflib_SObjectDescribe.getDescribe(lastSObjectType).getField(field.toLowerCase());
+			Schema.SObjectField token = A00_SObjectDescribe.getDescribe(lastSObjectType).getField(field.toLowerCase());
 			DescribeFieldResult tokenDescribe = token != null ? token.getDescribe() : null;
 			
 			if (token != null && enforceFLS) {
-				fflib_SecurityUtils.checkFieldIsReadable(lastSObjectType, token);
+				A00_SecurityUtils.checkFieldIsReadable(lastSObjectType, token);
 			}
 
 			if(token != null && i.hasNext() && tokenDescribe.getSOAPType() == Schema.SOAPType.ID){
@@ -172,7 +172,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 	 * Asserts true if User has access.
 	 **/
 	public A00_QueryFactory assertIsAccessible(){
-		fflib_SecurityUtils.checkObjectIsReadable(table);
+		A00_SecurityUtils.checkObjectIsReadable(table);
 		return this;
 	}
 
@@ -217,7 +217,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 		if(field == null)
 			throw new InvalidFieldException(null,this.table);
 		if (enforceFLS) 
-			fflib_SecurityUtils.checkFieldIsReadable(table, field);
+			A00_SecurityUtils.checkFieldIsReadable(table, field);
 		fields.add( getFieldTokenPath(field) );
 		return this;
 	}
@@ -250,7 +250,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 			if(token == null)
 				throw new InvalidFieldException();	
 			if (enforceFLS) 
-				fflib_SecurityUtils.checkFieldIsReadable(table, token);	
+				A00_SecurityUtils.checkFieldIsReadable(table, token);
 			this.fields.add( getFieldTokenPath(token) );
 		}
 		return this;
@@ -265,7 +265,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 			if(token == null)
 				throw new InvalidFieldException();
 			if (enforceFLS) 
-				fflib_SecurityUtils.checkFieldIsReadable(table, token);		
+				A00_SecurityUtils.checkFieldIsReadable(table, token);
 			this.fields.add( getFieldTokenPath(token) );
 		}
 		return this;
@@ -642,7 +642,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 		String result = 'SELECT ';
 		//if no fields have been added, just add the Id field so that the query or subquery will not just fail
 		if (fields.size() == 0){
-			if (enforceFLS) fflib_SecurityUtils.checkFieldIsReadable(table, 'Id');
+			if (enforceFLS) A00_SecurityUtils.checkFieldIsReadable(table, 'Id');
 			result += 'Id';
 		}else {
 			List<String> fieldsToQuery = new List<String>(fields);
@@ -714,7 +714,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 
 		public Ordering(String sobjType, String fieldName, SortOrder direction){
 			this(
-				fflib_SObjectDescribe.getDescribe(sobjType).getField(fieldName),
+				A00_SObjectDescribe.getDescribe(sobjType).getField(fieldName),
 				direction
 			);
 		}

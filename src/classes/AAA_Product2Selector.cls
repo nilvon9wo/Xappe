@@ -1,4 +1,4 @@
-public virtual class AAA_Product2Selector extends A00_SObjectSelector {
+public virtual class AAA_Product2Selector extends A00_SObjectSelectorAbs {
     public AAA_Product2Selector(Boolean includeFieldSetFields) {
         super(includeFieldSetFields);
     }
@@ -34,7 +34,7 @@ public virtual class AAA_Product2Selector extends A00_SObjectSelector {
 
     public List<Product2> selectById(Set<Id> idSet, Schema.FieldSet fieldSet) {
         return (List<Product2>) Database.query(
-                this.newQueryFactory()
+                this.createQueryFactory()
                         .addFields(fieldSet)
                         //.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                         .setCondition('Id IN :idSet')
@@ -45,7 +45,7 @@ public virtual class AAA_Product2Selector extends A00_SObjectSelector {
 
     public List<Product2> selectRecentlyUpdated(Integer recordLimit) {
         return (List<Product2>) Database.query(
-                this.newQueryFactory()
+                this.createQueryFactory()
                         .setCondition('SystemModstamp = LAST_N_DAYS:30')
 //                        .setCondition(new XAP_DAO_SOQL_WHERE_StringCompareClause(
 //                                Product2.SystemModstamp,

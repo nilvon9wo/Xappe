@@ -29,7 +29,7 @@
  * of the Apex Enterprise Patterns, Service, Unit Of Work, Selector and Domain.
  *   See the sample applications Application.cls file for an example
  **/
-public class fflib_Application 
+public class A00_Application
 {
 	/**
 	 * Class implements a Unit of Work factory
@@ -174,7 +174,7 @@ public class fflib_Application
 	public class SelectorFactory
 	{
 		private Map<SObjectType, Type> m_sObjectBySelectorType;
-		private Map<SObjectType, fflib_ISObjectSelector> m_sObjectByMockSelector;
+		private Map<SObjectType, A00_SObjectSelectorIntf> m_sObjectByMockSelector;
 
 		/**
 		 * Consturcts a Selector Factory linking SObjectType's with Apex Classes implement the fflib_ISObjectSelector interface
@@ -186,7 +186,7 @@ public class fflib_Application
 		public SelectorFactory(Map<SObjectType, Type> sObjectBySelectorType)
 		{
 			m_sObjectBySelectorType = sObjectBySelectorType;
-			m_sObjectByMockSelector = new Map<SObjectType, fflib_ISObjectSelector>();		
+			m_sObjectByMockSelector = new Map<SObjectType, A00_SObjectSelectorIntf>();
 		}
 
 		/**
@@ -195,7 +195,7 @@ public class fflib_Application
 		 *
 		 * @param sObjectType An SObjectType token, e.g. Account.SObjectType
 		 **/
-		public fflib_ISObjectSelector newInstance(SObjectType sObjectType)
+		public A00_SObjectSelectorIntf newInstance(SObjectType sObjectType)
 		{
 			// Mock implementation?
 			if(m_sObjectByMockSelector.containsKey(sObjectType))
@@ -207,7 +207,7 @@ public class fflib_Application
 				throw new DeveloperException('Selector class not found for SObjectType ' + sObjectType);
 
 			// Construct Selector class and query by Id for the records
-			return (fflib_ISObjectSelector) selectorClass.newInstance();			
+			return (A00_SObjectSelectorIntf) selectorClass.newInstance();
 		}
 
 		/**
@@ -259,7 +259,7 @@ public class fflib_Application
 		}
 
 		@TestVisible
-		private void setMock(fflib_ISObjectSelector selectorInstance)
+		private void setMock(A00_SObjectSelectorIntf selectorInstance)
 		{
 			m_sObjectByMockSelector.put(selectorInstance.sObjectType(), selectorInstance);
 		} 
@@ -270,7 +270,7 @@ public class fflib_Application
 	 **/
 	public class DomainFactory 
 	{
-		private fflib_Application.SelectorFactory m_selectorFactory;
+		private A00_Application.SelectorFactory m_selectorFactory;
 
 		private Map<SObjectType, Type> m_sObjectByDomainConstructorType;
 
@@ -285,7 +285,7 @@ public class fflib_Application
 		 * @param selectorFactory, e.g. Application.Selector
 		 * @param sObjectByDomainConstructorType Map of Apex classes by SObjectType
 		 **/
-		public DomainFactory(fflib_Application.SelectorFactory selectorFactory,
+		public DomainFactory(A00_Application.SelectorFactory selectorFactory,
 			Map<SObjectType, Type> sObjectByDomainConstructorType)
 		{
 			m_selectorFactory = selectorFactory;
@@ -331,8 +331,8 @@ public class fflib_Application
 				throw new DeveloperException('Domain constructor class not found for SObjectType ' + domainSObjectType);
 
 			// Construct Domain class passing in the queried records
-			fflib_SObjectDomain.IConstructable domainConstructor = 
-				(fflib_SObjectDomain.IConstructable) domainConstructorClass.newInstance();		
+			A00_SObjectDomain.IConstructable domainConstructor =
+				(A00_SObjectDomain.IConstructable) domainConstructorClass.newInstance();
 			return (fflib_ISObjectDomain) domainConstructor.construct(records);
 		}	
 
@@ -362,8 +362,8 @@ public class fflib_Application
 				throw new DeveloperException('Domain constructor class not found for SObjectType ' + domainSObjectType);
 
 			// Construct Domain class passing in the queried records
-			fflib_SObjectDomain.IConstructable2 domainConstructor = 
-				(fflib_SObjectDomain.IConstructable2) domainConstructorClass.newInstance();
+			A00_SObjectDomain.IConstructable2 domainConstructor =
+				(A00_SObjectDomain.IConstructable2) domainConstructorClass.newInstance();
 			return (fflib_ISObjectDomain) domainConstructor.construct(records, domainSObjectType);
 		}
 

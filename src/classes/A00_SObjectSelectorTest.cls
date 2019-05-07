@@ -112,7 +112,7 @@ private with sharing class A00_SObjectSelectorTest
 				List<Account> result = (List<Account>) selector.selectSObjectsById(idSet);
 				System.assert(false,'Expected exception was not thrown');
 			}
-			catch(fflib_SObjectDomain.DomainException e)
+			catch(A00_SObjectDomain.DomainException e)
 			{
 				System.assertEquals('Permission to access an Account denied.',e.getMessage());
 			}
@@ -140,7 +140,7 @@ private with sharing class A00_SObjectSelectorTest
 			{
 				List<Account> result = (List<Account>) selector.selectSObjectsById(idSet);
 			}
-			catch(fflib_SObjectDomain.DomainException e)
+			catch(A00_SObjectDomain.DomainException e)
 			{
 				System.assert(false,'Did not expect an exception to be thrown');
 			}
@@ -150,7 +150,7 @@ private with sharing class A00_SObjectSelectorTest
 	static testMethod void testSOQL()
 	{
 		Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
-		String soql = selector.newQueryFactory().toSOQL();
+		String soql = selector.createQueryFactory().toSOQL();
 		Pattern p = Pattern.compile('SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST ');
 		Matcher m = p.matcher(soql);
 		System.assert(m.matches(), 'Generated SOQL does not match expected pattern. Here is the generated SOQL: ' + soql);
@@ -196,7 +196,7 @@ private with sharing class A00_SObjectSelectorTest
 	{
 		//Given
 		Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, false);
-		A00_QueryFactory qf = selector.newQueryFactory();
+		A00_QueryFactory qf = selector.createQueryFactory();
 		
 		Set<String> expectedSelectFields = new Set<String>{ 'Name', 'Id', 'AccountNumber', 'AnnualRevenue' };
 		if (UserInfo.isMultiCurrencyOrganization())
@@ -222,7 +222,7 @@ private with sharing class A00_SObjectSelectorTest
 	{
 		// Build the selector to test with
 		Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, false);
-		A00_QueryFactory qf = selector.newQueryFactory();
+		A00_QueryFactory qf = selector.createQueryFactory();
 		
 		// Add in the expected fields
 		Set<String> expectedSelectFields = new Set<String>{ 'Name', 'Id', 'AccountNumber', 'AnnualRevenue' };
@@ -248,7 +248,7 @@ private with sharing class A00_SObjectSelectorTest
 		System.assertEquals(expected, actual);
 	}
 	
-	private class Testfflib_SObjectSelector extends A00_SObjectSelector
+	private class Testfflib_SObjectSelector extends A00_SObjectSelectorAbs
 	{
 		public Testfflib_SObjectSelector()
 		{

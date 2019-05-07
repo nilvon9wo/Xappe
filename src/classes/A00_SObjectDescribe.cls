@@ -36,7 +36,7 @@
  * This allows both upgrading old code to APIv29 by making use of these as a nearly drop in replacement, as well as keeping
  * namespace detection logic encapsulated.
 **/
-public class fflib_SObjectDescribe {
+public class A00_SObjectDescribe {
 	//internal implementation details
 	private Schema.SObjectType token;
 	private Schema.SObjectField nameField;
@@ -74,7 +74,7 @@ public class fflib_SObjectDescribe {
 		set;
 	}
 
-	private fflib_SObjectDescribe(Schema.SObjectType token){	
+	private A00_SObjectDescribe(Schema.SObjectType token){
 		if(token == null)
 			throw new InvalidDescribeException('Invalid SObject type: null');
 		if(instanceCache.containsKey( String.valueOf(token) ))
@@ -174,43 +174,43 @@ public class fflib_SObjectDescribe {
 	 * to prevent repeatedly re-constructing the same type.
 	 * These instances are not guaranteed to be, but typically will be, unique per sObject type due to the presence of flushCache.
 	**/
-	private static Map<String,fflib_SObjectDescribe> instanceCache {get{
+	private static Map<String, A00_SObjectDescribe> instanceCache {get{
 			if(instanceCache == null)
-				instanceCache = new Map<String,fflib_SObjectDescribe>();
+				instanceCache = new Map<String, A00_SObjectDescribe>();
 			return instanceCache;
 		} 
 		set;
 	}
-	public static fflib_SObjectDescribe getDescribe(String sObjectName){
+	public static A00_SObjectDescribe getDescribe(String sObjectName){
 		if(String.isBlank(sObjectName))
 			return null;
-		fflib_SObjectDescribe result = instanceCache.get(sObjectName.toLowerCase());
+		A00_SObjectDescribe result = instanceCache.get(sObjectName.toLowerCase());
 		if(result == null){
 			Schema.SObjectType token = wrappedGlobalDescribe.get(sObjectName.toLowerCase());
 			if(token == null)
 				result = null;
 			else
-				result = new fflib_SObjectDescribe(token);
+				result = new A00_SObjectDescribe(token);
 		}
 		return result;
 	}
-	public static fflib_SObjectDescribe getDescribe(Schema.SObjectType token){
+	public static A00_SObjectDescribe getDescribe(Schema.SObjectType token){
 		if(token == null)
 			return null;
-		fflib_SObjectDescribe result = instanceCache.get(String.valueOf(token).toLowerCase());
+		A00_SObjectDescribe result = instanceCache.get(String.valueOf(token).toLowerCase());
 		if(result == null)
-			result = new fflib_SObjectDescribe(token);		
+			result = new A00_SObjectDescribe(token);
 		return result;
 	}
-	public static fflib_SObjectDescribe getDescribe(Schema.DescribeSObjectResult nativeDescribe){
+	public static A00_SObjectDescribe getDescribe(Schema.DescribeSObjectResult nativeDescribe){
 		if(nativeDescribe == null)
 			return null;
-		fflib_SObjectDescribe result = instanceCache.get(nativeDescribe.getName().toLowerCase());
+		A00_SObjectDescribe result = instanceCache.get(nativeDescribe.getName().toLowerCase());
 		if(result == null)
-			result = new fflib_SObjectDescribe(nativeDescribe.getSobjectType());		
+			result = new A00_SObjectDescribe(nativeDescribe.getSobjectType());
 		return result;
 	}
-	public static fflib_SObjectDescribe getDescribe(SObject instance){
+	public static A00_SObjectDescribe getDescribe(SObject instance){
 		if(instance == null)
 			return null;
 		return getDescribe(instance.getSobjectType());
@@ -246,7 +246,7 @@ public class fflib_SObjectDescribe {
 
 		protected NamespacedAttributeMap(Map<String,Object> values){
 			//namespace detection courtesey http://salesforce.stackexchange.com/a/28977/60
-			currentNamespace = fflib_SObjectDescribe.class.getName().substringBefore('fflib_SObjectDescribe').removeEnd('.').toLowerCase();
+			currentNamespace = A00_SObjectDescribe.class.getName().substringBefore('fflib_SObjectDescribe').removeEnd('.').toLowerCase();
 			this.values = values;
 		}
 		//A no-args constructor to allow subclasses with different contructor signatures
