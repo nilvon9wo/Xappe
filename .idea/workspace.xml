@@ -4,12 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/src/classes/NestValidator1.cls" line="47" mnemonic="9" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="Took initialization out of constructor.">
-      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
+    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IlluminatedCloud/TrailheadPlayground15/OfflineSymbolTable.zip" beforeDir="false" afterPath="$PROJECT_DIR$/IlluminatedCloud/TrailheadPlayground15/OfflineSymbolTable.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls" afterDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,13 +21,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -51,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="24" column="90" lean-forward="true" selection-start-line="24" selection-start-column="90" selection-end-line="24" selection-end-column="90" />
+              <caret line="24" column="90" selection-start-line="24" selection-start-column="90" selection-end-line="24" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -194,8 +192,8 @@
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls" />
-        <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" />
       </list>
     </option>
   </component>
@@ -238,7 +236,7 @@
                       <entry key="CLASSES/A00_STRINGBUILDER.CLS" value="1557262208000" />
                       <entry key="CLASSES/A00_STRINGBUILDERTEST.CLS" value="1557262208000" />
                       <entry key="CLASSES/AA0_QUERYCONFIG.CLS" value="1557263456000" />
-                      <entry key="CLASSES/AA0_QUERYFACTORY.CLS" value="1557263840000" />
+                      <entry key="CLASSES/AA0_QUERYFACTORY.CLS" value="1557265187000" />
                       <entry key="CLASSES/AA0_QUERYFACTORYTEST.CLS" value="1557262208000" />
                       <entry key="CLASSES/AA0_SOBJECTSELECTORABS.CLS" value="1557262208000" />
                       <entry key="CLASSES/AA0_SOBJECTSELECTORTEST.CLS" value="1557262208000" />
@@ -433,7 +431,7 @@
                       <entry key="CLASSES/XAP_DESC_GLOBALDESCRIBEMAP.CLS" value="1557248401000" />
                       <entry key="CLASSES/XAP_DESC_INVALIDDESCRIBEEXCEPTION.CLS" value="1557248401000" />
                       <entry key="CLASSES/XAP_DESC_NAMESPACEDATTRIBUTEMAP.CLS" value="1557248401000" />
-                      <entry key="CLASSES/XAP_DESC_SOBJECTDESCRIBE.CLS" value="1557248401000" />
+                      <entry key="CLASSES/XAP_DESC_SOBJECTDESCRIBE.CLS" value="1557263886000" />
                       <entry key="CLASSES/XAP_ENC_ENCODINGUTILWRAPPER.CLS" value="1557248401000" />
                       <entry key="CLASSES/XAP_PRED_ALLPREDICATESFALSE.CLS" value="1556730884000" />
                       <entry key="CLASSES/XAP_PRED_ALLPREDICATESTRUE.CLS" value="1556730884000" />
@@ -2411,7 +2409,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Apex" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -2661,13 +2659,6 @@
       <workItem from="1557250940400" duration="1576000" />
       <workItem from="1557252520315" duration="5112000" />
       <workItem from="1557257659486" duration="2732000" />
-    </task>
-    <task id="LOCAL-00053" summary="Changed set extractor to leverage Lists instead of Serialize/Deserialize.">
-      <created>1556721954524</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1556721954525</updated>
     </task>
     <task id="LOCAL-00054" summary="Created additional predicates.">
       <created>1556722383964</created>
@@ -3005,7 +2996,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557262489769</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Decomposed getFieldPath">
+      <created>1557263911579</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1557263911579</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3041,7 +3039,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155950000" />
+    <option name="totallyTimeSpent" value="157307000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -3092,7 +3090,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="WHERE clauses are finally typesafe.  :-)" />
     <MESSAGE value="Updated DAO classes to match revised framework." />
     <MESSAGE value="Deleted support for arbitrary string clause (Which is probably broken now.)" />
     <MESSAGE value="Fixed User Selector." />
@@ -3117,7 +3114,8 @@
     <MESSAGE value="Cleaned out comments and debug code." />
     <MESSAGE value="Took initialization out of constructor." />
     <MESSAGE value="Moved fields and initializations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved fields and initializations." />
+    <MESSAGE value="Decomposed getFieldPath" />
+    <option name="LAST_COMMIT_MESSAGE" value="Decomposed getFieldPath" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Xappe$AA0_QueryFactoryTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557263836294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
@@ -3368,21 +3366,32 @@
     <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="24" column="90" lean-forward="true" selection-start-line="24" selection-start-column="90" selection-end-line="24" selection-end-column="90" />
+          <caret line="24" column="90" selection-start-line="24" selection-start-column="90" selection-end-line="24" selection-end-column="90" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls">
+    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>IlluminatedCloud (build-apps-with-lwc/ursus-park)</last-edited>
