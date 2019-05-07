@@ -23,7 +23,7 @@ public class AAA_Product2SelectorIntTest {
         List<Product2> resultList;
         Test.startTest();
         System.runAs(TEST_USER) {
-            resultList = SELECTOR_UNDER_TEST.selectSObjectsById(new Set<Id>{
+            resultList = SELECTOR_UNDER_TEST.selectById(new Set<Id>{
                     testProduct.Id
             });
         }

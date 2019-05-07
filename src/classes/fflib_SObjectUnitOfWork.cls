@@ -52,8 +52,7 @@
  *
  **/
 public virtual class fflib_SObjectUnitOfWork
-    implements fflib_ISObjectUnitOfWork
-{
+        implements fflib_ISObjectUnitOfWork {
     protected List<Schema.SObjectType> m_sObjectTypes = new List<Schema.SObjectType>();
 
     protected Map<String, List<SObject>> m_newListByType = new Map<String, List<SObject>>();
@@ -78,35 +77,28 @@ public virtual class fflib_SObjectUnitOfWork
     /**
      * Interface describes work to be performed during the commitWork method
      **/
-    public interface IDoWork
-    {
+    public interface IDoWork {
         void doWork();
     }
 
-    public interface IDML
-    {
+    public interface IDML {
         void dmlInsert(List<SObject> objList);
         void dmlUpdate(List<SObject> objList);
         void dmlDelete(List<SObject> objList);
         void eventPublish(List<SObject> objList);
     }
 
-    public class SimpleDML implements IDML
-    {
-        public void dmlInsert(List<SObject> objList)
-        {
+    public class SimpleDML implements IDML {
+        public void dmlInsert(List<SObject> objList) {
             insert objList;
         }
-        public void dmlUpdate(List<SObject> objList)
-        {
+        public void dmlUpdate(List<SObject> objList) {
             update objList;
         }
-        public void dmlDelete(List<SObject> objList)
-        {
+        public void dmlDelete(List<SObject> objList) {
             delete objList;
         }
-        public void eventPublish(List<SObject> objList)
-        {
+        public void eventPublish(List<SObject> objList) {
             EventBus.publish(objList);
         }
     }
@@ -115,47 +107,58 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param sObjectList A list of objects given in dependency order (least dependent first)
      */
-    public fflib_SObjectUnitOfWork(List<Schema.SObjectType> sObjectTypes)
-    {
-        this(sObjectTypes,new SimpleDML());
+    public fflib_SObjectUnitOfWork(List<Schema.SObjectType> sObjectTypes) {
+        this(sObjectTypes, new SimpleDML());
     }
 
-    public fflib_SObjectUnitOfWork(List<Schema.SObjectType> sObjectTypes, IDML dml)
-    {
+    public fflib_SObjectUnitOfWork(List<Schema.SObjectType> sObjectTypes, IDML dml) {
         m_sObjectTypes = sObjectTypes.clone();
 
-        for (Schema.SObjectType sObjectType : m_sObjectTypes)
-        {
+        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
             // register the type
             handleRegisterType(sObjectType);
         }
 
-		m_relationships.put(Messaging.SingleEmailMessage.class.getName(), new Relationships());
+        m_relationships.put(Messaging.SingleEmailMessage.class.getName(), new Relationships());
 
         m_dml = dml;
     }
 
     // default implementations for commitWork events
-    public virtual void onRegisterType(Schema.SObjectType sObjectType) {}
-    public virtual void onCommitWorkStarting() {}
+    public virtual void onRegisterType(Schema.SObjectType sObjectType) {
+    }
+    public virtual void onCommitWorkStarting() {
+    }
 
-    public virtual void onPublishBeforeEventsStarting() {}
-    public virtual void onPublishBeforeEventsFinished() {}
+    public virtual void onPublishBeforeEventsStarting() {
+    }
+    public virtual void onPublishBeforeEventsFinished() {
+    }
 
-    public virtual void onDMLStarting() {}
-    public virtual void onDMLFinished() {}
+    public virtual void onDMLStarting() {
+    }
+    public virtual void onDMLFinished() {
+    }
 
-    public virtual void onDoWorkStarting() {}
-    public virtual void onDoWorkFinished() {}
+    public virtual void onDoWorkStarting() {
+    }
+    public virtual void onDoWorkFinished() {
+    }
 
-    public virtual void onPublishAfterSuccessEventsStarting() {}
-    public virtual void onPublishAfterSuccessEventsFinished() {}
+    public virtual void onPublishAfterSuccessEventsStarting() {
+    }
+    public virtual void onPublishAfterSuccessEventsFinished() {
+    }
 
-    public virtual void onPublishAfterFailureEventsStarting() {}
-    public virtual void onPublishAfterFailureEventsFinished() {}
+    public virtual void onPublishAfterFailureEventsStarting() {
+    }
+    public virtual void onPublishAfterFailureEventsFinished() {
+    }
 
-    public virtual void onCommitWorkFinishing() {}
-    public virtual void onCommitWorkFinished(Boolean wasSuccessful) {}
+    public virtual void onCommitWorkFinishing() {
+    }
+    public virtual void onCommitWorkFinished(Boolean wasSuccessful) {
+    }
 
     /**
      * Registers the type to be used for DML operations
@@ -163,8 +166,7 @@ public virtual class fflib_SObjectUnitOfWork
      * @param sObjectType - The type to register
      *
      */
-    private void handleRegisterType(Schema.SObjectType sObjectType)
-    {
+    private void handleRegisterType(Schema.SObjectType sObjectType) {
         String sObjectName = sObjectType.getDescribe().getName();
 
         // add type to dml operation tracking
@@ -184,16 +186,14 @@ public virtual class fflib_SObjectUnitOfWork
     /**
      * Register a generic peace of work to be invoked during the commitWork phase
      **/
-    public void registerWork(IDoWork work)
-    {
+    public void registerWork(IDoWork work) {
         m_workList.add(work);
     }
 
     /**
      * Registers the given email to be sent during the commitWork
      **/
-    public void registerEmail(Messaging.Email email)
-    {
+    public void registerEmail(Messaging.Email email) {
         m_emailWork.registerEmail(email);
     }
 
@@ -202,8 +202,7 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record A newly created SObject instance to be inserted during commitWork
      **/
-    public void registerNew(SObject record)
-    {
+    public void registerNew(SObject record) {
         registerNew(record, null, null);
     }
 
@@ -212,10 +211,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of newly created SObject instances to be inserted during commitWork
      **/
-    public void registerNew(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerNew(List<SObject> records) {
+        for (SObject record : records) {
             registerNew(record, null, null);
         }
     }
@@ -228,17 +225,16 @@ public virtual class fflib_SObjectUnitOfWork
      * @param relatedToParentField A SObjectField reference to the child field that associates the child record with its parent
      * @param relatedToParentRecord A SObject instance of the parent record (should also be registered as new separately)
      **/
-    public void registerNew(SObject record, Schema.sObjectField relatedToParentField, SObject relatedToParentRecord)
-    {
+    public void registerNew(SObject record, Schema.sObjectField relatedToParentField, SObject relatedToParentRecord) {
         if (record.Id != null)
             throw new UnitOfWorkException('Only new records can be registered as new');
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForNonEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_newListByType, sObjectType);
+        assertForNonEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_newListByType, sObjectType);
 
         m_newListByType.get(sObjectType).add(record);
-        if (relatedToParentRecord!=null && relatedToParentField!=null)
+        if (relatedToParentRecord != null && relatedToParentField != null)
             registerRelationship(record, relatedToParentField, relatedToParentRecord);
     }
 
@@ -250,12 +246,11 @@ public virtual class fflib_SObjectUnitOfWork
      * @param relatedToField A SObjectField reference to the lookup field that relates the two records together
      * @param relatedTo A SObject instance (yet to be committed to the database)
      */
-    public void registerRelationship(SObject record, Schema.sObjectField relatedToField, SObject relatedTo)
-    {
+    public void registerRelationship(SObject record, Schema.sObjectField relatedToField, SObject relatedTo) {
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForNonEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_newListByType, sObjectType);
+        assertForNonEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_newListByType, sObjectType);
 
         m_relationships.get(sObjectType).add(record, relatedToField, relatedTo);
     }
@@ -268,9 +263,8 @@ public virtual class fflib_SObjectUnitOfWork
      * @param a single email message instance
      * @param relatedTo A SObject instance (yet to be committed to the database)
      */
-    public void registerRelationship( Messaging.SingleEmailMessage email, SObject relatedTo )
-    {
-        m_relationships.get( Messaging.SingleEmailMessage.class.getName() ).add(email, relatedTo);
+    public void registerRelationship(Messaging.SingleEmailMessage email, SObject relatedTo) {
+        m_relationships.get(Messaging.SingleEmailMessage.class.getName()).add(email, relatedTo);
     }
 
     /**
@@ -278,28 +272,23 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record An existing record
      **/
-    public void registerDirty(SObject record)
-    {
+    public void registerDirty(SObject record) {
         registerDirty(record, new List<SObjectField>());
     }
 
-    public void registerDirty(SObject record, List<SObjectField> dirtyFields)
-    {
+    public void registerDirty(SObject record, List<SObjectField> dirtyFields) {
         if (record.Id == null)
             throw new UnitOfWorkException('New records cannot be registered as dirty');
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForNonEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_dirtyMapByType, sObjectType);
+        assertForNonEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_dirtyMapByType, sObjectType);
 
         // If record isn't registered as dirty, or no dirty fields to drive a merge
-        if (!m_dirtyMapByType.get(sObjectType).containsKey(record.Id) || dirtyFields.isEmpty())
-        {
+        if (!m_dirtyMapByType.get(sObjectType).containsKey(record.Id) || dirtyFields.isEmpty()) {
             // Register the record as dirty
             m_dirtyMapByType.get(sObjectType).put(record.Id, record);
-        }
-        else
-        {
+        } else {
             // Update the registered record's fields
             SObject registeredRecord = m_dirtyMapByType.get(sObjectType).get(record.Id);
 
@@ -319,17 +308,16 @@ public virtual class fflib_SObjectUnitOfWork
      * @param relatedToParentField A SObjectField reference to the child field that associates the child record with its parent
      * @param relatedToParentRecord A SObject instance of the parent record (should also be registered as new separately)
      **/
-    public void registerDirty(SObject record, Schema.sObjectField relatedToParentField, SObject relatedToParentRecord)
-    {
+    public void registerDirty(SObject record, Schema.sObjectField relatedToParentField, SObject relatedToParentRecord) {
         if (record.Id == null)
             throw new UnitOfWorkException('New records cannot be registered as dirty');
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForNonEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_dirtyMapByType, sObjectType);
+        assertForNonEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_dirtyMapByType, sObjectType);
 
         m_dirtyMapByType.get(sObjectType).put(record.Id, record);
-        if (relatedToParentRecord!=null && relatedToParentField!=null)
+        if (relatedToParentRecord != null && relatedToParentField != null)
             registerRelationship(record, relatedToParentField, relatedToParentRecord);
     }
 
@@ -338,10 +326,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of existing records
      **/
-    public void registerDirty(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerDirty(List<SObject> records) {
+        for (SObject record : records) {
             this.registerDirty(record);
         }
     }
@@ -351,14 +337,10 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record A new or existing record
      **/
-    public void registerUpsert(SObject record)
-    {
-        if (record.Id == null) 
-        {
+    public void registerUpsert(SObject record) {
+        if (record.Id == null) {
             registerNew(record, null, null);
-        }
-        else
-        {
+        } else {
             registerDirty(record, new List<SObjectField>());
         }
     }
@@ -368,10 +350,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of mix of new and existing records
      **/
-    public void registerUpsert(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerUpsert(List<SObject> records) {
+        for (SObject record : records) {
             this.registerUpsert(record);
         }
     }
@@ -381,14 +361,13 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record An existing record
      **/
-    public void registerDeleted(SObject record)
-    {
+    public void registerDeleted(SObject record) {
         if (record.Id == null)
             throw new UnitOfWorkException('New records cannot be registered for deletion');
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForNonEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_deletedMapByType, sObjectType);
+        assertForNonEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_deletedMapByType, sObjectType);
 
         m_deletedMapByType.get(sObjectType).put(record.Id, record);
     }
@@ -398,10 +377,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of existing records
      **/
-    public void registerDeleted(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerDeleted(List<SObject> records) {
+        for (SObject record : records) {
             this.registerDeleted(record);
         }
     }
@@ -411,12 +388,11 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record A newly created SObject (Platform Event) instance to be inserted during commitWork
      **/
-    public void registerPublishBeforeTransaction(SObject record)
-    {
+    public void registerPublishBeforeTransaction(SObject record) {
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_publishBeforeListByType, sObjectType);
+        assertForEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_publishBeforeListByType, sObjectType);
 
         m_publishBeforeListByType.get(sObjectType).add(record);
     }
@@ -426,10 +402,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of existing records
      **/
-    public void registerPublishBeforeTransaction(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerPublishBeforeTransaction(List<SObject> records) {
+        for (SObject record : records) {
             this.registerPublishBeforeTransaction(record);
         }
     }
@@ -439,12 +413,11 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record A newly created SObject (Platform Event) instance to be inserted during commitWork
      **/
-    public void registerPublishAfterSuccessTransaction(SObject record)
-    {
+    public void registerPublishAfterSuccessTransaction(SObject record) {
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_publishAfterSuccessListByType, sObjectType);
+        assertForEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_publishAfterSuccessListByType, sObjectType);
 
         m_publishAfterSuccessListByType.get(sObjectType).add(record);
     }
@@ -454,10 +427,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of existing records
      **/
-    public void registerPublishAfterSuccessTransaction(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerPublishAfterSuccessTransaction(List<SObject> records) {
+        for (SObject record : records) {
             this.registerPublishAfterSuccessTransaction(record);
         }
     }
@@ -466,12 +437,11 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param record A newly created SObject (Platform Event) instance to be inserted during commitWork
      **/
-    public void registerPublishAfterFailureTransaction(SObject record)
-    {
+    public void registerPublishAfterFailureTransaction(SObject record) {
         String sObjectType = record.getSObjectType().getDescribe().getName();
 
-		assertForEventSObjectType(sObjectType);
-		assertForSupportedSObjectType(m_publishAfterFailureListByType, sObjectType);
+        assertForEventSObjectType(sObjectType);
+        assertForSupportedSObjectType(m_publishAfterFailureListByType, sObjectType);
 
         m_publishAfterFailureListByType.get(sObjectType).add(record);
     }
@@ -481,10 +451,8 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param records A list of existing records
      **/
-    public void registerPublishAfterFailureTransaction(List<SObject> records)
-    {
-        for (SObject record : records)
-        {
+    public void registerPublishAfterFailureTransaction(List<SObject> records) {
+        for (SObject record : records) {
             this.registerPublishAfterFailureTransaction(record);
         }
     }
@@ -492,194 +460,162 @@ public virtual class fflib_SObjectUnitOfWork
     /**
      * Takes all the work that has been registered with the UnitOfWork and commits it to the database
      **/
-	public void commitWork()
-	{
-		Savepoint sp = Database.setSavePoint();
-		Boolean wasSuccessful = false;
-		try
-		{
-			doCommitWork();
-			wasSuccessful = true;
-		}
-		catch (Exception e)
-		{
-			Database.rollback(sp);
-			throw e;
-		}
-		finally
-		{
-			doAfterCommitWorkSteps(wasSuccessful);
-		}
-	}
+    public void commitWork() {
+        Savepoint sp = Database.setSavePoint();
+        Boolean wasSuccessful = false;
+        try {
+            doCommitWork();
+            wasSuccessful = true;
+        } catch (Exception e) {
+            Database.rollback(sp);
+            throw e;
+        } finally {
+            doAfterCommitWorkSteps(wasSuccessful);
+        }
+    }
 
-	private void doCommitWork()
-	{
-		onCommitWorkStarting();
-		onPublishBeforeEventsStarting();
-		publishBeforeEventsStarting();
-		onPublishBeforeEventsFinished();
+    private void doCommitWork() {
+        onCommitWorkStarting();
+        onPublishBeforeEventsStarting();
+        publishBeforeEventsStarting();
+        onPublishBeforeEventsFinished();
 
-		onDMLStarting();
-		insertDmlByType();
-		updateDmlByType();
-		deleteDmlByType();
-		resolveEmailRelationships();
-		onDMLFinished();
+        onDMLStarting();
+        insertDmlByType();
+        updateDmlByType();
+        deleteDmlByType();
+        resolveEmailRelationships();
+        onDMLFinished();
 
-		onDoWorkStarting();
-		doWork();
-		onDoWorkFinished();
-		onCommitWorkFinishing();
-	}
+        onDoWorkStarting();
+        doWork();
+        onDoWorkFinished();
+        onCommitWorkFinishing();
+    }
 
-	private void doAfterCommitWorkSteps(Boolean wasSuccessful)
-	{
-		if (wasSuccessful)
-		{
-			doAfterCommitWorkSuccessSteps();
-		}
-		else
-		{
-			doAfterCommitWorkFailureSteps();
-		}
-		onCommitWorkFinished(wasSuccessful);
-	}
+    private void doAfterCommitWorkSteps(Boolean wasSuccessful) {
+        if (wasSuccessful) {
+            doAfterCommitWorkSuccessSteps();
+        } else {
+            doAfterCommitWorkFailureSteps();
+        }
+        onCommitWorkFinished(wasSuccessful);
+    }
 
-	private void doAfterCommitWorkSuccessSteps()
-	{
-		onPublishAfterSuccessEventsStarting();
-		publishAfterSuccessEvents();
-		onPublishAfterSuccessEventsFinished();
-	}
+    private void doAfterCommitWorkSuccessSteps() {
+        onPublishAfterSuccessEventsStarting();
+        publishAfterSuccessEvents();
+        onPublishAfterSuccessEventsFinished();
+    }
 
-	private void doAfterCommitWorkFailureSteps()
-	{
-		onPublishAfterFailureEventsStarting();
-		publishAfterFailureEvents();
-		onPublishAfterFailureEventsFinished();
-	}
+    private void doAfterCommitWorkFailureSteps() {
+        onPublishAfterFailureEventsStarting();
+        publishAfterFailureEvents();
+        onPublishAfterFailureEventsFinished();
+    }
 
-	private void publishBeforeEventsStarting()
-	{
-		for (Schema.SObjectType sObjectType : m_sObjectTypes)
-		{
-			m_dml.eventPublish(m_publishBeforeListByType.get(sObjectType.getDescribe().getName()));
-		}
-	}
+    private void publishBeforeEventsStarting() {
+        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+            m_dml.eventPublish(m_publishBeforeListByType.get(sObjectType.getDescribe().getName()));
+        }
+    }
 
-	private void insertDmlByType()
-	{
-		for (Schema.SObjectType sObjectType : m_sObjectTypes)
-		{
-			m_relationships.get(sObjectType.getDescribe().getName()).resolve();
-			m_dml.dmlInsert(m_newListByType.get(sObjectType.getDescribe().getName()));
-		}
-	}
+    private void insertDmlByType() {
+        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+            m_relationships.get(sObjectType.getDescribe().getName()).resolve();
+            m_dml.dmlInsert(m_newListByType.get(sObjectType.getDescribe().getName()));
+        }
+    }
 
-	private void updateDmlByType()
-	{
-		for (Schema.SObjectType sObjectType : m_sObjectTypes)
-		{
-			m_dml.dmlUpdate(m_dirtyMapByType.get(sObjectType.getDescribe().getName()).values());
-		}
-	}
+    private void updateDmlByType() {
+        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+            m_dml.dmlUpdate(m_dirtyMapByType.get(sObjectType.getDescribe().getName()).values());
+        }
+    }
 
-	private void deleteDmlByType()
-	{
-		Integer objectIdx = m_sObjectTypes.size() - 1;
-		while (objectIdx >= 0)
-		{
-			m_dml.dmlDelete(m_deletedMapByType.get(m_sObjectTypes[objectIdx--].getDescribe().getName()).values());
-		}
-	}
+    private void deleteDmlByType() {
+        Integer objectIdx = m_sObjectTypes.size() - 1;
+        while (objectIdx >= 0) {
+            m_dml.dmlDelete(m_deletedMapByType.get(m_sObjectTypes[objectIdx--].getDescribe().getName()).values());
+        }
+    }
 
-	private void resolveEmailRelationships()
-	{
-		m_relationships.get(Messaging.SingleEmailMessage.class.getName()).resolve();
-	}
+    private void resolveEmailRelationships() {
+        m_relationships.get(Messaging.SingleEmailMessage.class.getName()).resolve();
+    }
 
-	private void doWork()
-	{
-		m_workList.add(m_emailWork);
-		for (IDoWork work : m_workList)
-		{
-			work.doWork();
-		}
-	}
+    private void doWork() {
+        m_workList.add(m_emailWork);
+        for (IDoWork work : m_workList) {
+            work.doWork();
+        }
+    }
 
-	private void publishAfterSuccessEvents()
-	{
-		for (Schema.SObjectType sObjectType : m_sObjectTypes)
-		{
-			m_dml.eventPublish(m_publishAfterSuccessListByType.get(sObjectType.getDescribe().getName()));
-		}
-	}
+    private void publishAfterSuccessEvents() {
+        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+            m_dml.eventPublish(m_publishAfterSuccessListByType.get(sObjectType.getDescribe().getName()));
+        }
+    }
 
-	private void publishAfterFailureEvents()
-	{
-		for (Schema.SObjectType sObjectType : m_sObjectTypes)
-		{
-			m_dml.eventPublish(m_publishAfterFailureListByType.get(sObjectType.getDescribe().getName()));
-		}
-	}
+    private void publishAfterFailureEvents() {
+        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+            m_dml.eventPublish(m_publishAfterFailureListByType.get(sObjectType.getDescribe().getName()));
+        }
+    }
 
-	private void assertForNonEventSObjectType(String sObjectType)
-	{
-		if (sObjectType.length() > 3 && sObjectType.right(3)  == '__e')
-		{
-			throw new UnitOfWorkException(
-					String.format(
-							'SObject type {0} must use registerPublishBeforeTransaction or ' +
-									'registerPublishAfterTransaction methods to be used within this unit of work',
-							new List<String> { sObjectType }
-					)
-			);
-		}
-	}
+    private void assertForNonEventSObjectType(String sObjectType) {
+        if (sObjectType.length() > 3 && sObjectType.right(3) == '__e') {
+            throw new UnitOfWorkException(
+                    String.format(
+                            'SObject type {0} must use registerPublishBeforeTransaction or ' +
+                                    'registerPublishAfterTransaction methods to be used within this unit of work',
+                            new List<String>{
+                                    sObjectType
+                            }
+                    )
+            );
+        }
+    }
 
-	private void assertForEventSObjectType(String sObjectType)
-	{
-		if (sObjectType.length() > 3 && sObjectType.right(3) != '__e')
-		{
-			throw new UnitOfWorkException(
-					String.format(
-							'SObject type {0} is invalid for publishing within this unit of work',
-							new List<String> {sObjectType}
-					)
-			);
-		}
-	}
+    private void assertForEventSObjectType(String sObjectType) {
+        if (sObjectType.length() > 3 && sObjectType.right(3) != '__e') {
+            throw new UnitOfWorkException(
+                    String.format(
+                            'SObject type {0} is invalid for publishing within this unit of work',
+                            new List<String>{
+                                    sObjectType
+                            }
+                    )
+            );
+        }
+    }
 
-	private void assertForSupportedSObjectType(Map<String, Object> theMap, String sObjectType)
-	{
-		if (!theMap.containsKey(sObjectType))
-		{
-			throw new UnitOfWorkException(
-					String.format(
-							'SObject type {0} is not supported by this unit of work',
-							new List<String> { sObjectType }
-					)
-			);
-		}
-	}
+    private void assertForSupportedSObjectType(Map<String, Object> theMap, String sObjectType) {
+        if (!theMap.containsKey(sObjectType)) {
+            throw new UnitOfWorkException(
+                    String.format(
+                            'SObject type {0} is not supported by this unit of work',
+                            new List<String>{
+                                    sObjectType
+                            }
+                    )
+            );
+        }
+    }
 
-    private class Relationships
-    {
+    private class Relationships {
         private List<IRelationship> m_relationships = new List<IRelationship>();
 
-        public void resolve()
-        {
+        public void resolve() {
             // Resolve relationships
-            for (IRelationship relationship : m_relationships)
-            {
+            for (IRelationship relationship : m_relationships) {
                 //relationship.Record.put(relationship.RelatedToField, relationship.RelatedTo.Id);
                 relationship.resolve();
             }
 
         }
 
-        public void add(SObject record, Schema.sObjectField relatedToField, SObject relatedTo)
-        {
+        public void add(SObject record, Schema.sObjectField relatedToField, SObject relatedTo) {
             // Relationship to resolve
             Relationship relationship = new Relationship();
             relationship.Record = record;
@@ -688,8 +624,7 @@ public virtual class fflib_SObjectUnitOfWork
             m_relationships.add(relationship);
         }
 
-        public void add(Messaging.SingleEmailMessage email, SObject relatedTo)
-        {
+        public void add(Messaging.SingleEmailMessage email, SObject relatedTo) {
             EmailRelationship emailRelationship = new EmailRelationship();
             emailRelationship.email = email;
             emailRelationship.relatedTo = relatedTo;
@@ -697,63 +632,54 @@ public virtual class fflib_SObjectUnitOfWork
         }
     }
 
-    private interface IRelationship
-    {
+    private interface IRelationship {
         void resolve();
     }
 
-    private class Relationship implements IRelationship
-    {
+    private class Relationship implements IRelationship {
         public SObject Record;
         public Schema.sObjectField RelatedToField;
         public SObject RelatedTo;
 
-        public void resolve()
-        {
-            this.Record.put( this.RelatedToField, this.RelatedTo.Id);
+        public void resolve() {
+            this.Record.put(this.RelatedToField, this.RelatedTo.Id);
         }
     }
 
-    private class EmailRelationship implements IRelationship
-    {
+    private class EmailRelationship implements IRelationship {
         public Messaging.SingleEmailMessage email;
         public SObject relatedTo;
 
-        public void resolve()
-        {
-            this.email.setWhatId( this.RelatedTo.Id );
+        public void resolve() {
+            this.email.setWhatId(this.RelatedTo.Id);
         }
     }
 
     /**
      * UnitOfWork Exception
      **/
-    public class UnitOfWorkException extends Exception {}
+    public class UnitOfWorkException extends Exception {
+    }
 
     /**
      * Internal implementation of Messaging.sendEmail, see outer class registerEmail method
      **/
-    public interface IEmailWork extends IDoWork
-    {
+    public interface IEmailWork extends IDoWork {
         void registerEmail(Messaging.Email email);
     }
 
-    private class SendEmailWork implements IEmailWork
-    {
+    private class SendEmailWork implements IEmailWork {
         private List<Messaging.Email> emails;
 
-        public SendEmailWork()
-        {
+        public SendEmailWork() {
             this.emails = new List<Messaging.Email>();
         }
 
-        public void registerEmail(Messaging.Email email)
-        {
+        public void registerEmail(Messaging.Email email) {
             this.emails.add(email);
         }
 
-        public void doWork()
-        {
+        public void doWork() {
             if (emails.size() > 0) Messaging.sendEmail(emails);
         }
     }

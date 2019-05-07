@@ -14,7 +14,7 @@ public class NestValidator2 {
 
     private static Map<String, CharacterHandlerIntf> HANDLER_BY_CHARACTER_MAP {
         get {
-            if (HANDLER_BY_CHARACTER_MAP == null ) {
+            if (HANDLER_BY_CHARACTER_MAP == null) {
                 CharacterHandlerIntf openHandler = new OpenerHandler();
                 CharacterHandlerIntf closeHandler = new CloserHandler();
                 HANDLER_BY_CHARACTER_MAP = new Map<String, CharacterHandlerIntf>{
@@ -51,14 +51,14 @@ public class NestValidator2 {
     }
 
     private class OpenerHandler implements CharacterHandlerIntf {
-        public List<String> handle(String character, List<String> unclosedOpenerList){
+        public List<String> handle(String character, List<String> unclosedOpenerList) {
             unclosedOpenerList.add(character);
             return unclosedOpenerList;
         }
     }
 
     private class CloserHandler implements CharacterHandlerIntf {
-        public List<String> handle(String character, List<String> unclosedOpenerList){
+        public List<String> handle(String character, List<String> unclosedOpenerList) {
             if (unclosedOpenerList.isEmpty()) {
                 throw new UnexpectedCloserException('Found ' + character + ', No closers expected.');
             }

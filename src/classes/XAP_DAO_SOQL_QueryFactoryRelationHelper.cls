@@ -12,7 +12,7 @@ public class XAP_DAO_SOQL_QueryFactoryRelationHelper {
     private static XAP_DAO_SOQL_QueryFactoryRelationHelper instance;
 
     public static XAP_DAO_SOQL_QueryFactoryRelationHelper getInstance() {
-            instance = new XAP_DAO_SOQL_QueryFactoryRelationHelper();
+        instance = new XAP_DAO_SOQL_QueryFactoryRelationHelper();
         return instance;
     }
 

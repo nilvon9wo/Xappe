@@ -25,392 +25,409 @@
 **/
 
 @IsTest
-private with sharing class A00_SObjectDomainTest
-{	
-	@IsTest
-	private static void testValidationWithoutDML()
-	{
-		A00_SObjectDomain.TestSObjectDomain opps = new A00_SObjectDomain.TestSObjectDomain(new Opportunity[] { new Opportunity ( Name = 'Test', Type = 'Existing Account' ) } );
-		opps.onValidate();
-		System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('You must provide an Account for Opportunities for existing Customers.', A00_SObjectDomain.Errors.getAll()[0].message);
-		System.assertEquals(Opportunity.AccountId, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
+private with sharing class A00_SObjectDomainTest {
+    @IsTest
+    private static void testValidationWithoutDML() {
+        A00_SObjectDomain.TestSObjectDomain opps = new A00_SObjectDomain.TestSObjectDomain(new Opportunity[]{
+                new Opportunity (Name = 'Test', Type = 'Existing Account')
+        });
+        opps.onValidate();
+        System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('You must provide an Account for Opportunities for existing Customers.', A00_SObjectDomain.Errors.getAll()[0].message);
+        System.assertEquals(Opportunity.AccountId, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
 
-		opps = new A00_SObjectDomain.TestSObjectDomain(new SObject[] { new Opportunity ( Name = 'Test', Type = 'Existing Account' ) }, Opportunity.SObjectType );
-		System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('You must provide an Account for Opportunities for existing Customers.', A00_SObjectDomain.Errors.getAll()[0].message);
-		System.assertEquals(Opportunity.AccountId, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
-	}
-	
-	@IsTest
-	private static void testInsertValidationFailedWithoutDML()
-	{
-		Opportunity opp = new Opportunity ( Name = 'Test', Type = 'Existing Account' );
-		System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { opp } );
-		System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-		System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('You must provide an Account for Opportunities for existing Customers.', A00_SObjectDomain.Errors.getAll()[0].message);
-		System.assertEquals(Opportunity.AccountId, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
-	}
+        opps = new A00_SObjectDomain.TestSObjectDomain(new SObject[]{
+                new Opportunity (Name = 'Test', Type = 'Existing Account')
+        }, Opportunity.SObjectType);
+        System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('You must provide an Account for Opportunities for existing Customers.', A00_SObjectDomain.Errors.getAll()[0].message);
+        System.assertEquals(Opportunity.AccountId, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
+    }
 
-	@IsTest
-	private static void testUpdateValidationFailedWithoutDML()
-	{
-		Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
-		oldOpp.Name = 'Test';
-		oldOpp.Type = 'Existing Account'; 
-		Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ'); 
-		newOpp.Name = 'Test';
-		newOpp.Type = 'New Account'; 
-		System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
-		System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-		System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('You cannot change the Opportunity type once it has been created.', A00_SObjectDomain.Errors.getAll()[0].message);
-		System.assertEquals(Opportunity.Type, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
-	}
-	
-	@IsTest
-	private static void testOnBeforeDeleteWithoutDML()
-	{
-		Opportunity opp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ'); 
-		opp.Name = 'Test';
-		opp.Type = 'Existing Account';
-		System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.Test.Database.onDelete(new Map<ID, Opportunity> { opp.Id => opp } );
-		System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-		System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('You cannot delete this Opportunity.', A00_SObjectDomain.Errors.getAll()[0].message);
-	}
-	
-	@IsTest
-	private static void testOnAfterUndeleteWithoutDML()
-	{
-		Opportunity opp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ'); 
-		opp.Name = 'Test';
-		opp.Type = 'Existing Account';
-		System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.Test.Database.onUndelete(new list<Opportunity> { opp } );
-		System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-	}
-	
-	@IsTest
-	private static void testObjectSecurity()
-	{
-		// Create a user which will not have access to the test object type
-		User testUser = createChatterExternalUser();
-		if(testUser==null)
-			return; // Abort the test if unable to create a user with low enough acess
-		System.runAs(testUser)
-		{					
-			// Test Create object security
-			Opportunity opp = new Opportunity ( Name = 'Test', Type = 'Existing Account' );
-			A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { opp } );
-			try {
-				A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-				System.assert(false, 'Expected access denied exception');						
-			} catch (Exception e) {
-				System.assertEquals('Permission to create an Opportunity denied.', e.getMessage());
-			}		
-			
-			// Test Update object security
-			Opportunity existingOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
-			existingOpp.Name = 'Test';
-			existingOpp.Type = 'Existing Account'; 			
-			A00_SObjectDomain.Test.Database.onUpdate(new List<Opportunity> { opp }, new Map<Id, Opportunity> { opp.Id => opp } );
-			try {
-				A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-				System.assert(false, 'Expected access denied exception');						
-			} catch (Exception e) {
-				System.assertEquals('Permission to udpate an Opportunity denied.', e.getMessage());
-			}		
-			
-			// Test Delete object security
-			A00_SObjectDomain.Test.Database.onDelete(new Map<Id, Opportunity> { opp.Id => opp });
-			try {
-				A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
-				System.assert(false, 'Expected access denied exception');						
-			} catch (Exception e) {
-				System.assertEquals('Permission to delete an Opportunity denied.', e.getMessage());
-			}		
-		}			
-	}
-	
-	@IsTest
-	private static void testErrorLogging()
-	{	
-		// Test static helpers for raise none domain object instance errors
-		Opportunity opp = new Opportunity ( Name = 'Test', Type = 'Existing Account' );		
-		A00_SObjectDomain.Errors.error('Error', opp);
-		A00_SObjectDomain.Errors.error('Error', opp, Opportunity.Type);
-		System.assertEquals(2, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('Error', A00_SObjectDomain.Errors.getAll()[0].message);
-		System.assertEquals('Error', A00_SObjectDomain.Errors.getAll()[1].message);
-		System.assertEquals(Opportunity.Type, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[1]).field);
-		A00_SObjectDomain.Errors.clearAll();
-		System.assertEquals(0, A00_SObjectDomain.Errors.getAll().size());
-	}
-	
-	@IsTest
-	private static void testTriggerState()
-	{
-		Opportunity opp = new Opportunity ( Name = 'Test', Type = 'Existing Account' );
-		A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { opp } );
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectStatefulDomainConstructor.class);
-		System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('Error on Record Test', A00_SObjectDomain.Errors.getAll()[0].message);
-	}	
+    @IsTest
+    private static void testInsertValidationFailedWithoutDML() {
+        Opportunity opp = new Opportunity (Name = 'Test', Type = 'Existing Account');
+        System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                opp
+        });
+        System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+        System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('You must provide an Account for Opportunities for existing Customers.', A00_SObjectDomain.Errors.getAll()[0].message);
+        System.assertEquals(Opportunity.AccountId, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
+    }
 
-	@IsTest
-	private static void testRecursiveTriggerState()
-	{
-		Opportunity opp = new Opportunity ( Name = 'Test Recursive 1', Type = 'Existing Account' );
-		A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { opp } );
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectStatefulDomainConstructor.class);
-		System.assertEquals(2, A00_SObjectDomain.Errors.getAll().size());
-		System.assertEquals('Error on Record Test Recursive 2', A00_SObjectDomain.Errors.getAll()[0].message);
-		System.assertEquals('Error on Record Test Recursive 1', A00_SObjectDomain.Errors.getAll()[1].message);
-	}	
+    @IsTest
+    private static void testUpdateValidationFailedWithoutDML() {
+        Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        oldOpp.Name = 'Test';
+        oldOpp.Type = 'Existing Account';
+        Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        newOpp.Name = 'Test';
+        newOpp.Type = 'New Account';
+        System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[]{
+                newOpp
+        }, new Map<Id, SObject>{
+                newOpp.Id => oldOpp
+        });
+        System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+        System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('You cannot change the Opportunity type once it has been created.', A00_SObjectDomain.Errors.getAll()[0].message);
+        System.assertEquals(Opportunity.Type, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[0]).field);
+    }
 
-	@IsTest
-	private static void testOnValidateBehaviorDefault()
-	{
-		Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
-		oldOpp.Name = 'Test Default Behaviour';
-		oldOpp.Type = 'Existing Account'; 
-		Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ'); 
-		newOpp.Name = 'Test Default Behaviour';
-		newOpp.Type = 'New Account'; 		
-		A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectOnValidateBehaviourConstructor.class);
-	}	
+    @IsTest
+    private static void testOnBeforeDeleteWithoutDML() {
+        Opportunity opp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        opp.Name = 'Test';
+        opp.Type = 'Existing Account';
+        System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.Test.Database.onDelete(new Map<ID, Opportunity>{
+                opp.Id => opp
+        });
+        System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+        System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('You cannot delete this Opportunity.', A00_SObjectDomain.Errors.getAll()[0].message);
+    }
 
-	@IsTest
-	private static void testOnValidateBehaviorOld()
-	{
-		Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
-		oldOpp.Name = 'Test Enable Old Behaviour';
-		oldOpp.Type = 'Existing Account'; 
-		Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ'); 
-		newOpp.Name = 'Test Enable Old Behaviour';
-		newOpp.Type = 'New Account'; 		
-		A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
-		try {		
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectOnValidateBehaviourConstructor.class);
-			System.assert(false, 'Expected exception');
-		} catch (Exception e) {
-			System.assertEquals('onValidate called', e.getMessage());
-		}
-	}
+    @IsTest
+    private static void testOnAfterUndeleteWithoutDML() {
+        Opportunity opp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        opp.Name = 'Test';
+        opp.Type = 'Existing Account';
+        System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.Test.Database.onUndelete(new list<Opportunity>{
+                opp
+        });
+        System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+    }
 
-	@IsTest
-	private static void testGetChangedFieldsAsStrings()
-	{
-		Account acct1 = new Account ( Id = '001E0000006mkRP', Name = 'Test1', AccountNumber = '12345', Site = 'Here'),
-		        acct2 = new Account ( Id = '001E0000006mkRQ', Name = 'Test2', AccountNumber = '54321', Site = 'There');
-		System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.Test.Database.onInsert(new Account[] { acct1, acct2 } );
-		System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
-		A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectChangedRecordsConstructor.class);
-		Account acct1changed = acct1.clone(),
-		        acct2changed = acct2.clone();
-		acct1changed.Name = 'Test1changed';
-		A00_SObjectDomain.Test.Database.onUpdate(
-			new Account[]{ acct1, acct2},
-			new Map<Id, Account>{
-				acct1changed.Id => acct1,
-				acct2changed.Id => acct2
-			}
-		);
-	}
-	
-	/**
-	 * Create test user
-	 **/
-	private static User createChatterExternalUser()
-	{
-		// Can only proceed with test if we have a suitable profile - Chatter External license has no access to Opportunity
-		List<Profile> testProfiles = [Select Id From Profile where UserLicense.Name='Chatter External' limit 1];
-		if(testProfiles.size()!=1)
-			return null; 		
+    @IsTest
+    private static void testObjectSecurity() {
+        // Create a user which will not have access to the test object type
+        User testUser = createChatterExternalUser();
+        if (testUser == null)
+            return; // Abort the test if unable to create a user with low enough acess
+        System.runAs(testUser) {
+            // Test Create object security
+            Opportunity opp = new Opportunity (Name = 'Test', Type = 'Existing Account');
+            A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                    opp
+            });
+            try {
+                A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+                System.assert(false, 'Expected access denied exception');
+            } catch (Exception e) {
+                System.assertEquals('Permission to create an Opportunity denied.', e.getMessage());
+            }
 
-		// Can only proceed with test if we can successfully insert a test user 
-		String testUsername = System.now().format('yyyyMMddhhmmss') + '@testorg.com';
-		User testUser = new User(Alias = 'test1', Email='testuser1@testorg.com', EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', LocaleSidKey='en_US', ProfileId = testProfiles[0].Id, TimeZoneSidKey='America/Los_Angeles', UserName=testUsername);
-		try {
-			insert testUser;
-		} catch (Exception e) {
-			return null;
-		}		
-		return testUser;
-	}
+            // Test Update object security
+            Opportunity existingOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+            existingOpp.Name = 'Test';
+            existingOpp.Type = 'Existing Account';
+            A00_SObjectDomain.Test.Database.onUpdate(new List<Opportunity>{
+                    opp
+            }, new Map<Id, Opportunity>{
+                    opp.Id => opp
+            });
+            try {
+                A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+                System.assert(false, 'Expected access denied exception');
+            } catch (Exception e) {
+                System.assertEquals('Permission to udpate an Opportunity denied.', e.getMessage());
+            }
 
-	/**
-	 *	The following tests that the ability to enable/disable all trigger events works as required
-	 **/
-	@IsTest
-	private static void testDisableTriggerEventsBehaviour()
-	{
-		boolean bError = false;
+            // Test Delete object security
+            A00_SObjectDomain.Test.Database.onDelete(new Map<Id, Opportunity>{
+                    opp.Id => opp
+            });
+            try {
+                A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDomainConstructor.class);
+                System.assert(false, 'Expected access denied exception');
+            } catch (Exception e) {
+                System.assertEquals('Permission to delete an Opportunity denied.', e.getMessage());
+            }
+        }
+    }
 
-		String  sErrorMessage = '';
+    @IsTest
+    private static void testErrorLogging() {
+        // Test static helpers for raise none domain object instance errors
+        Opportunity opp = new Opportunity (Name = 'Test', Type = 'Existing Account');
+        A00_SObjectDomain.Errors.error('Error', opp);
+        A00_SObjectDomain.Errors.error('Error', opp, Opportunity.Type);
+        System.assertEquals(2, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('Error', A00_SObjectDomain.Errors.getAll()[0].message);
+        System.assertEquals('Error', A00_SObjectDomain.Errors.getAll()[1].message);
+        System.assertEquals(Opportunity.Type, ((A00_SObjectDomain.FieldError) A00_SObjectDomain.Errors.getAll()[1]).field);
+        A00_SObjectDomain.Errors.clearAll();
+        System.assertEquals(0, A00_SObjectDomain.Errors.getAll().size());
+    }
 
-		Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
-		oldOpp.Name = 'Test';
-		oldOpp.Type = 'Existing'; 
-		Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ'); 
-		newOpp.Name = 'Test';
-		newOpp.Type = 'New'; 
+    @IsTest
+    private static void testTriggerState() {
+        Opportunity opp = new Opportunity (Name = 'Test', Type = 'Existing Account');
+        A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                opp
+        });
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectStatefulDomainConstructor.class);
+        System.assertEquals(1, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('Error on Record Test', A00_SObjectDomain.Errors.getAll()[0].message);
+    }
 
+    @IsTest
+    private static void testRecursiveTriggerState() {
+        Opportunity opp = new Opportunity (Name = 'Test Recursive 1', Type = 'Existing Account');
+        A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                opp
+        });
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectStatefulDomainConstructor.class);
+        System.assertEquals(2, A00_SObjectDomain.Errors.getAll().size());
+        System.assertEquals('Error on Record Test Recursive 2', A00_SObjectDomain.Errors.getAll()[0].message);
+        System.assertEquals('Error on Record Test Recursive 1', A00_SObjectDomain.Errors.getAll()[1].message);
+    }
 
+    @IsTest
+    private static void testOnValidateBehaviorDefault() {
+        Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        oldOpp.Name = 'Test Default Behaviour';
+        oldOpp.Type = 'Existing Account';
+        Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        newOpp.Name = 'Test Default Behaviour';
+        newOpp.Type = 'New Account';
+        A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[]{
+                newOpp
+        }, new Map<Id, SObject>{
+                newOpp.Id => oldOpp
+        });
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectOnValidateBehaviourConstructor.class);
+    }
 
-		// these will be called multiple times making sure the correct error message comes back out
-		// so... there are alot of tests to do here sadly and remember everything is reversed and you need to run backwards!
-		// 1 - all disabled 
-		try
-		{
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).disableAll();
-			A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { newOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			bError = true;
-		}
+    @IsTest
+    private static void testOnValidateBehaviorOld() {
+        Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        oldOpp.Name = 'Test Enable Old Behaviour';
+        oldOpp.Type = 'Existing Account';
+        Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        newOpp.Name = 'Test Enable Old Behaviour';
+        newOpp.Type = 'New Account';
+        A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[]{
+                newOpp
+        }, new Map<Id, SObject>{
+                newOpp.Id => oldOpp
+        });
+        try {
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectOnValidateBehaviourConstructor.class);
+            System.assert(false, 'Expected exception');
+        } catch (Exception e) {
+            System.assertEquals('onValidate called', e.getMessage());
+        }
+    }
 
-		System.AssertEquals(false, bError, 'Error - Trigger events have been fired when they are disabled');
+    @IsTest
+    private static void testGetChangedFieldsAsStrings() {
+        Account acct1 = new Account (Id = '001E0000006mkRP', Name = 'Test1', AccountNumber = '12345', Site = 'Here'),
+                acct2 = new Account (Id = '001E0000006mkRQ', Name = 'Test2', AccountNumber = '54321', Site = 'There');
+        System.assertEquals(false, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.Test.Database.onInsert(new Account[]{
+                acct1, acct2
+        });
+        System.assertEquals(true, A00_SObjectDomain.Test.Database.hasRecords());
+        A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectChangedRecordsConstructor.class);
+        Account acct1changed = acct1.clone(),
+                acct2changed = acct2.clone();
+        acct1changed.Name = 'Test1changed';
+        A00_SObjectDomain.Test.Database.onUpdate(
+                new Account[]{
+                        acct1, acct2
+                },
+                new Map<Id, Account>{
+                        acct1changed.Id => acct1,
+                        acct2changed.Id => acct2
+                }
+        );
+    }
 
-		////////////////////////////
-		// Insert!
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterInsert();
-			A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { newOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();
-			System.Debug('Exception Fired :' + e.getMEssage());
-		}
+    /**
+     * Create test user
+     **/
+    private static User createChatterExternalUser() {
+        // Can only proceed with test if we have a suitable profile - Chatter External license has no access to Opportunity
+        List<Profile> testProfiles = [Select Id From Profile where UserLicense.Name = 'Chatter External' limit 1];
+        if (testProfiles.size() != 1)
+            return null;
 
-		System.AssertEquals('onAfterInsert called', sErrorMessage, 'Error - After Insert Event is enabled but did not run');
+        // Can only proceed with test if we can successfully insert a test user
+        String testUsername = System.now().format('yyyyMMddhhmmss') + '@testorg.com';
+        User testUser = new User(Alias = 'test1', Email = 'testuser1@testorg.com', EmailEncodingKey = 'UTF-8', LastName = 'Testing', LanguageLocaleKey = 'en_US', LocaleSidKey = 'en_US', ProfileId = testProfiles[0].Id, TimeZoneSidKey = 'America/Los_Angeles', UserName = testUsername);
+        try {
+            insert testUser;
+        } catch (Exception e) {
+            return null;
+        }
+        return testUser;
+    }
 
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableBeforeInsert();
-			A00_SObjectDomain.Test.Database.onInsert(new Opportunity[] { newOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();
-		}
+    /**
+     *	The following tests that the ability to enable/disable all trigger events works as required
+     **/
+    @IsTest
+    private static void testDisableTriggerEventsBehaviour() {
+        boolean bError = false;
 
-		System.AssertEquals('onBeforeInsert called', sErrorMessage, 'Error - Before Insert Event is enabled but did not run');
+        String sErrorMessage = '';
 
-		////////////////////////////
-		// Update!
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterUpdate();
-			A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();
-		}
-
-		System.AssertEquals('onAfterUpdate called', sErrorMessage, 'Error - After Update Event is enabled but did not run');
-
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableBeforeUpdate();
-			A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();	
-		}
-
-		System.AssertEquals('onBeforeUpdate called', sErrorMessage, 'Error - Before Update Event is enabled but did not run');
-
-		////////////////////////////
-		// Delete!
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterDelete();
-			A00_SObjectDomain.Test.Database.onDelete(new Map<Id, Opportunity> { newOpp.Id => newOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();
-		}
-
-		System.AssertEquals('onAfterDelete called', sErrorMessage, 'Error - After Delete Event is enabled but did not run');
-
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableBeforeDelete();
-			A00_SObjectDomain.Test.Database.onDelete(new Map<Id, Opportunity> { newOpp.Id => newOpp } );
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();	
-		}
-
-		System.AssertEquals('onBeforeDelete called', sErrorMessage, 'Error - Before Delete Event is enabled but did not run');
-
-		////////////////////////////
-		// Undelete!
-		try
-		{
-			// now lets go after insert and then before
-			A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterUndelete();
-			A00_SObjectDomain.Test.Database.onUndelete(new Opportunity[] { newOpp });
-			A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
-		}
-		catch (Exception e)
-		{
-			sErrorMessage = e.getMessage();
-		}
-
-		System.AssertEquals('onAfterUndelete called', sErrorMessage, 'Error - After Undelete Event is enabled but did not run');
-
-		/*
-
-		fflib_SObjectDomain.Test.Database.onInsert(new Opportunity[] { opp } );
+        Opportunity oldOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        oldOpp.Name = 'Test';
+        oldOpp.Type = 'Existing';
+        Opportunity newOpp = (Opportunity) Opportunity.sObjectType.newSObject('006E0000006mkRQ');
+        newOpp.Name = 'Test';
+        newOpp.Type = 'New';
 
 
+        // these will be called multiple times making sure the correct error message comes back out
+        // so... there are alot of tests to do here sadly and remember everything is reversed and you need to run backwards!
+        // 1 - all disabled
+        try {
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).disableAll();
+            A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                    newOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            bError = true;
+        }
 
-		fflib_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
+        System.AssertEquals(false, bError, 'Error - Trigger events have been fired when they are disabled');
 
-		fflib_SObjectDomain.Test.Database.onDelete(new Map<ID, Opportunity> { opp.Id => opp } );		
+        ////////////////////////////
+        // Insert!
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterInsert();
+            A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                    newOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+            System.Debug('Exception Fired :' + e.getMEssage());
+        }
 
-		fflib_SObjectDomain.Test.Database.onUndelete(new list<Opportunity> { opp } );		
+        System.AssertEquals('onAfterInsert called', sErrorMessage, 'Error - After Insert Event is enabled but did not run');
+
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableBeforeInsert();
+            A00_SObjectDomain.Test.Database.onInsert(new Opportunity[]{
+                    newOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+        }
+
+        System.AssertEquals('onBeforeInsert called', sErrorMessage, 'Error - Before Insert Event is enabled but did not run');
+
+        ////////////////////////////
+        // Update!
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterUpdate();
+            A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[]{
+                    newOpp
+            }, new Map<Id, SObject>{
+                    newOpp.Id => oldOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+        }
+
+        System.AssertEquals('onAfterUpdate called', sErrorMessage, 'Error - After Update Event is enabled but did not run');
+
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableBeforeUpdate();
+            A00_SObjectDomain.Test.Database.onUpdate(new Opportunity[]{
+                    newOpp
+            }, new Map<Id, SObject>{
+                    newOpp.Id => oldOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+        }
+
+        System.AssertEquals('onBeforeUpdate called', sErrorMessage, 'Error - Before Update Event is enabled but did not run');
+
+        ////////////////////////////
+        // Delete!
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterDelete();
+            A00_SObjectDomain.Test.Database.onDelete(new Map<Id, Opportunity>{
+                    newOpp.Id => newOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+        }
+
+        System.AssertEquals('onAfterDelete called', sErrorMessage, 'Error - After Delete Event is enabled but did not run');
+
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableBeforeDelete();
+            A00_SObjectDomain.Test.Database.onDelete(new Map<Id, Opportunity>{
+                    newOpp.Id => newOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+        }
+
+        System.AssertEquals('onBeforeDelete called', sErrorMessage, 'Error - Before Delete Event is enabled but did not run');
+
+        ////////////////////////////
+        // Undelete!
+        try {
+            // now lets go after insert and then before
+            A00_SObjectDomain.getTriggerEvent(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class).enableAfterUndelete();
+            A00_SObjectDomain.Test.Database.onUndelete(new Opportunity[]{
+                    newOpp
+            });
+            A00_SObjectDomain.triggerHandler(A00_SObjectDomain.TestSObjectDisableBehaviourConstructor.class);
+        } catch (Exception e) {
+            sErrorMessage = e.getMessage();
+        }
+
+        System.AssertEquals('onAfterUndelete called', sErrorMessage, 'Error - After Undelete Event is enabled but did not run');
+
+        /*
+
+        fflib_SObjectDomain.Test.Database.onInsert(new Opportunity[] { opp } );
 
 
-		try {		
-			fflib_SObjectDomain.triggerHandler(fflib_SObjectDomain.TestSObjectOnValidateBehaviourConstructor.class);
-			System.assert(false, 'Expected exception');
-		} catch (Exception e) {
-			System.assertEquals('onValidate called', e.getMessage());
-		}
-		*/
-	}
+
+        fflib_SObjectDomain.Test.Database.onUpdate(new Opportunity[] { newOpp }, new Map<Id, SObject> { newOpp.Id => oldOpp } );
+
+        fflib_SObjectDomain.Test.Database.onDelete(new Map<ID, Opportunity> { opp.Id => opp } );
+
+        fflib_SObjectDomain.Test.Database.onUndelete(new list<Opportunity> { opp } );
+
+
+        try {
+            fflib_SObjectDomain.triggerHandler(fflib_SObjectDomain.TestSObjectOnValidateBehaviourConstructor.class);
+            System.assert(false, 'Expected exception');
+        } catch (Exception e) {
+            System.assertEquals('onValidate called', e.getMessage());
+        }
+        */
+    }
 }

@@ -4,7 +4,7 @@ public virtual class XAP_DAO_SOQL_Querier {
 
     private static XAP_DAO_SOQL_Querier instance;
     public static XAP_DAO_SOQL_Querier getInstance() {
-            instance = new XAP_DAO_SOQL_Querier();
+        instance = new XAP_DAO_SOQL_Querier();
         return instance;
     }
 

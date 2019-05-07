@@ -1,5 +1,5 @@
 public class XAP_UTIL_SObjectBlendResult {
-    public SObject updatedSObject {get; private set;}
+    public SObject updatedSObject { get; private set; }
     public Boolean isTargetChanged;
 
     public XAP_UTIL_SObjectBlendResult(SObject updatedSObject) {

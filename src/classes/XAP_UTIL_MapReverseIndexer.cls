@@ -1,28 +1,28 @@
 public class XAP_UTIL_MapReverseIndexer {
     List<Object> keyObjectList;
     List<Object> valueObjectList;
-    public XAP_UTIL_MapReverseIndexer(Map<String, String> valueByKeyMap){
+    public XAP_UTIL_MapReverseIndexer(Map<String, String> valueByKeyMap) {
         this.keyObjectList = new List<String>(valueByKeyMap.keySet());
         this.valueObjectList = valueByKeyMap.values();
     }
 
-    public XAP_UTIL_MapReverseIndexer(Map<Double, Double> valueByKeyMap){
+    public XAP_UTIL_MapReverseIndexer(Map<Double, Double> valueByKeyMap) {
         this.keyObjectList = new List<Double>(valueByKeyMap.keySet());
         this.valueObjectList = valueByKeyMap.values();
     }
 
-    public XAP_UTIL_MapReverseIndexer(Map<Integer, Integer> valueByKeyMap){
+    public XAP_UTIL_MapReverseIndexer(Map<Integer, Integer> valueByKeyMap) {
         this.keyObjectList = new List<Integer>(valueByKeyMap.keySet());
         this.valueObjectList = valueByKeyMap.values();
     }
 
-    public XAP_UTIL_MapReverseIndexer(Map<SObjectField, SObjectField> valueByKeyMap){
+    public XAP_UTIL_MapReverseIndexer(Map<SObjectField, SObjectField> valueByKeyMap) {
         this.keyObjectList = new List<SObjectField>(valueByKeyMap.keySet());
         this.valueObjectList = valueByKeyMap.values();
     }
 
     private Map<Object, List<Object>> keyListByValueMap {
-        get{
+        get {
             if (this.keyListByValueMap == null) {
                 this.keyListByValueMap = this.buildKeyListByValueMap();
             }

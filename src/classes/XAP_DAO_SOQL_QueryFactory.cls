@@ -156,9 +156,9 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (this.query.queryFactoryByRelationshipMap == null) {
             this.query.queryFactoryByRelationshipMap = new Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
         }
-        System.debug('######### subSelectQuery2 queryFactoryByRelationshipMap: ' +  this.query.queryFactoryByRelationshipMap);
-        System.debug('######### subSelectQuery2 this.query.relationship: ' +  this.query.relationship);
-        System.debug('######### this.query.queryFactoryByRelationshipMap.get(this.query.relationship): ' +  this.query.queryFactoryByRelationshipMap.get(this.query.relationship));
+        System.debug('######### subSelectQuery2 queryFactoryByRelationshipMap: ' + this.query.queryFactoryByRelationshipMap);
+        System.debug('######### subSelectQuery2 this.query.relationship: ' + this.query.relationship);
+        System.debug('######### this.query.queryFactoryByRelationshipMap.get(this.query.relationship): ' + this.query.queryFactoryByRelationshipMap.get(this.query.relationship));
         return (this.query.queryFactoryByRelationshipMap.containsKey(this.query.relationship))
                 ? this.query.queryFactoryByRelationshipMap.get(this.query.relationship)
                 : this.setSubselectQuery(assertIsAccessible);

@@ -106,7 +106,8 @@
     <validationRules>
         <fullName>NoUsernameChangesAllowed</fullName>
         <active>true</active>
-        <description>Changing usernames in this org may impact your ability to sign in automatically from Trailhead.</description>
+        <description>Changing usernames in this org may impact your ability to sign in automatically from Trailhead.
+        </description>
         <errorConditionFormula>Username != PRIORVALUE(Username)</errorConditionFormula>
         <errorDisplayField>Username</errorDisplayField>
         <errorMessage>Please do not change usernames in the Trailhead Playground.</errorMessage>

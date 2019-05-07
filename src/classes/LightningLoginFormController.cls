@@ -1,21 +1,20 @@
 global class LightningLoginFormController {
 
     public LightningLoginFormController() {
-        
+
     }
 
     @AuraEnabled
     public static String login(String username, String password, String startUrl) {
-        try{
+        try {
             ApexPages.PageReference lgn = Site.login(username, password, startUrl);
             aura.redirect(lgn);
             return null;
-        }
-        catch (Exception ex) {
-            return ex.getMessage();            
+        } catch (Exception ex) {
+            return ex.getMessage();
         }
     }
-    
+
     @AuraEnabled
     public static Boolean getIsUsernamePasswordEnabled() {
         Auth.AuthConfiguration authConfig = getAuthConfig();
@@ -42,11 +41,11 @@ global class LightningLoginFormController {
         Auth.AuthConfiguration authConfig = getAuthConfig();
         return authConfig.getForgotPasswordUrl();
     }
-    
+
     @TestVisible
-    private static Auth.AuthConfiguration getAuthConfig(){
+    private static Auth.AuthConfiguration getAuthConfig() {
         Id networkId = Network.getNetworkId();
-        Auth.AuthConfiguration authConfig = new Auth.AuthConfiguration(networkId,'');
+        Auth.AuthConfiguration authConfig = new Auth.AuthConfiguration(networkId, '');
         return authConfig;
     }
 
@@ -57,9 +56,9 @@ global class LightningLoginFormController {
             if (expId != null) {
                 Site.setExperienceId(expId);
             }
-            return null; 
+            return null;
         } catch (Exception ex) {
-            return ex.getMessage();            
+            return ex.getMessage();
         }
-    }   
+    }
 }

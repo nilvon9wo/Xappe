@@ -62,10 +62,10 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
 
     private String orderBy;
 
-    private A00_SObjectDescribe describeWrapper {
+    private XAP_DESC_SObjectDescribe describeWrapper {
         get {
             if (this.describeWrapper == null) {
-                this.describeWrapper = A00_SObjectDescribe.getDescribe(getSObjectType());
+                this.describeWrapper = XAP_DESC_SObjectDescribe.getDescribe(this.getSObjectType());
             }
             return this.describeWrapper;
         }
@@ -107,20 +107,12 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
         return this.describeWrapper.getDescribe().getName();
     }
 
-    public List<SObject> selectSObjectsById(Set<Id> idSet) {
+    public List<SObject> selectById(Set<Id> idSet) {
         return Database.query(this.buildQuerySObjectById());
     }
 
     public Database.QueryLocator queryLocatorById(Set<Id> idSet) {
         return Database.getQueryLocator(this.buildQuerySObjectById());
-    }
-
-    public SObjectType getSObjectType2() {
-        return getSObjectType();
-    }
-
-    public SObjectType sObjectType() {
-        return getSObjectType();
     }
 
     public A00_QueryFactory createQueryFactory() {
@@ -133,7 +125,7 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
 
     public A00_QueryFactory createQueryFactory(Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields) {
         return this.configureQueryFactory(
-                new A00_QueryFactory(getSObjectType2()),
+                new A00_QueryFactory(getSObjectType()),
                 assertCRUD,
                 enforceFLS,
                 includeSelectorFields
@@ -156,7 +148,7 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
 
     public A00_QueryFactory injectParentFactoryFor(A00_QueryFactory parentQueryFactory, Boolean includeSelectorFields) {
         return this.configureQueryFactory(
-                parentQueryFactory.subselectQuery(getSObjectType2()),
+                parentQueryFactory.subselectQuery(getSObjectType()),
                 isEnforcingCRUD,
                 isEnforcingFLS,
                 includeSelectorFields);

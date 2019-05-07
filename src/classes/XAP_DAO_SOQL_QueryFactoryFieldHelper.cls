@@ -17,7 +17,7 @@ public class XAP_DAO_SOQL_QueryFactoryFieldHelper {
     private static XAP_DAO_SOQL_QueryFactoryFieldHelper instance;
 
     public static XAP_DAO_SOQL_QueryFactoryFieldHelper getInstance() {
-            instance = new XAP_DAO_SOQL_QueryFactoryFieldHelper();
+        instance = new XAP_DAO_SOQL_QueryFactoryFieldHelper();
         return instance;
     }
 

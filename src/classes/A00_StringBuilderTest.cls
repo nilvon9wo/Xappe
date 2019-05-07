@@ -25,91 +25,109 @@
 **/
 
 @IsTest
-private with sharing class A00_StringBuilderTest
-{	
-	static testMethod void testfflib_StringBuilder1()
-	{
-		A00_StringBuilder sb = new A00_StringBuilder();
-		sb.add('this is a string');
-		sb.add(new List<String>{', which is made',' up from\r ','a number of smaller strings', '. 5 in this case!'});
-		system.assertEquals(sb.getStringValue(),'this is a string, which is made up from\r a number of smaller strings. 5 in this case!');	
-	}
+private with sharing class A00_StringBuilderTest {
+    static testMethod void testfflib_StringBuilder1() {
+        A00_StringBuilder sb = new A00_StringBuilder();
+        sb.add('this is a string');
+        sb.add(new List<String>{
+                ', which is made', ' up from\r ', 'a number of smaller strings', '. 5 in this case!'
+        });
+        system.assertEquals(sb.getStringValue(), 'this is a string, which is made up from\r a number of smaller strings. 5 in this case!');
+    }
 
-	static testMethod void testfflib_StringBuilder2()
-	{
-		A00_StringBuilder sb = new A00_StringBuilder(new List<String>{'apples',' and ','pears',': stairs. '});
-		sb.add('this is a string');
-		sb.add(new List<String>{', which is made',' up from\r ','a number of smaller strings', '. 5 in this case!'});
-		system.assertEquals(sb.getStringValue(),'apples and pears: stairs. this is a string, which is made up from\r a number of smaller strings. 5 in this case!');	
-	}
+    static testMethod void testfflib_StringBuilder2() {
+        A00_StringBuilder sb = new A00_StringBuilder(new List<String>{
+                'apples', ' and ', 'pears', ': stairs. '
+        });
+        sb.add('this is a string');
+        sb.add(new List<String>{
+                ', which is made', ' up from\r ', 'a number of smaller strings', '. 5 in this case!'
+        });
+        system.assertEquals(sb.getStringValue(), 'apples and pears: stairs. this is a string, which is made up from\r a number of smaller strings. 5 in this case!');
+    }
 
-	static testMethod void testCommaDelimitedBuilder1()
-	{
-		A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder();
-		sb.add('a');
-		sb.add(new List<String>{'b','c','d'});
-		system.assertEquals(sb.getStringValue(),'a,b,c,d');	
-	}
+    static testMethod void testCommaDelimitedBuilder1() {
+        A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder();
+        sb.add('a');
+        sb.add(new List<String>{
+                'b', 'c', 'd'
+        });
+        system.assertEquals(sb.getStringValue(), 'a,b,c,d');
+    }
 
-	static testMethod void testCommaDelimitedBuilder2()
-	{
-		A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{'x','y'});
-		sb.add('a');
-		sb.add(new List<String>{'b','c','d'});
-		system.assertEquals(sb.getStringValue(),'x,y,a,b,c,d');	
-	}
-	
-	static testMethod void testCommanDelimitedBuilderWithItemPrefix()
-	{
-		A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{'x','y'});
-		sb.add('a');
-		sb.add(new List<String>{'b','c','d'});
-		system.assertEquals(sb.getStringValue('$'),'$x,$y,$a,$b,$c,$d');	
-	}
-	
-	static testMethod void testCommanDelimitedBuilderWithAlternativeDelimiter()
-	{
-		A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{'x','y'});
-		sb.setDelimiter(';');
-		sb.add('a');
-		sb.add(new List<String>{'b','c','d'});
-		system.assertEquals(sb.getStringValue(),'x;y;a;b;c;d');	
-	}
-	
-	static testMethod void testCommanDelimitedBuilderWithAlternativeDelimiterAndPrefix()
-	{
-		A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{'x','y'});
-		sb.setItemPrefix('#');
-		sb.setDelimiter(':');
-		sb.add('a');
-		sb.add(new List<String>{'b','c','d'});
-		system.assertEquals(sb.getStringValue(),'#x:#y:#a:#b:#c:#d');
-	}
+    static testMethod void testCommaDelimitedBuilder2() {
+        A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
+                'x', 'y'
+        });
+        sb.add('a');
+        sb.add(new List<String>{
+                'b', 'c', 'd'
+        });
+        system.assertEquals(sb.getStringValue(), 'x,y,a,b,c,d');
+    }
 
-	static testMethod void testFieldListBuilder()
-	{
-		List<Schema.SObjectField> fields = new List<Schema.SObjectField> { Account.Name, Account.Id, Account.AccountNumber, Account.AccountNumber, Account.AnnualRevenue };
-		A00_StringBuilder.FieldListBuilder sb = new A00_StringBuilder.FieldListBuilder(fields);
-		List<String> fieldList = sb.getStringValue().split(',');
-		Set<String> fieldSet = new Set<String>(fieldList);
-		system.assertEquals(4, fieldSet.size());
-		system.assert(fieldSet.contains('Name'));
-		system.assert(fieldSet.contains('Id'));
-		system.assert(fieldSet.contains('AccountNumber'));
-		system.assert(fieldSet.contains('AnnualRevenue'));
-	}
+    static testMethod void testCommanDelimitedBuilderWithItemPrefix() {
+        A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
+                'x', 'y'
+        });
+        sb.add('a');
+        sb.add(new List<String>{
+                'b', 'c', 'd'
+        });
+        system.assertEquals(sb.getStringValue('$'), '$x,$y,$a,$b,$c,$d');
+    }
 
-	static testMethod void testMultiCurrencyFieldListBuilder()
-	{
-		List<Schema.SObjectField> fields = new List<Schema.SObjectField> { Account.Name, Account.Id, Account.AccountNumber, Account.AnnualRevenue };
-		A00_StringBuilder.MultiCurrencyFieldListBuilder sb = new A00_StringBuilder.MultiCurrencyFieldListBuilder(fields);
-		List<String> fieldList = sb.getStringValue().split(',');
-		Set<String> fieldSet = new Set<String>(fieldList);
-		system.assert(fieldSet.contains('Name'));
-		system.assert(fieldSet.contains('Id'));
-		system.assert(fieldSet.contains('AccountNumber'));
-		system.assert(fieldSet.contains('AnnualRevenue'));
-		if(UserInfo.isMultiCurrencyOrganization())
-			system.assert(fieldSet.contains('CurrencyIsoCode'));
-	}
+    static testMethod void testCommanDelimitedBuilderWithAlternativeDelimiter() {
+        A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
+                'x', 'y'
+        });
+        sb.setDelimiter(';');
+        sb.add('a');
+        sb.add(new List<String>{
+                'b', 'c', 'd'
+        });
+        system.assertEquals(sb.getStringValue(), 'x;y;a;b;c;d');
+    }
+
+    static testMethod void testCommanDelimitedBuilderWithAlternativeDelimiterAndPrefix() {
+        A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
+                'x', 'y'
+        });
+        sb.setItemPrefix('#');
+        sb.setDelimiter(':');
+        sb.add('a');
+        sb.add(new List<String>{
+                'b', 'c', 'd'
+        });
+        system.assertEquals(sb.getStringValue(), '#x:#y:#a:#b:#c:#d');
+    }
+
+    static testMethod void testFieldListBuilder() {
+        List<Schema.SObjectField> fields = new List<Schema.SObjectField>{
+                Account.Name, Account.Id, Account.AccountNumber, Account.AccountNumber, Account.AnnualRevenue
+        };
+        A00_StringBuilder.FieldListBuilder sb = new A00_StringBuilder.FieldListBuilder(fields);
+        List<String> fieldList = sb.getStringValue().split(',');
+        Set<String> fieldSet = new Set<String>(fieldList);
+        system.assertEquals(4, fieldSet.size());
+        system.assert(fieldSet.contains('Name'));
+        system.assert(fieldSet.contains('Id'));
+        system.assert(fieldSet.contains('AccountNumber'));
+        system.assert(fieldSet.contains('AnnualRevenue'));
+    }
+
+    static testMethod void testMultiCurrencyFieldListBuilder() {
+        List<Schema.SObjectField> fields = new List<Schema.SObjectField>{
+                Account.Name, Account.Id, Account.AccountNumber, Account.AnnualRevenue
+        };
+        A00_StringBuilder.MultiCurrencyFieldListBuilder sb = new A00_StringBuilder.MultiCurrencyFieldListBuilder(fields);
+        List<String> fieldList = sb.getStringValue().split(',');
+        Set<String> fieldSet = new Set<String>(fieldList);
+        system.assert(fieldSet.contains('Name'));
+        system.assert(fieldSet.contains('Id'));
+        system.assert(fieldSet.contains('AccountNumber'));
+        system.assert(fieldSet.contains('AnnualRevenue'));
+        if (UserInfo.isMultiCurrencyOrganization())
+            system.assert(fieldSet.contains('CurrencyIsoCode'));
+    }
 }

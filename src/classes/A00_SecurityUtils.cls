@@ -28,10 +28,11 @@
  * Utility class for checking FLS/CRUD. NOTE: all "check" methods will throw a SecurityException (or subclass) if the
  * user does not have the proper security granted.
  **/
-public class A00_SecurityUtils
-{
-    @testVisible 
-    private Enum OperationType { CREATE, READ, MODIFY, DEL } //UPDATE and DELETE are reserved words
+public class A00_SecurityUtils {
+    @testVisible
+    private Enum OperationType {
+        CREATE, READ, MODIFY, DEL
+    } //UPDATE and DELETE are reserved words
 
     /**
      * SecurityException is never be thrown directly by fflib_SecurityUtils, instead all 
@@ -47,60 +48,55 @@ public class A00_SecurityUtils
      * CrudException represents a running user's lack of read/create/update/delete access at a profile (or permission set)
      * level. Sharing and field level security issues will never cause this.
      **/
-    public class CrudException extends SecurityException{
-    	
-    	private CrudException(OperationType operation, Schema.SObjectType objectType){
-    		this.m_operation = operation;
-    		this.m_objectType = objectType;
-    		if(operation == OperationType.CREATE)
-    			this.setMessage(System.Label.fflib_security_error_object_not_insertable);
-    		else if(operation == OperationType.READ)
-    			this.setMessage(System.Label.fflib_security_error_object_not_readable);
-    		else if(operation == OperationType.MODIFY)
-    			this.setMessage(System.Label.fflib_security_error_object_not_updateable);
-    		else if(operation == OperationType.DEL)
-    			this.setMessage(System.Label.fflib_security_error_object_not_deletable);
+    public class CrudException extends SecurityException {
 
-    		this.setMessage(
-    			String.format(
-    				this.getMessage(),
-    				new List<String>{
-    					objectType.getDescribe().getName()
-    				} 
-    			)
-    		);
-    	}
+        private CrudException(OperationType operation, Schema.SObjectType objectType) {
+            this.m_operation = operation;
+            this.m_objectType = objectType;
+            if (operation == OperationType.CREATE)
+                this.setMessage(System.Label.fflib_security_error_object_not_insertable); else if (operation == OperationType.READ)
+                this.setMessage(System.Label.fflib_security_error_object_not_readable); else if (operation == OperationType.MODIFY)
+                this.setMessage(System.Label.fflib_security_error_object_not_updateable); else if (operation == OperationType.DEL)
+                this.setMessage(System.Label.fflib_security_error_object_not_deletable);
+
+            this.setMessage(
+                    String.format(
+                            this.getMessage(),
+                            new List<String>{
+                                    objectType.getDescribe().getName()
+                            }
+                    )
+            );
+        }
     }
     /**
      * FlsException represents a running user's lack of field level security to a specific field at a profile (or permission set) level
      * Sharing and CRUD security issues will never cause this to be thrown.
      **/
-    public class FlsException extends SecurityException{
-    	private Schema.SObjectField m_fieldToken;
+    public class FlsException extends SecurityException {
+        private Schema.SObjectField m_fieldToken;
 
-    	private FlsException(OperationType operation, Schema.SObjectType objectType, Schema.SObjectField fieldToken){
-    		this.m_operation = operation;
-    		this.m_objectType = objectType;
-    		this.m_fieldToken = fieldToken;
-    		if(operation == OperationType.CREATE)
-    			this.setMessage(System.Label.fflib_security_error_field_not_insertable);
-    		else if(operation == OperationType.READ)
-    			this.setMessage(System.Label.fflib_security_error_field_not_readable);
-    		else if(operation == OperationType.MODIFY)
-    			this.setMessage(System.Label.fflib_security_error_field_not_updateable);
+        private FlsException(OperationType operation, Schema.SObjectType objectType, Schema.SObjectField fieldToken) {
+            this.m_operation = operation;
+            this.m_objectType = objectType;
+            this.m_fieldToken = fieldToken;
+            if (operation == OperationType.CREATE)
+                this.setMessage(System.Label.fflib_security_error_field_not_insertable); else if (operation == OperationType.READ)
+                this.setMessage(System.Label.fflib_security_error_field_not_readable); else if (operation == OperationType.MODIFY)
+                this.setMessage(System.Label.fflib_security_error_field_not_updateable);
 
-    		this.setMessage(
-    			String.format(
-	    			this.getMessage(),
-	    			new List<String>{
-	    				objectType.getDescribe().getName(),
-	    				fieldToken.getDescribe().getName()
-	    			}
-	    		)
-    		);
-    	}
+            this.setMessage(
+                    String.format(
+                            this.getMessage(),
+                            new List<String>{
+                                    objectType.getDescribe().getName(),
+                                    fieldToken.getDescribe().getName()
+                            }
+                    )
+            );
+        }
     }
-    
+
     /**
      * If set to true all check methods will always return void, and never throw exceptions.
      * This should really only be set to true if an app-wide setting to disable in-apex
@@ -112,33 +108,29 @@ public class A00_SecurityUtils
     /**
 	 * Check{Insert,Read,Update} methods check both FLS and CRUD
     **/
-    
+
     /**
      * Checks both insert FLS and CRUD for the specified object type and fields.
      * @exception FlsException if the running user does not have insert rights to any fields in {@code fieldNames}.
      * @exception CrudException if the running user does not have insert rights to {@code objType}
      **/
-    public static void checkInsert(SObjectType objType, List<String> fieldNames)
-    {
-    	checkObjectIsInsertable(objType);
-    	for (String fieldName : fieldNames)
-    	{
-    		checkFieldIsInsertable(objType, fieldName);
-    	}
+    public static void checkInsert(SObjectType objType, List<String> fieldNames) {
+        checkObjectIsInsertable(objType);
+        for (String fieldName : fieldNames) {
+            checkFieldIsInsertable(objType, fieldName);
+        }
     }
-    
+
     /**
      * Identical to {@link #checkInsert(SObjectType,List<String>)}, except with SObjectField instead of String field references.
      * @exception FlsException if the running user does not have insert rights to any fields in {@code fieldTokens}.
      * @exception CrudException if the running user does not have insert rights to {@code objType}
      **/
-    public static void checkInsert(SObjectType objType, List<SObjectField> fieldTokens)
-    {
-    	checkObjectIsInsertable(objType);
-    	for (SObjectField fieldToken : fieldTokens)
-    	{
-    		checkFieldIsInsertable(objType, fieldToken);
-    	}
+    public static void checkInsert(SObjectType objType, List<SObjectField> fieldTokens) {
+        checkObjectIsInsertable(objType);
+        for (SObjectField fieldToken : fieldTokens) {
+            checkFieldIsInsertable(objType, fieldToken);
+        }
     }
 
     /**
@@ -146,25 +138,21 @@ public class A00_SecurityUtils
      * @exception FlsException if the running user does not have read rights to any fields in {@code fieldNames}.
      * @exception CrudException if the running user does not have read rights to {@code objType}
      **/
-    public static void checkRead(SObjectType objType, List<String> fieldNames)
-    {
+    public static void checkRead(SObjectType objType, List<String> fieldNames) {
         checkObjectIsReadable(objType);
-        for (String fieldName : fieldNames)
-        {
+        for (String fieldName : fieldNames) {
             checkFieldIsReadable(objType, fieldName);
         }
     }
-    
+
     /**
      * Identical to {@link #checkRead(SObjectType,List<String>)}, except with SObjectField instead of String field references.
      * @exception FlsException if the running user does not have read rights to any fields in {@code fieldTokens}.
      * @exception CrudException if the running user does not have read rights to {@code objType}
      **/
-    public static void checkRead(SObjectType objType, List<SObjectField> fieldTokens)
-    {
+    public static void checkRead(SObjectType objType, List<SObjectField> fieldTokens) {
         checkObjectIsReadable(objType);
-        for (SObjectField fieldToken : fieldTokens)
-        {
+        for (SObjectField fieldToken : fieldTokens) {
             checkFieldIsReadable(objType, fieldToken);
         }
     }
@@ -174,25 +162,21 @@ public class A00_SecurityUtils
      * @exception FlsException if the running user does not have update rights to any fields in {@code fieldNames}.
      * @exception CrudException if the running user does not have update rights to {@code objType}
      **/
-    public static void checkUpdate(SObjectType objType, List<String> fieldNames)
-    {
+    public static void checkUpdate(SObjectType objType, List<String> fieldNames) {
         checkObjectIsUpdateable(objType);
-        for (String fieldName : fieldNames)
-        {
+        for (String fieldName : fieldNames) {
             checkFieldIsUpdateable(objType, fieldName);
         }
     }
-    
+
     /**
      * Identical to {@link #checkUpdate(SObjectType,List<String>)}, except with SObjectField instead of String field references.
      * @exception FlsException if the running user does not have update rights to any fields in {@code fieldTokens}.
      * @exception CrudException if the running user does not have update rights to {@code objType}
      **/
-    public static void checkUpdate(SObjectType objType, List<SObjectField> fieldTokens)
-    {
+    public static void checkUpdate(SObjectType objType, List<SObjectField> fieldTokens) {
         checkObjectIsUpdateable(objType);
-        for (SObjectField fieldToken : fieldTokens)
-        {
+        for (SObjectField fieldToken : fieldTokens) {
             checkFieldIsUpdateable(objType, fieldToken);
         }
     }
@@ -205,8 +189,7 @@ public class A00_SecurityUtils
      * Checks insert field level security only (no CRUD) for the specified fields on {@code objType}
      * @exception FlsException if the running user does not have insert rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsInsertable(SObjectType objType, String fieldName)
-    {
+    public static void checkFieldIsInsertable(SObjectType objType, String fieldName) {
         checkFieldIsInsertable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
@@ -214,8 +197,7 @@ public class A00_SecurityUtils
      * Identical to {@link #checkFieldIsInsertable(SObjectType,String)}, except with SObjectField instead of String field reference.
      * @exception FlsException if the running user does not have insert rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsInsertable(SObjectType objType, SObjectField fieldToken)
-    {
+    public static void checkFieldIsInsertable(SObjectType objType, SObjectField fieldToken) {
         checkFieldIsInsertable(objType, fieldToken.getDescribe());
     }
 
@@ -223,51 +205,46 @@ public class A00_SecurityUtils
      * Identical to {@link #checkFieldIsInsertable(SObjectType,String)}, except with DescribeFieldResult instead of String field reference.
      * @exception FlsException if the running user does not have insert rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsInsertable(SObjectType objType, DescribeFieldResult fieldDescribe)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
-    	    return;
+    public static void checkFieldIsInsertable(SObjectType objType, DescribeFieldResult fieldDescribe) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
+            return;
         if (!fieldDescribe.isCreateable())
             throw new FlsException(OperationType.CREATE, objType, fieldDescribe.getSObjectField());
     }
-    
+
     /**
      * Checks read field level security only (no CRUD) for the specified fields on {@code objType}
      * @exception FlsException if the running user does not have read rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsReadable(SObjectType objType, String fieldName)
-    {
-    	checkFieldIsReadable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
+    public static void checkFieldIsReadable(SObjectType objType, String fieldName) {
+        checkFieldIsReadable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**
      * Identical to {@link #checkFieldIsReadable(SObjectType,String)}, except with SObjectField instead of String field reference.
      * @exception FlsException if the running user does not have read rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsReadable(SObjectType objType, SObjectField fieldToken)
-    {
-    	checkFieldIsReadable(objType, fieldToken.getDescribe());
+    public static void checkFieldIsReadable(SObjectType objType, SObjectField fieldToken) {
+        checkFieldIsReadable(objType, fieldToken.getDescribe());
     }
 
     /**
      * Identical to {@link #checkFieldIsReadable(SObjectType,String)}, except with DescribeFieldResult instead of String field reference.
      * @exception FlsException if the running user does not have read rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsReadable(SObjectType objType, DescribeFieldResult fieldDescribe)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
+    public static void checkFieldIsReadable(SObjectType objType, DescribeFieldResult fieldDescribe) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
             return;
-    	if (!fieldDescribe.isAccessible())
+        if (!fieldDescribe.isAccessible())
             throw new FlsException(OperationType.READ, objType, fieldDescribe.getSObjectField());
     }
-    
+
 
     /**
      * Checks update field level security only (no CRUD) for the specified fields on {@code objType}
      * @exception FlsException if the running user does not have update rights to the {@code fieldName} field.
-    **/    
-    public static void checkFieldIsUpdateable(SObjectType objType, String fieldName)
-    {
+    **/
+    public static void checkFieldIsUpdateable(SObjectType objType, String fieldName) {
         checkFieldIsUpdateable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
@@ -275,8 +252,7 @@ public class A00_SecurityUtils
      * Identical to {@link #checkFieldIsUpdateable(SObjectType,String)}, except with SObjectField instead of String field reference.
      * @exception FlsException if the running user does not have update rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsUpdateable(SObjectType objType, SObjectField fieldToken)
-    {
+    public static void checkFieldIsUpdateable(SObjectType objType, SObjectField fieldToken) {
         checkFieldIsUpdateable(objType, fieldToken.getDescribe());
     }
 
@@ -284,63 +260,57 @@ public class A00_SecurityUtils
      * Identical to {@link #checkFieldIsUpdateable(SObjectType,String)}, except with DescribeFieldResult instead of String field reference.
      * @exception FlsException if the running user does not have update rights to the {@code fieldName} field.
     **/
-    public static void checkFieldIsUpdateable(SObjectType objType, DescribeFieldResult fieldDescribe)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
+    public static void checkFieldIsUpdateable(SObjectType objType, DescribeFieldResult fieldDescribe) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
             return;
         if (!fieldDescribe.isUpdateable())
             throw new FlsException(OperationType.MODIFY, objType, fieldDescribe.getSObjectField());
-	}
+    }
 
-	/**
-	 * CheckObjectIs* methods check only CRUD
-	**/
-    
+    /**
+     * CheckObjectIs* methods check only CRUD
+    **/
+
     /**
      * Checks insert CRUD for the specified object type.
      * @exception CrudException if the running uder does not have insert rights to the {@code objType} SObject.
     **/
-    public static void checkObjectIsInsertable(SObjectType objType)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
+    public static void checkObjectIsInsertable(SObjectType objType) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
             return;
-    	if (!objType.getDescribe().isCreateable())
-    	{
-    		throw new CrudException(OperationType.CREATE, objType);
-    	}
+        if (!objType.getDescribe().isCreateable()) {
+            throw new CrudException(OperationType.CREATE, objType);
+        }
     }
-    
+
     /**
      * Checks read CRUD for the specified object type.
      * @exception CrudException if the running uder does not have read rights to the {@code objType} SObject.
     **/
-    public static void checkObjectIsReadable(SObjectType objType)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
+    public static void checkObjectIsReadable(SObjectType objType) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
             return;
         if (!objType.getDescribe().isAccessible())
-        	throw new CrudException(OperationType.READ, objType);
+            throw new CrudException(OperationType.READ, objType);
     }
 
     /**
      * Checks update CRUD for the specified object type.
      * @exception CrudException if the running uder does not have update rights to the {@code objType} SObject.
-    **/    
-    public static void checkObjectIsUpdateable(SObjectType objType)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
+    **/
+    public static void checkObjectIsUpdateable(SObjectType objType) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
             return;
         if (!objType.getDescribe().isUpdateable())
-        	throw new CrudException(OperationType.MODIFY, objType);
+            throw new CrudException(OperationType.MODIFY, objType);
     }
 
     /**
      * Checks delete CRUD for the specified object type.
      * @exception CrudException if the running uder does not have delete rights to the {@code objType} SObject.
-    **/    
-    public static void checkObjectIsDeletable(SObjectType objType)
-    {
-    	if (BYPASS_INTERNAL_FLS_AND_CRUD)
+    **/
+    public static void checkObjectIsDeletable(SObjectType objType) {
+        if (BYPASS_INTERNAL_FLS_AND_CRUD)
             return;
         if (!objType.getDescribe().isDeletable())
             throw new CrudException(OperationType.DEL, objType);

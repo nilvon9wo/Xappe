@@ -18,7 +18,7 @@ public class NestValidator4 {
 
     private static Map<String, CharacterHandlerIntf> DEFAULT_HANDLER_BY_CHARACTER_MAP {
         get {
-            if (DEFAULT_HANDLER_BY_CHARACTER_MAP == null ) {
+            if (DEFAULT_HANDLER_BY_CHARACTER_MAP == null) {
                 CharacterHandlerIntf openHandler = new OpenerHandler();
                 CharacterHandlerIntf closeHandler = new CloserHandler();
                 DEFAULT_HANDLER_BY_CHARACTER_MAP = new Map<String, CharacterHandlerIntf>{

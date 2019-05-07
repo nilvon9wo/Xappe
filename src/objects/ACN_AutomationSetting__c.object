@@ -310,7 +310,9 @@
     <fields>
         <fullName>ACN_ContactTriggerEnabled__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If true, triggers on the Contact will run when TriggerEnabled__c = True. If false no triggers on Contact will run</description>
+        <description>If true, triggers on the Contact will run when TriggerEnabled__c = True. If false no triggers on
+            Contact will run
+        </description>
         <externalId>false</externalId>
         <label>Contact Trigger Enabled</label>
         <trackTrending>false</trackTrending>
@@ -319,7 +321,9 @@
     <fields>
         <fullName>ACN_ContactValidationEnabled__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If true, validation rules on the Contact will run when ValidationEnabled__c = True. If false no validation rules on Contact will run</description>
+        <description>If true, validation rules on the Contact will run when ValidationEnabled__c = True. If false no
+            validation rules on Contact will run
+        </description>
         <externalId>false</externalId>
         <label>Contact Validation Enabled</label>
         <trackTrending>false</trackTrending>
@@ -328,7 +332,9 @@
     <fields>
         <fullName>ACN_ContactWorkflowEnabled__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If true, worflow rules on the Contact will run when WorkflowEnabled__c = True. If false no workflow rules on Contact will run</description>
+        <description>If true, worflow rules on the Contact will run when WorkflowEnabled__c = True. If false no workflow
+            rules on Contact will run
+        </description>
         <externalId>false</externalId>
         <label>Contact Workflow Enabled</label>
         <trackTrending>false</trackTrending>
@@ -762,7 +768,9 @@
     <fields>
         <fullName>ACN_ValidationEnabled__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If true, validation rules selected for each object will run. If false, no validation rules will run</description>
+        <description>If true, validation rules selected for each object will run. If false, no validation rules will
+            run
+        </description>
         <externalId>false</externalId>
         <label>Validation Enabled</label>
         <trackTrending>false</trackTrending>
@@ -771,7 +779,8 @@
     <fields>
         <fullName>ACN_WorkflowEnabled__c</fullName>
         <defaultValue>true</defaultValue>
-        <description>If true, workflow rules selected for each object will run. If false, no workflow rules will run</description>
+        <description>If true, workflow rules selected for each object will run. If false, no workflow rules will run
+        </description>
         <externalId>false</externalId>
         <label>Workflow Enabled</label>
         <trackTrending>false</trackTrending>
