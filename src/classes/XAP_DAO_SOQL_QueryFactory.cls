@@ -138,15 +138,11 @@ public class XAP_DAO_SOQL_QueryFactory {
     // SubselectQueries -------------------------------------------------------------------------------------
 
     public XAP_DAO_SOQL_QueryFactory subSelectQuery(SObjectType related) {
-        System.debug('######### subSelectQuery1 related: ' + related);
         Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related);
-        System.debug('######### subSelectQuery1 relationship: ' + relationship);
         return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
     }
 
     private XAP_DAO_SOQL_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
-        System.debug('######### subSelectQuery2 relationship: ' + relationship);
-        System.debug('######### subSelectQuery2 assertIsAccessible: ' + assertIsAccessible);
         if (relationship == null) {
             throw new XAP_DAO_SOQL_InvalidSubqueryException(
                     'Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.'
@@ -156,9 +152,6 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (this.query.queryFactoryByRelationshipMap == null) {
             this.query.queryFactoryByRelationshipMap = new Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
         }
-        System.debug('######### subSelectQuery2 queryFactoryByRelationshipMap: ' + this.query.queryFactoryByRelationshipMap);
-        System.debug('######### subSelectQuery2 this.query.relationship: ' + this.query.relationship);
-        System.debug('######### this.query.queryFactoryByRelationshipMap.get(this.query.relationship): ' + this.query.queryFactoryByRelationshipMap.get(this.query.relationship));
         return (this.query.queryFactoryByRelationshipMap.containsKey(this.query.relationship))
                 ? this.query.queryFactoryByRelationshipMap.get(this.query.relationship)
                 : this.setSubselectQuery(assertIsAccessible);
@@ -176,15 +169,11 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryFactory subSelectQuery(String relationshipName) {
-        System.debug('######### subSelectQuery2 relationshipName: ' + relationshipName);
         return this.subSelectQuery(relationshipName, NOT_ASSERTED_ACCESSIBLE);
     }
 
     public XAP_DAO_SOQL_QueryFactory subSelectQuery(String relationshipName, Boolean assertIsAccessible) {
-        System.debug('######### subSelectQuery3 relationshipName: ' + relationshipName);
-        System.debug('######### subSelectQuery3 assertIsAccessible: ' + assertIsAccessible);
         ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, relationshipName);
-        System.debug('######### subSelectQuery3 relationship: ' + relationship);
         if (relationship != null) {
             return this.setSubselectQuery(relationship, assertIsAccessible);
         }
@@ -196,16 +185,12 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship) {
-        System.debug('######### subSelectQuery4 relationship: ' + relationship);
         return subselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
     }
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
-        System.debug('######### subSelectQuery5 relationship: ' + relationship);
-        System.debug('######### subSelectQuery5 assertIsAccessible: ' + assertIsAccessible);
         return setSubselectQuery(relationship, assertIsAccessible);
     }
-
 
     // Setters -------------------------------------------------------------------------------------
 
@@ -306,7 +291,6 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public Boolean equals(Object obj) {
-        System.debug('####### equals : ' + obj);
         return obj instanceof XAP_DAO_SOQL_QueryFactory
                 && ((XAP_DAO_SOQL_QueryFactory) obj).query == this.query;
     }

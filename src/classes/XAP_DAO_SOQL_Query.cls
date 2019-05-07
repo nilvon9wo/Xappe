@@ -82,7 +82,6 @@ public class XAP_DAO_SOQL_Query {
     }
 
     public Boolean equals(Object obj) {
-        System.debug('####### equals : ' + obj);
         return (obj instanceof XAP_DAO_SOQL_Query)
                 && (((XAP_DAO_SOQL_Query) obj).sObjectType == this.sObjectType)
                 && (((XAP_DAO_SOQL_Query) obj).fieldSet.size() == this.fieldSet.size())

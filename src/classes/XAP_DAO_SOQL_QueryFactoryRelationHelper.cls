@@ -31,11 +31,8 @@ public class XAP_DAO_SOQL_QueryFactoryRelationHelper {
     }
 
     public Schema.ChildRelationship getChildRelationship(XAP_DAO_SOQL_Query query, String relationshipName) {
-        System.debug('########### getChildRelationship query: ' + query);
-        System.debug('########### getChildRelationship relationshipName: ' + relationshipName);
         for (Schema.ChildRelationship childRow : query.sObjectType.getDescribe().getChildRelationships()) {
             if (childRow.getRelationshipName() == relationshipName) {
-                System.debug('########### getChildRelationship returning: ' + childRow);
                 return childRow;
             }
         }

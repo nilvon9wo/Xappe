@@ -76,7 +76,6 @@ public with sharing class AA0_SObjectSelectorTest {
 
         // Create a user which will not have access to the test object type
         User testUser = createChatterExternalUser();
-        System.debug('######### testuser: ' + testUser);
 
         if (testUser == null) {
             return; // Abort the test if unable to create a user with low enough acess
@@ -84,7 +83,6 @@ public with sharing class AA0_SObjectSelectorTest {
 
         System.runAs(testUser) {
             TestSObjectSelector selector = new TestSObjectSelector();
-            System.debug('######### selector: ' + selector);
             try {
                 List<Account> resultList = (List<Account>) selector.selectById(idSet);
                 System.assert(false, 'Expected exception was not thrown');

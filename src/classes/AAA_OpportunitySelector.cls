@@ -64,7 +64,6 @@ public virtual class AAA_OpportunitySelector extends AA0_SObjectSelectorAbs {
 
     public List<Opportunity> selectByIdWithProducts(Set<Id> idSet) {
         AA0_QueryFactory opportunityQueryFactory = this.createQueryFactory();
-        System.debug('######### selectByIdWithProducts opportunityQueryFactory: ' + opportunityQueryFactory);
         AA0_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
                 .injectParentFactoryFor(opportunityQueryFactory, 'OpportunityLineItems');
 

@@ -18,7 +18,6 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
     private static final String DEFAULT_ORDER_FIELDNAME = 'CreatedDate';
     private static final String DEFAULT_SORT_DIRECTION = 'DESC';
     private static final String DEFAULT_NULL_SORT_PLACE = 'NULLS LAST';
-    private static final String DOT = '.';
 
     private String orderBy;
 
@@ -131,8 +130,6 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
     }
 
     public AA0_QueryFactory createQueryFactory() {
-        System.debug('########### this.isEnforcingCRUD: ' + this.isEnforcingCRUD);
-        System.debug('########### this.isEnforcingFLS: ' + this.isEnforcingFLS);
         return this.createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, INCLUDE_SELECTOR_FIELDS);
     }
 
@@ -151,11 +148,11 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
 
     public void injectChildFactoryFor(AA0_QueryFactory childQueryFactory, String relationshipFieldPath) {
         for (SObjectField field : this.getSObjectFieldList()) {
-            childQueryFactory.addField(relationshipFieldPath + DOT + field.getDescribe().getName());
+            childQueryFactory.addField(relationshipFieldPath + '.' + field.getDescribe().getName());
         }
 
         if (UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
-            childQueryFactory.addField(relationshipFieldPath + DOT + CURRENCY_CODE_FIELDNAME);
+            childQueryFactory.addField(relationshipFieldPath + '.' + CURRENCY_CODE_FIELDNAME);
         }
     }
 
@@ -204,11 +201,6 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
             Boolean enforceFLS,
             Boolean includeSelectorFields
     ) {
-        System.debug('########### queryFactory: ' + queryFactory);
-        System.debug('########### assertCRUD: ' + assertCRUD);
-        System.debug('########### enforceFLS: ' + enforceFLS);
-        System.debug('########### includeSelectorFields: ' + includeSelectorFields);
-
         this.requireCrudSecurity(queryFactory, assertCRUD);
         queryFactory.setEnforceFLS(enforceFLS);
 
@@ -223,10 +215,8 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
         if (assertCRUD) {
             try {
                 queryFactory.assertIsAccessible();
-            } catch (XAP_DAO_SOQL_SObjectReadException e) {
-                throw new XAP_DAO_SOQL_DomainSecurityException(
-                        'Permission to access an ' + getSObjectType().getDescribe().getName() + ' denied.'
-                );
+            } catch (XAP_DAO_SOQL_SObjectReadException ex) {
+                throw new XAP_DAO_SOQL_DomainSecurityException(ex, this.getSObjectType());
             }
         }
         return queryFactory;
@@ -263,9 +253,10 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
                     ? orderByPartList[1]
                     : null;
 
-            XAP_DAO_SOQL_QuerySortOrderEnum fieldSortOrder = XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING;
-
-            fieldSortOrder = (!String.isBlank(fieldSortOrderPart) && fieldSortOrderPart.equalsIgnoreCase(DEFAULT_SORT_DIRECTION))
+            XAP_DAO_SOQL_QuerySortOrderEnum fieldSortOrder = (
+                    !String.isBlank(fieldSortOrderPart)
+                            && fieldSortOrderPart.equalsIgnoreCase(DEFAULT_SORT_DIRECTION)
+            )
                     ? XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING
                     : XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING;
 

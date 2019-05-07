@@ -8,7 +8,6 @@ public class XAP_DAO_SOQL_SecurityUtils {
         if (instance == null) {
             instance = new XAP_DAO_SOQL_SecurityUtils();
         }
-        System.debug('####### instance: ' + instance);
         return instance;
     }
 
