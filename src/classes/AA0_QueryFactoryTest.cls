@@ -84,10 +84,10 @@ private class AA0_QueryFactoryTest {
     @IsTest
     static void nonReferenceField() {
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        AA0_QueryFactory.NonReferenceFieldException e;
+        XAP_DAO_SOQL_NonReferenceFieldException e;
         try {
             qf.addField('name.title');
-        } catch (AA0_QueryFactory.NonReferenceFieldException ex) {
+        } catch (XAP_DAO_SOQL_NonReferenceFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e, 'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
@@ -96,10 +96,10 @@ private class AA0_QueryFactoryTest {
     @IsTest
     static void invalidCrossObjectField() {
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        AA0_QueryFactory.InvalidFieldException e;
+        XAP_DAO_SOQL_InvalidFieldException e;
         try {
             qf.addField('account.NOT_A_REAL_FIELD');
-        } catch (AA0_QueryFactory.InvalidFieldException ex) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e, 'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
@@ -107,32 +107,32 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidFieldTests() {
-        List<AA0_QueryFactory.InvalidFieldException> exceptions = new List<AA0_QueryFactory.InvalidFieldException>();
+        List<XAP_DAO_SOQL_InvalidFieldException> exceptions = new List<XAP_DAO_SOQL_InvalidFieldException>();
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         try {
             qf.addField('Not_a_field');
-        } catch (AA0_QueryFactory.InvalidFieldException e) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
             qf.addFields(new Set<String>{
                     'Not_a_field', 'alsoNotreal'
             });
-        } catch (AA0_QueryFactory.InvalidFieldException e) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
             qf.addFields(new Set<Schema.SObjectField>{
                     null
             });
-        } catch (AA0_QueryFactory.InvalidFieldException e) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
             qf.addFields(new List<Schema.SObjectField>{
                     null, Contact.title
             });
-        } catch (AA0_QueryFactory.InvalidFieldException e) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         System.assertEquals(4, exceptions.size());
@@ -207,7 +207,7 @@ private class AA0_QueryFactoryTest {
         Exception e;
         try {
             qf.addField('not_a__field');
-        } catch (AA0_QueryFactory.InvalidFieldException ex) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -222,7 +222,7 @@ private class AA0_QueryFactoryTest {
             qf.addFields(new List<String>{
                     'not_a__field'
             });
-        } catch (AA0_QueryFactory.InvalidFieldException ex) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -236,7 +236,7 @@ private class AA0_QueryFactoryTest {
         Schema.SObjectField token = null;
         try {
             qf.addField(token);
-        } catch (AA0_QueryFactory.InvalidFieldException ex) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -252,7 +252,7 @@ private class AA0_QueryFactoryTest {
         };
         try {
             qf.addFields(token);
-        } catch (AA0_QueryFactory.InvalidFieldException ex) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -263,7 +263,7 @@ private class AA0_QueryFactoryTest {
         try {
             String path = AA0_QueryFactory.getFieldTokenPath(null);
             System.assert(false, 'Expected InvalidFieldException; none was thrown');
-        } catch (AA0_QueryFactory.InvalidFieldException ife) {
+        } catch (XAP_DAO_SOQL_InvalidFieldException ife) {
             //Expected
         } catch (Exception e) {
             System.assert(false, 'Expected InvalidFieldException; ' + e.getTypeName() + ' was thrown instead: ' + e);
@@ -434,7 +434,7 @@ private class AA0_QueryFactoryTest {
         Exception e;
         try {
             qf.subselectQuery('Tas').addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
-        } catch (AA0_QueryFactory.InvalidSubqueryRelationshipException ex) {
+        } catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
         }
         System.assertNotEquals(e, null);
@@ -528,7 +528,7 @@ private class AA0_QueryFactoryTest {
             SObjectType invalidType = null;
             AA0_QueryFactory childQf = qf.subselectQuery(invalidType);
             childQf.addField('Id');
-        } catch (AA0_QueryFactory.InvalidSubqueryRelationshipException ex) {
+        } catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
         }
         System.assertNotEquals(e, null);
@@ -557,7 +557,7 @@ private class AA0_QueryFactoryTest {
         Exception e;
         try {
             AA0_QueryFactory subChildQf = childQf.subselectQuery(Task.SObjectType);
-        } catch (AA0_QueryFactory.InvalidSubqueryRelationshipException ex) {
+        } catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
         }
         System.assertNotEquals(e, null);

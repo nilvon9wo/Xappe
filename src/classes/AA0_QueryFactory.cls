@@ -34,7 +34,7 @@ public class AA0_QueryFactory {
         if (!fieldName.contains('.')) { //single field
             Schema.SObjectField token = A00_SObjectDescribe.getDescribe(sObjectType).getField(fieldName.toLowerCase());
             if (token == null)
-                throw new InvalidFieldException(fieldName, this.sObjectType);
+                throw new XAP_DAO_SOQL_InvalidFieldException(fieldName, this.sObjectType);
             if (enforceFLS)
                 this.securityUtils.checkFieldIsReadable(this.sObjectType, token);
             return token.getDescribe().getName();
@@ -60,8 +60,8 @@ public class AA0_QueryFactory {
                 fieldPath.add(tokenDescribe.getName());
             } else {
                 if (token == null)
-                    throw new InvalidFieldException(field, lastSObjectType); else
-                        throw new NonReferenceFieldException(lastSObjectType + '.' + field + ' is not a lookup or master-detail field but is used in a cross-object query field.');
+                    throw new XAP_DAO_SOQL_InvalidFieldException(field, lastSObjectType); else
+                        throw new XAP_DAO_SOQL_NonReferenceFieldException(lastSObjectType + '.' + field + ' is not a lookup or master-detail field but is used in a cross-object query field.');
             }
         }
 
@@ -71,7 +71,7 @@ public class AA0_QueryFactory {
     @TestVisible
     private static String getFieldTokenPath(Schema.SObjectField field) {
         if (field == null) {
-            throw new InvalidFieldException('Invalid field: null');
+            throw new XAP_DAO_SOQL_InvalidFieldException('Invalid field: null');
         }
         return field.getDescribe().getName();
     }
@@ -109,7 +109,7 @@ public class AA0_QueryFactory {
 
     public AA0_QueryFactory addField(Schema.SObjectField field) {
         if (field == null)
-            throw new InvalidFieldException(null, this.sObjectType);
+            throw new XAP_DAO_SOQL_InvalidFieldException(null, this.sObjectType);
         if (enforceFLS)
             this.securityUtils.checkFieldIsReadable(sObjectType, field);
         fields.add(getFieldTokenPath(field));
@@ -132,7 +132,7 @@ public class AA0_QueryFactory {
     public AA0_QueryFactory addFields(Set<Schema.SObjectField> fields) {
         for (Schema.SObjectField token : fields) {
             if (token == null)
-                throw new InvalidFieldException();
+                throw new XAP_DAO_SOQL_InvalidFieldException();
             if (enforceFLS)
                 this.securityUtils.checkFieldIsReadable(sObjectType, token);
             this.fields.add(getFieldTokenPath(token));
@@ -143,7 +143,7 @@ public class AA0_QueryFactory {
     public AA0_QueryFactory addFields(List<Schema.SObjectField> fields) {
         for (Schema.SObjectField token : fields) {
             if (token == null)
-                throw new InvalidFieldException();
+                throw new XAP_DAO_SOQL_InvalidFieldException();
             if (enforceFLS)
                 this.securityUtils.checkFieldIsReadable(sObjectType, token);
             this.fields.add(getFieldTokenPath(token));
@@ -157,10 +157,10 @@ public class AA0_QueryFactory {
 
     public AA0_QueryFactory selectFieldSet(Schema.FieldSet fieldSet, Boolean allowCrossObject) {
         if (fieldSet.getSObjectType() != sObjectType)
-            throw new InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + sObjectType + '"');
+            throw new XAP_DAO_SOQL_InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + sObjectType + '"');
         for (Schema.FieldSetMember field : fieldSet.getFields()) {
             if (!allowCrossObject && field.getFieldPath().contains('.'))
-                throw new InvalidFieldSetException('Cross-object fields not allowed and field "' + field.getFieldPath() + '"" is a cross-object field.');
+                throw new XAP_DAO_SOQL_InvalidFieldSetException('Cross-object fields not allowed and field "' + field.getFieldPath() + '"" is a cross-object field.');
             fields.add(getFieldPath(field.getFieldPath()));
         }
         return this;
@@ -238,7 +238,7 @@ public class AA0_QueryFactory {
         if (relationship != null) {
             return setSubselectQuery(relationship, assertIsAccessible);
         }
-        throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery with relationshipName = ' + relationshipName + '.  Relationship does not exist for ' + sObjectType.getDescribe().getName());
+        throw new XAP_DAO_SOQL_InvalidSubqueryException('Invalid call to subselectQuery with relationshipName = ' + relationshipName + '.  Relationship does not exist for ' + sObjectType.getDescribe().getName());
     }
 
 
@@ -254,7 +254,7 @@ public class AA0_QueryFactory {
 
     private AA0_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
         if (this.relationship != null) {
-            throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.');
+            throw new XAP_DAO_SOQL_InvalidSubqueryException('Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.');
         }
         if (this.subselectQueryMap == null) {
             this.subselectQueryMap = new Map<ChildRelationship, AA0_QueryFactory>();
@@ -290,7 +290,7 @@ public class AA0_QueryFactory {
                 return childRow;
             }
         }
-        throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery.  Invalid relationship for table ' + sObjectType + ' and objtype=' + objType);
+        throw new XAP_DAO_SOQL_InvalidSubqueryException('Invalid call to subselectQuery.  Invalid relationship for table ' + sObjectType + ' and objtype=' + objType);
     }
 
     private Schema.ChildRelationship getChildRelationship(String relationshipName) {
@@ -452,22 +452,5 @@ public class AA0_QueryFactory {
         public String toSOQL() {
             return field + ' ' + (direction == XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING ? 'ASC' : 'DESC') + (nullsLast ? ' NULLS LAST ' : ' NULLS FIRST ');
         }
-    }
-
-
-    public class InvalidFieldException extends Exception {
-        private String fieldName;
-        private Schema.SObjectType objectType;
-        public InvalidFieldException(String fieldname, Schema.SObjectType objectType) {
-            this.objectType = objectType;
-            this.fieldName = fieldName;
-            this.setMessage('Invalid field \'' + fieldName + '\' for object \'' + objectType + '\'');
-        }
-    }
-    public class InvalidFieldSetException extends Exception {
-    }
-    public class NonReferenceFieldException extends Exception {
-    }
-    public class InvalidSubqueryRelationshipException extends Exception {
     }
 }
