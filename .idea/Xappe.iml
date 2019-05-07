@@ -984,6 +984,10 @@
                             <option name="name" value="fflib_SObjectDescribe.cls-meta.xml" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="AA0_QueryConfig" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />

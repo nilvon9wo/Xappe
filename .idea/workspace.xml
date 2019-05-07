@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="Took initialization out of constructor.">
+      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IlluminatedCloud/TrailheadPlayground15/OfflineSymbolTable.zip" beforeDir="false" afterPath="$PROJECT_DIR$/IlluminatedCloud/TrailheadPlayground15/OfflineSymbolTable.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls" afterDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,26 +29,35 @@
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_InvalidSubqueryException.cls">
-          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectDescribe.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls">
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="90" lean-forward="true" selection-start-line="24" selection-start-column="90" selection-end-line="24" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls">
-          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_NonReferenceFieldException.cls">
-          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_InvalidFieldException.cls">
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
         </entry>
@@ -64,9 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CURRENCY_ISO_CODE_FIELD_NAME</find>
-      <find>A00_QueryFactory</find>
-      <find>subselectQuery</find>
       <find>queryFactory.assertIsAccessible()</find>
       <find>selectFields</find>
       <find>A00_</find>
@@ -80,7 +88,6 @@
       <find>##</find>
       <find>conditionExpression</find>
       <find>this.sObjectType</find>
-      <find>boolean</find>
       <find>fields</find>
       <find>subselectQueryMap</find>
       <find>XAP_DAO_SOQL_QueryFactory</find>
@@ -94,9 +101,12 @@
       <find>AA0_QueryFactory.InvalidSubqueryRelationshipException</find>
       <find>XAP_DAO_SOQL_InvalidSubqueryRelationshipException</find>
       <find>AA0_QueryFactory.NonReferenceFieldException</find>
+      <find>Ordering</find>
+      <find>getDescribe</find>
+      <find>enforceFLS</find>
+      <find>boolean</find>
     </findStrings>
     <replaceStrings>
-      <replace>instance</replace>
       <replace>this.sObjectType</replace>
       <replace>INSTANCE_CACHE</replace>
       <replace>receivedTriggerPropertiesList</replace>
@@ -115,7 +125,6 @@
       <replace>XAP_DAO_SOQL_QuerySortOrderEnum</replace>
       <replace>this.securityUtils</replace>
       <replace>this.query.sObjectType</replace>
-      <replace>Boolean</replace>
       <replace>this.query.fieldset</replace>
       <replace>this.query.fieldSet</replace>
       <replace>queryFactoryByRelationshipMap</replace>
@@ -126,6 +135,8 @@
       <replace>XAP_DAO_SOQL_InvalidFieldException</replace>
       <replace>XAP_DAO_SOQL_InvalidSubqueryException</replace>
       <replace>XAP_DAO_SOQL_NonReferenceFieldException</replace>
+      <replace>this.queryConfig.enforceFLS</replace>
+      <replace>Boolean</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -134,8 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/classes/TEST_DummyProduct2FactoryOutlet.cls" />
-        <option value="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls" />
@@ -183,8 +192,10 @@
         <option value="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorAbs.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" />
-        <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" />
+        <option value="$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls" />
       </list>
     </option>
   </component>
@@ -194,7 +205,7 @@
         <entry key="Xappe">
           <value>
             <ModuleWorkspaceSettings>
-              <option name="moduleContentsLastModified" value="1557187499095" />
+              <option name="moduleContentsLastModified" value="1557262531480" />
             </ModuleWorkspaceSettings>
           </value>
         </entry>
@@ -215,27 +226,28 @@
                 <ConnectionWorkspaceSettings>
                   <option name="buildSuccessDatesBySourceRootRelativePath">
                     <map>
-                      <entry key="CLASSES/A00_APPLICATION.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_APPLICATIONTEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SECURITYUTILS.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SECURITYUTILSTEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SOBJECTDESCRIBE.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SOBJECTDESCRIBETEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SOBJECTDOMAIN.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SOBJECTDOMAINTEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_SOBJECTMOCKS.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_STRINGBUILDER.CLS" value="1557259944000" />
-                      <entry key="CLASSES/A00_STRINGBUILDERTEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/AA0_QUERYFACTORY.CLS" value="1557260338000" />
-                      <entry key="CLASSES/AA0_QUERYFACTORYTEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/AA0_SOBJECTSELECTORABS.CLS" value="1557260153000" />
-                      <entry key="CLASSES/AA0_SOBJECTSELECTORTEST.CLS" value="1557259944000" />
-                      <entry key="CLASSES/AAA_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557259944000" />
-                      <entry key="CLASSES/AAA_OPPORTUNITYSELECTOR.CLS" value="1557260153000" />
-                      <entry key="CLASSES/AAA_PRICEBOOK2SELECTOR.CLS" value="1557259944000" />
-                      <entry key="CLASSES/AAA_PRICEBOOKENRTRYSELECTOR.CLS" value="1557259944000" />
-                      <entry key="CLASSES/AAA_PRODUCT2SELECTOR.CLS" value="1557260153000" />
-                      <entry key="CLASSES/AAA_PRODUCT2SELECTORINTTEST.CLS" value="1557259944000" />
+                      <entry key="CLASSES/A00_APPLICATION.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_APPLICATIONTEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SECURITYUTILS.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SECURITYUTILSTEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SOBJECTDESCRIBE.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SOBJECTDESCRIBETEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SOBJECTDOMAIN.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SOBJECTDOMAINTEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_SOBJECTMOCKS.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_STRINGBUILDER.CLS" value="1557262208000" />
+                      <entry key="CLASSES/A00_STRINGBUILDERTEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AA0_QUERYCONFIG.CLS" value="1557263456000" />
+                      <entry key="CLASSES/AA0_QUERYFACTORY.CLS" value="1557263840000" />
+                      <entry key="CLASSES/AA0_QUERYFACTORYTEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AA0_SOBJECTSELECTORABS.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AA0_SOBJECTSELECTORTEST.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AAA_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AAA_OPPORTUNITYSELECTOR.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AAA_PRICEBOOK2SELECTOR.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AAA_PRICEBOOKENRTRYSELECTOR.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AAA_PRODUCT2SELECTOR.CLS" value="1557262208000" />
+                      <entry key="CLASSES/AAA_PRODUCT2SELECTORINTTEST.CLS" value="1557262208000" />
                       <entry key="CLASSES/ACN_TRIGGEREVENTCOORDINATORINTTEST.CLS" value="1556453100000" />
                       <entry key="CLASSES/ACN_TRIGGEREVENTCOORDINATORTEST.CLS" value="1556453382000" />
                       <entry key="CLASSES/AUTOCREATEDCONFIGSELFREG1556310153652.CLS" value="1557248401000" />
@@ -2348,13 +2360,6 @@
       </ProjectWorkspaceSettings>
     </option>
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/dictionaries/Brian.xml" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="362" />
     <option name="y" value="238" />
@@ -2369,6 +2374,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -2391,7 +2397,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -2656,13 +2661,6 @@
       <workItem from="1557250940400" duration="1576000" />
       <workItem from="1557252520315" duration="5112000" />
       <workItem from="1557257659486" duration="2732000" />
-    </task>
-    <task id="LOCAL-00052" summary="Renamed methods for trigger properties to provide lists and sets.">
-      <created>1556702160324</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1556702160325</updated>
     </task>
     <task id="LOCAL-00053" summary="Changed set extractor to leverage Lists instead of Serialize/Deserialize.">
       <created>1556721954524</created>
@@ -3000,22 +2998,17 @@
       <option name="project" value="LOCAL" />
       <updated>1557258127645</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Moved fields and initializations.">
+      <created>1557262489769</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1557262489769</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AA0_SObjectSelectorTest - 2019.05.07 at 20h 23m 46s.xml">
-      <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
-    </history-entry>
-    <history-entry file="AA0_SObjectSelectorTest - 2019.05.07 at 20h 26m 42s.xml">
-      <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
-    </history-entry>
-    <history-entry file="AA0_SObjectSelectorTest - 2019.05.07 at 20h 30m 11s.xml">
-      <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
-    </history-entry>
-    <history-entry file="AA0_SObjectSelectorTest - 2019.05.07 at 20h 54m 13s.xml">
-      <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
-    </history-entry>
     <history-entry file="AA0_SObjectSelectorTest - 2019.05.07 at 20h 54m 46s.xml">
       <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
     </history-entry>
@@ -3034,20 +3027,32 @@
     <history-entry file="AA0_QueryFactoryTest - 2019.05.07 at 22h 13m 17s.xml">
       <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
     </history-entry>
+    <history-entry file="AA0_QueryFactoryTest - 2019.05.07 at 22h 54m 22s.xml">
+      <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
+    </history-entry>
+    <history-entry file="AA0_QueryFactoryTest - 2019.05.07 at 23h 11m 08s.xml">
+      <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
+    </history-entry>
+    <history-entry file="AA0_QueryFactoryTest - 2019.05.07 at 23h 13m 07s.xml">
+      <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
+    </history-entry>
+    <history-entry file="AA0_QueryFactoryTest - 2019.05.07 at 23h 17m 22s.xml">
+      <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154195000" />
+    <option name="totallyTimeSpent" value="155950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.23827292" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.24093817" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.5575693" weight="0.35531914" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7361407" visible="true" weight="0.32978722" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.73507464" visible="true" weight="0.19042553" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -3057,8 +3062,8 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.77025586" weight="0.32978722" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="SOQL Query" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.26385927" side_tool="true" visible="true" weight="0.32978722" />
-      <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.8134328" weight="0.4319149" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.26492536" side_tool="true" visible="true" weight="0.19042553" />
+      <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.8123667" weight="0.48085105" />
       <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6487207" weight="0.40106383" />
       <window_info anchor="bottom" id="Messages" order="15" />
       <window_info anchor="bottom" id="Illuminated Cloud" order="16" />
@@ -3087,7 +3092,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Created a way to rebind objects for Dynamic SOQL." />
     <MESSAGE value="WHERE clauses are finally typesafe.  :-)" />
     <MESSAGE value="Updated DAO classes to match revised framework." />
     <MESSAGE value="Deleted support for arbitrary string clause (Which is probably broken now.)" />
@@ -3112,38 +3116,13 @@
     <MESSAGE value="Selector is almost completely refactored EXCEPT it still expects an FF-like query factory and does not yet support WHERE objects." />
     <MESSAGE value="Cleaned out comments and debug code." />
     <MESSAGE value="Took initialization out of constructor." />
-    <option name="LAST_COMMIT_MESSAGE" value="Took initialization out of constructor." />
+    <MESSAGE value="Moved fields and initializations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved fields and initializations." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Xappe$AA0_QueryFactoryTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557260400251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
+    <SUITE FILE_PATH="coverage/Xappe$AA0_QueryFactoryTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557263836294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_CompareOperatorEnum.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryInterpolation.cls">
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_AbsConjunctionClause.cls">
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="61" selection-start-column="22" selection-end-column="61" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_InIdSetClause.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_WHERE_ObjectCompareClause.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
@@ -3183,10 +3162,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_TRIG_TriggerEventCoordinatorIntTest.cls">
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
@@ -3374,11 +3349,34 @@
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
+    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactoryFieldHelper.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QuerySortOrdering.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectDescribe.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="90" lean-forward="true" selection-start-line="24" selection-start-column="90" selection-end-line="24" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DESC_SObjectDescribe.cls">
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
     </entry>

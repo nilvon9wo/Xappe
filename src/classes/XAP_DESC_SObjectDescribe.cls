@@ -168,48 +168,4 @@ public class XAP_DESC_SObjectDescribe {
 
         return result;
     }
-
-
-/*
-
-
-
-
-	public static Map<String,SObjectType> getRawGlobalDescribe(){
-		return RAW_GLOBAL_DESCRIBE;
-	}
-
-	public static XAP_DESC_GlobalDescribeMap getGlobalDescribe(){
-		return WRAPPED_GLOBAL_DESCRIBE;
-	}
-
-	public static void flushCache(){
-		RAW_GLOBAL_DESCRIBE = null;
-		INSTANCE_CACHE = null;
-	}
-
-	
-	private Map<String,Schema.FieldSet> fieldSetByNameMap {
-		get{
-			if(this.fieldSetByNameMap == null) {
-				this.fieldSetByNameMap = this.describe.fieldSets.getMap();
-			}
-			return this.fieldSetByNameMap;
-		}
-		set;
-	}
-	
-	public Schema.SObjectType getSObjectType(){
-		return this.sObjectType;
-	}
-
-
-	public XAP_DESC_FieldsMap getFields(){
-		return this.wrappedFields;
-	}
-
-	public Map<String,Schema.FieldSet> getFieldSetsMap(){
-		return this.fieldSetByNameMap;
-	}
-*/
 }

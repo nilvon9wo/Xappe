@@ -28,20 +28,33 @@ public class AA0_QueryFactory {
     private Boolean enforceFLS = EXCLUDING_FIELD_LEVEL_SECURITY;
     private Boolean sortSelectFields = INCLUDING_SORTED_SELECT_FIELDS;
 
-    private Schema.ChildRelationship relationship;
-    private Map<Schema.ChildRelationship, AA0_QueryFactory> subselectQueryMap;
+    private Schema.ChildRelationship childRelationship;
+    private Map<Schema.ChildRelationship, AA0_QueryFactory> factoryByChildRelationshipMap;
 
     private String getFieldPath(String fieldName) {
-        if (!fieldName.contains('.')) { //single field
-            Schema.SObjectField token = A00_SObjectDescribe.getDescribe(sObjectType).getField(fieldName.toLowerCase());
-            if (token == null)
-                throw new XAP_DAO_SOQL_InvalidFieldException(fieldName, this.sObjectType);
-            if (enforceFLS)
-                this.securityUtils.checkFieldIsReadable(this.sObjectType, token);
-            return token.getDescribe().getName();
+        return (this.isSingleField(fieldName))
+            ? this.getFieldName(fieldName).getDescribe().getName()
+            : this.traverseFieldKeyRelationships(fieldName);
+    }
+
+    private Boolean isSingleField(String fieldName) {
+        return !fieldName.contains('.');
+    }
+
+    private SObjectField getFieldName(String fieldName) {
+        Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(sObjectType)
+                .getField(fieldName.toLowerCase());
+        if (token == null) {
+            throw new XAP_DAO_SOQL_InvalidFieldException(fieldName, this.sObjectType);
         }
 
-        //traversing FK relationship(s)
+        if (enforceFLS) {
+            this.securityUtils.checkFieldIsReadable(this.sObjectType, token);
+        }
+        return token;
+    }
+
+    private String traverseFieldKeyRelationships(String fieldName) {
         List<String> fieldPath = new List<String>();
         Schema.sObjectType lastSObjectType = sObjectType;
         Iterator<String> i = fieldName.split('\\.').iterator();
@@ -69,6 +82,7 @@ public class AA0_QueryFactory {
         return String.join(fieldPath, '.');
     }
 
+
     @TestVisible
     private static String getFieldTokenPath(Schema.SObjectField field) {
         if (field == null) {
@@ -85,7 +99,7 @@ public class AA0_QueryFactory {
 
     private AA0_QueryFactory(Schema.ChildRelationship relationship) {
         this(relationship.getChildSObject());
-        this.relationship = relationship;
+        this.childRelationship = relationship;
     }
 
     public AA0_QueryFactory assertIsAccessible() {
@@ -254,14 +268,14 @@ public class AA0_QueryFactory {
 
 
     private AA0_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
-        if (this.relationship != null) {
+        if (this.childRelationship != null) {
             throw new XAP_DAO_SOQL_InvalidSubqueryException('Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.');
         }
-        if (this.subselectQueryMap == null) {
-            this.subselectQueryMap = new Map<ChildRelationship, AA0_QueryFactory>();
+        if (this.factoryByChildRelationshipMap == null) {
+            this.factoryByChildRelationshipMap = new Map<ChildRelationship, AA0_QueryFactory>();
         }
-        if (this.subselectQueryMap.containsKey(relationship)) {
-            return subselectQueryMap.get(relationship);
+        if (this.factoryByChildRelationshipMap.containsKey(relationship)) {
+            return factoryByChildRelationshipMap.get(relationship);
         }
 
         AA0_QueryFactory subselectQuery = new AA0_QueryFactory(relationship);
@@ -272,13 +286,13 @@ public class AA0_QueryFactory {
         if (assertIsAccessible) {
             subSelectQuery.assertIsAccessible();
         }
-        subselectQueryMap.put(relationship, subSelectQuery);
+        factoryByChildRelationshipMap.put(relationship, subSelectQuery);
         return subSelectQuery;
     }
 
     public List<AA0_QueryFactory> getSubselectQueries() {
-        if (subselectQueryMap != null) {
-            return subselectQueryMap.values();
+        if (factoryByChildRelationshipMap != null) {
+            return factoryByChildRelationshipMap.values();
         }
         return null;
     }
@@ -367,12 +381,12 @@ public class AA0_QueryFactory {
             result += String.join(fieldsToQuery, ', ');
         }
 
-        if (subselectQueryMap != null && !subselectQueryMap.isEmpty()) {
-            for (AA0_QueryFactory childRow : subselectQueryMap.values()) {
+        if (factoryByChildRelationshipMap != null && !factoryByChildRelationshipMap.isEmpty()) {
+            for (AA0_QueryFactory childRow : factoryByChildRelationshipMap.values()) {
                 result += ', (' + childRow.toSOQL() + ') ';
             }
         }
-        result += ' FROM ' + (relationship != null ? relationship.getRelationshipName() : sObjectType.getDescribe().getName());
+        result += ' FROM ' + (childRelationship != null ? childRelationship.getRelationshipName() : sObjectType.getDescribe().getName());
         if (conditionExpression != null)
             result += ' WHERE ' + conditionExpression;
 
@@ -400,16 +414,16 @@ public class AA0_QueryFactory {
                 .setCondition(this.conditionExpression)
                 .setEnforceFLS(this.enforceFLS);
 
-        Map<Schema.ChildRelationship, AA0_QueryFactory> subqueries = this.subselectQueryMap;
+        Map<Schema.ChildRelationship, AA0_QueryFactory> subqueries = this.factoryByChildRelationshipMap;
         if (subqueries != null) {
             Map<Schema.ChildRelationship, AA0_QueryFactory> clonedSubqueries = new Map<Schema.ChildRelationship, AA0_QueryFactory>();
             for (Schema.ChildRelationship key : subqueries.keySet()) {
                 clonedSubqueries.put(key, subqueries.get(key).deepClone());
             }
-            clone.subselectQueryMap = clonedSubqueries;
+            clone.factoryByChildRelationshipMap = clonedSubqueries;
         }
 
-        clone.relationship = this.relationship;
+        clone.childRelationship = this.childRelationship;
         clone.orderingList = this.orderingList.clone();
         clone.fieldSet = this.fieldSet.clone();
 
