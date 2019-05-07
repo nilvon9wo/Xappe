@@ -137,12 +137,12 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     // SubselectQueries -------------------------------------------------------------------------------------
 
-//    public XAP_DAO_SOQL_QueryFactory subSelectQuery(SObjectType related) {
-//        System.debug('######### subSelectQuery1 related: ' + related);
-//        Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related);
-//        System.debug('######### subSelectQuery1 relationship: ' + relationship);
-//        return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
-//    }
+    public XAP_DAO_SOQL_QueryFactory subSelectQuery(SObjectType related) {
+        System.debug('######### subSelectQuery1 related: ' + related);
+        Schema.ChildRelationship relationship = this.relationshipHelper.getChildRelationship(this.query, related);
+        System.debug('######### subSelectQuery1 relationship: ' + relationship);
+        return this.setSubselectQuery(relationship, NOT_ASSERTED_ACCESSIBLE);
+    }
 
     private XAP_DAO_SOQL_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
         System.debug('######### subSelectQuery2 relationship: ' + relationship);

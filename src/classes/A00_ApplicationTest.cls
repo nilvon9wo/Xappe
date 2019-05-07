@@ -119,7 +119,7 @@ private class A00_ApplicationTest {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
         mocks.startStubbing();
-        A00_SObjectSelectorIntf selectorMock = new A00_SObjectMocks.SObjectSelector(mocks);
+        XAP_DAO_SOQL_SObjectSelectorIntf selectorMock = new A00_SObjectMocks.SObjectSelector(mocks);
         Id testAccountId = fflib_IDGenerator.generate(Account.SObjectType);
         List<Account> accounts =
                 new List<Account>{
@@ -307,7 +307,7 @@ private class A00_ApplicationTest {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
         mocks.startStubbing();
-        A00_SObjectSelectorIntf selectorMock = new A00_SObjectMocks.SObjectSelector(mocks);
+        XAP_DAO_SOQL_SObjectSelectorIntf selectorMock = new A00_SObjectMocks.SObjectSelector(mocks);
         Id testAccountId = fflib_IDGenerator.generate(Account.SObjectType);
         List<Account> accounts =
                 new List<Account>{
@@ -338,7 +338,7 @@ private class A00_ApplicationTest {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
         mocks.startStubbing();
-        A00_SObjectSelectorIntf selectorMock = new A00_SObjectMocks.SObjectSelector(mocks);
+        XAP_DAO_SOQL_SObjectSelectorIntf selectorMock = new A00_SObjectMocks.SObjectSelector(mocks);
         Id testAccountId = fflib_IDGenerator.generate(Account.SObjectType);
         Id testOpportunityId = fflib_IDGenerator.generate(Opportunity.SObjectType);
         List<Account> accounts =
@@ -559,7 +559,7 @@ private class A00_ApplicationTest {
 
     }
 
-    class OpportuntiesSelector extends A00_SObjectSelectorAbs {
+    class OpportuntiesSelector extends AA0_SObjectSelectorAbs {
         public List<Schema.SObjectField> getSObjectFieldList() {
             return new List<Schema.SObjectField>{
                     Opportunity.Name,
@@ -572,7 +572,7 @@ private class A00_ApplicationTest {
         }
     }
 
-    class AccountsSelector extends A00_SObjectSelectorAbs {
+    class AccountsSelector extends AA0_SObjectSelectorAbs {
         public List<Schema.SObjectField> getSObjectFieldList() {
             return new List<Schema.SObjectField>{
                     Account.Name,

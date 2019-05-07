@@ -72,14 +72,14 @@ public class A00_Application {
 
     public class SelectorFactory {
         private Map<SObjectType, Type> m_sObjectBySelectorType;
-        private Map<SObjectType, A00_SObjectSelectorIntf> m_sObjectByMockSelector;
+        private Map<SObjectType, XAP_DAO_SOQL_SObjectSelectorIntf> m_sObjectByMockSelector;
 
         public SelectorFactory(Map<SObjectType, Type> sObjectBySelectorType) {
             m_sObjectBySelectorType = sObjectBySelectorType;
-            m_sObjectByMockSelector = new Map<SObjectType, A00_SObjectSelectorIntf>();
+            m_sObjectByMockSelector = new Map<SObjectType, XAP_DAO_SOQL_SObjectSelectorIntf>();
         }
 
-        public A00_SObjectSelectorIntf newInstance(SObjectType sObjectType) {
+        public XAP_DAO_SOQL_SObjectSelectorIntf newInstance(SObjectType sObjectType) {
             // Mock implementation?
             if (m_sObjectByMockSelector.containsKey(sObjectType))
                 return m_sObjectByMockSelector.get(sObjectType);
@@ -90,7 +90,7 @@ public class A00_Application {
                 throw new DeveloperException('Selector class not found for SObjectType ' + sObjectType);
 
             // Construct Selector class and query by Id for the records
-            return (A00_SObjectSelectorIntf) selectorClass.newInstance();
+            return (XAP_DAO_SOQL_SObjectSelectorIntf) selectorClass.newInstance();
         }
 
         public List<SObject> selectById(Set<Id> recordIds) {
@@ -119,7 +119,7 @@ public class A00_Application {
         }
 
         @TestVisible
-        private void setMock(A00_SObjectSelectorIntf selectorInstance) {
+        private void setMock(XAP_DAO_SOQL_SObjectSelectorIntf selectorInstance) {
             m_sObjectByMockSelector.put(selectorInstance.getSObjectType(), selectorInstance);
         }
     }

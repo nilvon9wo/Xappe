@@ -146,31 +146,26 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
         }
     }
 
-//    public XAP_DAO_SOQL_QueryFactory addQueryFactorySubselect(XAP_DAO_SOQL_QueryFactory parentQueryFactory) {
-//        System.debug('######### addQueryFactorySubselect1 parentQueryFactory: ' + parentQueryFactory);
-//        return this.addQueryFactorySubselect(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
-//    }
+    public XAP_DAO_SOQL_QueryFactory addQueryFactorySubselect(XAP_DAO_SOQL_QueryFactory parentQueryFactory) {
+        return this.addQueryFactorySubselect(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
+    }
 
-//    public XAP_DAO_SOQL_QueryFactory addQueryFactorySubselect(
-//            XAP_DAO_SOQL_QueryFactory parentQueryFactory,
-//            Boolean includeSelectorFields
-//    ) {
-//        System.debug('######### addQueryFactorySubselect2 parentQueryFactory: ' + parentQueryFactory);
-//        System.debug('######### addQueryFactorySubselect2 includeSelectorFields: ' + includeSelectorFields);
-//        return this.configureQueryFactory(
-//                parentQueryFactory.subSelectQuery(this.getSObjectType2()),
-//                this.isEnforcingCRUD,
-//                this.isEnforcingFLS,
-//                includeSelectorFields
-//        );
-//    }
+    public XAP_DAO_SOQL_QueryFactory addQueryFactorySubselect(
+            XAP_DAO_SOQL_QueryFactory parentQueryFactory,
+            Boolean includeSelectorFields
+    ) {
+        return this.configureQueryFactory(
+                parentQueryFactory.subSelectQuery(this.getSObjectType()),
+                this.isEnforcingCRUD,
+                this.isEnforcingFLS,
+                includeSelectorFields
+        );
+    }
 
     public XAP_DAO_SOQL_QueryFactory addQueryFactorySubselect(
             XAP_DAO_SOQL_QueryFactory parentQueryFactory,
             String relationshipName
     ) {
-        System.debug('######### addQueryFactorySubselect1 parentQueryFactory: ' + parentQueryFactory);
-        System.debug('######### addQueryFactorySubselect1 relationshipName: ' + relationshipName);
         return this.addQueryFactorySubselect(parentQueryFactory, relationshipName, INCLUDE_SELECTOR_FIELDS);
     }
 
@@ -179,9 +174,6 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
             String relationshipName,
             Boolean includeSelectorFields
     ) {
-        System.debug('######### addQueryFactorySubselect2 parentQueryFactory: ' + parentQueryFactory);
-        System.debug('######### addQueryFactorySubselect2 relationshipName: ' + relationshipName);
-        System.debug('######### addQueryFactorySubselect2 includeSelectorFields: ' + includeSelectorFields);
         return this.configureQueryFactory(
                 parentQueryFactory.subSelectQuery(relationshipName),
                 this.isEnforcingCRUD,
@@ -190,11 +182,11 @@ public abstract class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SO
         );
     }
 
-//    private String buildQuerySObjectById(Set<Id> idSet) {
-//        return this.newQueryFactory()
-//                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
-//                .toSoql();
-//    }
+    private String buildQuerySObjectById(Set<Id> idSet) {
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .toSoql();
+    }
 
     private XAP_DAO_SOQL_QueryFactory configureQueryFactory(
             XAP_DAO_SOQL_QueryFactory queryFactory,

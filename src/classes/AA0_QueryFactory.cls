@@ -1,68 +1,23 @@
-/**
- * Copyright (c) 2014, FinancialForce.com, inc
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification, 
- *   are permitted provided that the following conditions are met:
- *
- * - Redistributions of source code must retain the above copyright notice, 
- *      this list of conditions and the following disclaimer.
- * - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
- *      and/or other materials provided with the distribution.
- * - Neither the name of the FinancialForce.com, inc nor the names of its contributors 
- *      may be used to endorse or promote products derived from this software without 
- *      specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
- *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL 
- *  THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- *  OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
- *  OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-**/
+public class AA0_QueryFactory {
+    XAP_DAO_SOQL_SecurityUtils securityUtils;
 
-/**
- * QueryFactory provides an object-oriented way of building SOQL queries without resorting to string manipulation.
- * This class is not meant to be used as a replacement for all SOQL queries, and due to the relativley high overhead in both CPU and describe calls 
- * should be used in places where highly dynamic queries, such as those that include field sets or are mutated heavilly
- * in multiple locations are a good fit for use with fflib_QueryFactory.
- * 
- * To use call construct a new instance for each query you intend to make.
- * To add additional fields to the query make use of the selectField(s) methods.
- *
- * Currently the WHERE clause of the query is manipulated as a single string, and is decidedly less OO-styled than other methods.
- * This is expected to be expanded upon in the future.
- * 
- * To include one or more ORDER BY clause(s), use one of the addOrdering methods.  If not specified, the "NULLS FIRST" keywords
- * will be included by default. Constructing Ordering instances manually is discouraged.
- * 
- * Subselect Queries are supported with the subselectQuery methods.  
- * More than one sub-query can be added to a single query, but sub-queries can only be 1 level deep.  
- * An exception will thrown from the subselectQuery method when there is an attempt to add a subquery to a sub-query
- * or to add a subquery to a query with an invalid relationship.
- *
- * Current limitations:
- * - Aggregate functions are not currently supported.
- * - Cross-object references currently require using String argument(s) to selectField(s).
- * - The behavior of serializing and deserializing an fflib_QueryFactory instance is currently untested and undefined.
- *
- * There is a google doc providing additional guideance on the use of this class with field sets at
- * https://docs.google.com/a/financialforce.com/document/d/1I4cxN4xHT4UJj_3Oi0YBL_MJ5chm-KG8kMN1D1un8-g/edit?usp=sharing
-**/
-public class A00_QueryFactory { //No explicit sharing declaration - inherit from caller
-    public enum SortOrder {
-        ASCENDING, DESCENDING
+    public AA0_QueryFactory(Schema.SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
+        this.sObjectType = sObjectType;
+        this.securityUtils = securityUtils;
+
+        this.fields = new Set<String>();
+        this.order = new List<Ordering>();
+        this.enforceFLS = false;
+        System.debug('#######AA0_QueryFactory  securityUtils: ' + securityUtils);
     }
 
-    /**
-     * This property is read-only and may not be set after instantiation.
-     * The {@link Schema.SObjectType} token of the SObject that will be used in the FROM clause of the resultant query.
-    **/
-    public Schema.SObjectType table { get; private set; }
-    @testVisible
+    public AA0_QueryFactory(Schema.SObjectType sObjectType) {
+        this(sObjectType, XAP_DAO_SOQL_SecurityUtils.getInstance());
+    }
+
+    public Schema.SObjectType sObjectType { get; private set; }
+
+    @TestVisible
     private Set<String> fields;
     private String conditionExpression;
     private Integer limitCount;
@@ -71,7 +26,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * Integrate checking for READ Field Level Security within the selectField(s) methods
      * This can optionally be enforced (or not) by calling the setEnforceFLS method prior to calling
-     * one of the selectField or selectFieldset methods.
+     * one of the selectField or addFieldset methods.
     **/
     private Boolean enforceFLS;
 
@@ -84,21 +39,21 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * to add a subselect, call the subselectQuery method, passing in the ChildRelationship.
     **/
     private Schema.ChildRelationship relationship;
-    private Map<Schema.ChildRelationship, A00_QueryFactory> subselectQueryMap;
+    private Map<Schema.ChildRelationship, AA0_QueryFactory> subselectQueryMap;
 
     private String getFieldPath(String fieldName) {
         if (!fieldName.contains('.')) { //single field
-            Schema.SObjectField token = A00_SObjectDescribe.getDescribe(table).getField(fieldName.toLowerCase());
+            Schema.SObjectField token = A00_SObjectDescribe.getDescribe(sObjectType).getField(fieldName.toLowerCase());
             if (token == null)
-                throw new InvalidFieldException(fieldName, this.table);
+                throw new InvalidFieldException(fieldName, this.sObjectType);
             if (enforceFLS)
-                A00_SecurityUtils.checkFieldIsReadable(this.table, token);
+                this.securityUtils.checkFieldIsReadable(this.sObjectType, token);
             return token.getDescribe().getName();
         }
 
         //traversing FK relationship(s)
         List<String> fieldPath = new List<String>();
-        Schema.sObjectType lastSObjectType = table;
+        Schema.sObjectType lastSObjectType = sObjectType;
         Iterator<String> i = fieldName.split('\\.').iterator();
         while (i.hasNext()) {
             String field = i.next();
@@ -106,7 +61,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
             DescribeFieldResult tokenDescribe = token != null ? token.getDescribe() : null;
 
             if (token != null && enforceFLS) {
-                A00_SecurityUtils.checkFieldIsReadable(lastSObjectType, token);
+                this.securityUtils.checkFieldIsReadable(lastSObjectType, token);
             }
 
             if (token != null && i.hasNext() && tokenDescribe.getSOAPType() == Schema.SOAPType.ID) {
@@ -139,21 +94,9 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param obj the object to check equality of.
     **/
     public boolean equals(Object obj) {
-        if (!(obj instanceof A00_QueryFactory) || ((A00_QueryFactory) obj).table != this.table || ((A00_QueryFactory) obj).fields.size() != this.fields.size())
+        if (!(obj instanceof AA0_QueryFactory) || ((AA0_QueryFactory) obj).sObjectType != this.sObjectType || ((AA0_QueryFactory) obj).fields.size() != this.fields.size())
             return false;
-        return ((A00_QueryFactory) obj).toSOQL() == this.toSOQL();
-    }
-
-    /**
-     * Construct a new fflib_QueryFactory instance with no options other than the FROM caluse.
-     * You *must* call selectField(s) before {@link #toSOQL} will return a valid, runnable query.
-     * @param table	the SObject to be used in the FROM clause of the resultant query. This sets the value of {@link #table}.
-    **/
-    public A00_QueryFactory(Schema.SObjectType table) {
-        this.table = table;
-        fields = new Set<String>();
-        order = new List<Ordering>();
-        enforceFLS = false;
+        return ((AA0_QueryFactory) obj).toSOQL() == this.toSOQL();
     }
 
     /**
@@ -163,27 +106,19 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * You *must* call selectField(s) before {@link #toSOQL} will return a valid, runnable query.
      * @param relationship the ChildRelationship to be used in the FROM Clause of the resultant Query (when set overrides value of table). This sets the value of {@link #relationship} and {@link #table}.
     **/
-    private A00_QueryFactory(Schema.ChildRelationship relationship) {
+    private AA0_QueryFactory(Schema.ChildRelationship relationship) {
         this(relationship.getChildSObject());
         this.relationship = relationship;
     }
 
-    /**
-     * This method checks to see if the User has Read Access on {@link #table}.
-     * Asserts true if User has access.
-     **/
-    public A00_QueryFactory assertIsAccessible() {
-        A00_SecurityUtils.checkObjectIsReadable(table);
+    public AA0_QueryFactory assertIsAccessible() {
+        System.debug('####### this.securityUtils: ' + this.securityUtils);
+        System.debug('####### table: ' + this.sObjectType);
+        this.securityUtils.checkObjectIsReadable(this.sObjectType);
         return this;
     }
 
-    /**
-     * This method sets a flag to indicate that this query should have FLS Read
-     * permission enforced.  If this method is not called, the default behavior
-     * is that FLS read permission will not be checked.
-     * @param enforce whether to enforce field level security (read)
-     **/
-    public A00_QueryFactory setEnforceFLS(Boolean enforce) {
+    public AA0_QueryFactory setEnforceFLS(Boolean enforce) {
         this.enforceFLS = enforce;
         return this;
     }
@@ -194,7 +129,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * If you are processing large query sets, you should switch this off.
      * @param whether or not select fields should be sorted in the soql statement.
      **/
-    public A00_QueryFactory setSortSelectFields(Boolean doSort) {
+    public AA0_QueryFactory setSortSelectFields(Boolean doSort) {
         this.sortSelectFields = doSort;
         return this;
     }
@@ -204,7 +139,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * Selecting fields is idempotent, if this field is already selected calling this method will have no additional impact.
      * @param fieldName the API name of the field to add to the query's SELECT clause.
      **/
-    public A00_QueryFactory addField(String fieldName) {
+    public AA0_QueryFactory addField(String fieldName) {
         fields.add(getFieldPath(fieldName));
         return this;
     }
@@ -214,11 +149,11 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param field the {@link Schema.SObjectField} to select with this query.
      * @exception InvalidFieldException If the field is null {@code field}.
     **/
-    public A00_QueryFactory addField(Schema.SObjectField field) {
+    public AA0_QueryFactory addField(Schema.SObjectField field) {
         if (field == null)
-            throw new InvalidFieldException(null, this.table);
+            throw new InvalidFieldException(null, this.sObjectType);
         if (enforceFLS)
-            A00_SecurityUtils.checkFieldIsReadable(table, field);
+            this.securityUtils.checkFieldIsReadable(sObjectType, field);
         fields.add(getFieldTokenPath(field));
         return this;
     }
@@ -226,7 +161,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * Selects multiple fields. This acts the same as calling {@link #selectField(String)} multiple times.
      * @param fieldNames the Set of field API names to select.
     **/
-    public A00_QueryFactory selectFields(Set<String> fieldNames) {
+    public AA0_QueryFactory addFields(Set<String> fieldNames) {
         for (String fieldName : fieldNames) {
             fields.add(getFieldPath(fieldName));
         }
@@ -236,7 +171,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * Selects multiple fields. This acts the same as calling {@link #selectField(String)} multiple times.
      * @param fieldNames the List of field API names to select.
     **/
-    public A00_QueryFactory selectFields(List<String> fieldNames) {
+    public AA0_QueryFactory addFields(List<String> fieldNames) {
         for (String fieldName : fieldNames)
             fields.add(getFieldPath(fieldName));
         return this;
@@ -246,12 +181,12 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param fieldNames the set of {@link Schema.SObjectField}s to select.
      * @exception InvalidFieldException if the fields are null {@code fields}.
     **/
-    public A00_QueryFactory selectFields(Set<Schema.SObjectField> fields) {
+    public AA0_QueryFactory addFields(Set<Schema.SObjectField> fields) {
         for (Schema.SObjectField token : fields) {
             if (token == null)
                 throw new InvalidFieldException();
             if (enforceFLS)
-                A00_SecurityUtils.checkFieldIsReadable(table, token);
+                this.securityUtils.checkFieldIsReadable(sObjectType, token);
             this.fields.add(getFieldTokenPath(token));
         }
         return this;
@@ -261,12 +196,12 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param fieldNames the set of {@link Schema.SObjectField}s to select.
      * @exception InvalidFieldException if the fields are null {@code fields}.
     **/
-    public A00_QueryFactory selectFields(List<Schema.SObjectField> fields) {
+    public AA0_QueryFactory addFields(List<Schema.SObjectField> fields) {
         for (Schema.SObjectField token : fields) {
             if (token == null)
                 throw new InvalidFieldException();
             if (enforceFLS)
-                A00_SecurityUtils.checkFieldIsReadable(table, token);
+                this.securityUtils.checkFieldIsReadable(sObjectType, token);
             this.fields.add(getFieldTokenPath(token));
         }
         return this;
@@ -274,7 +209,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @see #selectFieldSet(Schema.FieldSet,Boolean)
     **/
-    public A00_QueryFactory addFields(Schema.FieldSet fieldSet) {
+    public AA0_QueryFactory addFields(Schema.FieldSet fieldSet) {
         return selectFieldSet(fieldSet, true);
     }
     /**
@@ -283,9 +218,9 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param allowCrossObject if false this method will throw an exception if any fields in the field set reference fields on a related record.
      * @exception InvalidFieldSetException if the fieldset is invalid for table {@code fields}.
     **/
-    public A00_QueryFactory selectFieldSet(Schema.FieldSet fieldSet, Boolean allowCrossObject) {
-        if (fieldSet.getSObjectType() != table)
-            throw new InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + table + '"');
+    public AA0_QueryFactory selectFieldSet(Schema.FieldSet fieldSet, Boolean allowCrossObject) {
+        if (fieldSet.getSObjectType() != sObjectType)
+            throw new InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + sObjectType + '"');
         for (Schema.FieldSetMember field : fieldSet.getFields()) {
             if (!allowCrossObject && field.getFieldPath().contains('.'))
                 throw new InvalidFieldSetException('Cross-object fields not allowed and field "' + field.getFieldPath() + '"" is a cross-object field.');
@@ -296,7 +231,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @param conditionExpression Sets the WHERE clause to the string provided. Do not include the "WHERE".
     **/
-    public A00_QueryFactory setCondition(String conditionExpression) {
+    public AA0_QueryFactory setCondition(String conditionExpression) {
         this.conditionExpression = conditionExpression;
         return this;
     }
@@ -309,7 +244,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @param limitCount if not null causes a LIMIT caluse to be added to the resulting query.
     **/
-    public A00_QueryFactory setLimit(Integer limitCount) {
+    public AA0_QueryFactory setLimit(Integer limitCount) {
         this.limitCount = limitCount;
         return this;
     }
@@ -322,7 +257,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @param offsetCount if not null causes a OFFSET caluse to be added to the resulting query.
     **/
-    public A00_QueryFactory setOffset(Integer offsetCount) {
+    public AA0_QueryFactory setOffset(Integer offsetCount) {
         this.offsetCount = offsetCount;
         return this;
     }
@@ -335,7 +270,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @param o an instance of {@link fflib_QueryFactory.Ordering} to be added to the query's ORDER BY clause.
     **/
-    public A00_QueryFactory addOrdering(Ordering o) {
+    public AA0_QueryFactory addOrdering(Ordering o) {
         this.order.add(o);
         return this;
     }
@@ -343,7 +278,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @param o an instance of {@link fflib_QueryFactory.Ordering} to remove all existing (for instance defaults) and be added to the query's ORDER BY clause.
      **/
-    public A00_QueryFactory setOrdering(Ordering o) {
+    public AA0_QueryFactory setOrdering(Ordering o) {
         this.order = new List<Ordering>{
                 o
         };
@@ -370,7 +305,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @exception InvalidSubqueryRelationshipException If this method is called on a subselectQuery or with an invalid relationship
      * @param related The related object type
     **/
-    public A00_QueryFactory subselectQuery(SObjectType related) {
+    public AA0_QueryFactory subselectQuery(SObjectType related) {
         System.debug(LoggingLevel.WARN, 'fflib_QueryFactory.subselectQuery(Schema.SObjectType) is deprecated and will be removed in a future release. Use fflib_QueryFactory.subselectQuery(String) or fflib_QueryFactory.subselectQuery(ChildRelationship) instead.');
         return setSubselectQuery(getChildRelationship(related), false);
     }
@@ -383,7 +318,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param related The related object type
      * @param assertIsAccessible indicates whether to check if the user has access to the subquery object
     **/
-    public A00_QueryFactory subselectQuery(SObjectType related, Boolean assertIsAccessible) {
+    public AA0_QueryFactory subselectQuery(SObjectType related, Boolean assertIsAccessible) {
         System.debug(LoggingLevel.WARN, 'fflib_QueryFactory.subselectQuery(Schema.SObjectType, Boolean) is deprecated and will be removed in a future release. Use fflib_QueryFactory.subselectQuery(String, Boolean) or fflib_QueryFactory.subselectQuery(ChildRelationship, Boolean) instead.');
         return setSubselectQuery(getChildRelationship(related), assertIsAccessible);
     }
@@ -394,7 +329,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @exception InvalidSubqueryRelationshipException If this method is called on a subselectQuery or with an invalid relationship
      * @param relationshipName The relationshipName to be added as a subquery
     **/
-    public A00_QueryFactory subselectQuery(String relationshipName) {
+    public AA0_QueryFactory subselectQuery(String relationshipName) {
         return subselectQuery(relationshipName, false);
     }
 
@@ -405,12 +340,12 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param relationshipName The relationshipName to be added as a subquery
      * @param assertIsAccessible indicates whether to check if the user has access to the subquery object
     **/
-    public A00_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible) {
+    public AA0_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible) {
         ChildRelationship relationship = getChildRelationship(relationshipName);
         if (relationship != null) {
             return setSubselectQuery(relationship, assertIsAccessible);
         }
-        throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery with relationshipName = ' + relationshipName + '.  Relationship does not exist for ' + table.getDescribe().getName());
+        throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery with relationshipName = ' + relationshipName + '.  Relationship does not exist for ' + sObjectType.getDescribe().getName());
     }
 
     /**
@@ -419,7 +354,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @exception InvalidSubqueryRelationshipException If this method is called on a subselectQuery or with an invalid relationship
      * @param relationship The ChildRelationship to be added as a subquery
     **/
-    public A00_QueryFactory subselectQuery(ChildRelationship relationship) {
+    public AA0_QueryFactory subselectQuery(ChildRelationship relationship) {
         return subselectQuery(relationship, false);
     }
 
@@ -430,7 +365,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param relationship The ChildRelationship to be added as a subquery
      * @param assertIsAccessible indicates whether to check if the user has access to the subquery object
     **/
-    public A00_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
+    public AA0_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
         return setSubselectQuery(relationship, assertIsAccessible);
     }
 
@@ -440,18 +375,18 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @exception InvalidSubqueryRelationshipException If this method is called on a subselectQuery or with an invalid relationship
      * @param relationship The ChildRelationship to be added as a subquery
     **/
-    private A00_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
+    private AA0_QueryFactory setSubselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
         if (this.relationship != null) {
             throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery.  You may not add a subselect query to a subselect query.');
         }
         if (this.subselectQueryMap == null) {
-            this.subselectQueryMap = new Map<ChildRelationship, A00_QueryFactory>();
+            this.subselectQueryMap = new Map<ChildRelationship, AA0_QueryFactory>();
         }
         if (this.subselectQueryMap.containsKey(relationship)) {
             return subselectQueryMap.get(relationship);
         }
 
-        A00_QueryFactory subselectQuery = new A00_QueryFactory(relationship);
+        AA0_QueryFactory subselectQuery = new AA0_QueryFactory(relationship);
 
         //The child queryFactory should be configured in the same way as the parent by default - can override after if required
         subSelectQuery.setSortSelectFields(sortSelectFields);
@@ -466,7 +401,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     /**
      * @returns the list of subquery instances of fflib_QueryFactory which will be added to the SOQL as relationship/child/sub-queries.
     **/
-    public List<A00_QueryFactory> getSubselectQueries() {
+    public List<AA0_QueryFactory> getSubselectQueries() {
         if (subselectQueryMap != null) {
             return subselectQueryMap.values();
         }
@@ -478,14 +413,14 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param objType The object type of the child relationship to get
     **/
     private Schema.ChildRelationship getChildRelationship(sObjectType objType) {
-        for (Schema.ChildRelationship childRow : table.getDescribe().getChildRelationships()) {
+        for (Schema.ChildRelationship childRow : sObjectType.getDescribe().getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
             //if there is no relationship name, we cannot query on it, so throw an exception.
             if (childRow.getChildSObject() == objType && childRow.getRelationshipName() != null) {
                 return childRow;
             }
         }
-        throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery.  Invalid relationship for table ' + table + ' and objtype=' + objType);
+        throw new InvalidSubqueryRelationshipException('Invalid call to subselectQuery.  Invalid relationship for table ' + sObjectType + ' and objtype=' + objType);
     }
 
     /**
@@ -493,7 +428,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param relationshipName The name of the object's ChildRelationship on get
     **/
     private Schema.ChildRelationship getChildRelationship(String relationshipName) {
-        for (Schema.ChildRelationship childRow : table.getDescribe().getChildRelationships()) {
+        for (Schema.ChildRelationship childRow : sObjectType.getDescribe().getChildRelationships()) {
             if (childRow.getRelationshipName() == relationshipName) {
                 return childRow;
             }
@@ -512,7 +447,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
      * @param nullsLast whether to sort null values last (NULLS LAST keyword included).
     **/
-    public A00_QueryFactory addOrdering(String fieldName, SortOrder direction, Boolean nullsLast) {
+    public AA0_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
         order.add(
                 new Ordering(getFieldPath(fieldName), direction, nullsLast)
         );
@@ -530,7 +465,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
     * @param nullsLast whether to sort null values last (NULLS LAST keyword included).
    **/
-    public A00_QueryFactory addOrdering(SObjectField field, SortOrder direction, Boolean nullsLast) {
+    public AA0_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
         order.add(
                 new Ordering(getFieldTokenPath(field), direction, nullsLast)
         );
@@ -549,7 +484,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
 	 * @param fieldName The string value of the field to be sorted on
 	 * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
 	**/
-    public A00_QueryFactory addOrdering(String fieldName, SortOrder direction) {
+    public AA0_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         order.add(
                 new Ordering(getFieldPath(fieldName), direction)
         );
@@ -568,7 +503,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     * @param field The SObjectfield to sort.  This can only be a direct reference.
     * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
    **/
-    public A00_QueryFactory addOrdering(SObjectField field, SortOrder direction) {
+    public AA0_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         order.add(
                 new Ordering(getFieldTokenPath(field), direction)
         );
@@ -586,7 +521,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
      * @param nullsLast whether to sort null values last (NULLS LAST keyword included).
     **/
-    public A00_QueryFactory setOrdering(String fieldName, SortOrder direction, Boolean nullsLast) {
+    public AA0_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
         Ordering ordr = new Ordering(getFieldPath(fieldName), direction, nullsLast);
         return setOrdering(ordr);
     }
@@ -602,7 +537,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
      * @param nullsLast whether to sort null values last (NULLS LAST keyword included).
     **/
-    public A00_QueryFactory setOrdering(SObjectField field, SortOrder direction, Boolean nullsLast) {
+    public AA0_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
         Ordering ordr = new Ordering(getFieldTokenPath(field), direction, nullsLast);
         return setOrdering(ordr);
     }
@@ -617,7 +552,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param fieldName The string value of the field to be sorted on
      * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
     **/
-    public A00_QueryFactory setOrdering(String fieldName, SortOrder direction) {
+    public AA0_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         Ordering ordr = new Ordering(getFieldPath(fieldName), direction);
         return setOrdering(ordr);
     }
@@ -632,7 +567,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * @param field The SObjectfield to sort.  This can only be a direct reference.
      * @param SortOrder the direction to be sorted on (ASCENDING or DESCENDING)
     **/
-    public A00_QueryFactory setOrdering(SObjectField field, SortOrder direction) {
+    public AA0_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         Ordering ordr = new Ordering(getFieldTokenPath(field), direction);
         return setOrdering(ordr);
     }
@@ -645,7 +580,7 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
         String result = 'SELECT ';
         //if no fields have been added, just add the Id field so that the query or subquery will not just fail
         if (fields.size() == 0) {
-            if (enforceFLS) A00_SecurityUtils.checkFieldIsReadable(table, 'Id');
+            if (enforceFLS) this.securityUtils.checkFieldIsReadable(sObjectType, 'Id');
             result += 'Id';
         } else {
             List<String> fieldsToQuery = new List<String>(fields);
@@ -658,11 +593,11 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
         }
 
         if (subselectQueryMap != null && !subselectQueryMap.isEmpty()) {
-            for (A00_QueryFactory childRow : subselectQueryMap.values()) {
+            for (AA0_QueryFactory childRow : subselectQueryMap.values()) {
                 result += ', (' + childRow.toSOQL() + ') ';
             }
         }
-        result += ' FROM ' + (relationship != null ? relationship.getRelationshipName() : table.getDescribe().getName());
+        result += ' FROM ' + (relationship != null ? relationship.getRelationshipName() : sObjectType.getDescribe().getName());
         if (conditionExpression != null)
             result += ' WHERE ' + conditionExpression;
 
@@ -686,17 +621,17 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
      * Create a "deep" clone of this object that can be safely mutated without affecting the cloned instance
      * @return a deep clone of this fflib_QueryFactory
     **/
-    public A00_QueryFactory deepClone() {
+    public AA0_QueryFactory deepClone() {
 
-        A00_QueryFactory clone = new A00_QueryFactory(this.table)
+        AA0_QueryFactory clone = new AA0_QueryFactory(this.sObjectType)
                 .setLimit(this.limitCount)
                 .setOffset(this.offsetCount)
                 .setCondition(this.conditionExpression)
                 .setEnforceFLS(this.enforceFLS);
 
-        Map<Schema.ChildRelationship, A00_QueryFactory> subqueries = this.subselectQueryMap;
+        Map<Schema.ChildRelationship, AA0_QueryFactory> subqueries = this.subselectQueryMap;
         if (subqueries != null) {
-            Map<Schema.ChildRelationship, A00_QueryFactory> clonedSubqueries = new Map<Schema.ChildRelationship, A00_QueryFactory>();
+            Map<Schema.ChildRelationship, AA0_QueryFactory> clonedSubqueries = new Map<Schema.ChildRelationship, AA0_QueryFactory>();
             for (Schema.ChildRelationship key : subqueries.keySet()) {
                 clonedSubqueries.put(key, subqueries.get(key).deepClone());
             }
@@ -711,11 +646,11 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
     }
 
     public class Ordering {
-        private SortOrder direction;
+        private XAP_DAO_SOQL_QuerySortOrderEnum direction;
         private boolean nullsLast;
         private String field;
 
-        public Ordering(String sobjType, String fieldName, SortOrder direction) {
+        public Ordering(String sobjType, String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
             this(
                     A00_SObjectDescribe.getDescribe(sobjType).getField(fieldName),
                     direction
@@ -725,18 +660,18 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
          * Construct a new ordering instance for use with {@link fflib_QueryFactory#addOrdering}
          * Once constructed it's properties may not be modified.
         **/
-        public Ordering(Schema.SObjectField field, SortOrder direction) {
-            this(A00_QueryFactory.getFieldTokenPath(field), direction, false); //SOQL docs state NULLS FIRST is default behavior
+        public Ordering(Schema.SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+            this(AA0_QueryFactory.getFieldTokenPath(field), direction, false); //SOQL docs state NULLS FIRST is default behavior
         }
-        public Ordering(Schema.SObjectField field, SortOrder direction, Boolean nullsLast) {
-            this(A00_QueryFactory.getFieldTokenPath(field), direction, nullsLast);
+        public Ordering(Schema.SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
+            this(AA0_QueryFactory.getFieldTokenPath(field), direction, nullsLast);
         }
-        @testVisible
-        private Ordering(String field, SortOrder direction) {
+        @TestVisible
+        private Ordering(String field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
             this(field, direction, false);
         }
-        @testVisible
-        private Ordering(String field, SortOrder direction, Boolean nullsLast) {
+        @TestVisible
+        private Ordering(String field, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
             this.direction = direction;
             this.field = field;
             this.nullsLast = nullsLast;
@@ -744,11 +679,11 @@ public class A00_QueryFactory { //No explicit sharing declaration - inherit from
         public String getField() {
             return this.field;
         }
-        public SortOrder getDirection() {
+        public XAP_DAO_SOQL_QuerySortOrderEnum getDirection() {
             return direction;
         }
         public String toSOQL() {
-            return field + ' ' + (direction == SortOrder.ASCENDING ? 'ASC' : 'DESC') + (nullsLast ? ' NULLS LAST ' : ' NULLS FIRST ');
+            return field + ' ' + (direction == XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING ? 'ASC' : 'DESC') + (nullsLast ? ' NULLS LAST ' : ' NULLS FIRST ');
         }
     }
 

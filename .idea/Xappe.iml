@@ -957,19 +957,19 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="A00_QueryFactory" />
+                            <option name="name" value="AA0_QueryFactory" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="A00_QueryFactoryTest" />
+                            <option name="name" value="AA0_QueryFactoryTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="A00_SObjectSelectorAbs" />
+                            <option name="name" value="AA0_SObjectSelectorAbs" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="A00_SObjectSelectorTest" />
+                            <option name="name" value="AA0_SObjectSelectorTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

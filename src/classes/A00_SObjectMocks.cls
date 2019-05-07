@@ -21,7 +21,7 @@ public class A00_SObjectMocks {
         }
     }
 
-    public virtual class SObjectSelector implements A00_SObjectSelectorIntf {
+    public virtual class SObjectSelector implements XAP_DAO_SOQL_SObjectSelectorIntf {
         private fflib_ApexMocks mocks;
 
         public SObjectSelector(fflib_ApexMocks mocks) {

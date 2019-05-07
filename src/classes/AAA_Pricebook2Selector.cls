@@ -1,4 +1,4 @@
-public class AAA_Pricebook2Selector extends A00_SObjectSelectorAbs {
+public class AAA_Pricebook2Selector extends AA0_SObjectSelectorAbs {
     private AAA_Pricebook2Selector() {
     }
 

@@ -5,10 +5,12 @@ public class XAP_DAO_SOQL_SecurityUtils {
     private static XAP_DAO_SOQL_SecurityUtils instance;
 
     public static XAP_DAO_SOQL_SecurityUtils getInstance() {
-        instance = new XAP_DAO_SOQL_SecurityUtils();
+        if (instance == null) {
+            instance = new XAP_DAO_SOQL_SecurityUtils();
+        }
+        System.debug('####### instance: ' + instance);
         return instance;
     }
-
 
     public static final Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
 
@@ -25,7 +27,7 @@ public class XAP_DAO_SOQL_SecurityUtils {
             return true;
         }
 
-        throw new XAP_DAO_SOQL_FieldLevelSecurityException(sObjectType, fieldDescribe.getSObjectField());
+        throw new XAP_DAO_SOQL_FieldLevelSecurityException(sObjectType, fieldDescribe.getSobjectField());
     }
 
     public Boolean checkObjectIsReadable(SObjectType sObjectType) {

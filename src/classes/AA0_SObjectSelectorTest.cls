@@ -1,8 +1,8 @@
 @IsTest
-public with sharing class A00_SObjectSelectorTest {
+public with sharing class AA0_SObjectSelectorTest {
 
     static testMethod void testGetSObjectName() {
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
+        TestSObjectSelector selector = new TestSObjectSelector();
         System.assertEquals(null, selector.getSObjectFieldSetList());
         System.assertEquals('Account', selector.getSObjectName());
     }
@@ -19,7 +19,7 @@ public with sharing class A00_SObjectSelectorTest {
             idSet.add(item.Id);
 
         Test.startTest();
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
+        TestSObjectSelector selector = new TestSObjectSelector();
         List<Account> result = (List<Account>) selector.selectById(idSet);
         Test.stopTest();
 
@@ -44,7 +44,7 @@ public with sharing class A00_SObjectSelectorTest {
             idSet.add(item.Id);
 
         Test.startTest();
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
+        TestSObjectSelector selector = new TestSObjectSelector();
         Database.QueryLocator result = selector.queryLocatorById(idSet);
         System.Iterator<SObject> iteratorResult = result.iterator();
         Test.stopTest();
@@ -68,20 +68,27 @@ public with sharing class A00_SObjectSelectorTest {
                 new Account(Name = 'TestAccount1', AccountNumber = 'A1', AnnualRevenue = 76543.21)
         };
         insert accountList;
+
         Set<Id> idSet = new Set<Id>();
-        for (Account item : accountList)
-            idSet.add(item.Id);
+        for (Account account : accountList) {
+            idSet.add(account.Id);
+        }
 
         // Create a user which will not have access to the test object type
         User testUser = createChatterExternalUser();
-        if (testUser == null)
+        System.debug('######### testuser: ' + testUser);
+
+        if (testUser == null) {
             return; // Abort the test if unable to create a user with low enough acess
+        }
+
         System.runAs(testUser) {
-            Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
+            TestSObjectSelector selector = new TestSObjectSelector();
+            System.debug('######### selector: ' + selector);
             try {
-                List<Account> result = (List<Account>) selector.selectById(idSet);
+                List<Account> resultList = (List<Account>) selector.selectById(idSet);
                 System.assert(false, 'Expected exception was not thrown');
-            } catch (A00_SObjectDomain.DomainException e) {
+            } catch (XAP_DAO_SOQL_DomainSecurityException e) {
                 System.assertEquals('Permission to access an Account denied.', e.getMessage());
             }
         }
@@ -102,17 +109,17 @@ public with sharing class A00_SObjectSelectorTest {
         if (testUser == null)
             return; // Abort the test if unable to create a user with low enough acess
         System.runAs(testUser) {
-            Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, true);
+            TestSObjectSelector selector = new TestSObjectSelector(false, false, false, true);
             try {
                 List<Account> result = (List<Account>) selector.selectById(idSet);
-            } catch (A00_SObjectDomain.DomainException e) {
+            } catch (XAP_DAO_SOQL_DomainSecurityException e) {
                 System.assert(false, 'Did not expect an exception to be thrown');
             }
         }
     }
 
     static testMethod void testSOQL() {
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
+        TestSObjectSelector selector = new TestSObjectSelector();
         String soql = selector.createQueryFactory().toSOQL();
         Pattern p = Pattern.compile('SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST ');
         Matcher m = p.matcher(soql);
@@ -123,7 +130,7 @@ public with sharing class A00_SObjectSelectorTest {
     }
 
     static testMethod void testDefaultConfig() {
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector();
+        TestSObjectSelector selector = new TestSObjectSelector();
         System.assertEquals(false, selector.isEnforcingFLS());
         System.assertEquals(true, selector.isEnforcingCRUD());
         System.assertEquals(false, selector.isIncludeFieldSetFields());
@@ -156,8 +163,8 @@ public with sharing class A00_SObjectSelectorTest {
     @isTest
     static void testWithoutSorting() {
         //Given
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, false);
-        A00_QueryFactory qf = selector.createQueryFactory();
+        TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
+        AA0_QueryFactory qf = selector.createQueryFactory();
 
         Set<String> expectedSelectFields = new Set<String>{
                 'Name', 'Id', 'AccountNumber', 'AnnualRevenue'
@@ -182,8 +189,8 @@ public with sharing class A00_SObjectSelectorTest {
     @isTest
     static void testWithOrderingNullsLast() {
         // Build the selector to test with
-        Testfflib_SObjectSelector selector = new Testfflib_SObjectSelector(false, false, false, false);
-        A00_QueryFactory qf = selector.createQueryFactory();
+        TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
+        AA0_QueryFactory qf = selector.createQueryFactory();
 
         // Add in the expected fields
         Set<String> expectedSelectFields = new Set<String>{
@@ -209,12 +216,12 @@ public with sharing class A00_SObjectSelectorTest {
         System.assertEquals(expected, actual);
     }
 
-    private class Testfflib_SObjectSelector extends A00_SObjectSelectorAbs {
-        public Testfflib_SObjectSelector() {
+    private class TestSObjectSelector extends AA0_SObjectSelectorAbs {
+        public TestSObjectSelector() {
             super();
         }
 
-        public Testfflib_SObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS, Boolean sortSelectFields) {
+        public TestSObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS, Boolean sortSelectFields) {
             super(includeFieldSetFields, enforceCRUD, enforceFLS, sortSelectFields);
         }
 

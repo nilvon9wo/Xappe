@@ -1,4 +1,4 @@
-public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObjectSelectorIntf {
+public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQL_SObjectSelectorIntf {
     public static final Boolean INCLUDE_FIELDSET_FIELDS = true;
     public static final Boolean EXCLUDE_FIELDSET_FIELDS = false;
 
@@ -16,6 +16,9 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
 
     private static final String CURRENCY_CODE_FIELDNAME = 'CurrencyIsoCode';
     private static final String DEFAULT_ORDER_FIELDNAME = 'CreatedDate';
+    private static final String DEFAULT_SORT_DIRECTION = 'DESC';
+    private static final String DEFAULT_NULL_SORT_PLACE = 'NULLS LAST';
+    private static final String DOT = '.';
 
     private String orderBy;
 
@@ -24,7 +27,7 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
     private Boolean isEnforcingCRUD;
     private Boolean isSortingSelectedFields;
 
-    public A00_SObjectSelectorAbs(
+    public AA0_SObjectSelectorAbs(
             Boolean includeFieldSetFields,
             Boolean enforceCRUD,
             Boolean enforceFLS,
@@ -36,16 +39,15 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
         this.isSortingSelectedFields = sortSelectFields;
     }
 
-    public A00_SObjectSelectorAbs(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS) {
+    public AA0_SObjectSelectorAbs(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS) {
         this(includeFieldSetFields, enforceCRUD, enforceFLS, SORTTED_SELECT_FIELDS);
     }
 
-
-    public A00_SObjectSelectorAbs(Boolean includeFieldSetFields) {
+    public AA0_SObjectSelectorAbs(Boolean includeFieldSetFields) {
         this(includeFieldSetFields, INCLUDE_ENFORCE_CRUD, EXCLUDE_ENFORCE_FLS);
     }
 
-    public A00_SObjectSelectorAbs() {
+    public AA0_SObjectSelectorAbs() {
         this(EXCLUDE_FIELDSET_FIELDS);
     }
 
@@ -128,83 +130,114 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
         return Database.getQueryLocator(this.buildQuerySObjectById());
     }
 
-    public A00_QueryFactory createQueryFactory() {
+    public AA0_QueryFactory createQueryFactory() {
+        System.debug('########### this.isEnforcingCRUD: ' + this.isEnforcingCRUD);
+        System.debug('########### this.isEnforcingFLS: ' + this.isEnforcingFLS);
         return this.createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public A00_QueryFactory createQueryFactory(Boolean includeSelectorFields) {
+    public AA0_QueryFactory createQueryFactory(Boolean includeSelectorFields) {
         return this.createQueryFactory(this.isEnforcingCRUD, this.isEnforcingFLS, includeSelectorFields);
     }
 
-    public A00_QueryFactory createQueryFactory(Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields) {
+    public AA0_QueryFactory createQueryFactory(Boolean assertCRUD, Boolean enforceFLS, Boolean includeSelectorFields) {
         return this.configureQueryFactory(
-                new A00_QueryFactory(getSObjectType()),
+                new AA0_QueryFactory(this.getSObjectType()),
                 assertCRUD,
                 enforceFLS,
                 includeSelectorFields
         );
     }
 
-    public void injectChildFactoryFor(A00_QueryFactory queryFactory, String relationshipFieldPath) {
+    public void injectChildFactoryFor(AA0_QueryFactory childQueryFactory, String relationshipFieldPath) {
         for (SObjectField field : this.getSObjectFieldList()) {
-            queryFactory.addField(relationshipFieldPath + '.' + field.getDescribe().getName());
+            childQueryFactory.addField(relationshipFieldPath + DOT + field.getDescribe().getName());
         }
 
         if (UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
-            queryFactory.addField(relationshipFieldPath + '.' + CURRENCY_CODE_FIELDNAME);
+            childQueryFactory.addField(relationshipFieldPath + DOT + CURRENCY_CODE_FIELDNAME);
         }
     }
 
-    public A00_QueryFactory injectParentFactoryFor(A00_QueryFactory parentQueryFactory) {
+    public AA0_QueryFactory injectParentFactoryFor(AA0_QueryFactory parentQueryFactory) {
         return this.injectParentFactoryFor(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public A00_QueryFactory injectParentFactoryFor(A00_QueryFactory parentQueryFactory, Boolean includeSelectorFields) {
+    public AA0_QueryFactory injectParentFactoryFor(AA0_QueryFactory parentQueryFactory, Boolean includeSelectorFields) {
         return this.configureQueryFactory(
                 parentQueryFactory.subselectQuery(getSObjectType()),
                 isEnforcingCRUD,
                 isEnforcingFLS,
-                includeSelectorFields);
+                includeSelectorFields
+        );
     }
 
-    public A00_QueryFactory injectParentFactoryFor(A00_QueryFactory parentQueryFactory, String relationshipName) {
+    public AA0_QueryFactory injectParentFactoryFor(AA0_QueryFactory parentQueryFactory, String relationshipName) {
         return this.injectParentFactoryFor(parentQueryFactory, relationshipName, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public A00_QueryFactory injectParentFactoryFor(
-            A00_QueryFactory parentQueryFactory,
+    public AA0_QueryFactory injectParentFactoryFor(
+            AA0_QueryFactory parentQueryFactory,
             String relationshipName,
             Boolean includeSelectorFields
     ) {
-        A00_QueryFactory subSelectQueryFactory = parentQueryFactory.subselectQuery(relationshipName);
+        AA0_QueryFactory subSelectQueryFactory = parentQueryFactory.subselectQuery(relationshipName);
         return this.configureQueryFactory(subSelectQueryFactory, isEnforcingCRUD, isEnforcingFLS, includeSelectorFields);
     }
 
+    /*
+    private String buildQuerySObjectById(Set<Id> idSet) {
+        return this.newQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .toSoql();
+    }
+     */
     private String buildQuerySObjectById() {
         return this.createQueryFactory()
                 .setCondition('id in :idSet')
                 .toSOQL();
     }
 
-    private A00_QueryFactory configureQueryFactory(
-            A00_QueryFactory queryFactory,
+    private AA0_QueryFactory configureQueryFactory(
+            AA0_QueryFactory queryFactory,
             Boolean assertCRUD,
             Boolean enforceFLS,
             Boolean includeSelectorFields
     ) {
+        System.debug('########### queryFactory: ' + queryFactory);
+        System.debug('########### assertCRUD: ' + assertCRUD);
+        System.debug('########### enforceFLS: ' + enforceFLS);
+        System.debug('########### includeSelectorFields: ' + includeSelectorFields);
+
+        this.requireCrudSecurity(queryFactory, assertCRUD);
+        queryFactory.setEnforceFLS(enforceFLS);
+
+        this.configureSelectorFields(queryFactory, includeSelectorFields);
+        this.parseOrderBy(queryFactory);
+        queryFactory.setSortSelectFields(this.isSortingSelectedFields);
+
+        return queryFactory;
+    }
+
+    private AA0_QueryFactory requireCrudSecurity(AA0_QueryFactory queryFactory, Boolean assertCRUD) {
         if (assertCRUD) {
             try {
                 queryFactory.assertIsAccessible();
-            } catch (A00_SecurityUtils.CrudException e) {
-                throw new A00_SObjectDomain.DomainException(
+            } catch (XAP_DAO_SOQL_SObjectReadException e) {
+                throw new XAP_DAO_SOQL_DomainSecurityException(
                         'Permission to access an ' + getSObjectType().getDescribe().getName() + ' denied.'
                 );
             }
         }
-        queryFactory.setEnforceFLS(enforceFLS);
+        return queryFactory;
+    }
 
+    private AA0_QueryFactory configureSelectorFields(
+            AA0_QueryFactory queryFactory,
+            Boolean includeSelectorFields
+    ) {
         if (includeSelectorFields) {
-            queryFactory.selectFields(this.getSObjectFieldList());
+            queryFactory.addFields(this.getSObjectFieldList());
 
             List<Schema.FieldSet> fieldSetList = this.getSObjectFieldSetList();
             if (this.isIncludingFieldSetFields && fieldSetList != null) {
@@ -213,31 +246,31 @@ public abstract with sharing class A00_SObjectSelectorAbs implements A00_SObject
                 }
             }
 
-            if (UserInfo.isMultiCurrencyOrganization() && isCurrencyIsoCodeEnabled) {
+            if (UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
                 queryFactory.addField(CURRENCY_CODE_FIELDNAME);
             }
         }
+        return queryFactory;
+    }
 
+    private AA0_QueryFactory parseOrderBy(AA0_QueryFactory queryFactory) {
         for (String orderBy : this.getOrderBy().split(',')) {
-            List<String> orderByParts = orderBy.trim().split(' ');
-            String fieldNamePart = orderByParts[0];
-            String fieldSortOrderPart = orderByParts.size() > 1
-                    ? orderByParts[1]
+            List<String> orderByPartList = orderBy.trim()
+                    .split(' ');
+
+            String fieldNamePart = orderByPartList[0];
+            String fieldSortOrderPart = orderByPartList.size() > 1
+                    ? orderByPartList[1]
                     : null;
 
-            A00_QueryFactory.SortOrder fieldSortOrder = A00_QueryFactory.SortOrder.ASCENDING;
-            if (fieldSortOrderPart == null) {
-                fieldSortOrder = A00_QueryFactory.SortOrder.ASCENDING;
-            } else if (fieldSortOrderPart.equalsIgnoreCase('DESC')) {
-                fieldSortOrder = A00_QueryFactory.SortOrder.DESCENDING;
-            } else if (fieldSortOrderPart.equalsIgnoreCase('ASC')) {
-                fieldSortOrder = A00_QueryFactory.SortOrder.ASCENDING;
-            }
+            XAP_DAO_SOQL_QuerySortOrderEnum fieldSortOrder = XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING;
 
-            queryFactory.addOrdering(fieldNamePart, fieldSortOrder, orderBy.containsIgnoreCase('NULLS LAST'));
+            fieldSortOrder = (!String.isBlank(fieldSortOrderPart) && fieldSortOrderPart.equalsIgnoreCase(DEFAULT_SORT_DIRECTION))
+                    ? XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING
+                    : XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING;
+
+            queryFactory.addOrdering(fieldNamePart, fieldSortOrder, orderBy.containsIgnoreCase(DEFAULT_NULL_SORT_PLACE));
         }
-
-        queryFactory.setSortSelectFields(isSortingSelectedFields);
         return queryFactory;
     }
 }

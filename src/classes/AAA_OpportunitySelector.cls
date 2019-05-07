@@ -1,4 +1,4 @@
-public virtual class AAA_OpportunitySelector extends A00_SObjectSelectorAbs {
+public virtual class AAA_OpportunitySelector extends AA0_SObjectSelectorAbs {
     AAA_OpportunityLineItemsSelector opportunityLineItemsSelector;
     AAA_PricebookEnrtrySelector pricebookEnrtrySelector;
     AAA_Pricebook2Selector pricebook2Selector;
@@ -63,9 +63,9 @@ public virtual class AAA_OpportunitySelector extends A00_SObjectSelectorAbs {
     }
 
     public List<Opportunity> selectByIdWithProducts(Set<Id> idSet) {
-        A00_QueryFactory opportunityQueryFactory = this.createQueryFactory();
+        AA0_QueryFactory opportunityQueryFactory = this.createQueryFactory();
         System.debug('######### selectByIdWithProducts opportunityQueryFactory: ' + opportunityQueryFactory);
-        A00_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
+        AA0_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
                 .injectParentFactoryFor(opportunityQueryFactory, 'OpportunityLineItems');
 
         this.pricebookEnrtrySelector

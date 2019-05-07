@@ -1,4 +1,4 @@
-public virtual class AAA_Product2Selector extends A00_SObjectSelectorAbs {
+public virtual class AAA_Product2Selector extends AA0_SObjectSelectorAbs {
     public AAA_Product2Selector(Boolean includeFieldSetFields) {
         super(includeFieldSetFields);
     }
