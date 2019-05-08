@@ -2,7 +2,12 @@
 public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
     private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
-    private static final XAP_TRIG_TriggerEventCoordinator COORDINATOR_UNDER_TEST = createMockTriggerEventCoordinator();
+    private static final XAP_TRIG_TriggerSettingSelectorMock MOCK_TRIGGER_SELECTOR
+            = new XAP_TRIG_TriggerSettingSelectorMock();
+    private static final XAP_TRIG_SObjectTypeOperationConvertor SOBJECT_TYPE_OPERATION_CONVERTOR
+            = new XAP_TRIG_SObjectTypeOperationConvertor();
+    private static final XAP_TRIG_TriggerEventCoordinator COORDINATOR_UNDER_TEST
+            = new XAP_TRIG_TriggerEventCoordinator(SOBJECT_TYPE_OPERATION_CONVERTOR, MOCK_TRIGGER_SELECTOR);
 
     private static final XAP_TRIG_TriggerSetting__c TEST_TRIGGER_SETTINGS
             = (XAP_TRIG_TriggerSetting__c) new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
@@ -16,7 +21,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void isExecutableReturnsTrueIfEnabledForProfileAndEnabledForSObjectAndNotInProgress() {
         // Arrange
-        // Nothing to do here
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
 
         // Act
         Boolean result;
@@ -32,6 +37,8 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void isExecutableReturnsFalseIfEnabledForProfileAndEnabledForSObjectButInProgress() {
         // Arrange
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
+
         XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
                 TEST_TRIGGER_WRAPPER.sObjectType, new Set<System.TriggerOperation>{
                         TEST_TRIGGER_WRAPPER.operationType
@@ -52,6 +59,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void isExecutableReturnsTrueIfEnabledForProfileAndNotInProgressButNotEnabledForSObject() {
         // Arrange
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
         XAP_TRIG_TriggerEventCoordinator.IS_ENABLED_BY_SOBJECT_TYPE_MAP = new Map<SObjectType, Boolean>{
                 TEST_SOBJECT_TYPE => false
         };
@@ -93,7 +101,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void isEnabledForProfileShouldReturnValueFromAutomationSetting() {
         // Arrange
-        // Nothing to do here
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
 
         // Act
         Boolean result;
@@ -113,7 +121,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void isEnabledForSObjectShouldReturnEnabledValueFromAutomationSetting() {
         // Arrange
-        // Nothing to do here
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
 
         // Act
         Boolean result;
@@ -130,6 +138,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void isEnabledForSObjectShouldReturnTrueForUnmappedSObjects() {
         // Arrange
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
         SObjectType unmappedSObjectType = User.SObjectType;
 
         // Act
@@ -149,7 +158,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
     @IsTest public static void testBuidIsEnabledBySObjectTypeMapShouldReturnMapFromAutomationSettings() {
         // Arrange
-        // Nothing to do here
+        MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
 
         // Act
         Map<SObjectType, Boolean> resultIsEnabledBySObjectTypeMap;
@@ -160,8 +169,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
         Test.stopTest();
 
         // Assert
-        System.assert(resultIsEnabledBySObjectTypeMap.get(Contact.SObjectType));
-        System.assert(resultIsEnabledBySObjectTypeMap.get(User.SObjectType));
+        System.assert(resultIsEnabledBySObjectTypeMap.get(Account.SObjectType));
     }
 
     // isNotAlreadyInProgress tests --------------------------------------------------------------------------------------------
@@ -351,12 +359,5 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
         testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
         testTriggerProperties.operationType = TEST_OPERATION;
         return testTriggerProperties;
-    }
-
-    private static XAP_TRIG_TriggerEventCoordinator createMockTriggerEventCoordinator() {
-        XAP_TRIG_TriggerSettingSelectorMock mockAutomationSettingSelector = new XAP_TRIG_TriggerSettingSelectorMock();
-        mockAutomationSettingSelector.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
-        XAP_TRIG_SObjectTypeOperationConvertor sObjectTypeOperationHelper = new XAP_TRIG_SObjectTypeOperationConvertor();
-        return new XAP_TRIG_TriggerEventCoordinator(sObjectTypeOperationHelper, mockAutomationSettingSelector);
     }
 }
