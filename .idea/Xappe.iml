@@ -741,10 +741,6 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_WHERE_ArbitraryStringClause.cls-meta.xml" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
                             <option name="name" value="DAO_AuthProviderSelector" />
                             <option name="selected" value="true" />
                           </MetadataEntry>

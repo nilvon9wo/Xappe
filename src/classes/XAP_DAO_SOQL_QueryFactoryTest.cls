@@ -741,7 +741,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
                     //check to see if this record is accessible, it isn't.
                     queryFactory.assertIsAccessible();
                 }
-                catch (A00_SecurityUtils.CrudException e) {
+                catch (XAP_DAO_SOQL_SObjectReadException e) {
                     excThrown = true;
                 }
                 System.assert(excThrown);
@@ -762,7 +762,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
                     queryFactory.setEnforceFLS(true);
                     queryFactory.addField('Name');
                 }
-                catch (A00_SecurityUtils.FlsException e) {
+                catch (XAP_DAO_SOQL_FieldLevelSecurityException e) {
                     excThrown = true;
                 }
                 System.assert(excThrown);
