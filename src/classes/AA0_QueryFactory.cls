@@ -111,7 +111,8 @@ public class AA0_QueryFactory {
         return obj instanceof AA0_QueryFactory
                 && ((AA0_QueryFactory) obj).sObjectType == this.sObjectType
                 && ((AA0_QueryFactory) obj).fieldSet.size() == this.fieldSet.size()
-                && ((AA0_QueryFactory) obj).toSOQL() == this.toSOQL();
+                && ((AA0_QueryFactory) obj).toSOQL() == this.toSOQL()
+                && ((AA0_QueryFactory) obj).toQueryInterpolation().template == this.toQueryInterpolation().template;
     }
 
     private AA0_QueryFactory(Schema.ChildRelationship relationship) {

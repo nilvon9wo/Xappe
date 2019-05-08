@@ -24,16 +24,16 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void fieldSelections() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('firstName');
-        qf.addField(Contact.SObjectType.fields.LastName);
-        qf.addFields(new Set<String>{
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('firstName');
+        queryFactory.addField(Contact.SObjectType.fields.LastName);
+        queryFactory.addFields(new Set<String>{
                 'acCounTId', 'account.name'
         });
-        qf.addFields(new List<String>{
+        queryFactory.addFields(new List<String>{
                 'homePhonE', 'fAX'
         });
-        qf.addFields(new List<Schema.SObjectField>{
+        queryFactory.addFields(new List<Schema.SObjectField>{
                 Contact.Email, Contact.Title
         });
         System.assertEquals(new Set<String>{
@@ -46,23 +46,24 @@ private class AA0_QueryFactoryTest {
                 'Email',
                 'Title'
         },
-                qf.getSelectedFields());
+                queryFactory.getSelectedFields());
     }
 
     @IsTest
     static void simpleFieldSelection() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('NAMe').addFields(new Set<String>{
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('NAMe').addFields(new Set<String>{
                 'naMe', 'email'
         });
-        String query = qf.toSOQL();
+        String query = queryFactory.toQueryInterpolation().template;
         System.assert(Pattern.matches('SELECT.*Name.*FROM.*', query), 'Expected Name field in query, got ' + query);
         System.assert(Pattern.matches('SELECT.*Email.*FROM.*', query), 'Expected Name field in query, got ' + query);
-        qf.setLimit(100);
-        System.assertEquals(100, qf.getLimit());
+        queryFactory.setLimit(100);
+        System.assertEquals(100, queryFactory.getLimit());
         System.assert(
-                qf.toSOQL()
-                        .endsWithIgnoreCase('LIMIT ' + qf.getLimit()), 'Failed to respect limit clause:' + qf.toSOQL()
+                queryFactory.toQueryInterpolation().template
+                        .endsWithIgnoreCase('LIMIT ' + queryFactory.getLimit()),
+                'Failed to respect limit clause:' + queryFactory.toQueryInterpolation().template
         );
     }
 
@@ -82,69 +83,73 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void duplicateFieldSelection() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('NAMe').addFields(new Set<String>{
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('NAMe').addFields(new Set<String>{
                 'naMe', 'email'
         });
-        String query = qf.toSOQL();
+        String query = queryFactory.toSOQL();
         System.assertEquals(1, query.countMatches('Name'), 'Expected one name field in query: ' + query);
     }
 
     @IsTest
     static void equalityCheck() {
-        AA0_QueryFactory qf1 = new AA0_QueryFactory(Contact.SObjectType);
-        AA0_QueryFactory qf2 = new AA0_QueryFactory(Contact.SObjectType);
-        System.assertEquals(qf1, qf2);
-        qf1.addField('name');
-        System.assertNotEquals(qf1, qf2);
-        qf2.addField('NAmE');
-        System.assertEquals(qf1, qf2);
-        qf1.addField('name').addFields(new Set<String>{
+        AA0_QueryFactory queryFactory1 = new AA0_QueryFactory(Contact.SObjectType);
+        AA0_QueryFactory queryFactory2 = new AA0_QueryFactory(Contact.SObjectType);
+        System.assertEquals(queryFactory1, queryFactory2);
+        queryFactory1.addField('name');
+        System.assertNotEquals(queryFactory1, queryFactory2);
+        queryFactory2.addField('NAmE');
+        System.assertEquals(queryFactory1, queryFactory2);
+        queryFactory1.addField('name').addFields(new Set<String>{
                 'NAME', 'name'
         }).addFields(new Set<Schema.SObjectField>{
                 Contact.Name, Contact.Name
         });
-        System.assertEquals(qf1, qf2);
+        System.assertEquals(queryFactory1, queryFactory2);
     }
 
     @IsTest
     static void nonReferenceField() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
         XAP_DAO_SOQL_NonReferenceFieldException e;
         try {
-            qf.addField('name.title');
+            queryFactory.addField('name.title');
         }
         catch (XAP_DAO_SOQL_NonReferenceFieldException ex) {
             e = ex;
         }
-        System.assertNotEquals(null, e, 'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
+        System.assertNotEquals(null, e,
+                'Cross-object notation on a non-reference field should throw NonReferenceFieldException.'
+        );
     }
 
     @IsTest
     static void invalidCrossObjectField() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
         XAP_DAO_SOQL_InvalidFieldException e;
         try {
-            qf.addField('account.NOT_A_REAL_FIELD');
+            queryFactory.addField('account.NOT_A_REAL_FIELD');
         }
         catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
-        System.assertNotEquals(null, e, 'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
+        System.assertNotEquals(null, e,
+                'Cross-object notation on a non-reference field should throw NonReferenceFieldException.'
+        );
     }
 
     @IsTest
     static void invalidFieldTests() {
         List<XAP_DAO_SOQL_InvalidFieldException> exceptions = new List<XAP_DAO_SOQL_InvalidFieldException>();
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
         try {
-            qf.addField('Not_a_field');
+            queryFactory.addField('Not_a_field');
         }
         catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
-            qf.addFields(new Set<String>{
+            queryFactory.addFields(new Set<String>{
                     'Not_a_field', 'alsoNotreal'
             });
         }
@@ -152,7 +157,7 @@ private class AA0_QueryFactoryTest {
             exceptions.add(e);
         }
         try {
-            qf.addFields(new Set<Schema.SObjectField>{
+            queryFactory.addFields(new Set<Schema.SObjectField>{
                     null
             });
         }
@@ -160,7 +165,7 @@ private class AA0_QueryFactoryTest {
             exceptions.add(e);
         }
         try {
-            qf.addFields(new List<Schema.SObjectField>{
+            queryFactory.addFields(new List<Schema.SObjectField>{
                     null, Contact.title
             });
         }
@@ -172,11 +177,11 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void ordering() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
-        qf.addField('email');
-        qf.setCondition(TEST_WHERE_EQUALS_CLAUSE);
-        qf.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering(
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
+        queryFactory.addField('email');
+        queryFactory.setCondition(TEST_WHERE_EQUALS_CLAUSE);
+        queryFactory.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering(
                 'Contact',
                 'name',
                 XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING
@@ -186,11 +191,11 @@ private class AA0_QueryFactoryTest {
                 'CreatedDATE',
                 XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING
         ));
-        String query = qf.toSOQL();
+        String query = queryFactory.toQueryInterpolation().template;
 
-        System.assertEquals(2, qf.getOrderings().size());
-        System.assertEquals('Name', qf.getOrderings()[0].getField());
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, qf.getOrderings()[1].getDirection());
+        System.assertEquals(2, queryFactory.getOrderings().size());
+        System.assertEquals('Name', queryFactory.getOrderings()[0].getField());
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, queryFactory.getOrderings()[1].getDirection());
 
 
         System.assert(Pattern.matches('SELECT.*Name.*FROM.*', query), 'Expected Name field in query, got ' + query);
@@ -199,53 +204,83 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void setOrdering_ReplacesPreviousOrderingsWithExpectedOrdering() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
-        qf.addField('email');
-        qf.setCondition(TEST_WHERE_EQUALS_CLAUSE);
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
+        queryFactory.addField('email');
+        queryFactory.setCondition(TEST_WHERE_EQUALS_CLAUSE);
 
         //test base method with ordeting by OwnerId Descending
-        qf.setOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'OwnerId', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING));
+        queryFactory.setOrdering(
+                new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'OwnerId', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING)
+        );
 
-        System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace default Orderings');
-        System.assertEquals(Contact.OwnerId.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field OwnerId');
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+        System.assertEquals(1, queryFactory.getOrderings().size(),
+                'Unexpected order size - setOrder should replace default Orderings'
+        );
+        System.assertEquals(Contact.OwnerId.getDescribe().getName(), queryFactory.getOrderings()[0].getField(),
+                'Unexpected order field - should have been resolved from the field OwnerId'
+        );
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, queryFactory.getOrderings()[0].getDirection(),
+                'Unexpected order direction.'
+        );
 
         //test method overload with ordering by LastModifiedDate Ascending
-        qf.setOrdering('LastModifiedDate', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, true);
+        queryFactory.setOrdering('LastModifiedDate', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, true);
 
-        System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
-        System.assertEquals(Contact.LastModifiedDate.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field LastModifiedDate');
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+        System.assertEquals(1, queryFactory.getOrderings().size(),
+                'Unexpected order size - setOrder should replace previous Orderings'
+        );
+        System.assertEquals(Contact.LastModifiedDate.getDescribe().getName(), queryFactory.getOrderings()[0].getField(),
+                'Unexpected order field - should have been resolved from the field LastModifiedDate'
+        );
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, queryFactory.getOrderings()[0].getDirection(),
+                'Unexpected order direction.'
+        );
 
         //test method overload with ordering by CreatedDate Descending
-        qf.setOrdering(Contact.CreatedDate, XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
+        queryFactory.setOrdering(Contact.CreatedDate, XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
 
-        System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
-        System.assertEquals(Contact.CreatedDate.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field CreatedDate');
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+        System.assertEquals(1, queryFactory.getOrderings().size(),
+                'Unexpected order size - setOrder should replace previous Orderings'
+        );
+        System.assertEquals(Contact.CreatedDate.getDescribe().getName(), queryFactory.getOrderings()[0].getField(),
+                'Unexpected order field - should have been resolved from the field CreatedDate'
+        );
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, queryFactory.getOrderings()[0].getDirection(),
+                'Unexpected order direction.'
+        );
 
         //test method overload with ordering by CreatedBy.Name Descending
-        qf.setOrdering('CreatedBy.Name', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
+        queryFactory.setOrdering('CreatedBy.Name', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
 
-        System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+        System.assertEquals(1, queryFactory.getOrderings().size(),
+                'Unexpected order size - setOrder should replace previous Orderings'
+        );
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, queryFactory.getOrderings()[0].getDirection(),
+                'Unexpected order direction.'
+        );
 
         //test method overload with ordering by Birthdate Ascending
-        qf.setOrdering(Contact.Birthdate, XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING);
+        queryFactory.setOrdering(Contact.Birthdate, XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING);
 
-        System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace previous Orderings');
-        System.assertEquals(Contact.Birthdate.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field Birthdate');
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, qf.getOrderings()[0].getDirection(), 'Unexpected order direction.');
+        System.assertEquals(1, queryFactory.getOrderings().size(),
+                'Unexpected order size - setOrder should replace previous Orderings'
+        );
+        System.assertEquals(Contact.Birthdate.getDescribe().getName(), queryFactory.getOrderings()[0].getField(),
+                'Unexpected order field - should have been resolved from the field Birthdate'
+        );
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, queryFactory.getOrderings()[0].getDirection(),
+                'Unexpected order direction.'
+        );
     }
 
     @IsTest
     static void invalidField_string() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
         Exception e;
         try {
-            qf.addField('not_a__field');
+            queryFactory.addField('not_a__field');
         }
         catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
@@ -255,11 +290,11 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidFields_string() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
         Exception e;
         try {
-            qf.addFields(new List<String>{
+            queryFactory.addFields(new List<String>{
                     'not_a__field'
             });
         }
@@ -271,12 +306,12 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidField_nullToken() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
         Exception e;
         Schema.SObjectField token = null;
         try {
-            qf.addField(token);
+            queryFactory.addField(token);
         }
         catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
@@ -286,14 +321,14 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidFields_nullToken() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
         Exception e;
         List<Schema.SObjectField> token = new List<Schema.SObjectField>{
                 null
         };
         try {
-            qf.addFields(token);
+            queryFactory.addFields(token);
         }
         catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
@@ -317,9 +352,9 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void queryFieldsNotEquals() {
-        String qfld = AA0_QueryFactory.getFieldTokenPath(Contact.Name);
-        String qfld2 = AA0_QueryFactory.getFieldTokenPath(Contact.LastName);
-        System.assert(!qfld.equals(qfld2));
+        String queryFactoryld = AA0_QueryFactory.getFieldTokenPath(Contact.Name);
+        String queryFactoryld2 = AA0_QueryFactory.getFieldTokenPath(Contact.LastName);
+        System.assert(!queryFactoryld.equals(queryFactoryld2));
     }
 
     @IsTest
@@ -378,7 +413,10 @@ private class AA0_QueryFactoryTest {
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
                 .addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
         //explicitly assert object accessibility when creating the subselect
-        queryFactory.subselectQuery('Tasks').addField('Id').addField('Subject').setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
+        queryFactory.subselectQuery('Tasks')
+                .addField('Id')
+                .addField('Subject')
+                .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
         List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
@@ -463,7 +501,10 @@ private class AA0_QueryFactoryTest {
             }
         }
         //explicitly assert object accessibility when creating the subselect
-        queryFactory.subselectQuery(relationship).addField('Id').addField('Subject').setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
+        queryFactory.subselectQuery(relationship)
+                .addField('Id')
+                .addField('Subject')
+                .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
         List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
@@ -488,8 +529,8 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name')
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name')
                 .addField('Id')
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
                 .addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
@@ -497,7 +538,10 @@ private class AA0_QueryFactoryTest {
         //
         Exception e;
         try {
-            qf.subselectQuery('Tas').addField('Id').addField('Subject').setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
+            queryFactory.subselectQuery('Tas')
+                    .addField('Id')
+                    .addField('Subject')
+                    .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
         }
         catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
@@ -554,11 +598,11 @@ private class AA0_QueryFactoryTest {
         tsk.Subject = 'test';
         tsk.ActivityDate = System.today();
         insert tsk;
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
-        qf.addField('Id');
-        qf.setCondition(TEST_WHERE_LIKE_CLAUSE);
-        qf.addOrdering(
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
+        queryFactory.addField('Id');
+        queryFactory.setCondition(TEST_WHERE_LIKE_CLAUSE);
+        queryFactory.addOrdering(
                 new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
         )
                 .addOrdering('CreatedBy.Name', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
@@ -569,13 +613,13 @@ private class AA0_QueryFactoryTest {
                 relationship = childRow;
             }
         }
-        System.assert(qf.getSubselectQueries() == null);
-        AA0_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
+        System.assert(queryFactory.getSubselectQueries() == null);
+        AA0_QueryFactory childQf = queryFactory.subselectQuery(Task.SObjectType);
         childQf.assertIsAccessible();
         childQf.setEnforceFLS(true);
         childQf.addField('Id');
-        qf.subselectQuery(Task.SObjectType);
-        List<AA0_QueryFactory> queries = qf.getSubselectQueries();
+        queryFactory.subselectQuery(Task.SObjectType);
+        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         System.assert(queries.size() == 1);
     }
@@ -590,18 +634,18 @@ private class AA0_QueryFactoryTest {
         cont.LastName = 'test';
         cont.AccountId = acct.Id;
         insert cont;
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
-        qf.addField('email');
-        qf.setCondition(TEST_WHERE_LIKE_CLAUSE);
-        qf.addOrdering(
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
+        queryFactory.addField('email');
+        queryFactory.setCondition(TEST_WHERE_LIKE_CLAUSE);
+        queryFactory.addOrdering(
                 new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
         )
                 .addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
         Exception e;
         try {
             SObjectType invalidType = null;
-            AA0_QueryFactory childQf = qf.subselectQuery(invalidType);
+            AA0_QueryFactory childQf = queryFactory.subselectQuery(invalidType);
             childQf.addField('Id');
         }
         catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
@@ -620,16 +664,16 @@ private class AA0_QueryFactoryTest {
         cont.LastName = 'test';
         cont.AccountId = acct.Id;
         insert cont;
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.addField('name');
-        qf.addField('email');
-        qf.setCondition(TEST_WHERE_LIKE_CLAUSE);
-        qf.addOrdering(
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.addField('name');
+        queryFactory.addField('email');
+        queryFactory.setCondition(TEST_WHERE_LIKE_CLAUSE);
+        queryFactory.addOrdering(
                 new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
         )
                 .addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
 
-        AA0_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
+        AA0_QueryFactory childQf = queryFactory.subselectQuery(Task.SObjectType);
         childQf.addField('Id');
         childQf.addField('Subject');
         Exception e;
@@ -644,8 +688,8 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void checkFieldObjectReadSort_success() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.assertIsAccessible()
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.assertIsAccessible()
                 .setEnforceFLS(true)
                 .addField('createdby.name')
                 .addField(Contact.LastModifiedById)
@@ -662,11 +706,14 @@ private class AA0_QueryFactoryTest {
                 .addFields(new Set<SObjectField>{
                 Contact.FirstName
         })
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(
+                new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
+        )
                 .addOrdering(Contact.LastModifiedDate, XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING)
                 .addOrdering(Contact.CreatedDate, XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
-        Set<String> fields = qf.getSelectedFields();
-        XAP_DAO_SOQL_QuerySortOrdering ordering = new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING);
+        Set<String> fields = queryFactory.getSelectedFields();
+        XAP_DAO_SOQL_QuerySortOrdering ordering
+                = new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING);
         System.assertEquals('Name', ordering.getField());
 
         System.assertEquals(new Set<String>{
@@ -679,7 +726,7 @@ private class AA0_QueryFactoryTest {
         },
                 fields);
 
-        System.assert(qf.toSOQL().containsIgnoreCase('NULLS LAST'));
+        System.assert(queryFactory.toSOQL().containsIgnoreCase('NULLS LAST'));
     }
 
     @IsTest
@@ -688,11 +735,11 @@ private class AA0_QueryFactoryTest {
         if (usr != null) {
             System.runAs(usr) {
                 //create a query factory object for Account.
-                AA0_QueryFactory qf = new AA0_QueryFactory(Account.SObjectType);
+                AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType);
                 Boolean excThrown = false;
                 try {
                     //check to see if this record is accessible, it isn't.
-                    qf.assertIsAccessible();
+                    queryFactory.assertIsAccessible();
                 }
                 catch (A00_SecurityUtils.CrudException e) {
                     excThrown = true;
@@ -708,12 +755,12 @@ private class AA0_QueryFactoryTest {
         if (usr != null) {
             System.runAs(usr) {
                 //create a query factory object for Account.
-                AA0_QueryFactory qf = new AA0_QueryFactory(Account.SObjectType);
+                AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType);
                 Boolean excThrown = false;
                 try {
                     //set field to enforce FLS, then try to add a field.
-                    qf.setEnforceFLS(true);
-                    qf.addField('Name');
+                    queryFactory.setEnforceFLS(true);
+                    queryFactory.addField('Name');
                 }
                 catch (A00_SecurityUtils.FlsException e) {
                     excThrown = true;
@@ -725,12 +772,12 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void queryWith_noFields() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
-        qf.assertIsAccessible()
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        queryFactory.assertIsAccessible()
                 .setEnforceFLS(true)
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
                 .addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
-        String query = qf.toSOQL();
+        String query = queryFactory.toSOQL();
         System.assert(
                 query.containsIgnoreCase('SELECT Id FROM Contact'),
                 'Expected \'SELECT Id FROM Contact\' in the SOQL, found: ' + query
@@ -739,12 +786,12 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void deterministic_toSOQL() {
-        AA0_QueryFactory qf1 = new AA0_QueryFactory(User.SObjectType);
-        AA0_QueryFactory qf2 = new AA0_QueryFactory(User.SObjectType);
-        for (AA0_QueryFactory qf : new Set<AA0_QueryFactory>{
-                qf1, qf2
+        AA0_QueryFactory queryFactory1 = new AA0_QueryFactory(User.SObjectType);
+        AA0_QueryFactory queryFactory2 = new AA0_QueryFactory(User.SObjectType);
+        for (AA0_QueryFactory queryFactory : new Set<AA0_QueryFactory>{
+                queryFactory1, queryFactory2
         }) {
-            qf.addFields(new List<String>{
+            queryFactory.addFields(new List<String>{
                     'Id',
                     'FirstName',
                     'LastName',
@@ -757,125 +804,141 @@ private class AA0_QueryFactoryTest {
                 'SELECT CreatedBy.ManagerId, CreatedBy.Name, '
                         + 'FirstName, Id, LastModifiedBy.Email, LastName '
                         + 'FROM User';
-        System.assertEquals(qf1.toSOQL(), qf2.toSOQL());
-        System.assertEquals(expectedQuery, qf1.toSOQL());
-        System.assertEquals(expectedQuery, qf2.toSOQL());
+        System.assertEquals(queryFactory1.toQueryInterpolation().template, queryFactory2.toQueryInterpolation().template);
+        System.assertEquals(expectedQuery, queryFactory1.toQueryInterpolation().template);
+        System.assertEquals(expectedQuery, queryFactory2.toQueryInterpolation().template);
     }
 
     @IsTest
     static void deepCloneBasicNoChanges() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType)
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType)
                 .setLimit(10)
                 .setCondition(TEST_WHERE_ID_CLAUSE_1)
                 .addField('Description')
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
+                )
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING)
+                )
                 .setEnforceFLS(true);
 
-        AA0_QueryFactory qf2 = qf.deepClone();
+        AA0_QueryFactory queryFactory2 = queryFactory.deepClone();
 
-        System.assertEquals(qf2, qf);
+        System.assertEquals(queryFactory2, queryFactory);
 
-        System.assertEquals(qf.getLimit(), qf2.getLimit());
-        System.assertEquals(qf.getCondition(), qf2.getCondition());
-        System.assertEquals(qf.toSOQL(), qf2.toSOQL());
-        System.assertEquals(qf.getOrderings(), qf2.getOrderings());
+        System.assertEquals(queryFactory.getLimit(), queryFactory2.getLimit());
+        System.assertEquals(queryFactory.getCondition(), queryFactory2.getCondition());
+        System.assertEquals(queryFactory.toSOQL(), queryFactory2.toSOQL());
+        System.assertEquals(queryFactory.getOrderings(), queryFactory2.getOrderings());
     }
 
     @IsTest
     static void deepCloneSubqueryNoChanges() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Account.SObjectType)
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType)
                 .setLimit(10)
                 .setCondition(TEST_WHERE_ID_CLAUSE_1)
                 .addField('Description')
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Account', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Account', 'Description', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Account', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
+                )
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Account', 'Description', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING)
+                )
                 .setEnforceFLS(true);
 
-        qf.subselectQuery('Contacts', true);
+        queryFactory.subselectQuery('Contacts', true);
 
-        AA0_QueryFactory qf2 = qf.deepClone();
+        AA0_QueryFactory queryFactory2 = queryFactory.deepClone();
 
-        System.assertEquals(qf, qf2);
+        System.assertEquals(queryFactory, queryFactory2);
 
-        System.assertEquals(qf.getLimit(), qf2.getLimit());
-        System.assertEquals(qf.getCondition(), qf2.getCondition());
-        System.assertEquals(qf.toSOQL(), qf2.toSOQL());
-        System.assertEquals(qf.getOrderings(), qf2.getOrderings());
-        System.assertEquals(qf.getSubselectQueries(), qf2.getSubselectQueries());
+        System.assertEquals(queryFactory.getLimit(), queryFactory2.getLimit());
+        System.assertEquals(queryFactory.getCondition(), queryFactory2.getCondition());
+        System.assertEquals(queryFactory.toSOQL(), queryFactory2.toSOQL());
+        System.assertEquals(queryFactory.getOrderings(), queryFactory2.getOrderings());
+        System.assertEquals(queryFactory.getSubselectQueries(), queryFactory2.getSubselectQueries());
     }
 
     @IsTest
     static void deepCloneBasic() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType)
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType)
                 .setLimit(10)
                 .setCondition(TEST_WHERE_ID_CLAUSE_1)
                 .addField('Description')
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
+                )
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING)
+                )
                 .setEnforceFLS(true);
 
 
-        AA0_QueryFactory qf2 = qf.deepClone()
+        AA0_QueryFactory queryFactory2 = queryFactory.deepClone()
                 .setLimit(200)
                 .setCondition(TEST_WHERE_ID_CLAUSE_2)
                 .addField('Fax')
-                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Fax', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(
+                        new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Fax', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
+                )
                 .setEnforceFLS(false);
 
-        qf2.getOrderings().remove(0);
+        queryFactory2.getOrderings().remove(0);
 
-        System.assertEquals(10, qf.getLimit());
-        System.assertEquals(200, qf2.getLimit());
+        System.assertEquals(10, queryFactory.getLimit());
+        System.assertEquals(200, queryFactory2.getLimit());
 
-        System.assertEquals(TEST_WHERE_ID_CLAUSE_1, qf.getCondition());
-        System.assertEquals(TEST_WHERE_ID_CLAUSE_2, qf2.getCondition());
+        System.assertEquals(TEST_WHERE_ID_CLAUSE_1, queryFactory.getCondition());
+        System.assertEquals(TEST_WHERE_ID_CLAUSE_2, queryFactory2.getCondition());
 
-        String query = qf.toSOQL();
-        String query2 = qf2.toSOQL();
+        String query = queryFactory.toSOQL();
+        String query2 = queryFactory2.toSOQL();
 
         System.assert(query.containsIgnoreCase('Fax') == false);
         System.assert(query.containsIgnoreCase('Description'));
         System.assert(query2.containsIgnoreCase('Description'));
         System.assert(query2.containsIgnoreCase('Fax'));
 
-        System.assertEquals(2, qf.getOrderings().size());
-        System.assertEquals('Name', qf.getOrderings()[0].getField());
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, qf.getOrderings()[1].getDirection());
+        System.assertEquals(2, queryFactory.getOrderings().size());
+        System.assertEquals('Name', queryFactory.getOrderings()[0].getField());
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, queryFactory.getOrderings()[1].getDirection());
 
-        System.assertEquals(2, qf2.getOrderings().size());
-        System.assertEquals('Fax', qf2.getOrderings()[1].getField());
-        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, qf2.getOrderings()[1].getDirection());
+        System.assertEquals(2, queryFactory2.getOrderings().size());
+        System.assertEquals('Fax', queryFactory2.getOrderings()[1].getField());
+        System.assertEquals(XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING, queryFactory2.getOrderings()[1].getDirection());
 
     }
 
     @IsTest
     static void deepCloneSubquery() {
-        AA0_QueryFactory qf = new AA0_QueryFactory(Account.SObjectType);
-        qf.subselectQuery('Contacts', true);
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType);
+        queryFactory.subselectQuery('Contacts', true);
 
-        AA0_QueryFactory qf2 = qf.deepClone();
-        qf2.subselectQuery('Opportunities', true);
+        AA0_QueryFactory queryFactory2 = queryFactory.deepClone();
+        queryFactory2.subselectQuery('Opportunities', true);
 
-        List<AA0_QueryFactory> subqueries = qf.getSubselectQueries();
-        List<AA0_QueryFactory> subqueries2 = qf2.getSubselectQueries();
+        List<AA0_QueryFactory> subqueries = queryFactory.getSubselectQueries();
+        List<AA0_QueryFactory> subqueries2 = queryFactory2.getSubselectQueries();
 
         AA0_QueryFactory subquery2_0 = subqueries2.get(0);
 
-        subquery2_0.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING));
+        subquery2_0.addOrdering(
+                new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
+        );
 
         System.assert(subqueries.size() == 1);
         System.assert(subqueries2.size() == 2);
 
-        System.assert(qf.getSubselectQueries().get(0).getOrderings().size() == 0);
-        System.assert(qf2.getSubselectQueries().get(0).getOrderings().size() == 1);
+        System.assert(queryFactory.getSubselectQueries().get(0).getOrderings().size() == 0);
+        System.assert(queryFactory2.getSubselectQueries().get(0).getOrderings().size() == 1);
     }
 
     @IsTest
     static void testSoql_unsortedSelectFields() {
         //Given
-        AA0_QueryFactory qf = new AA0_QueryFactory(User.SObjectType);
-        qf.addFields(new List<String>{
+        AA0_QueryFactory queryFactory = new AA0_QueryFactory(User.SObjectType);
+        queryFactory.addFields(new List<String>{
                 'Id',
                 'FirstName',
                 'LastName',
@@ -884,7 +947,7 @@ private class AA0_QueryFactoryTest {
                 'LastModifiedBy.Email'
         });
 
-        qf.setSortSelectFields(false);
+        queryFactory.setSortSelectFields(false);
 
         String orderedQuery =
                 'SELECT '
@@ -893,7 +956,7 @@ private class AA0_QueryFactoryTest {
                         + 'FROM User';
 
         //When
-        String actualSoql = qf.toSOQL();
+        String actualSoql = queryFactory.toSOQL();
 
         //Then
         System.assertNotEquals(orderedQuery, actualSoql);
