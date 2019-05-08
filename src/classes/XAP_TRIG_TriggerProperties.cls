@@ -9,10 +9,13 @@ public class XAP_TRIG_TriggerProperties {
     @TestVisible public Boolean isUndelete { get; private set; }
     @TestVisible public Boolean isBefore { get; private set; }
     @TestVisible public Boolean isAfter { get; private set; }
+
     @TestVisible public List<SObject> oldSObjectList { get; private set; }
     @TestVisible public List<SObject> newSObjectList { get; private set; }
     @TestVisible public Map<Id, SObject> oldSObjectByIdMap { get; private set; }
     @TestVisible public Map<Id, SObject> newSObjectByIdMap { get; private set; }
+
+    @TestVisible public System.TriggerOperation operationType { get; private set; }
 
     @TestVisible public SObjectType sObjectType {
         get {
@@ -20,16 +23,6 @@ public class XAP_TRIG_TriggerProperties {
                 this.sObjectType = this.selectSObjectType();
             }
             return this.sObjectType;
-        }
-        private set;
-    }
-
-    @TestVisible public System.TriggerOperation operationType {
-        get {
-            if (this.operationType == null) {
-                this.operationType = Trigger.operationType;
-            }
-            return this.operationType;
         }
         private set;
     }
