@@ -11,7 +11,7 @@ public virtual class DAO_FooSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
         return instance;
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return Foo__c.SObjectType;
     }
 
@@ -26,7 +26,7 @@ public virtual class DAO_FooSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
             Set<String> customField2Set,
             Set<String> customField3Set
     ) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_AndClause(new List<XAP_DAO_SOQL_WHERE_ClauseIntf>{
                         new XAP_DAO_SOQL_WHERE_InStringSetClause(Foo__c.Custom_Field_1__c, customField1Set),
                         new XAP_DAO_SOQL_WHERE_InStringSetClause(Foo__c.Custom_Field_2__c, customField2Set),

@@ -11,7 +11,7 @@ public virtual class DAO_TwoFactorMethodsInfoSelector extends XAP_DAO_SOQL_SObje
         return instance;
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return TwoFactorMethodsInfo.SObjectType;
     }
 
@@ -23,7 +23,7 @@ public virtual class DAO_TwoFactorMethodsInfoSelector extends XAP_DAO_SOQL_SObje
     }
 
     public List<TwoFactorMethodsInfo> selectByUserId(Set<Id> userIdSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(
                         TwoFactorMethodsInfo.UserId,
                         userIdSet

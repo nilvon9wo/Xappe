@@ -105,7 +105,7 @@ public class XFTY_DummySObjectSupplier {
         return this;
     }
 
-    public XFTY_DummySObjectSupplier removeFromMasterTemplate(SObjectField sObjectField){
+    public XFTY_DummySObjectSupplier removeFromMasterTemplate(SObjectField sObjectField) {
         this.masterTemplate.remove(sObjectField);
         return this;
     }

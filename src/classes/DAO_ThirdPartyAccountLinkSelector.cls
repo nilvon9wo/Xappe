@@ -11,7 +11,7 @@ public virtual class DAO_ThirdPartyAccountLinkSelector extends XAP_DAO_SOQL_SObj
         return instance;
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return ThirdPartyAccountLink.SObjectType;
     }
 
@@ -23,7 +23,7 @@ public virtual class DAO_ThirdPartyAccountLinkSelector extends XAP_DAO_SOQL_SObj
     }
 
     public List<ThirdPartyAccountLink> selectByHandle(Set<String> handleSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
                         ThirdPartyAccountLink.Handle,
                         handleSet

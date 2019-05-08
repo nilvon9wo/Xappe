@@ -12,9 +12,7 @@ public class XAP_DAO_SOQL_QueryFactoryRelationHelper {
     private static XAP_DAO_SOQL_QueryFactoryRelationHelper instance;
 
     public static XAP_DAO_SOQL_QueryFactoryRelationHelper getInstance() {
-        if (instance == null) {
-            instance = new XAP_DAO_SOQL_QueryFactoryRelationHelper();
-        }
+        instance = new XAP_DAO_SOQL_QueryFactoryRelationHelper();
         return instance;
     }
 
@@ -45,36 +43,67 @@ public class XAP_DAO_SOQL_QueryFactoryRelationHelper {
 
     public List<String> transverseRelationships(XAP_DAO_SOQL_Query query, String fieldName) {
         List<String> fieldPath = new List<String>();
-        Schema.SObjectType lastSObjectType = query.sObjectType;
-        Iterator<String> i = fieldName.split('\\.').iterator();
-        while (i.hasNext()) {
-            String field = i.next();
-            Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(lastSObjectType)
-                    .getField(field.toLowerCase());
-            DescribeFieldResult tokenDescribe = token != null
-                    ? token.getDescribe()
-                    : null;
+        SObjectType lastSObjectType = query.sObjectType;
+        Iterator<String> fieldIterator = fieldName.split('\\.').iterator();
+        while (fieldIterator.hasNext()) {
+            String field = fieldIterator.next();
+            SObjectField sObjectFieldToken = getsObjectFieldToken(lastSObjectType, field);
+            DescribeFieldResult sObjectFieldDescription = getTokenDescription(sObjectFieldToken);
+            this.enforceFL5(sObjectFieldToken, query, lastSObjectType);
 
-            if (token != null && query.enforceFLS) {
-                this.securityUtils.checkFieldIsReadable(lastSObjectType, token);
-            }
-
-            if (token != null && i.hasNext() && tokenDescribe.getSoapType() == Schema.SoapType.ID) {
-                lastSObjectType = tokenDescribe.getReferenceTo()[0];
-                fieldPath.add(tokenDescribe.getRelationshipName());
-            } else if (token != null && !i.hasNext()) {
-                fieldPath.add(tokenDescribe.getName());
+            if (
+                    sObjectFieldToken != null
+                            && fieldIterator.hasNext()
+                            && sObjectFieldDescription.getSoapType() == Schema.SoapType.ID
+                    ) {
+                lastSObjectType = sObjectFieldDescription.getReferenceTo()[0];
+                fieldPath.add(sObjectFieldDescription.getRelationshipName());
+            } else if (
+                    sObjectFieldToken != null
+                            && !fieldIterator.hasNext()
+                    ) {
+                fieldPath.add(sObjectFieldDescription.getName());
             } else {
-                throw (token == null)
-                        ? (Exception) new XAP_DAO_SOQL_InvalidFieldException(field, lastSObjectType)
-                        : (Exception) new XAP_DAO_SOQL_NonReferenceFieldException(
-                                lastSObjectType + '.' + field
-                                        + ' is not a lookup or master-detail field but is used in a cross-object query field.'
-                        );
+                throw this.createException(sObjectFieldToken, field, lastSObjectType);
             }
         }
         return fieldPath;
     }
 
+    private Exception createException(SObjectField sObjectFieldToken, String field, SObjectType lastSObjectType) {
+        return (sObjectFieldToken == null)
+                ? (Exception) new XAP_DAO_SOQL_InvalidFieldException(field, lastSObjectType)
+                : (Exception) new XAP_DAO_SOQL_NonReferenceFieldException(
+                        lastSObjectType + '.' + field
+                                + ' is not a lookup or master-detail field'
+                                + ' but is used in a cross-object query field.'
+                );
+    }
 
+    private SObjectField getsObjectFieldToken(SObjectType lastSObjectType, String field) {
+        Schema.SObjectField sObjectFieldToken = XAP_DESC_SObjectDescribe.getDescribe(lastSObjectType)
+                .getField(field.toLowerCase());
+        return sObjectFieldToken;
+    }
+
+    private DescribeFieldResult getTokenDescription(SObjectField sObjectFieldToken) {
+        DescribeFieldResult tokenDescribe = sObjectFieldToken != null
+                ? sObjectFieldToken.getDescribe()
+                : null;
+        return tokenDescribe;
+    }
+
+    private XAP_DAO_SOQL_QueryFactoryRelationHelper enforceFL5(
+            SObjectField token,
+            XAP_DAO_SOQL_Query query,
+            SObjectType lastSObjectType
+    ) {
+        if (
+                token != null
+                        && query.enforceFLS
+                ) {
+            this.securityUtils.checkFieldIsReadable(lastSObjectType, token);
+        }
+        return this;
+    }
 }

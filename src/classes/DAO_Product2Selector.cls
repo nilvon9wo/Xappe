@@ -11,13 +11,13 @@ public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAb
         return new DAO_Product2Selector();
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return Product2.SObjectType;
     }
 
-    public override List<Schema.FieldSet> getSObjectFieldSetList() {
-        return new List<Schema.FieldSet>{
-                SObjectType.Product2.FieldSets.getMap()
+    public override List<FieldSet> getSObjectFieldSetList() {
+        return new List<FieldSet>{
+                SObjectType.Product2.fieldSets.getMap()
                         .get('example_field_set')
         };
     }
@@ -32,8 +32,15 @@ public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAb
         };
     }
 
+    public List<Product2> selectById(Set<Id> idSet, FieldSet fieldSet) {
+        return this.createQueryFactory()
+                .addFields(fieldSet)
+                .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
+                .query();
+    }
+
     public List<Product2> selectRecentlyUpdated(Integer recordLimit) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_StringCompareClause(
                         Product2.SystemModstamp,
                         XAP_DAO_SOQL_WHERE_CompareOperatorEnum.EQUALS,
