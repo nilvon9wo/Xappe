@@ -124,7 +124,7 @@ public with sharing class AA0_SObjectSelectorTest {
 
     @IsTest public static void testSOQL() {
         TestSObjectSelector selector = new TestSObjectSelector();
-        String soql = selector.createQueryFactory().toQueryInterpolation().template;
+        String soql = selector.createQueryFactory().toSOQL();
         Pattern p = Pattern.compile(
                 'SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST '
         );
@@ -182,7 +182,7 @@ public with sharing class AA0_SObjectSelectorTest {
         }
 
         //When
-        String soql = queryFactory.toQueryInterpolation().template;
+        String soql = queryFactory.toSOQL();
 
         //Then
         Pattern soqlPattern = Pattern.compile(
@@ -210,7 +210,7 @@ public with sharing class AA0_SObjectSelectorTest {
         }
 
         // Generate the SOQL string
-        String soql = queryFactory.toQueryInterpolation().template;
+        String soql = queryFactory.toSOQL();
 
         // Assert that the
         Pattern soqlPattern = Pattern.compile(

@@ -55,15 +55,15 @@ private class AA0_QueryFactoryTest {
         queryFactory.addField('NAMe').addFields(new Set<String>{
                 'naMe', 'email'
         });
-        String query = queryFactory.toQueryInterpolation().template;
+        String query = queryFactory.toSOQL();
         System.assert(Pattern.matches('SELECT.*Name.*FROM.*', query), 'Expected Name field in query, got ' + query);
         System.assert(Pattern.matches('SELECT.*Email.*FROM.*', query), 'Expected Name field in query, got ' + query);
         queryFactory.setLimit(100);
         System.assertEquals(100, queryFactory.getLimit());
         System.assert(
-                queryFactory.toQueryInterpolation().template
+                queryFactory.toSOQL()
                         .endsWithIgnoreCase('LIMIT ' + queryFactory.getLimit()),
-                'Failed to respect limit clause:' + queryFactory.toQueryInterpolation().template
+                'Failed to respect limit clause:' + queryFactory.toSOQL()
         );
     }
 
@@ -75,7 +75,7 @@ private class AA0_QueryFactoryTest {
         queryFactory.addField('email');
         queryFactory.setCondition(whereClause);
         System.assertEquals(whereClause, queryFactory.getCondition());
-        String query = queryFactory.toQueryInterpolation().template;
+        String query = queryFactory.toSOQL();
         System.assert(
                 query.endsWith('WHERE name = \'test\''), 'Query should have ended with a filter on name, got: ' + query
         );
@@ -191,7 +191,7 @@ private class AA0_QueryFactoryTest {
                 'CreatedDATE',
                 XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING
         ));
-        String query = queryFactory.toQueryInterpolation().template;
+        String query = queryFactory.toSOQL();
 
         System.assertEquals(2, queryFactory.getOrderings().size());
         System.assertEquals('Name', queryFactory.getOrderings()[0].getField());
@@ -804,9 +804,9 @@ private class AA0_QueryFactoryTest {
                 'SELECT CreatedBy.ManagerId, CreatedBy.Name, '
                         + 'FirstName, Id, LastModifiedBy.Email, LastName '
                         + 'FROM User';
-        System.assertEquals(queryFactory1.toQueryInterpolation().template, queryFactory2.toQueryInterpolation().template);
-        System.assertEquals(expectedQuery, queryFactory1.toQueryInterpolation().template);
-        System.assertEquals(expectedQuery, queryFactory2.toQueryInterpolation().template);
+        System.assertEquals(queryFactory1.toSOQL(), queryFactory2.toSOQL());
+        System.assertEquals(expectedQuery, queryFactory1.toSOQL());
+        System.assertEquals(expectedQuery, queryFactory2.toSOQL());
     }
 
     @IsTest
