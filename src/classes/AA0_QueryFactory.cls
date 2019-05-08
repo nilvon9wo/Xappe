@@ -1,26 +1,32 @@
 public class AA0_QueryFactory {
+    private XAP_DAO_SOQL_Querier querier;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
-    public AA0_QueryFactory(SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
+    public AA0_QueryFactory(
+            SObjectType sObjectType,
+            XAP_DAO_SOQL_Querier querier,
+            XAP_DAO_SOQL_SecurityUtils securityUtils
+    ) {
         this.sObjectType = sObjectType;
+        this.querier = querier;
         this.securityUtils = securityUtils;
     }
 
     public AA0_QueryFactory(SObjectType sObjectType) {
-        this(sObjectType, XAP_DAO_SOQL_SecurityUtils.getInstance());
+        this(sObjectType, XAP_DAO_SOQL_Querier.getInstance(), XAP_DAO_SOQL_SecurityUtils.getInstance());
     }
 
-    private static final Boolean INCLUDING_FIELD_LEVEL_SECURITY = true;
-    private static final Boolean EXCLUDING_FIELD_LEVEL_SECURITY = false;
+    public static final Boolean INCLUDING_FIELD_LEVEL_SECURITY = true;
+    public static final Boolean EXCLUDING_FIELD_LEVEL_SECURITY = false;
 
-    private static final Boolean INCLUDING_SORTED_SELECT_FIELDS = true;
-    private static final Boolean EXCLUDING_SORTED_SELECT_FIELDS = false;
+    public static final Boolean INCLUDING_SORTED_SELECT_FIELDS = true;
+    public static final Boolean EXCLUDING_SORTED_SELECT_FIELDS = false;
 
     public SObjectType sObjectType { get; private set; }
 
     @TestVisible
     private Set<String> fieldSet = new Set<String>();
-    private String conditionExpression;
+    private XAP_DAO_SOQL_WHERE_ClauseIntf conditionExpression;
     private Integer limitCount;
     private Integer offsetCount;
     private List<XAP_DAO_SOQL_QuerySortOrdering> orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>();
@@ -201,12 +207,12 @@ public class AA0_QueryFactory {
         return this;
     }
 
-    public AA0_QueryFactory setCondition(String conditionExpression) {
+    public AA0_QueryFactory setCondition(XAP_DAO_SOQL_WHERE_ClauseIntf conditionExpression) {
         this.conditionExpression = conditionExpression;
         return this;
     }
 
-    public String getCondition() {
+    public XAP_DAO_SOQL_WHERE_ClauseIntf getCondition() {
         return this.conditionExpression;
     }
 
@@ -402,53 +408,7 @@ public class AA0_QueryFactory {
     }
 
     public String toSOQL() {
-        String result = 'SELECT ';
-        //if no fields have been added, just add the Id field so that the query or subquery will not just fail
-        if (fieldSet.size() == 0) {
-            if (enforceFLS) this.securityUtils.checkFieldIsReadable(sObjectType, 'Id');
-            result += 'Id';
-        }
-        else {
-            List<String> fieldsToQuery = new List<String>(fieldSet);
-
-            if (sortSelectFields) {
-                fieldsToQuery.sort();
-            }
-
-            result += String.join(fieldsToQuery, ', ');
-        }
-
-        if (factoryByChildRelationshipMap != null && !factoryByChildRelationshipMap.isEmpty()) {
-            for (AA0_QueryFactory childRow : factoryByChildRelationshipMap.values()) {
-                result += ', (' + childRow.toSOQL() + ') ';
-            }
-        }
-        result += ' FROM ' + (
-                childRelationship != null
-                        ? childRelationship.getRelationshipName()
-                        : sObjectType.getDescribe().getName()
-        );
-        if (conditionExpression != null) {
-            result += ' WHERE ' + conditionExpression;
-        }
-
-        if (orderingList.size() > 0) {
-            result += ' ORDER BY ';
-            for (XAP_DAO_SOQL_QuerySortOrdering o : orderingList) {
-                result += o.toSOQL() + ', ';
-            }
-            result = result.substring(0, result.length() - 2);
-        }
-
-        if (limitCount != null) {
-            result += ' LIMIT ' + limitCount;
-        }
-
-        if (offsetCount != null) {
-            result += ' OFFSET ' + offsetCount;
-        }
-
-        return result;
+        return toQueryInterpolation().toString();
     }
 
     public AA0_QueryFactory deepClone() {
@@ -474,5 +434,74 @@ public class AA0_QueryFactory {
         clone.fieldSet = this.fieldSet.clone();
 
         return clone;
+    }
+
+    public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
+        XAP_DAO_SOQL_QueryInterpolation whereInterpolation = this.conditionExpression.toQueryInterpolation();
+        String soqlTemplate = this.toSoqlSelect()
+                + this.toSoqlFrom()
+                + this.toSOQL('WHERE', whereInterpolation.template)
+                + this.toSoqlOrderBy()
+                + this.toSOQL('LIMIT', this.limitCount)
+                + this.toSOQL('OFFSET', this.offsetCount);
+        return new XAP_DAO_SOQL_QueryInterpolation(soqlTemplate, whereInterpolation.objectsByKeyMap);
+    }
+
+    private String toSoqlSelect() {
+        String result = 'SELECT ';
+
+        if (this.fieldSet.size() == 0) {
+            if (this.enforceFLS) {
+                this.securityUtils.checkFieldIsReadable(this.sObjectType, 'Id');
+            }
+            result += 'Id';
+        } else {
+            List<String> fieldSetToQuery = new List<String>(this.fieldSet);
+            if (this.sortSelectFields) {
+                fieldSetToQuery.sort();
+            }
+
+            result += String.join(fieldSetToQuery, ', ');
+        }
+
+        if (this.factoryByChildRelationshipMap != null && !this.factoryByChildRelationshipMap.isEmpty()) {
+            for (AA0_QueryFactory childRow : this.factoryByChildRelationshipMap.values()) {
+                result += ', (' + childRow.toQueryInterpolation().template + ') ';
+            }
+        }
+        return result;
+    }
+
+    private String toSoqlFrom() {
+
+
+        return ' FROM ' + (
+                this.childRelationship != null
+                        ? this.childRelationship.getRelationshipName()
+                        : this.sObjectType.getDescribe().getName()
+        );
+    }
+
+    private String toSoqlOrderBy() {
+        String result = '';
+        if (this.orderingList.size() > 0) {
+            result += ' ORDER BY ';
+            for (XAP_DAO_SOQL_QuerySortOrdering ordering : this.orderingList) {
+                result += ordering.toSOQL() + ', ';
+            }
+
+            result = result.substring(0, result.length() - 2);
+        }
+        return result;
+    }
+
+    private String toSOQL(String keyword, Object value) {
+        return (value != null)
+                ? ' ' + keyword + ' ' + value
+                : '';
+    }
+
+    public List<SObject> query() {
+        return this.querier.selectFor(this.toQueryInterpolation());
     }
 }

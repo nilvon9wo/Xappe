@@ -4,18 +4,31 @@ public class XAP_DAO_SOQL_WHERE_StringCompareClause implements XAP_DAO_SOQL_WHER
     String stringValue;
 
     public XAP_DAO_SOQL_WHERE_StringCompareClause(
-            SObjectField sObjectField,
+            String fieldName,
             XAP_DAO_SOQL_WHERE_CompareOperatorEnum comparisonOperator,
             String stringValue
     ) {
-        this.fieldName = XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField);
+        this.fieldName = fieldName;
         this.comparisonOperator = comparisonOperator;
         this.stringValue = stringValue;
     }
 
+    public XAP_DAO_SOQL_WHERE_StringCompareClause(
+            SObjectField sObjectField,
+            XAP_DAO_SOQL_WHERE_CompareOperatorEnum comparisonOperator,
+            String stringValue
+    ) {
+        this(
+                XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField),
+                comparisonOperator,
+                stringValue
+        );
+
+    }
+
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
         String comparisonOperator = XAP_DAO_SOQL_WHERE_CompareOpEnumHelper.get(this.comparisonOperator);
-        String template = fieldName + comparisonOperator + ' ' + this.stringValue;
+        String template = fieldName + ' ' + comparisonOperator + ' ' + this.stringValue;
         return new XAP_DAO_SOQL_QueryInterpolation(template, new Map<String, Object>{
         });
     }
