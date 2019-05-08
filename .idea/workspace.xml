@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunityLineItemsSelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_OpportunitySelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_Pricebook2Selector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_PricebookEnrtrySelector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_Product2Selector.cls-meta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_Product2SelectorIntTest.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_AccountSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_AccountSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_AuthProviderSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_AuthProviderSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_ContactSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_ContactSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_FooSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_FooSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_TerritoryAssignmentSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_TerritoryAssignmentSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_ThirdPartyAccountLinkSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_ThirdPartyAccountLinkSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_TwoFactorMethodsInfoSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_TwoFactorMethodsInfoSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/DAO_UserSelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/DAO_UserSelector.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_SObjectSelectorAbs.cls" beforeDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,8 +37,14 @@
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls">
+          <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+          <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/etc/classes-fixed/fflib_Match.cls">
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
         </entry>
@@ -263,20 +247,22 @@
                       <entry key="CLASSES/CTM_REGIONTYPEENUM.CLS" value="1556730883000" />
                       <entry key="CLASSES/CTM_REGIONTYPEENUMHELPER.CLS" value="1557248401000" />
                       <entry key="CLASSES/CTM_TERRITORYREGIONFIELDHELPER.CLS" value="1557248401000" />
-                      <entry key="CLASSES/DAO_ACCOUNTSELECTOR.CLS" value="1557348552000" />
+                      <entry key="CLASSES/DAO_ACCOUNTSELECTOR.CLS" value="1557348880000" />
                       <entry key="CLASSES/DAO_ASYNCREQUESTSELECTOR.CLS" value="1556461761000" />
-                      <entry key="CLASSES/DAO_AUTHPROVIDERSELECTOR.CLS" value="1557348552000" />
-                      <entry key="CLASSES/DAO_CONTACTSELECTOR.CLS" value="1557348552000" />
-                      <entry key="CLASSES/DAO_FOOSELECTOR.CLS" value="1557348552000" />
-                      <entry key="CLASSES/DAO_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557348641000" />
-                      <entry key="CLASSES/DAO_PRICEBOOK2SELECTOR.CLS" value="1557348655000" />
-                      <entry key="CLASSES/DAO_PRICEBOOKENRTRYSELECTOR.CLS" value="1557348678000" />
-                      <entry key="CLASSES/DAO_PRODUCT2SELECTOR.CLS" value="1557348849000" />
+                      <entry key="CLASSES/DAO_AUTHPROVIDERSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_CONTACTSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_FOOSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_OPPORTUNITYSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_PRICEBOOK2SELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_PRICEBOOKENRTRYSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_PRODUCT2SELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_PRODUCT2SELECTORINTTEST.CLS" value="1557348881000" />
                       <entry key="CLASSES/DAO_SAVEPOINTHELPER.CLS" value="1556462051000" />
-                      <entry key="CLASSES/DAO_TERRITORYASSIGNMENTSELECTOR.CLS" value="1557348561000" />
-                      <entry key="CLASSES/DAO_THIRDPARTYACCOUNTLINKSELECTOR.CLS" value="1557348552000" />
-                      <entry key="CLASSES/DAO_TWOFACTORMETHODSINFOSELECTOR.CLS" value="1557348552000" />
-                      <entry key="CLASSES/DAO_USERSELECTOR.CLS" value="1557348552000" />
+                      <entry key="CLASSES/DAO_TERRITORYASSIGNMENTSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_THIRDPARTYACCOUNTLINKSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_TWOFACTORMETHODSINFOSELECTOR.CLS" value="1557348881000" />
+                      <entry key="CLASSES/DAO_USERSELECTOR.CLS" value="1557348881000" />
                       <entry key="CLASSES/FFLIB_ANSWER.CLS" value="1557248401000" />
                       <entry key="CLASSES/FFLIB_ANSWERTEST.CLS" value="1557248401000" />
                       <entry key="CLASSES/FFLIB_ANYORDER.CLS" value="1557248401000" />
@@ -2388,12 +2374,6 @@
               <item name="Xappe" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Xappe" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Xappe" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -2415,7 +2395,11 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\tutorials\sfdc2019\Xappe\etc" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\tutorials\sfdc2019\Xappe" />
       <recent name="D:\tutorials\sfdc2019\Xappe\src\objects" />
     </key>
   </component>
@@ -2655,14 +2639,7 @@
       <workItem from="1557252520315" duration="5112000" />
       <workItem from="1557257659486" duration="2732000" />
       <workItem from="1557269474380" duration="57000" />
-      <workItem from="1557336183582" duration="12643000" />
-    </task>
-    <task id="LOCAL-00061" summary="Removed references to &quot;homogenous&quot; since not especially important to map extractors, except that the maps already be consistent with the specified key fields and any predicates provided.">
-      <created>1556731364336</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1556731364337</updated>
+      <workItem from="1557336183582" duration="12889000" />
     </task>
     <task id="LOCAL-00062" summary="Added example method to DAO_UserSelector for consistency with test code.">
       <created>1556731422481</created>
@@ -3000,13 +2977,17 @@
       <option name="project" value="LOCAL" />
       <updated>1557348289574</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="Fixed sample DAO Classes and tests.">
+      <created>1557349101584</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1557349101584</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AA0_QueryFactoryTest - 2019.05.08 at 22h 32m 29s.xml">
-      <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
-    </history-entry>
     <history-entry file="AA0_SObjectSelectorTest - 2019.05.08 at 22h 32m 52s.xml">
       <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
     </history-entry>
@@ -3034,19 +3015,22 @@
     <history-entry file="XAP_DAO_SOQL_QueryFactoryTest - 2019.05.08 at 22h 43m 42s.xml">
       <configuration name="XAP_DAO_SOQL_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
     </history-entry>
+    <history-entry file="DAO_Product2SelectorIntTest - 2019.05.08 at 22h 54m 50s.xml">
+      <configuration name="DAO_Product2SelectorIntTest" configurationId="com.illuminatedcloud.intellij" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170007000" />
+    <option name="totallyTimeSpent" value="170253000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.24626866" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.24626866" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.55490404" weight="0.35531914" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4227079" weight="0.3893617" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.42217484" weight="0.3893617" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -3056,9 +3040,9 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.77025586" weight="0.32978722" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="SOQL Query" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.59168446" side_tool="true" visible="true" weight="0.40106383" />
-      <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.8123667" weight="0.48085105" />
-      <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.40831557" visible="true" weight="0.40106383" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5922175" side_tool="true" visible="true" weight="0.40106383" />
+      <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.8118337" weight="0.48085105" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="14" sideWeight="0.40778252" visible="true" weight="0.40106383" />
       <window_info anchor="bottom" id="Messages" order="15" />
       <window_info anchor="bottom" id="Illuminated Cloud" order="16" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -3086,7 +3070,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fixed query locator." />
     <MESSAGE value="Fixd interface." />
     <MESSAGE value="Renamed field to get query locator." />
     <MESSAGE value="Fixed WHERE clauses" />
@@ -3111,16 +3094,13 @@
     <MESSAGE value="All QueryFactory and Selector tests are passing." />
     <MESSAGE value="Fixed toSOQL() to refer to query interpolation template after rendering.&#10;(Not sure how this will work with more sophisticated WHERE templates... but toSOQL() probably won't be useful in such contexts." />
     <MESSAGE value="Replaced old XAP QueryFactory and Selector with new version.&#10;(I still want to re-decompose QueryFactory, but at least this one seems to work 100%.)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced old XAP QueryFactory and Selector with new version.&#10;(I still want to re-decompose QueryFactory, but at least this one seems to work 100%.)" />
+    <MESSAGE value="Fixed sample DAO Classes and tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed sample DAO Classes and tests." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Xappe$DAO_Product2SelectorIntTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557348886749" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/classes/A00_SObjectMocks.cls">
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/A00_Application.cls">
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3338,6 +3318,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/DAO_Product2SelectorIntTest.cls">
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etc/classes-fixed/fflib_Match.cls">
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
     </entry>
