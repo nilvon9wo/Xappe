@@ -1,3 +1,7 @@
+/**
+ * Inspired by and derived from FinancialForce.com's Apex Commons.
+ * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_SecurityUtils.cls
+ */
 public class XAP_DAO_SOQL_SecurityUtils {
     private XAP_DAO_SOQL_SecurityUtils() {
     }
@@ -11,7 +15,7 @@ public class XAP_DAO_SOQL_SecurityUtils {
         return instance;
     }
 
-    public static final Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
+    public static Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
 
     public Boolean checkFieldIsReadable(SObjectType sObjectType, String fieldName) {
         return this.checkFieldIsReadable(sObjectType, XAP_DESC_SObjectDescribe.getDescribe(sObjectType).getField(fieldName));
