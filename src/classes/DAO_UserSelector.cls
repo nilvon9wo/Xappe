@@ -11,7 +11,7 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
         return instance;
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return User.SObjectType;
     }
 
@@ -34,25 +34,25 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
     }
 
     public override List<SObject> selectById(Set<Id> idSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                 .query();
     }
 
     public virtual List<User> selectByUsername(Set<String> usernameSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.Username, usernameSet))
                 .query();
     }
 
     public virtual List<User> selectByEmail(Set<String> emailSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.Email, emailSet))
                 .query();
     }
 
     public virtual List<User> selectByMobilePhone(Set<String> mobilePhoneSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.MobilePhone, mobilePhoneSet))
                 .query();
     }

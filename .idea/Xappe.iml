@@ -909,15 +909,15 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AAA_Product2Selector" />
+                            <option name="name" value="DAO_Product2Selector" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AAA_OpportunitySelector" />
+                            <option name="name" value="DAO_OpportunitySelector" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AAA_Product2SelectorIntTest" />
+                            <option name="name" value="DAO_Product2SelectorIntTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -925,15 +925,15 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AAA_OpportunityLineItemsSelector" />
+                            <option name="name" value="DAO_OpportunityLineItemsSelector" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AAA_PricebookEnrtrySelector" />
+                            <option name="name" value="DAO_PricebookEnrtrySelector" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AAA_Pricebook2Selector" />
+                            <option name="name" value="DAO_Pricebook2Selector" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

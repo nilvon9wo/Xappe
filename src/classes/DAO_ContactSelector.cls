@@ -12,7 +12,7 @@ public virtual class DAO_ContactSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
         return instance;
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return Contact.SObjectType;
     }
 
@@ -35,7 +35,7 @@ public virtual class DAO_ContactSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     }
 
     public virtual List<Contact> selectByEmail(Set<String> emailSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(Contact.Email, emailSet))
                 .query();
     }

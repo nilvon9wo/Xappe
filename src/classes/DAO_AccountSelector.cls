@@ -11,7 +11,7 @@ public virtual class DAO_AccountSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
         return instance;
     }
 
-    public override SObjectType getSObjectType() {
+    public SObjectType getSObjectType() {
         return Account.SObjectType;
     }
 
@@ -24,7 +24,7 @@ public virtual class DAO_AccountSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
     }
 
     public List<Account> selectByBillingState(Set<String> stateSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
                         Account.BillingState,
                         stateSet
