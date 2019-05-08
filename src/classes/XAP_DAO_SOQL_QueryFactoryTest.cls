@@ -1,5 +1,5 @@
 @IsTest
-private class AA0_QueryFactoryTest {
+private class XAP_DAO_SOQL_QueryFactoryTest {
     private static final XAP_DAO_SOQL_WHERE_ClauseIntf TEST_WHERE_EQUALS_CLAUSE
             = new XAP_DAO_SOQL_WHERE_StringCompareClause(
                     'name', XAP_DAO_SOQL_WHERE_CompareOperatorEnum.EQUALS, '\'test\''
@@ -24,7 +24,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void fieldSelections() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('firstName');
         queryFactory.addField(Contact.SObjectType.fields.LastName);
         queryFactory.addFields(new Set<String>{
@@ -51,7 +51,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void simpleFieldSelection() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('NAMe').addFields(new Set<String>{
                 'naMe', 'email'
         });
@@ -70,7 +70,7 @@ private class AA0_QueryFactoryTest {
     @IsTest
     static void simpleFieldCondition() {
         XAP_DAO_SOQL_WHERE_ClauseIntf whereClause = TEST_WHERE_EQUALS_CLAUSE;
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         queryFactory.addField('email');
         queryFactory.setCondition(whereClause);
@@ -83,7 +83,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void duplicateFieldSelection() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('NAMe').addFields(new Set<String>{
                 'naMe', 'email'
         });
@@ -93,8 +93,8 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void equalityCheck() {
-        AA0_QueryFactory queryFactory1 = new AA0_QueryFactory(Contact.SObjectType);
-        AA0_QueryFactory queryFactory2 = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory1 = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory2 = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         System.assertEquals(queryFactory1, queryFactory2);
         queryFactory1.addField('name');
         System.assertNotEquals(queryFactory1, queryFactory2);
@@ -110,7 +110,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void nonReferenceField() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         XAP_DAO_SOQL_NonReferenceFieldException e;
         try {
             queryFactory.addField('name.title');
@@ -125,7 +125,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidCrossObjectField() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         XAP_DAO_SOQL_InvalidFieldException e;
         try {
             queryFactory.addField('account.NOT_A_REAL_FIELD');
@@ -141,7 +141,7 @@ private class AA0_QueryFactoryTest {
     @IsTest
     static void invalidFieldTests() {
         List<XAP_DAO_SOQL_InvalidFieldException> exceptions = new List<XAP_DAO_SOQL_InvalidFieldException>();
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         try {
             queryFactory.addField('Not_a_field');
         }
@@ -177,7 +177,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void ordering() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         queryFactory.addField('email');
         queryFactory.setCondition(TEST_WHERE_EQUALS_CLAUSE);
@@ -204,7 +204,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void setOrdering_ReplacesPreviousOrderingsWithExpectedOrdering() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         queryFactory.addField('email');
         queryFactory.setCondition(TEST_WHERE_EQUALS_CLAUSE);
@@ -276,7 +276,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidField_string() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         Exception e;
         try {
@@ -290,7 +290,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidFields_string() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         Exception e;
         try {
@@ -306,7 +306,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidField_nullToken() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         Exception e;
         Schema.SObjectField token = null;
@@ -321,7 +321,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void invalidFields_nullToken() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         Exception e;
         List<Schema.SObjectField> token = new List<Schema.SObjectField>{
@@ -339,7 +339,7 @@ private class AA0_QueryFactoryTest {
     @IsTest
     static void invalidFields_noQueryField() {
         try {
-            AA0_QueryFactory.getFieldTokenPath(null);
+            XAP_DAO_SOQL_QueryFactory.getFieldTokenPath(null);
             System.assert(false, 'Expected InvalidFieldException; none was thrown');
         }
         catch (XAP_DAO_SOQL_InvalidFieldException ife) {
@@ -352,8 +352,8 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void queryFieldsNotEquals() {
-        String queryFactoryld = AA0_QueryFactory.getFieldTokenPath(Contact.Name);
-        String queryFactoryld2 = AA0_QueryFactory.getFieldTokenPath(Contact.LastName);
+        String queryFactoryld = XAP_DAO_SOQL_QueryFactory.getFieldTokenPath(Contact.Name);
+        String queryFactoryld2 = XAP_DAO_SOQL_QueryFactory.getFieldTokenPath(Contact.LastName);
         System.assert(!queryFactoryld.equals(queryFactoryld2));
     }
 
@@ -373,7 +373,7 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name')
                 .addField('Id')
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
@@ -383,7 +383,7 @@ private class AA0_QueryFactoryTest {
                 .addField('Id')
                 .addField('Subject')
                 .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
-        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
         System.assert(contacts != null && contacts.size() == 1);
@@ -407,7 +407,7 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name')
                 .addField('Id')
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
@@ -417,7 +417,7 @@ private class AA0_QueryFactoryTest {
                 .addField('Id')
                 .addField('Subject')
                 .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
-        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
         System.assert(contacts != null && contacts.size() == 1);
@@ -441,7 +441,7 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory
                 .addField('name')
                 .addField('Id')
@@ -461,7 +461,7 @@ private class AA0_QueryFactoryTest {
                 .addField('Id')
                 .addField('Subject')
                 .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
-        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
         System.assert(contacts != null && contacts.size() == 1);
@@ -485,7 +485,7 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory
                 .addField('name')
                 .addField('Id')
@@ -505,7 +505,7 @@ private class AA0_QueryFactoryTest {
                 .addField('Id')
                 .addField('Subject')
                 .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
-        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
         System.assert(contacts != null && contacts.size() == 1);
@@ -529,7 +529,7 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name')
                 .addField('Id')
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
@@ -565,7 +565,7 @@ private class AA0_QueryFactoryTest {
         tsk.ActivityDate = System.today();
         insert tsk;
 
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name')
                 .addField('Id')
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
@@ -575,7 +575,7 @@ private class AA0_QueryFactoryTest {
                 .addField('Id')
                 .addField('Subject')
                 .setCondition(TEST_WHERE_NOT_DELETED_CLAUSE);
-        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         List<Contact> contacts = queryFactory.query();
         System.assert(contacts != null && contacts.size() == 1);
@@ -598,7 +598,7 @@ private class AA0_QueryFactoryTest {
         tsk.Subject = 'test';
         tsk.ActivityDate = System.today();
         insert tsk;
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         queryFactory.addField('Id');
         queryFactory.setCondition(TEST_WHERE_LIKE_CLAUSE);
@@ -614,12 +614,12 @@ private class AA0_QueryFactoryTest {
             }
         }
         System.assert(queryFactory.getSubselectQueries() == null);
-        AA0_QueryFactory childQf = queryFactory.subselectQuery(Task.SObjectType);
+        XAP_DAO_SOQL_QueryFactory childQf = queryFactory.subselectQuery(Task.SObjectType);
         childQf.assertIsAccessible();
         childQf.setEnforceFLS(true);
         childQf.addField('Id');
         queryFactory.subselectQuery(Task.SObjectType);
-        List<AA0_QueryFactory> queries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> queries = queryFactory.getSubselectQueries();
         System.assert(queries != null);
         System.assert(queries.size() == 1);
     }
@@ -634,7 +634,7 @@ private class AA0_QueryFactoryTest {
         cont.LastName = 'test';
         cont.AccountId = acct.Id;
         insert cont;
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         queryFactory.addField('email');
         queryFactory.setCondition(TEST_WHERE_LIKE_CLAUSE);
@@ -645,7 +645,7 @@ private class AA0_QueryFactoryTest {
         Exception e;
         try {
             SObjectType invalidType = null;
-            AA0_QueryFactory childQf = queryFactory.subselectQuery(invalidType);
+            XAP_DAO_SOQL_QueryFactory childQf = queryFactory.subselectQuery(invalidType);
             childQf.addField('Id');
         }
         catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
@@ -664,7 +664,7 @@ private class AA0_QueryFactoryTest {
         cont.LastName = 'test';
         cont.AccountId = acct.Id;
         insert cont;
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         queryFactory.addField('email');
         queryFactory.setCondition(TEST_WHERE_LIKE_CLAUSE);
@@ -673,7 +673,7 @@ private class AA0_QueryFactoryTest {
         )
                 .addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
 
-        AA0_QueryFactory childQf = queryFactory.subselectQuery(Task.SObjectType);
+        XAP_DAO_SOQL_QueryFactory childQf = queryFactory.subselectQuery(Task.SObjectType);
         childQf.addField('Id');
         childQf.addField('Subject');
         Exception e;
@@ -688,7 +688,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void checkFieldObjectReadSort_success() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.assertIsAccessible()
                 .setEnforceFLS(true)
                 .addField('createdby.name')
@@ -735,7 +735,7 @@ private class AA0_QueryFactoryTest {
         if (usr != null) {
             System.runAs(usr) {
                 //create a query factory object for Account.
-                AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType);
+                XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Account.SObjectType);
                 Boolean excThrown = false;
                 try {
                     //check to see if this record is accessible, it isn't.
@@ -755,7 +755,7 @@ private class AA0_QueryFactoryTest {
         if (usr != null) {
             System.runAs(usr) {
                 //create a query factory object for Account.
-                AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType);
+                XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Account.SObjectType);
                 Boolean excThrown = false;
                 try {
                     //set field to enforce FLS, then try to add a field.
@@ -772,7 +772,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void queryWith_noFields() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.assertIsAccessible()
                 .setEnforceFLS(true)
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
@@ -786,9 +786,9 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void deterministic_toSOQL() {
-        AA0_QueryFactory queryFactory1 = new AA0_QueryFactory(User.SObjectType);
-        AA0_QueryFactory queryFactory2 = new AA0_QueryFactory(User.SObjectType);
-        for (AA0_QueryFactory queryFactory : new Set<AA0_QueryFactory>{
+        XAP_DAO_SOQL_QueryFactory queryFactory1 = new XAP_DAO_SOQL_QueryFactory(User.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory2 = new XAP_DAO_SOQL_QueryFactory(User.SObjectType);
+        for (XAP_DAO_SOQL_QueryFactory queryFactory : new Set<XAP_DAO_SOQL_QueryFactory>{
                 queryFactory1, queryFactory2
         }) {
             queryFactory.addFields(new List<String>{
@@ -811,7 +811,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void deepCloneBasicNoChanges() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType)
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType)
                 .setLimit(10)
                 .setCondition(TEST_WHERE_ID_CLAUSE_1)
                 .addField('Description')
@@ -823,7 +823,7 @@ private class AA0_QueryFactoryTest {
                 )
                 .setEnforceFLS(true);
 
-        AA0_QueryFactory queryFactory2 = queryFactory.deepClone();
+        XAP_DAO_SOQL_QueryFactory queryFactory2 = queryFactory.deepClone();
 
         System.assertEquals(queryFactory2, queryFactory);
 
@@ -835,7 +835,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void deepCloneSubqueryNoChanges() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType)
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Account.SObjectType)
                 .setLimit(10)
                 .setCondition(TEST_WHERE_ID_CLAUSE_1)
                 .addField('Description')
@@ -849,7 +849,7 @@ private class AA0_QueryFactoryTest {
 
         queryFactory.subselectQuery('Contacts', true);
 
-        AA0_QueryFactory queryFactory2 = queryFactory.deepClone();
+        XAP_DAO_SOQL_QueryFactory queryFactory2 = queryFactory.deepClone();
 
         System.assertEquals(queryFactory, queryFactory2);
 
@@ -862,7 +862,7 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void deepCloneBasic() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Contact.SObjectType)
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType)
                 .setLimit(10)
                 .setCondition(TEST_WHERE_ID_CLAUSE_1)
                 .addField('Description')
@@ -875,7 +875,7 @@ private class AA0_QueryFactoryTest {
                 .setEnforceFLS(true);
 
 
-        AA0_QueryFactory queryFactory2 = queryFactory.deepClone()
+        XAP_DAO_SOQL_QueryFactory queryFactory2 = queryFactory.deepClone()
                 .setLimit(200)
                 .setCondition(TEST_WHERE_ID_CLAUSE_2)
                 .addField('Fax')
@@ -912,16 +912,16 @@ private class AA0_QueryFactoryTest {
 
     @IsTest
     static void deepCloneSubquery() {
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(Account.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Account.SObjectType);
         queryFactory.subselectQuery('Contacts', true);
 
-        AA0_QueryFactory queryFactory2 = queryFactory.deepClone();
+        XAP_DAO_SOQL_QueryFactory queryFactory2 = queryFactory.deepClone();
         queryFactory2.subselectQuery('Opportunities', true);
 
-        List<AA0_QueryFactory> subqueries = queryFactory.getSubselectQueries();
-        List<AA0_QueryFactory> subqueries2 = queryFactory2.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> subqueries = queryFactory.getSubselectQueries();
+        List<XAP_DAO_SOQL_QueryFactory> subqueries2 = queryFactory2.getSubselectQueries();
 
-        AA0_QueryFactory subquery2_0 = subqueries2.get(0);
+        XAP_DAO_SOQL_QueryFactory subquery2_0 = subqueries2.get(0);
 
         subquery2_0.addOrdering(
                 new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
@@ -937,7 +937,7 @@ private class AA0_QueryFactoryTest {
     @IsTest
     static void testSoql_unsortedSelectFields() {
         //Given
-        AA0_QueryFactory queryFactory = new AA0_QueryFactory(User.SObjectType);
+        XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(User.SObjectType);
         queryFactory.addFields(new List<String>{
                 'Id',
                 'FirstName',

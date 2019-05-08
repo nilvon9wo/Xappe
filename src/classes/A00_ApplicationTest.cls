@@ -559,7 +559,7 @@ private class A00_ApplicationTest {
 
     }
 
-    class OpportuntiesSelector extends AA0_SObjectSelectorAbs {
+    class OpportuntiesSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
         public List<Schema.SObjectField> getSObjectFieldList() {
             return new List<Schema.SObjectField>{
                     Opportunity.Name,
@@ -572,7 +572,7 @@ private class A00_ApplicationTest {
         }
     }
 
-    class AccountsSelector extends AA0_SObjectSelectorAbs {
+    class AccountsSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
         public List<Schema.SObjectField> getSObjectFieldList() {
             return new List<Schema.SObjectField>{
                     Account.Name,

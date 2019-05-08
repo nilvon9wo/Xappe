@@ -537,10 +537,6 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_QueryFactory" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_SOQL_QueryFactoryFieldHelper" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
@@ -558,10 +554,6 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="XAP_DAO_SOQL_SObjectReadException" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_SObjectSelectorAbs" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -957,19 +949,19 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AA0_QueryFactory" />
+                            <option name="name" value="XAP_DAO_SOQL_QueryFactory" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AA0_QueryFactoryTest" />
+                            <option name="name" value="XAP_DAO_SOQL_QueryFactoryTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AA0_SObjectSelectorAbs" />
+                            <option name="name" value="XAP_DAO_SOQL_SObjectSelectorAbs" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="AA0_SObjectSelectorTest" />
+                            <option name="name" value="XAP_DAO_SOQL_SObjectSelectorAbsTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

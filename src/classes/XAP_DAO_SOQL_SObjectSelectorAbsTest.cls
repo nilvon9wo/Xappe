@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class AA0_SObjectSelectorTest {
+public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
 
     @IsTest public static void testGetSObjectName() {
         TestSObjectSelector selector = new TestSObjectSelector();
@@ -172,7 +172,7 @@ public with sharing class AA0_SObjectSelectorTest {
     static void testWithoutSorting() {
         //Given
         TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
-        AA0_QueryFactory queryFactory = selector.createQueryFactory();
+        XAP_DAO_SOQL_QueryFactory queryFactory = selector.createQueryFactory();
 
         Set<String> expectedSelectFields = new Set<String>{
                 'Name', 'Id', 'AccountNumber', 'AnnualRevenue'
@@ -199,7 +199,7 @@ public with sharing class AA0_SObjectSelectorTest {
     static void testWithOrderingNullsLast() {
         // Build the selector to test with
         TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
-        AA0_QueryFactory queryFactory = selector.createQueryFactory();
+        XAP_DAO_SOQL_QueryFactory queryFactory = selector.createQueryFactory();
 
         // Add in the expected fields
         Set<String> expectedSelectFields = new Set<String>{
@@ -220,7 +220,7 @@ public with sharing class AA0_SObjectSelectorTest {
         System.assert(soqlMatcher.matches(), 'The SOQL should have that expected.');
     }
 
-    private class TestSObjectSelector extends AA0_SObjectSelectorAbs {
+    private class TestSObjectSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
         public TestSObjectSelector() {
             super();
         }

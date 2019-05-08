@@ -1,4 +1,4 @@
-public class AAA_OpportunityLineItemsSelector extends AA0_SObjectSelectorAbs {
+public class AAA_OpportunityLineItemsSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
     private AAA_OpportunityLineItemsSelector() {
     }
 

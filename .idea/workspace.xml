@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/classes/NestValidator1.cls" line="47" mnemonic="9" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryTest.cls-meta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls-meta.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorAbs.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorAbs.cls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorTest.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorTest.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls-meta.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls-meta.xml" afterDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +29,7 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryTest.cls">
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
         </entry>
@@ -38,7 +47,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
+        <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls">
           <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
           <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
         </entry>
@@ -132,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/classes/AAA_Pricebook2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/AAA_PricebookEnrtrySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/AAA_OpportunityLineItemsSelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/fflib_SObjectSelectorTest.cls" />
@@ -168,7 +176,6 @@
         <option value="$PROJECT_DIR$/src/classes/AAA_Product2Selector.cls" />
         <option value="$PROJECT_DIR$/src/classes/AAA_OpportunitySelector.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Query.cls" />
-        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_QueryConfig.cls" />
         <option value="$PROJECT_DIR$/src/classes/A00_SObjectDescribeTest.cls" />
         <option value="$PROJECT_DIR$/src/classes/A00_SObjectDescribe.cls" />
@@ -180,9 +187,11 @@
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Querier.cls" />
         <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryInterpolation.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorAbs.cls" />
-        <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_SObjectSelectorTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls" />
+        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls" />
         <option value="$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls" />
+        <option value="$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryTest.cls" />
       </list>
     </option>
   </component>
@@ -192,7 +201,7 @@
         <entry key="Xappe">
           <value>
             <ModuleWorkspaceSettings>
-              <option name="moduleContentsLastModified" value="1557262531480" />
+              <option name="moduleContentsLastModified" value="1557347949026" />
             </ModuleWorkspaceSettings>
           </value>
         </entry>
@@ -223,12 +232,7 @@
                       <entry key="CLASSES/A00_STRINGBUILDER.CLS" value="1557339108000" />
                       <entry key="CLASSES/A00_STRINGBUILDERTEST.CLS" value="1557345603000" />
                       <entry key="CLASSES/AA0_QUERYCONFIG.CLS" value="1557263456000" />
-                      <entry key="CLASSES/AA0_QUERYFACTORY.CLS" value="1557347720000" />
-                      <entry key="CLASSES/AA0_QUERYFACTORYTEST.CLS" value="1557347336000" />
-                      <entry key="CLASSES/AA0_SOBJECTSELECTORABS.CLS" value="1557347536000" />
-                      <entry key="CLASSES/AA0_SOBJECTSELECTORTEST.CLS" value="1557347720000" />
                       <entry key="CLASSES/AAA_OPPORTUNITYLINEITEMSSELECTOR.CLS" value="1557269495000" />
-                      <entry key="CLASSES/AAA_OPPORTUNITYSELECTOR.CLS" value="1557269495000" />
                       <entry key="CLASSES/AAA_PRICEBOOK2SELECTOR.CLS" value="1557269495000" />
                       <entry key="CLASSES/AAA_PRICEBOOKENRTRYSELECTOR.CLS" value="1557269495000" />
                       <entry key="CLASSES/AAA_PRODUCT2SELECTOR.CLS" value="1557339108000" />
@@ -388,7 +392,6 @@
                       <entry key="CLASSES/XAP_DAO_SOQL_NONREFERENCEFIELDEXCEPTION.CLS" value="1557248401000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERIER.CLS" value="1557345715000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERY.CLS" value="1557339108000" />
-                      <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORY.CLS" value="1557339108000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORYFIELDHELPER.CLS" value="1557339108000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERYFACTORYRELATIONHELPER.CLS" value="1557339108000" />
                       <entry key="CLASSES/XAP_DAO_SOQL_QUERYINTERPOLATION.CLS" value="1557346349000" />
@@ -2414,39 +2417,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Apex Unit Tests.AA0_QueryFactoryTest">
-    <configuration name="A00_SObjectSelectorTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
-      <option name="allTests" value="false" />
-      <option name="allowRunningInParallel" value="false" />
-      <option name="apexLogLevel" value="DEBUG" />
-      <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
-      <option name="contextConfiguration" value="true" />
-      <option name="databaseLogLevel" value="INFO" />
-      <option name="logLevelsInitialized" value="false" />
-      <option name="moduleToTestClassNames">
-        <map>
-          <entry key="Xappe">
-            <value>
-              <set>
-                <option value="A00_SObjectSelectorTest" />
-              </set>
-            </value>
-          </entry>
-        </map>
-      </option>
-      <option name="profilingLogLevel" value="INFO" />
-      <option name="systemLogLevel" value="DEBUG" />
-      <option name="testClassToTestMethodNames">
-        <map />
-      </option>
-      <option name="testSuiteName" />
-      <option name="validationLogLevel" value="INFO" />
-      <option name="visualforceLogLevel" value="INFO" />
-      <option name="workflowLogLevel" value="INFO" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Apex Unit Tests.XAP_DAO_SOQL_QueryFactoryTest">
     <configuration name="AA0_QueryFactoryTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
@@ -2511,7 +2482,7 @@
       <option name="workflowLogLevel" value="INFO" />
       <method v="2" />
     </configuration>
-    <configuration name="DAO_Product2SelectorIntTest.testSelectByIdShouldReturnValuesPerExampleFieldSet" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+    <configuration name="XAP_DAO_SOQL_QueryFactoryTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
@@ -2526,7 +2497,7 @@
           <entry key="Xappe">
             <value>
               <set>
-                <option value="DAO_Product2SelectorIntTest" />
+                <option value="XAP_DAO_SOQL_QueryFactoryTest" />
               </set>
             </value>
           </entry>
@@ -2535,15 +2506,39 @@
       <option name="profilingLogLevel" value="INFO" />
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <method v="2" />
+    </configuration>
+    <configuration name="XAP_DAO_SOQL_SObjectSelectorAbsTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="connectionName" value="TrailheadPlayground15" />
+      <option name="connectionType" value="MDAPI" />
+      <option name="contextConfiguration" value="true" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
         <map>
-          <entry key="DAO_Product2SelectorIntTest">
+          <entry key="Xappe">
             <value>
               <set>
-                <option value="testSelectByIdShouldReturnValuesPerExampleFieldSet" />
+                <option value="XAP_DAO_SOQL_SObjectSelectorAbsTest" />
               </set>
             </value>
           </entry>
         </map>
+      </option>
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
       </option>
       <option name="testSuiteName" />
       <option name="validationLogLevel" value="INFO" />
@@ -2585,11 +2580,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Apex Unit Tests.AA0_QueryFactoryTest" />
+        <item itemvalue="Apex Unit Tests.XAP_DAO_SOQL_QueryFactoryTest" />
+        <item itemvalue="Apex Unit Tests.XAP_DAO_SOQL_SObjectSelectorAbsTest" />
         <item itemvalue="Apex Unit Tests.AA0_SObjectSelectorTest" />
+        <item itemvalue="Apex Unit Tests.AA0_QueryFactoryTest" />
         <item itemvalue="Apex Unit Tests.XAP_DESC_SObjectDescribeTest" />
-        <item itemvalue="Apex Unit Tests.A00_SObjectSelectorTest" />
-        <item itemvalue="Apex Unit Tests.DAO_Product2SelectorIntTest.testSelectByIdShouldReturnValuesPerExampleFieldSet" />
       </list>
     </recent_temporary>
   </component>
@@ -2646,14 +2641,7 @@
       <workItem from="1557252520315" duration="5112000" />
       <workItem from="1557257659486" duration="2732000" />
       <workItem from="1557269474380" duration="57000" />
-      <workItem from="1557336183582" duration="11535000" />
-    </task>
-    <task id="LOCAL-00059" summary="SFDC preferred whitespace.">
-      <created>1556729405222</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1556729405222</updated>
+      <workItem from="1557336183582" duration="11778000" />
     </task>
     <task id="LOCAL-00060" summary="Using serialize/deserialize to solve typing problem, but this isn't a good solution.">
       <created>1556730223993</created>
@@ -2991,13 +2979,17 @@
       <option name="project" value="LOCAL" />
       <updated>1557347601041</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Fixed toSOQL() to refer to query interpolation template after rendering.&#10;(Not sure how this will work with more sophisticated WHERE templates... but toSOQL() probably won't be useful in such contexts.">
+      <created>1557347898031</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1557347898031</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AA0_SObjectSelectorTest - 2019.05.08 at 22h 20m 48s.xml">
-      <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
-    </history-entry>
     <history-entry file="AA0_QueryFactoryTest - 2019.05.08 at 22h 21m 12s.xml">
       <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
     </history-entry>
@@ -3025,20 +3017,22 @@
     <history-entry file="AA0_SObjectSelectorTest - 2019.05.08 at 22h 35m 29s.xml">
       <configuration name="AA0_SObjectSelectorTest" configurationId="com.illuminatedcloud.intellij" />
     </history-entry>
+    <history-entry file="AA0_QueryFactoryTest - 2019.05.08 at 22h 36m 08s.xml">
+      <configuration name="AA0_QueryFactoryTest" configurationId="com.illuminatedcloud.intellij" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168899000" />
+    <option name="totallyTimeSpent" value="169142000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49846625" visible="true" weight="0.24626866" />
       <window_info id="Designer" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.55490404" weight="0.35531914" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6705757" visible="true" weight="0.3893617" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6695096" visible="true" weight="0.3893617" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -3048,7 +3042,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.77025586" weight="0.32978722" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="SOQL Query" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.32942432" side_tool="true" visible="true" weight="0.3893617" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.3304904" side_tool="true" visible="true" weight="0.3893617" />
       <window_info anchor="bottom" id="Anonymous Apex" order="13" sideWeight="0.8123667" weight="0.48085105" />
       <window_info anchor="bottom" id="Terminal" order="14" sideWeight="0.6487207" weight="0.40106383" />
       <window_info anchor="bottom" id="Messages" order="15" />
@@ -3078,7 +3072,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Whitespace fix." />
     <MESSAGE value="More style fixes." />
     <MESSAGE value="Fixed query locator." />
     <MESSAGE value="Fixd interface." />
@@ -3103,10 +3096,11 @@
     <MESSAGE value="Fixed NPE." />
     <MESSAGE value="Fixed all selector issues." />
     <MESSAGE value="All QueryFactory and Selector tests are passing." />
-    <option name="LAST_COMMIT_MESSAGE" value="All QueryFactory and Selector tests are passing." />
+    <MESSAGE value="Fixed toSOQL() to refer to query interpolation template after rendering.&#10;(Not sure how this will work with more sophisticated WHERE templates... but toSOQL() probably won't be useful in such contexts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed toSOQL() to refer to query interpolation template after rendering.&#10;(Not sure how this will work with more sophisticated WHERE templates... but toSOQL() probably won't be useful in such contexts." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Xappe$AA0_QueryFactoryTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557347760998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
+    <SUITE FILE_PATH="coverage/Xappe$XAP_DAO_SOQL_QueryFactoryTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1557348217573" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/classes/TEST_DummyProduct2FactoryOutlet.cls">
@@ -3310,10 +3304,6 @@
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls">
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_Querier.cls">
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3338,10 +3328,6 @@
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactory.cls">
-      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
-      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryInterpolation.cls">
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
@@ -3350,7 +3336,15 @@
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/AA0_QueryFactoryTest.cls">
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls">
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactory.cls">
+      <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
+      <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/XAP_DAO_SOQL_QueryFactoryTest.cls">
       <provider editor-type-id="com.illuminatedcloud.intellij.editor.MetaXmlFileEditorProvider" />
       <provider selected="true" editor-type-id="com.illuminatedcloud.intellij.editor.MetadataFileEditorProvider" />
     </entry>

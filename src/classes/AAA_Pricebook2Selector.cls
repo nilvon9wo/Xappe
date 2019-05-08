@@ -1,4 +1,4 @@
-public class AAA_Pricebook2Selector extends AA0_SObjectSelectorAbs {
+public class AAA_Pricebook2Selector extends XAP_DAO_SOQL_SObjectSelectorAbs {
     private AAA_Pricebook2Selector() {
     }
 
