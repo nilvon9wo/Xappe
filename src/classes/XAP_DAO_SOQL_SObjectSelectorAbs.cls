@@ -136,7 +136,10 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         );
     }
 
-    public XAP_DAO_SOQL_SObjectSelectorAbs injectChildFactory(XAP_DAO_SOQL_QueryFactory childQueryFactory, String relationshipFieldPath) {
+    public XAP_DAO_SOQL_SObjectSelectorAbs injectChildFactory(
+            XAP_DAO_SOQL_QueryFactory childQueryFactory,
+            String relationshipFieldPath
+    ) {
         for (SObjectField field : this.getSObjectFieldList()) {
             childQueryFactory.addField(relationshipFieldPath + '.' + field.getDescribe().getName());
         }
