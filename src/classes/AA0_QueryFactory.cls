@@ -437,7 +437,9 @@ public class AA0_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        XAP_DAO_SOQL_QueryInterpolation whereInterpolation = this.conditionExpression.toQueryInterpolation();
+        XAP_DAO_SOQL_QueryInterpolation whereInterpolation = (this.conditionExpression != null)
+                ? this.conditionExpression.toQueryInterpolation()
+                : new XAP_DAO_SOQL_QueryInterpolation('');
         String soqlTemplate = this.toSoqlSelect()
                 + this.toSoqlFrom()
                 + this.toSOQL('WHERE', whereInterpolation.template)
@@ -455,7 +457,8 @@ public class AA0_QueryFactory {
                 this.securityUtils.checkFieldIsReadable(this.sObjectType, 'Id');
             }
             result += 'Id';
-        } else {
+        }
+        else {
             List<String> fieldSetToQuery = new List<String>(this.fieldSet);
             if (this.sortSelectFields) {
                 fieldSetToQuery.sort();
@@ -503,5 +506,9 @@ public class AA0_QueryFactory {
 
     public List<SObject> query() {
         return this.querier.selectFor(this.toQueryInterpolation());
+    }
+
+    public Database.QueryLocator getQueryLocator() {
+        return this.querier.getQueryLocatorFor(this.toQueryInterpolation());
     }
 }

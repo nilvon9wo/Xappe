@@ -1,13 +1,13 @@
 @IsTest
 public with sharing class AA0_SObjectSelectorTest {
 
-    static testMethod void testGetSObjectName() {
+    @IsTest public static void testGetSObjectName() {
         TestSObjectSelector selector = new TestSObjectSelector();
         System.assertEquals(null, selector.getSObjectFieldSetList());
         System.assertEquals('Account', selector.getSObjectName());
     }
 
-    static testMethod void testSelectSObjectsById() {
+    @IsTest public static void testSelectSObjectsById() {
         // Inserting in reverse order so that we can test the order by of select
         List<Account> accountList = new List<Account>{
                 new Account(Name = 'TestAccount2', AccountNumber = 'A2', AnnualRevenue = 12345.67),
@@ -33,7 +33,7 @@ public with sharing class AA0_SObjectSelectorTest {
         System.assertEquals(76543.21, result[1].AnnualRevenue);
     }
 
-    static testMethod void testQueryLocatorById() {
+    @IsTest public static void testQueryLocatorById() {
         // Inserting in reverse order so that we can test the order by of select
         List<Account> accountList = new List<Account>{
                 new Account(Name = 'TestAccount2', AccountNumber = 'A2', AnnualRevenue = 12345.67),
@@ -47,7 +47,7 @@ public with sharing class AA0_SObjectSelectorTest {
 
         Test.startTest();
         TestSObjectSelector selector = new TestSObjectSelector();
-        Database.QueryLocator result = selector.queryLocatorById(idSet);
+        Database.QueryLocator result = selector.getQueryLocatorById(idSet);
         System.Iterator<SObject> iteratorResult = result.iterator();
         Test.stopTest();
 
@@ -64,7 +64,7 @@ public with sharing class AA0_SObjectSelectorTest {
         System.assertEquals(false, iteratorResult.hasNext());
     }
 
-    static testMethod void testAssertIsAccessible() {
+    @IsTest public static void testAssertIsAccessible() {
         List<Account> accountList = new List<Account>{
                 new Account(Name = 'TestAccount2', AccountNumber = 'A2', AnnualRevenue = 12345.67),
                 new Account(Name = 'TestAccount1', AccountNumber = 'A1', AnnualRevenue = 76543.21)
@@ -95,7 +95,7 @@ public with sharing class AA0_SObjectSelectorTest {
         }
     }
 
-    static testMethod void testCRUDOff() {
+    @IsTest public static void testCRUDOff() {
         List<Account> accountList = new List<Account>{
                 new Account(Name = 'TestAccount2', AccountNumber = 'A2', AnnualRevenue = 12345.67),
                 new Account(Name = 'TestAccount1', AccountNumber = 'A1', AnnualRevenue = 76543.21)
@@ -122,7 +122,7 @@ public with sharing class AA0_SObjectSelectorTest {
         }
     }
 
-    static testMethod void testSOQL() {
+    @IsTest public static void testSOQL() {
         TestSObjectSelector selector = new TestSObjectSelector();
         String soql = selector.createQueryFactory().toSOQL();
         Pattern p = Pattern.compile(
@@ -137,7 +137,7 @@ public with sharing class AA0_SObjectSelectorTest {
         assertFieldListString(fieldListString, null);
     }
 
-    static testMethod void testDefaultConfig() {
+    @IsTest public static void testDefaultConfig() {
         TestSObjectSelector selector = new TestSObjectSelector();
         System.assertEquals(false, selector.isEnforcingFLS());
         System.assertEquals(true, selector.isEnforcingCRUD());

@@ -21,7 +21,6 @@ public virtual class XAP_DAO_SOQL_Querier {
     private static final Integer LAST_OBJECT_NUMBER = 9;
 
     public List<SObject> selectFor(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
-        System.debug('######## queryInterpolation' + queryInterpolation);
         return Database.query(
                 this.toSoql(queryInterpolation)
         );
@@ -34,8 +33,6 @@ public virtual class XAP_DAO_SOQL_Querier {
     }
 
     public String toSoql(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
-        System.debug('######## queryInterpolation' + queryInterpolation);
-
         Integer requiredBindingSize = queryInterpolation.objectsByKeyMap.keySet().size();
         if (requiredBindingSize > LAST_OBJECT_NUMBER) {
             throw new RebindObjectsLimitException(
@@ -54,7 +51,6 @@ public virtual class XAP_DAO_SOQL_Querier {
                     counter++
             );
         }
-        System.debug('######## localizedTemplate' + localizedTemplate);
         return localizedTemplate;
     }
 

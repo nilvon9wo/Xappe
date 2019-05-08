@@ -107,26 +107,16 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
         return this.describeWrapper.getDescribe().getName();
     }
 
-    /*
     public virtual List<SObject> selectById(Set<Id> idSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                 .query();
     }
-     */
-    public List<SObject> selectById(Set<Id> idSet) {
-        return Database.query(this.buildQuerySObjectById());
-    }
 
-    /*
     public Database.QueryLocator getQueryLocatorById(Set<Id> idSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                 .getQueryLocator();
-    }
-     */
-    public Database.QueryLocator queryLocatorById(Set<Id> idSet) {
-        return Database.getQueryLocator(this.buildQuerySObjectById());
     }
 
     public AA0_QueryFactory createQueryFactory() {
@@ -182,17 +172,10 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
         return this.configureQueryFactory(subSelectQueryFactory, isEnforcingCRUD, isEnforcingFLS, includeSelectorFields);
     }
 
-    /*
     private String buildQuerySObjectById(Set<Id> idSet) {
-        return this.newQueryFactory()
+        return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
                 .toSoql();
-    }
-     */
-    private String buildQuerySObjectById() {
-        return this.createQueryFactory()
-                .setCondition('id in :idSet')
-                .toSOQL();
     }
 
     private AA0_QueryFactory configureQueryFactory(

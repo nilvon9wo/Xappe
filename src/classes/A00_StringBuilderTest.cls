@@ -26,7 +26,7 @@
 
 @IsTest
 private with sharing class A00_StringBuilderTest {
-    static testMethod void testfflib_StringBuilder1() {
+    @IsTest public static void testfflib_StringBuilder1() {
         A00_StringBuilder sb = new A00_StringBuilder();
         sb.add('this is a string');
         sb.add(new List<String>{
@@ -35,7 +35,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue(), 'this is a string, which is made up from\r a number of smaller strings. 5 in this case!');
     }
 
-    static testMethod void testfflib_StringBuilder2() {
+    @IsTest public static void testfflib_StringBuilder2() {
         A00_StringBuilder sb = new A00_StringBuilder(new List<String>{
                 'apples', ' and ', 'pears', ': stairs. '
         });
@@ -46,7 +46,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue(), 'apples and pears: stairs. this is a string, which is made up from\r a number of smaller strings. 5 in this case!');
     }
 
-    static testMethod void testCommaDelimitedBuilder1() {
+    @IsTest public static void testCommaDelimitedBuilder1() {
         A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder();
         sb.add('a');
         sb.add(new List<String>{
@@ -55,7 +55,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue(), 'a,b,c,d');
     }
 
-    static testMethod void testCommaDelimitedBuilder2() {
+    @IsTest public static void testCommaDelimitedBuilder2() {
         A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
                 'x', 'y'
         });
@@ -66,7 +66,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue(), 'x,y,a,b,c,d');
     }
 
-    static testMethod void testCommanDelimitedBuilderWithItemPrefix() {
+    @IsTest public static void testCommanDelimitedBuilderWithItemPrefix() {
         A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
                 'x', 'y'
         });
@@ -77,7 +77,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue('$'), '$x,$y,$a,$b,$c,$d');
     }
 
-    static testMethod void testCommanDelimitedBuilderWithAlternativeDelimiter() {
+    @IsTest public static void testCommanDelimitedBuilderWithAlternativeDelimiter() {
         A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
                 'x', 'y'
         });
@@ -89,7 +89,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue(), 'x;y;a;b;c;d');
     }
 
-    static testMethod void testCommanDelimitedBuilderWithAlternativeDelimiterAndPrefix() {
+    @IsTest public static void testCommanDelimitedBuilderWithAlternativeDelimiterAndPrefix() {
         A00_StringBuilder.CommaDelimitedListBuilder sb = new A00_StringBuilder.CommaDelimitedListBuilder(new List<String>{
                 'x', 'y'
         });
@@ -102,7 +102,7 @@ private with sharing class A00_StringBuilderTest {
         system.assertEquals(sb.getStringValue(), '#x:#y:#a:#b:#c:#d');
     }
 
-    static testMethod void testFieldListBuilder() {
+    @IsTest public static void testFieldListBuilder() {
         List<Schema.SObjectField> fields = new List<Schema.SObjectField>{
                 Account.Name, Account.Id, Account.AccountNumber, Account.AccountNumber, Account.AnnualRevenue
         };
@@ -116,7 +116,7 @@ private with sharing class A00_StringBuilderTest {
         system.assert(fieldSet.contains('AnnualRevenue'));
     }
 
-    static testMethod void testMultiCurrencyFieldListBuilder() {
+    @IsTest public static void testMultiCurrencyFieldListBuilder() {
         List<Schema.SObjectField> fields = new List<Schema.SObjectField>{
                 Account.Name, Account.Id, Account.AccountNumber, Account.AnnualRevenue
         };

@@ -6,4 +6,8 @@ public class XAP_DAO_SOQL_QueryInterpolation {
         this.template = template;
         this.objectsByKeyMap = objectsByKeyMap;
     }
+
+    public XAP_DAO_SOQL_QueryInterpolation(String template) {
+        this(template, null);
+    }
 }
