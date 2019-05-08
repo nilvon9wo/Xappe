@@ -200,7 +200,7 @@ public with sharing class fflib_MatcherDefinitions {
      */
     public class AnyFieldSet implements fflib_IMatcher {
         public Boolean matches(Object arg) {
-            return arg != null && arg instanceof Schema.FieldSet;
+            return arg != null && arg instanceof FieldSet;
         }
     }
 
@@ -489,7 +489,7 @@ public with sharing class fflib_MatcherDefinitions {
      * This matcher is needed because equivalent FieldSets do not pass == checks, and we can't override equals/hashcode on FieldSets.
      */
     public class FieldSetEquivalentTo implements fflib_IMatcher {
-        private final Set<Schema.FieldSetMember> toMatch;
+        private final Set<FieldSetMember> toMatch;
 
         /*
          * Dirty test-only constructor, allowing us to test this class even if there are no field sets defined in the current org.
@@ -499,12 +499,12 @@ public with sharing class fflib_MatcherDefinitions {
             this.toMatch = null;
         }
 
-        public FieldSetEquivalentTo(Schema.FieldSet toMatch) {
-            this.toMatch = new Set<Schema.FieldSetMember>(((Schema.FieldSet) validateNotNull(toMatch)).getFields());
+        public FieldSetEquivalentTo(FieldSet toMatch) {
+            this.toMatch = new Set<FieldSetMember>(((FieldSet) validateNotNull(toMatch)).getFields());
         }
 
         public Boolean matches(Object arg) {
-            return (toMatch != null && arg != null && arg instanceof Schema.FieldSet) ? toMatch == new Set<Schema.FieldSetMember>(((FieldSet) arg).getFields()) : false;
+            return (toMatch != null && arg != null && arg instanceof FieldSet) ? toMatch == new Set<FieldSetMember>(((FieldSet) arg).getFields()) : false;
         }
     }
 
@@ -581,15 +581,15 @@ public with sharing class fflib_MatcherDefinitions {
      * SObjectOfType matcher: checks if the supplied argument has the specified SObjectType
      */
     public class SObjectOfType implements fflib_IMatcher {
-        private Schema.SObjectType objectType;
+        private SObjectType objectType;
 
         /**
          * SObjectOfType constructor
          * @param objectType The SObjectType to be compared
          * @return fflib_MatcherDefinitions.SObjectOfType A new SObjectOfType instance
          */
-        public SObjectOfType(Schema.SObjectType objectType) {
-            this.objectType = (Schema.SObjectType) validateNotNull(objectType);
+        public SObjectOfType(SObjectType objectType) {
+            this.objectType = (SObjectType) validateNotNull(objectType);
         }
 
         public Boolean matches(Object arg) {
@@ -824,7 +824,7 @@ public with sharing class fflib_MatcherDefinitions {
         public Boolean matches(Object arg) {
             if (arg != null && arg instanceof SObject) {
                 SObject soArg = (SObject) arg;
-                Schema.DescribeSObjectResult describe = soArg.getSObjectType().getDescribe();
+                DescribeSObjectResult describe = soArg.getSObjectType().getDescribe();
                 for (Schema.SObjectField f : describe.fields.getMap().values()) {
                     if (f.getDescribe().isNameField()) {
                         return soArg.get(f) == toMatch;

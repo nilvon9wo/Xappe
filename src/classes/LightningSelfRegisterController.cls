@@ -5,12 +5,12 @@ global class LightningSelfRegisterController {
     }
 
     @TestVisible
-    private static boolean isValidPassword(String password, String confirmPassword) {
+    private static Boolean isValidPassword(String password, String confirmPassword) {
         return password == confirmPassword;
     }
 
     @TestVisible
-    private static boolean siteAsContainerEnabled(String communityUrl) {
+    private static Boolean siteAsContainerEnabled(String communityUrl) {
         Auth.AuthConfiguration authConfig = new Auth.AuthConfiguration(communityUrl, '');
         return authConfig.isCommunityUsingSiteAsContainer();
     }
@@ -59,7 +59,7 @@ global class LightningSelfRegisterController {
                 List<Object> extraFieldsList = (List<Object>) JSON.deserializeUntyped(extraFields);
                 for (Object thisFieldObject : extraFieldsList) {
                     Map<String, Object> thisField = (Map<String, Object>) thisFieldObject;
-                    Schema.SObjectField sof = Schema.SObjectType.User.fields.getMap().get((String) thisField.get('fieldPath'));
+                    Schema.SObjectField sof = SObjectType.User.fields.getMap().get((String) thisField.get('fieldPath'));
                     u.put(sof, thisField.get('value'));
                 }
             }
@@ -103,10 +103,10 @@ global class LightningSelfRegisterController {
     @AuraEnabled
     public static List<Map<String, Object>> getExtraFields(String extraFieldsFieldSet) {
         List<Map<String, Object>> extraFields = new List<Map<String, Object>>();
-        Schema.FieldSet fieldSet = Schema.SObjectType.User.fieldSets.getMap().get(extraFieldsFieldSet);
+        FieldSet fieldSet = SObjectType.User.fieldSets.getMap().get(extraFieldsFieldSet);
         if (!Test.isRunningTest()) {
             if (fieldSet != null) {
-                for (Schema.FieldSetMember f : fieldSet.getFields()) {
+                for (FieldSetMember f : fieldSet.getFields()) {
                     Map<String, Object> fieldDetail = new Map<String, Object>();
                     fieldDetail.put('dbRequired', f.getDBRequired());
                     fieldDetail.put('fieldPath', f.getFieldPath());

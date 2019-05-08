@@ -23,9 +23,9 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-@isTest
+@IsTest
 public with sharing class fflib_MethodArgValuesTest {
-    @isTest
+    @IsTest
     private static void equalsReturnsExpectedResults() {
         //Given
         fflib_MethodArgValues qm1 = new fflib_MethodArgValues(new List<Object>{
@@ -72,7 +72,7 @@ public with sharing class fflib_MethodArgValuesTest {
         System.assertEquals(qm6, qm6);
     }
 
-    @isTest
+    @IsTest
     private static void hashCodeReturnsExpectedResults() {
         //Given
         fflib_MethodArgValues qm1 = new fflib_MethodArgValues(new List<Object>{

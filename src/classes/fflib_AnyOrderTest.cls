@@ -5,7 +5,7 @@
 /**
  * @nodoc
  */
-@isTest
+@IsTest
 private class fflib_AnyOrderTest {
     private static final String BASIC_VERIFY_ASSERTION_MESSAGE = 'Expected : {0}, Actual: {1} -- Wanted but not invoked: ';
 
@@ -13,7 +13,7 @@ private class fflib_AnyOrderTest {
      *	replicating the apex mocks tests with the new syntax
      */
 
-    @isTest
+    @IsTest
     private static void whenVerifyMultipleCallsWithMatchersShouldReturnCorrectMethodCallCounts() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -29,7 +29,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList)).add(fflib_Match.stringContains('fred'));
     }
 
-    @isTest
+    @IsTest
     private static void whenVerifyWithCombinedMatchersShouldReturnCorrectMethodCallCounts() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -72,7 +72,7 @@ private class fflib_AnyOrderTest {
         );
     }
 
-    @isTest
+    @IsTest
     private static void whenVerifyCustomMatchersCanBeUsed() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -90,7 +90,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.times(2))).get((Integer) fflib_Match.matches(new isEven()));
     }
 
-    @isTest
+    @IsTest
     private static void verifyMultipleMethodCallsWithSameSingleArgument() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -104,7 +104,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.times(2))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void verifyMethodNotCalled() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -118,7 +118,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList)).get(0);
     }
 
-    @isTest
+    @IsTest
     private static void verifySingleMethodCallWithMultipleArguments() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -132,7 +132,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.never())).set(0, 'fred');
     }
 
-    @isTest
+    @IsTest
     private static void verifyMethodCallWhenNoCallsBeenMadeForType() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -142,7 +142,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.never())).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void whenVerifyMethodNeverCalledMatchersAreReset() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -160,7 +160,7 @@ private class fflib_AnyOrderTest {
      *	times
      */
 
-    @isTest
+    @IsTest
     private static void verifyTimesMethodHasBeenCalled() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -175,7 +175,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.times(3))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void verifyTimesMethodHasBeenCalledWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -190,7 +190,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.times(3))).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifyTimesMethodFailsWhenCalledLessTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -211,7 +211,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifyTimesMethodFailsWhenCalledMoreTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -232,7 +232,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifyTimesMethodFailsWhenCalledLessTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -253,7 +253,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifyTimesMethodFailsWhenCalledMoreTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -278,7 +278,7 @@ private class fflib_AnyOrderTest {
      *	description
      */
 
-    @isTest
+    @IsTest
     private static void thatCustomMessageIsAdded() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -315,7 +315,7 @@ private class fflib_AnyOrderTest {
      *	atLeast
      */
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -331,7 +331,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeast(2))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastNumberOfTimesWhenIsCalledMoreTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -349,7 +349,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeast(2))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledLessThanAtLeastNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -373,7 +373,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -387,7 +387,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeast(2))).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastNumberOfTimesWhenIsCalledMoreTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -403,7 +403,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeast(2))).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledLessThanAtLeastNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -430,7 +430,7 @@ private class fflib_AnyOrderTest {
      *	atMost
      */
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtMostNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -447,7 +447,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atMost(5))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtMostSameNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -464,7 +464,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atMost(3))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledMoreThanAtMostNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -492,7 +492,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtMostNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -507,7 +507,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atMost(5))).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtMostSameNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -522,7 +522,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atMost(3))).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledMoreThanAtMostNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -551,7 +551,7 @@ private class fflib_AnyOrderTest {
      *	atLeastOnce
      */
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -566,7 +566,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceNumberOfTimesWhenIsCalledMoreTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -582,7 +582,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledLessThanAtLeastOnceNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -605,7 +605,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -619,7 +619,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceNumberOfTimesWhenIsCalledMoreTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -637,7 +637,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledLessThanAtLeastOnceNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -665,7 +665,7 @@ private class fflib_AnyOrderTest {
      *	between
      */
 
-    @isTest
+    @IsTest
     private static void thatVerifiesBetweenNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -685,7 +685,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.between(3, 5))).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatBetweenThrownExceptionIfCalledLessThanAtLeastNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -709,7 +709,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesBetweenNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -725,7 +725,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.between(3, 5))).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatBetweenThrownExceptionIfCalledLessThanAtLeastNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -748,7 +748,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatBetweenThrownExceptionIfCalledMoreThanAtMostNumberOfTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -778,7 +778,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatBetweenThrownExceptionIfCalledMoreThanAtMostNumberOfTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -810,7 +810,7 @@ private class fflib_AnyOrderTest {
      *	never
      */
 
-    @isTest
+    @IsTest
     private static void verifyNeverMethodHasNotBeenCalled() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -825,7 +825,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.never())).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void verifyNeverMethodHasBeenNotCalledWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -840,7 +840,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.never())).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifyNeverFailsWhenCalledMoreTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -860,7 +860,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifyNeverFailsWhenCalledMoreTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -886,7 +886,7 @@ private class fflib_AnyOrderTest {
      *	atLeastOnce
      */
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnce() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -902,7 +902,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceWhenIsCalledMoreTimes() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -920,7 +920,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add('bob');
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledLessThanAtLeastOnce() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -944,7 +944,7 @@ private class fflib_AnyOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -958,7 +958,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatVerifiesAtLeastOnceWhenIsCalledMoreTimesWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -974,7 +974,7 @@ private class fflib_AnyOrderTest {
         ((fflib_MyList.IList) mocks.verify(mockList, mocks.atLeastOnce())).add(fflib_Match.anyString());
     }
 
-    @isTest
+    @IsTest
     private static void thatThrownExceptionIfCalledLessThanAtLeastOnceWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();

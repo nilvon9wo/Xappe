@@ -1,5 +1,5 @@
 public class XAP_DESC_SObjectDescribe {
-    private XAP_DESC_SObjectDescribe(Schema.SObjectType sObjectType) {
+    private XAP_DESC_SObjectDescribe(SObjectType sObjectType) {
         if (sObjectType == null) {
             throw new XAP_DESC_InvalidDescribeException('Invalid SObject type: null');
         }
@@ -25,15 +25,18 @@ public class XAP_DESC_SObjectDescribe {
         set;
     }
 
-    private static Map<String, Schema.SObjectType> RAW_GLOBAL_DESCRIBE {
+    @TestVisible
+    private static Map<String, SObjectType> RAW_GLOBAL_DESCRIBE {
         get {
-            if (RAW_GLOBAL_DESCRIBE == null)
+            if (RAW_GLOBAL_DESCRIBE == null) {
                 RAW_GLOBAL_DESCRIBE = Schema.getGlobalDescribe();
+            }
             return RAW_GLOBAL_DESCRIBE;
         }
         set;
     }
 
+    @TestVisible
     private static XAP_DESC_GlobalDescribeMap WRAPPED_GLOBAL_DESCRIBE {
         get {
             if (WRAPPED_GLOBAL_DESCRIBE == null) {
@@ -44,11 +47,12 @@ public class XAP_DESC_SObjectDescribe {
         set;
     }
 
-    private Schema.SObjectType sObjectType;
+    @TestVisible
+    private SObjectType sObjectType;
 
     // describe -------------------------------------------------------------------------
 
-    private Schema.DescribeSObjectResult describe {
+    private DescribeSObjectResult describe {
         get {
             if (this.describe == null) {
                 this.describe = this.sObjectType.getDescribe();
@@ -65,7 +69,7 @@ public class XAP_DESC_SObjectDescribe {
 
         XAP_DESC_SObjectDescribe result = INSTANCE_CACHE.get(sObjectName.toLowerCase());
         if (result == null) {
-            Schema.SObjectType sObjectType = WRAPPED_GLOBAL_DESCRIBE.get(sObjectName.toLowerCase());
+            SObjectType sObjectType = WRAPPED_GLOBAL_DESCRIBE.get(sObjectName.toLowerCase());
             if (sObjectType != null) {
                 result = new XAP_DESC_SObjectDescribe(sObjectType);
             }
@@ -73,7 +77,7 @@ public class XAP_DESC_SObjectDescribe {
         return result;
     }
 
-    public static XAP_DESC_SObjectDescribe getDescribe(Schema.SObjectType sObjectType) {
+    public static XAP_DESC_SObjectDescribe getDescribe(SObjectType sObjectType) {
         if (sObjectType == null) {
             return null;
         }
@@ -85,14 +89,14 @@ public class XAP_DESC_SObjectDescribe {
 
         return result;
     }
-    public static XAP_DESC_SObjectDescribe getDescribe(Schema.DescribeSObjectResult nativeDescribe) {
+    public static XAP_DESC_SObjectDescribe getDescribe(DescribeSObjectResult nativeDescribe) {
         if (nativeDescribe == null) {
             return null;
         }
 
         XAP_DESC_SObjectDescribe result = INSTANCE_CACHE.get(nativeDescribe.getName().toLowerCase());
         if (result == null) {
-            result = new XAP_DESC_SObjectDescribe(nativeDescribe.getSobjectType());
+            result = new XAP_DESC_SObjectDescribe(nativeDescribe.getSObjectType());
         }
         return result;
     }
@@ -101,10 +105,10 @@ public class XAP_DESC_SObjectDescribe {
             return null;
         }
 
-        return getDescribe(instance.getSobjectType());
+        return getDescribe(instance.getSObjectType());
     }
 
-    public Schema.DescribeSObjectResult getDescribe() {
+    public DescribeSObjectResult getDescribe() {
         return this.describe;
     }
 
@@ -152,7 +156,7 @@ public class XAP_DESC_SObjectDescribe {
         return this.getField(name, DEFAULT_IMPLY_NAMESPACE);
     }
 
-    public Schema.SObjectField getField(String fieldName, boolean implyNamespace) {
+    public Schema.SObjectField getField(String fieldName, Boolean implyNamespace) {
         Schema.SObjectField result = this.wrappedFields.get(
                 (
                         fieldName.endsWithIgnoreCase('__r')

@@ -72,10 +72,10 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
         set;
     }
 
-    abstract Schema.SObjectType getSObjectType();
+    abstract SObjectType getSObjectType();
     abstract List<Schema.SObjectField> getSObjectFieldList();
 
-    public virtual List<Schema.FieldSet> getSObjectFieldSetList() {
+    public virtual List<FieldSet> getSObjectFieldSetList() {
         return null;
     }
 
@@ -229,9 +229,9 @@ public abstract with sharing class AA0_SObjectSelectorAbs implements XAP_DAO_SOQ
         if (includeSelectorFields) {
             queryFactory.addFields(this.getSObjectFieldList());
 
-            List<Schema.FieldSet> fieldSetList = this.getSObjectFieldSetList();
+            List<FieldSet> fieldSetList = this.getSObjectFieldSetList();
             if (this.isIncludingFieldSetFields && fieldSetList != null) {
-                for (Schema.FieldSet fieldSet : fieldSetList) {
+                for (FieldSet fieldSet : fieldSetList) {
                     queryFactory.addFields(fieldSet);
                 }
             }

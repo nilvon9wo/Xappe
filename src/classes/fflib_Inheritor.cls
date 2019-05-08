@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2017 FinancialForce.com, inc.  All rights reserved.
  */
-@isTest
+@IsTest
 public class fflib_Inheritor implements IA, IB, IC {
     public interface IA {
         String doA();

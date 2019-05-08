@@ -15,7 +15,7 @@ public with sharing class SiteRegisterController {
     public String confirmPassword { get; set {confirmPassword = value == null ? value : value.trim();} }
     public String communityNickname { get; set {communityNickname = value == null ? value : value.trim();} }
 
-    private boolean isValidPassword() {
+    private Boolean isValidPassword() {
         return password == confirmPassword;
     }
 

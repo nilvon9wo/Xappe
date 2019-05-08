@@ -30,7 +30,7 @@ public with sharing class fflib_IDGenerator {
     /**
      * Generate a fake Salesforce Id for the given SObjectType
      */
-    public static Id generate(Schema.SObjectType sobjectType) {
+    public static Id generate(SObjectType sobjectType) {
         String keyPrefix = sobjectType.getDescribe().getKeyPrefix();
         fakeIdCount++;
 

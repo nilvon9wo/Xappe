@@ -24,7 +24,7 @@
  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-@isTest
+@IsTest
 private class A00_SecurityUtilsTest {
     static User setupTestUser(String profileName) {
         //username global uniqueness is still enforced in tests
@@ -51,7 +51,7 @@ private class A00_SecurityUtilsTest {
         return result;
     }
 
-    @isTest
+    @IsTest
     static void readonly_field_access() {
         User testUser = setupTestUser('Read Only');
         System.runAs(testUser) {
@@ -94,7 +94,7 @@ private class A00_SecurityUtilsTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void readonly_object_access() {
         User testUser = setupTestUser('Read Only');
         System.runAs(testUser) {
@@ -148,7 +148,7 @@ private class A00_SecurityUtilsTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void readonly_objectAndField_access() {
         User testUser = setupTestUser('Read Only');
         System.runAs(testUser) {
@@ -233,7 +233,7 @@ private class A00_SecurityUtilsTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void sysadmin_objectAndField_access() {
         User testUser = setupTestUser('System Administrator');
         System.runAs(testUser) {

@@ -1,9 +1,9 @@
 /*
  * Copyright (c) 2016-2017 FinancialForce.com, inc.  All rights reserved.
  */
-@isTest
+@IsTest
 public with sharing class fflib_QualifiedMethodTest {
-    @isTest
+    @IsTest
     private static void equalsReturnsExpectedResults() {
         //Given
         fflib_QualifiedMethod qm1 = new fflib_QualifiedMethod('Type1', 'Method1', new List<Type>{
@@ -51,7 +51,7 @@ public with sharing class fflib_QualifiedMethodTest {
         System.assertEquals(qm6, qm6);
     }
 
-    @isTest
+    @IsTest
     private static void hashCodeReturnsExpectedResults() {
         //Given
         fflib_QualifiedMethod qm1 = new fflib_QualifiedMethod('Type1', 'Method1', new List<Type>{
@@ -99,14 +99,14 @@ public with sharing class fflib_QualifiedMethodTest {
         System.assertEquals(qm6.hashCode(), qm6.hashCode());
     }
 
-    @isTest
+    @IsTest
     public static void toStringReturnsExpectedResult() {
         System.assertEquals('MyClass.MyMethod(Integer)', new fflib_QualifiedMethod('MyClass', 'MyMethod', new List<Type>{
                 Integer.class
         }).toString());
     }
 
-    @isTest
+    @IsTest
     private static void equalsReturnsExpectedResultsForHasDependentMocks() {
         //Given
         String instance = 'My object instance';
@@ -143,7 +143,7 @@ public with sharing class fflib_QualifiedMethodTest {
         System.assertNotEquals(qm3, qm4);
     }
 
-    @isTest
+    @IsTest
     private static void hashCodeReturnsExpectedResultsForHasDependentMocks() {
         //Given
         String instance = 'My object instance';

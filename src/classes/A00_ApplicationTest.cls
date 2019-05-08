@@ -450,10 +450,10 @@ private class A00_ApplicationTest {
     }
 
     public class CustomDML implements fflib_SObjectUnitOfWork.IDML {
-        public boolean isInsertCalled = false;
-        public boolean isUpdateCalled = false;
-        public boolean isDeleteCalled = false;
-        public boolean isPublishCalled = false;
+        public Boolean isInsertCalled = false;
+        public Boolean isUpdateCalled = false;
+        public Boolean isDeleteCalled = false;
+        public Boolean isPublishCalled = false;
 
         public void dmlInsert(List<SObject> objList) {
             this.isInsertCalled = true;
@@ -567,7 +567,7 @@ private class A00_ApplicationTest {
             };
         }
 
-        public Schema.SObjectType getSObjectType() {
+        public SObjectType getSObjectType() {
             return Opportunity.SObjectType;
         }
     }
@@ -582,7 +582,7 @@ private class A00_ApplicationTest {
             };
         }
 
-        public Schema.SObjectType getSObjectType() {
+        public SObjectType getSObjectType() {
             return Account.SObjectType;
         }
     }

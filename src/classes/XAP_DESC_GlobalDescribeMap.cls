@@ -1,18 +1,18 @@
 public class XAP_DESC_GlobalDescribeMap extends XAP_DESC_NamespacedAttributeMap {
     @TestVisible
-    public XAP_DESC_GlobalDescribeMap(Map<String, Schema.SObjectType> valueByNameMap) {
+    public XAP_DESC_GlobalDescribeMap(Map<String, SObjectType> valueByNameMap) {
         super(valueByNameMap);
     }
 
-    public Schema.SObjectType get(String name) {
+    public SObjectType get(String name) {
         return this.get(name, true);
     }
 
-    public Schema.SObjectType get(String name, Boolean implyNamespace) {
-        return (Schema.SObjectType) this.getObject(name, implyNamespace);
+    public SObjectType get(String name, Boolean implyNamespace) {
+        return (SObjectType) this.getObject(name, implyNamespace);
     }
 
-    public List<Schema.SObjectType> values() {
-        return (List<Schema.SObjectType>) valueByNameMap.values();
+    public List<SObjectType> values() {
+        return (List<SObjectType>) valueByNameMap.values();
     }
 }

@@ -2,11 +2,11 @@
  Copyright (c) 2014-2017 FinancialForce.com, inc.  All rights reserved.
  */
 
-@isTest
+@IsTest
 private class fflib_InOrderTest {
     private static fflib_ApexMocks MY_MOCKS = new fflib_ApexMocks();
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderAllTheMethodsCalled() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -30,7 +30,7 @@ private class fflib_InOrderTest {
                 'It should fail because 1-2 is in the wrong order', 1, 0);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderDifferentMethodsCalledWithSameArguments() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -55,7 +55,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add('1-4');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderDifferentMethodsCalledWithSameArgumentsOrderFail() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -76,7 +76,7 @@ private class fflib_InOrderTest {
                 'It should fail because 1-1 is called before the addMore(1-1)', 1, 0);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderDifferentMethodsCalledWithSameArgumentsDoubleCallFail() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -97,7 +97,7 @@ private class fflib_InOrderTest {
                 'It should fail because addMore(1-1) is called only Once', 1, 0);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCallMethodWithMatches() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -117,7 +117,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add('1-4');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCallMethodWithMatchesFailsIfVerifyACallAlreadyInTheMatcher() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -140,7 +140,7 @@ private class fflib_InOrderTest {
                 'It should fail because addMore(1-11) has been already verified using the matchers', 1, 0);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCallMethodWithMultipleMatches() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -166,7 +166,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(4))).add(fflib_Match.stringStartsWith('2-'));
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCallMethodWithMultipleMatchesMixed() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -189,7 +189,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add(fflib_Match.stringStartsWith('2-'));
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCallMethodWithMultipleMatchesMixedFailWhenMatcherHaveAlreadyVerifiedMethod() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -214,7 +214,7 @@ private class fflib_InOrderTest {
                 'It should fail because only one call for the 2- is available to verify', 4, 0);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCanSkipMethodsCalledUntilFindTheOneThatNeedsVerify() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -236,7 +236,7 @@ private class fflib_InOrderTest {
                 'It should fail because is out of order', 1, 0);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCanHandleMultipleMethodsCalls() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -257,7 +257,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add('1-4');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCanHandleMultipleMethodsCallsAndNotFailsIfVerifyCountIsGreaterThenExpected() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -278,7 +278,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(2))).add('1-2');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCanHandleMultipleMethodsCallsButFailsIfVerifyCountIsLessThenExpected() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -300,7 +300,7 @@ private class fflib_InOrderTest {
                 'It should fail because is actually called only 3 times', 4, 3);
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCanHandleMultipleMocks() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -336,7 +336,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) MY_MOCKS.verify(thirdMock, MY_MOCKS.times(3))).add(fflib_Match.stringStartsWith('3-'));
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderCanHandleMixedInOrderInstance() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -379,7 +379,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) MY_MOCKS.verify(thirdMock, MY_MOCKS.times(3))).add(fflib_Match.stringStartsWith('3-'));
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderThrownExceptionIfVerifyMockInstanceNotInTheSet() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -405,7 +405,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyInOrderThrownExceptionWithCustomMessage() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -434,7 +434,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtMostThrowsExceptionBecauseNotImplemented() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -463,7 +463,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyBetweenThrowsExceptionBecauseNotImplemented() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -493,7 +493,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNever() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -517,7 +517,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.never())).add('3-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNeverWithMatchers() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -541,7 +541,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.never())).add(fflib_Match.stringStartsWith('3-'));
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNeverFailsWhenCalled() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -573,7 +573,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNeverFailsWhenCalledWithMatchers() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -605,7 +605,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyThrowsExceptionWhenCallsIsInvochedFromStandardMock() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -628,7 +628,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNoMoreInteractionsFails() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -653,7 +653,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNoMoreInteractionsFailsWhenOnLyOneMethodLeft() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -678,7 +678,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNoMoreInteractionsPass() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -708,7 +708,7 @@ private class fflib_InOrderTest {
         inOrder2.verifyNoMoreInteractions();
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNoMoreInteractionsFailsWhenNoInteracionOccurs() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -731,7 +731,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNoInteractionsFails() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -754,7 +754,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyNoInteractionsPass() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -770,7 +770,7 @@ private class fflib_InOrderTest {
         inOrder1.verifyNoInteractions();
     }
 
-    @isTest
+    @IsTest
     static void thatStrictVerificationCanBePerformed() {
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
         fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{
@@ -789,7 +789,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add('4-1');
     }
 
-    @isTest
+    @IsTest
     static void thatMixedVerificationDoNotInterfierWithOtherImplementationChecking() {
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
         fflib_InOrder inOrder1 = new fflib_InOrder(MY_MOCKS, new List<Object>{
@@ -812,7 +812,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) MY_MOCKS.verify(firstMock, MY_MOCKS.times(2))).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastPassWithSameCallsOfAssertion() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -836,7 +836,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastPassWithMoreCallsThenAsserted() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -860,7 +860,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.calls(1))).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastThrowsErrorIfCalledLessTimes() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -889,7 +889,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastConsumeAllTheInstances() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -923,7 +923,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastConsumeAllTheInstancesForOnlyTheMethodVerified() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -946,7 +946,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.atLeast(2))).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastOnce() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -962,7 +962,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.atLeastOnce())).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastOnceConsumesInstancesUntilLastMethodVerified() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -980,7 +980,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.atLeastOnce())).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastOnceThrowsErrorIfCalledLessTimes() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1003,7 +1003,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastOnceConsumesAllTheInstances() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1031,7 +1031,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimes() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1054,7 +1054,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.times(3))).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesThrowsExceptionIfCalledMoreTimesThanExpected() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1083,7 +1083,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesThrowsExceptionIfCalledLessTimesThanExpected() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1112,7 +1112,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesPassWhenAnotherMethodIsCalledBetweenMethodsCalls() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1139,7 +1139,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.times(1))).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesPassWhenAnotherMethodIsCalledBetweenMethodsCalls2() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1167,7 +1167,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.times(1))).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesPassWhenAnotherMethodIsCalledBetweenMethodsCalls3() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1200,7 +1200,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.times(1))).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesPassWhenAnotherMethodIsCalledBetweenMethodsCalls4() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1230,7 +1230,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.times(1))).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyTimesThrowsExceptionWhenAnotherMethodIsCalledBetweenMethodsCalls() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1261,7 +1261,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatStrictVerificationCanBeEnforced() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1288,7 +1288,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, MY_MOCKS.times(1))).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatTimesOneIsTheDefaultVerification() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1319,7 +1319,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatWithOldNotation() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1342,7 +1342,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, 3)).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatWithOldNotationThrowsExceptionIfCalledMoreTimesThanExpected() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1371,7 +1371,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatWithOldNotationThrowsExceptionIfCalledLessTimesThanExpected() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1400,7 +1400,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatWithOldNotationPassWhenAnotherMethodIsCalledBetweenMethodsCalls() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1425,7 +1425,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, 4)).add('1-1');
     }
 
-    @isTest
+    @IsTest
     static void thatWithOldNotationThrowsExceptionWhenAnotherMethodIsCalledBetweenMethodsCalls() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1456,7 +1456,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatStrictVerificationCanBeEnforcedWithOldNotation() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1483,7 +1483,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock, 1)).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatStrictVerificationCanBeEnforcedWithOldNotationUsingDefaultTimesOne() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1510,7 +1510,7 @@ private class fflib_InOrderTest {
         ((fflib_MyList.IList) inOrder1.verify(firstMock)).add('2-1');
     }
 
-    @isTest
+    @IsTest
     static void thatVerifyAtLeastConsumesAllTheInstances2() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1541,7 +1541,7 @@ private class fflib_InOrderTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void verifyAtLeastAndCapture() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1563,7 +1563,7 @@ private class fflib_InOrderTest {
         System.assertEquals('4-1', (string) argument.getValue(), 'the last value captured is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void verifyTimesAndCaptor() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);
@@ -1590,7 +1590,7 @@ private class fflib_InOrderTest {
         System.assertEquals('5-1', (string) argument.getValue(), 'the last value captured is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void verifyCallsAndCapture() {
         // Given
         fflib_MyList firstMock = (fflib_MyList) MY_MOCKS.mock(fflib_MyList.class);

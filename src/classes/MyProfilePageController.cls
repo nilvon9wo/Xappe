@@ -5,7 +5,7 @@
 public with sharing class MyProfilePageController {
 
     private User user;
-    private boolean isEdit = false;
+    private Boolean isEdit = false;
 
     public User getUser() {
         return user;

@@ -53,7 +53,7 @@
  **/
 public virtual class fflib_SObjectUnitOfWork
         implements fflib_ISObjectUnitOfWork {
-    protected List<Schema.SObjectType> m_sObjectTypes = new List<Schema.SObjectType>();
+    protected List<SObjectType> m_sObjectTypes = new List<SObjectType>();
 
     protected Map<String, List<SObject>> m_newListByType = new Map<String, List<SObject>>();
 
@@ -107,14 +107,14 @@ public virtual class fflib_SObjectUnitOfWork
      *
      * @param sObjectList A list of objects given in dependency order (least dependent first)
      */
-    public fflib_SObjectUnitOfWork(List<Schema.SObjectType> sObjectTypes) {
+    public fflib_SObjectUnitOfWork(List<SObjectType> sObjectTypes) {
         this(sObjectTypes, new SimpleDML());
     }
 
-    public fflib_SObjectUnitOfWork(List<Schema.SObjectType> sObjectTypes, IDML dml) {
+    public fflib_SObjectUnitOfWork(List<SObjectType> sObjectTypes, IDML dml) {
         m_sObjectTypes = sObjectTypes.clone();
 
-        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+        for (SObjectType sObjectType : m_sObjectTypes) {
             // register the type
             handleRegisterType(sObjectType);
         }
@@ -125,7 +125,7 @@ public virtual class fflib_SObjectUnitOfWork
     }
 
     // default implementations for commitWork events
-    public virtual void onRegisterType(Schema.SObjectType sObjectType) {
+    public virtual void onRegisterType(SObjectType sObjectType) {
     }
     public virtual void onCommitWorkStarting() {
     }
@@ -166,7 +166,7 @@ public virtual class fflib_SObjectUnitOfWork
      * @param sObjectType - The type to register
      *
      */
-    private void handleRegisterType(Schema.SObjectType sObjectType) {
+    private void handleRegisterType(SObjectType sObjectType) {
         String sObjectName = sObjectType.getDescribe().getName();
 
         // add type to dml operation tracking
@@ -515,20 +515,20 @@ public virtual class fflib_SObjectUnitOfWork
     }
 
     private void publishBeforeEventsStarting() {
-        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+        for (SObjectType sObjectType : m_sObjectTypes) {
             m_dml.eventPublish(m_publishBeforeListByType.get(sObjectType.getDescribe().getName()));
         }
     }
 
     private void insertDmlByType() {
-        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+        for (SObjectType sObjectType : m_sObjectTypes) {
             m_relationships.get(sObjectType.getDescribe().getName()).resolve();
             m_dml.dmlInsert(m_newListByType.get(sObjectType.getDescribe().getName()));
         }
     }
 
     private void updateDmlByType() {
-        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+        for (SObjectType sObjectType : m_sObjectTypes) {
             m_dml.dmlUpdate(m_dirtyMapByType.get(sObjectType.getDescribe().getName()).values());
         }
     }
@@ -552,13 +552,13 @@ public virtual class fflib_SObjectUnitOfWork
     }
 
     private void publishAfterSuccessEvents() {
-        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+        for (SObjectType sObjectType : m_sObjectTypes) {
             m_dml.eventPublish(m_publishAfterSuccessListByType.get(sObjectType.getDescribe().getName()));
         }
     }
 
     private void publishAfterFailureEvents() {
-        for (Schema.SObjectType sObjectType : m_sObjectTypes) {
+        for (SObjectType sObjectType : m_sObjectTypes) {
             m_dml.eventPublish(m_publishAfterFailureListByType.get(sObjectType.getDescribe().getName()));
         }
     }

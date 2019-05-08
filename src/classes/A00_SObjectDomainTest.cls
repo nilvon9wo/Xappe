@@ -278,7 +278,7 @@ private with sharing class A00_SObjectDomainTest {
      **/
     @IsTest
     private static void testDisableTriggerEventsBehaviour() {
-        boolean bError = false;
+        Boolean bError = false;
 
         String sErrorMessage = '';
 

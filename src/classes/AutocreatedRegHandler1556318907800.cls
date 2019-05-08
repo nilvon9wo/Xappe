@@ -3,7 +3,7 @@
 //the data provided by the third party.
 
 global class AutocreatedRegHandler1556318907800 implements Auth.RegistrationHandler {
-    global boolean canCreateUser(Auth.UserData data) {
+    global Boolean canCreateUser(Auth.UserData data) {
         //TODO: Check whether we want to allow creation of a user with this data
         //Set<String> s = new Set<String>{'usernamea', 'usernameb', 'usernamec'};
         //if(s.contains(data.username)) {

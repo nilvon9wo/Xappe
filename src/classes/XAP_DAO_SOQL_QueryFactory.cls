@@ -28,7 +28,7 @@ public class XAP_DAO_SOQL_QueryFactory {
         this.securityUtils = securityUtils;
     }
 
-    public XAP_DAO_SOQL_QueryFactory(Schema.SObjectType sObjectType) {
+    public XAP_DAO_SOQL_QueryFactory(SObjectType sObjectType) {
         this(
                 new XAP_DAO_SOQL_Query(sObjectType),
                 XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance(),
@@ -208,12 +208,12 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     // Select Fields ----------------------------------------------------------------------------
 
-    public XAP_DAO_SOQL_QueryFactory addFields(Schema.FieldSet fieldSet, Boolean allowCrossObject) {
+    public XAP_DAO_SOQL_QueryFactory addFields(FieldSet fieldSet, Boolean allowCrossObject) {
         this.fieldHelper.addFields(this.query, fieldSet, allowCrossObject);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory addFields(Schema.FieldSet fieldSet) {
+    public XAP_DAO_SOQL_QueryFactory addFields(FieldSet fieldSet) {
         return this.addFields(fieldSet, ALLOW_CROSS_OBJECT);
     }
 

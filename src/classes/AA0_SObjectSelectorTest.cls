@@ -15,8 +15,9 @@ public with sharing class AA0_SObjectSelectorTest {
         };
         insert accountList;
         Set<Id> idSet = new Set<Id>();
-        for (Account item : accountList)
+        for (Account item : accountList) {
             idSet.add(item.Id);
+        }
 
         Test.startTest();
         TestSObjectSelector selector = new TestSObjectSelector();
@@ -40,8 +41,9 @@ public with sharing class AA0_SObjectSelectorTest {
         };
         insert accountList;
         Set<Id> idSet = new Set<Id>();
-        for (Account item : accountList)
+        for (Account item : accountList) {
             idSet.add(item.Id);
+        }
 
         Test.startTest();
         TestSObjectSelector selector = new TestSObjectSelector();
@@ -84,9 +86,10 @@ public with sharing class AA0_SObjectSelectorTest {
         System.runAs(testUser) {
             TestSObjectSelector selector = new TestSObjectSelector();
             try {
-                List<Account> resultList = (List<Account>) selector.selectById(idSet);
+                selector.selectById(idSet);
                 System.assert(false, 'Expected exception was not thrown');
-            } catch (XAP_DAO_SOQL_DomainSecurityException e) {
+            }
+            catch (XAP_DAO_SOQL_DomainSecurityException e) {
                 System.assertEquals('Permission to access an Account denied.', e.getMessage());
             }
         }
@@ -99,18 +102,21 @@ public with sharing class AA0_SObjectSelectorTest {
         };
         insert accountList;
         Set<Id> idSet = new Set<Id>();
-        for (Account item : accountList)
+        for (Account item : accountList) {
             idSet.add(item.Id);
+        }
 
         // Create a user which will not have access to the test object type
         User testUser = createChatterExternalUser();
-        if (testUser == null)
-            return; // Abort the test if unable to create a user with low enough acess
+        if (testUser == null) {
+            return;
+        } // Abort the test if unable to create a user with low enough acess
         System.runAs(testUser) {
             TestSObjectSelector selector = new TestSObjectSelector(false, false, false, true);
             try {
-                List<Account> result = (List<Account>) selector.selectById(idSet);
-            } catch (XAP_DAO_SOQL_DomainSecurityException e) {
+                selector.selectById(idSet);
+            }
+            catch (XAP_DAO_SOQL_DomainSecurityException e) {
                 System.assert(false, 'Did not expect an exception to be thrown');
             }
         }
@@ -119,9 +125,13 @@ public with sharing class AA0_SObjectSelectorTest {
     static testMethod void testSOQL() {
         TestSObjectSelector selector = new TestSObjectSelector();
         String soql = selector.createQueryFactory().toSOQL();
-        Pattern p = Pattern.compile('SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST ');
+        Pattern p = Pattern.compile(
+                'SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST '
+        );
         Matcher m = p.matcher(soql);
-        System.assert(m.matches(), 'Generated SOQL does not match expected pattern. Here is the generated SOQL: ' + soql);
+        System.assert(
+                m.matches(), 'Generated SOQL does not match expected pattern. Here is the generated SOQL: ' + soql
+        );
         System.assertEquals(1, m.groupCount(), 'Unexpected number of groups captured.');
         String fieldListString = m.group(1);
         assertFieldListString(fieldListString, null);
@@ -158,7 +168,7 @@ public with sharing class AA0_SObjectSelectorTest {
     }
 
 
-    @isTest
+    @IsTest
     static void testWithoutSorting() {
         //Given
         TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
@@ -175,16 +185,18 @@ public with sharing class AA0_SObjectSelectorTest {
         String soql = qf.toSOQL();
 
         //Then
-        Pattern soqlPattern = Pattern.compile('SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST ');
+        Pattern soqlPattern = Pattern.compile(
+                'SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST '
+        );
         Matcher soqlMatcher = soqlPattern.matcher(soql);
         soqlMatcher.matches();
 
-        List<String> actualSelectFields = soqlMatcher.group(1).deleteWhiteSpace().split(',');
+        List<String> actualSelectFields = soqlMatcher.group(1).deleteWhitespace().split(',');
         System.assertEquals(expectedSelectFields, new Set<String>(actualSelectFields));
     }
 
     // Test case of ordering with NULLS LAST option passed into the ordering method
-    @isTest
+    @IsTest
     static void testWithOrderingNullsLast() {
         // Build the selector to test with
         TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
@@ -202,16 +214,11 @@ public with sharing class AA0_SObjectSelectorTest {
         String soql = qf.toSOQL();
 
         // Assert that the
-        Pattern soqlPattern = Pattern.compile('SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST ');
+        Pattern soqlPattern = Pattern.compile(
+                'SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST '
+        );
         Matcher soqlMatcher = soqlPattern.matcher(soql);
         System.assert(soqlMatcher.matches(), 'The SOQL should have that expected.');
-    }
-
-    private static void assertEqualsSelectFields(String expectedSelectFields, String actualSelectFields) {
-        Set<String> expected = new Set<String>(expectedSelectFields.deleteWhiteSpace().split(','));
-        Set<String> actual = new Set<String>(actualSelectFields.deleteWhiteSpace().split(','));
-
-        System.assertEquals(expected, actual);
     }
 
     private class TestSObjectSelector extends AA0_SObjectSelectorAbs {
@@ -219,7 +226,12 @@ public with sharing class AA0_SObjectSelectorTest {
             super();
         }
 
-        public TestSObjectSelector(Boolean includeFieldSetFields, Boolean enforceCRUD, Boolean enforceFLS, Boolean sortSelectFields) {
+        public TestSObjectSelector(
+                Boolean includeFieldSetFields,
+                Boolean enforceCRUD,
+                Boolean enforceFLS,
+                Boolean sortSelectFields
+        ) {
             super(includeFieldSetFields, enforceCRUD, enforceFLS, sortSelectFields);
         }
 
@@ -232,8 +244,8 @@ public with sharing class AA0_SObjectSelectorTest {
             };
         }
 
-        public Schema.SObjectType getSObjectType() {
-            return Account.sObjectType;
+        public SObjectType getSObjectType() {
+            return Account.SObjectType;
         }
 
         public override String getOrderBy() {
@@ -246,16 +258,28 @@ public with sharing class AA0_SObjectSelectorTest {
      **/
     private static User createChatterExternalUser() {
         // Can only proceed with test if we have a suitable profile - Chatter External license has no access to Opportunity
-        List<Profile> testProfiles = [Select Id From Profile where UserLicense.Name = 'Chatter External' limit 1];
-        if (testProfiles.size() != 1)
+        List<Profile> testProfiles = [SELECT Id FROM Profile WHERE UserLicense.Name = 'Chatter External' LIMIT 1];
+        if (testProfiles.size() != 1) {
             return null;
+        }
 
         // Can only proceed with test if we can successfully insert a test user
         String testUsername = System.now().format('yyyyMMddhhmmss') + '@testorg.com';
-        User testUser = new User(Alias = 'test1', Email = 'testuser1@testorg.com', EmailEncodingKey = 'UTF-8', LastName = 'Testing', LanguageLocaleKey = 'en_US', LocaleSidKey = 'en_US', ProfileId = testProfiles[0].Id, TimeZoneSidKey = 'America/Los_Angeles', UserName = testUsername);
+        User testUser = new User(
+                Alias = 'test1',
+                Email = 'testuser1@testorg.com',
+                EmailEncodingKey = 'UTF-8',
+                LastName = 'Testing',
+                LanguageLocaleKey = 'en_US',
+                LocaleSidKey = 'en_US',
+                ProfileId = testProfiles[0].Id,
+                TimeZoneSidKey = 'America/Los_Angeles',
+                Username = testUsername
+        );
         try {
             insert testUser;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             return null;
         }
         return testUser;

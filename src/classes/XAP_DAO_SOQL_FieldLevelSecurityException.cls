@@ -2,7 +2,7 @@ public class XAP_DAO_SOQL_FieldLevelSecurityException extends XAP_DAO_SOQL_Secur
     private Schema.SObjectField sObjectField;
 
     public XAP_DAO_SOQL_FieldLevelSecurityException(
-            Schema.SObjectType sObjectType,
+            SObjectType sObjectType,
             Schema.SObjectField sObjectField
     ) {
         this.sObjectType = sObjectType;

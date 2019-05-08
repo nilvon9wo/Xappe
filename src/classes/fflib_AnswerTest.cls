@@ -5,12 +5,12 @@
 /**
  * @nodoc
  */
-@isTest
+@IsTest
 private class fflib_AnswerTest {
 
     private static fflib_InvocationOnMock actualInvocation = null;
 
-    @isTest
+    @IsTest
     static void thatAnswersWithException() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -31,7 +31,7 @@ private class fflib_AnswerTest {
         }
     }
 
-    @isTest
+    @IsTest
     static void thatStoresMethodIntoInvocationOnMock() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -53,7 +53,7 @@ private class fflib_AnswerTest {
         System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod) methodCalled).toString(), ' the method is no the one expected');
     }
 
-    @isTest
+    @IsTest
     static void thatAnswerOnlyForTheMethodStubbedWithAnswer() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -79,7 +79,7 @@ private class fflib_AnswerTest {
         System.assertEquals('ted', noAnswered, 'the get method should have returned the stubbed string');
     }
 
-    @isTest
+    @IsTest
     static void thatMultipleAnswersAreHandled() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -99,7 +99,7 @@ private class fflib_AnswerTest {
         System.assertEquals('and this is the second one', answer2, 'the answer wasnt the one expected');
     }
 
-    @isTest
+    @IsTest
     static void thatStoresMockInstanceIntoInvocationOnMock() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -117,7 +117,7 @@ private class fflib_AnswerTest {
         System.assertEquals(mockList, actualInvocation.getMock(), 'the mock returned should be the mockList used in the stubbing');
     }
 
-    @isTest
+    @IsTest
     static void thatMethodsParametersAreAccessible() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -134,7 +134,7 @@ private class fflib_AnswerTest {
         System.assertEquals('Bye hi Hello Bye hi', actualValue, 'the answer is not correct');
     }
 
-    @isTest
+    @IsTest
     static void thatAnswerOnlyForTheStubbedParameter() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -155,7 +155,7 @@ private class fflib_AnswerTest {
         System.assertEquals(null, actualValue3, 'the answer is not correct');
     }
 
-    @isTest
+    @IsTest
     static void thatMethodsParametersAreAccessibleWhenCalledWithMatchers() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -172,7 +172,7 @@ private class fflib_AnswerTest {
         System.assertEquals('Bye hi Hello Bye hi', actualValue, 'the answer is not correct');
     }
 
-    @isTest
+    @IsTest
     static void thatExceptionIsThrownWhenAccessOutOfIndexArgument() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -186,7 +186,7 @@ private class fflib_AnswerTest {
         String actualValue = mockList.get2(0, 'Hi hi Hello Hi hi');
     }
 
-    @isTest
+    @IsTest
     static void thatExceptionIsThrownWhenAccessNegativeIndexArgument() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -200,7 +200,7 @@ private class fflib_AnswerTest {
         String actualValue = mockList.get2(0, 'Hi hi Hello Hi hi');
     }
 
-    @isTest
+    @IsTest
     static void thatArgumentListEmptyForMethodWithNoArgument() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -214,7 +214,7 @@ private class fflib_AnswerTest {
         Boolean actualValue = mockList.isEmpty();
     }
 
-    @isTest
+    @IsTest
     static void thatAnswerToVoidMethod() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -235,7 +235,7 @@ private class fflib_AnswerTest {
         System.assertEquals(expectedMethodSignature, ((fflib_QualifiedMethod) methodCalled).toString(), 'Unexpected method name: ' + methodCalled);
     }
 
-    @isTest
+    @IsTest
     static void thatAnswerToVoidAndNotVoidMethods() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -264,7 +264,7 @@ private class fflib_AnswerTest {
         System.assertEquals('and this is the second one', answer2, 'the answer was not the one expected');
     }
 
-    @isTest
+    @IsTest
     static void thatAnswerToDifferentVoidMethods() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();

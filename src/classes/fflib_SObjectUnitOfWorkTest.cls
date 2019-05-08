@@ -27,15 +27,15 @@
 @IsTest
 private with sharing class fflib_SObjectUnitOfWorkTest {
     // SObjects (in order of dependency) used by UnitOfWork in tests bellow
-    private static List<Schema.SObjectType> MY_SOBJECTS =
-            new Schema.SObjectType[]{
+    private static List<SObjectType> MY_SOBJECTS =
+            new SObjectType[]{
                     Product2.SObjectType,
                     PricebookEntry.SObjectType,
                     Opportunity.SObjectType,
                     OpportunityLineItem.SObjectType
             };
 
-    @isTest
+    @IsTest
     private static void testUnitOfWorkEmail() {
         string testRecordName = 'UoW Test Name 1';
 
@@ -69,7 +69,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
         System.assertEquals(1, opps.size());
     }
 
-    @isTest
+    @IsTest
     private static void testUnitOfWorkNewDirtyDelete() {
         // Insert Opportunities with UnitOfWork
         {
@@ -228,7 +228,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      *		- Correct events are fired when commitWork completes successfully
      *
      */
-    @isTest
+    @IsTest
     private static void testDerivedUnitOfWork_CommitSuccess() {
         // Insert Opporunities with UnitOfWork
         DerivedUnitOfWork uow = new DerivedUnitOfWork(MY_SOBJECTS);
@@ -277,7 +277,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
                 , 'onPublishAfterSuccessEventsFinished'
                 , 'onCommitWorkFinished - true'
         }
-                , uow.getCommitWorkEventsFired(), new Set<Schema.SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
+                , uow.getCommitWorkEventsFired(), new Set<SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
     }
 
     /**
@@ -288,7 +288,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      *		- Correct events are fired when commitWork fails during DML processing
      *
      */
-    @isTest
+    @IsTest
     private static void testDerivedUnitOfWork_CommitDMLFail() {
         // Insert Opporunities with UnitOfWork forcing a failure on DML by not setting 'Name' field
         DerivedUnitOfWork uow = new DerivedUnitOfWork(MY_SOBJECTS);
@@ -321,7 +321,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
                 , 'onPublishAfterFailureEventsFinished'
                 , 'onCommitWorkFinished - false'
         }
-                , uow.getCommitWorkEventsFired(), new Set<Schema.SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
+                , uow.getCommitWorkEventsFired(), new Set<SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
     }
 
     /**
@@ -332,7 +332,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      *		- Correct events are fired when commitWork fails during DoWork processing
      *
      */
-    @isTest
+    @IsTest
     private static void testDerivedUnitOfWork_CommitDoWorkFail() {
         // Insert Opporunities with UnitOfWork
         DerivedUnitOfWork uow = new DerivedUnitOfWork(MY_SOBJECTS);
@@ -375,7 +375,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
                 , 'onPublishAfterFailureEventsFinished'
                 , 'onCommitWorkFinished - false'
         }
-                , uow.getCommitWorkEventsFired(), new Set<Schema.SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
+                , uow.getCommitWorkEventsFired(), new Set<SObjectType>(MY_SOBJECTS), uow.getRegisteredTypes());
     }
 
     /**
@@ -385,7 +385,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      *
      *      - Exception is thrown stopping second registration
      */
-    @isTest
+    @IsTest
     private static void testRegisterDirty_ExpectReplacement() {
         final Opportunity insertedOpp = new Opportunity(Name = 'Original', StageName = 'Open', CloseDate = System.today());
         insert insertedOpp;
@@ -409,7 +409,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      *
      *      - field is updated
      */
-    @isTest
+    @IsTest
     private static void testRegisterDirty_field() {
         Opportunity opp = new Opportunity(Name = 'test name', StageName = 'Open', CloseDate = System.today());
         insert opp;
@@ -428,7 +428,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
         System.assertEquals(opp.Amount, amountUpdate.Amount);
     }
 
-    @isTest
+    @IsTest
     private static void testRegisterUpsert() {
         Opportunity existingOpp = new Opportunity(Name = 'Existing Opportunity', StageName = 'Open', CloseDate = System.today());
         insert existingOpp;
@@ -456,7 +456,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      * Assert that actual events exactly match expected events (size, order and name)
      * and types match expected types
      */
-    private static void assertEvents(List<String> expectedEvents, List<String> actualEvents, Set<Schema.SObjectType> expectedTypes, Set<Schema.SObjectType> actualTypes) {
+    private static void assertEvents(List<String> expectedEvents, List<String> actualEvents, Set<SObjectType> expectedTypes, Set<SObjectType> actualTypes) {
         // assert that events match
         System.assertEquals(expectedEvents.size(), actualEvents.size(), 'events size');
         for (Integer i = 0; i < expectedEvents.size(); i++) {
@@ -467,7 +467,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
 
         // assert that types match
         System.assertEquals(expectedTypes.size(), actualTypes.size(), 'types size');
-        for (Schema.SObjectType sObjectType : expectedTypes) {
+        for (SObjectType sObjectType : expectedTypes) {
             System.assertEquals(true, actualTypes.contains(sObjectType), String.format('Type {0} was not registered.', new List<String>{
                     sObjectType.getDescribe().getName()
             }));
@@ -488,21 +488,21 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
      */
     private class DerivedUnitOfWork extends fflib_SObjectUnitOfWork {
         private List<String> m_commitWorkEventsFired = new List<String>();
-        private Set<Schema.SObjectType> m_registeredTypes = new Set<Schema.SObjectType>();
+        private Set<SObjectType> m_registeredTypes = new Set<SObjectType>();
 
         public List<String> getCommitWorkEventsFired() {
             return m_commitWorkEventsFired.clone();
         }
 
-        public Set<Schema.SObjectType> getRegisteredTypes() {
+        public Set<SObjectType> getRegisteredTypes() {
             return m_registeredTypes.clone();
         }
 
-        public DerivedUnitOfWork(List<Schema.SObjectType> sObjectTypes) {
+        public DerivedUnitOfWork(List<SObjectType> sObjectTypes) {
             super(sObjectTypes);
         }
 
-        public DerivedUnitOfWork(List<Schema.SObjectType> sObjectTypes, IDML dml) {
+        public DerivedUnitOfWork(List<SObjectType> sObjectTypes, IDML dml) {
             super(sObjectTypes, dml);
         }
 
@@ -519,7 +519,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
             m_commitWorkEventsFired.add(event);
         }
 
-        public override void onRegisterType(Schema.SObjectType sObjectType) {
+        public override void onRegisterType(SObjectType sObjectType) {
             if (m_registeredTypes.contains(sObjectType)) {
                 throw new DerivedUnitOfWorkException(String.format('Type {0} has already been registered.', new List<String>{
                         sObjectType.getDescribe().getName()
@@ -598,7 +598,7 @@ private with sharing class fflib_SObjectUnitOfWorkTest {
             // have email enabled.
         }
 
-        private boolean doWorkWasCalled = false;
+        private Boolean doWorkWasCalled = false;
     }
 
     public class DerivedUnitOfWorkException extends Exception {

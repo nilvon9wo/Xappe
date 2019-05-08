@@ -478,10 +478,10 @@ public class fflib_Match {
 
     /**
      * Registers a matcher which will check if the method is called with an arg that matches anyFieldSet
-     * @return Schema.FieldSet A dummy object of the correct type, so that when called inline as part of a method call, the correct method is invoked.
+     * @return FieldSet A dummy object of the correct type, so that when called inline as part of a method call, the correct method is invoked.
      */
-    public static Schema.FieldSet anyFieldSet() {
-        return (Schema.FieldSet) matches(new fflib_MatcherDefinitions.AnyFieldSet());
+    public static FieldSet anyFieldSet() {
+        return (FieldSet) matches(new fflib_MatcherDefinitions.AnyFieldSet());
     }
 
     /**
@@ -799,10 +799,10 @@ public class fflib_Match {
     /**
      * Registers a matcher which will check if the method is called with an arg that matches FieldSetEquivalentTo
      * @param toMatch The fieldSet to be compared
-     * @return Schema.FieldSet A dummy object of the correct type, so that when called inline as part of a method call, the correct method is invoked.
+     * @return FieldSet A dummy object of the correct type, so that when called inline as part of a method call, the correct method is invoked.
      */
-    public static Schema.FieldSet fieldSetEquivalentTo(Schema.FieldSet toMatch) {
-        return (Schema.FieldSet) matches(new fflib_MatcherDefinitions.FieldSetEquivalentTo(toMatch));
+    public static FieldSet fieldSetEquivalentTo(FieldSet toMatch) {
+        return (FieldSet) matches(new fflib_MatcherDefinitions.FieldSetEquivalentTo(toMatch));
     }
 
     /**
@@ -963,7 +963,7 @@ public class fflib_Match {
      * @param objectType The SObjectType to be compared
      * @return SObject a dummy object of the correct type, so that when called inline as part of a method call, the correct method is invoked
      */
-    public static SObject sObjectOfType(Schema.SObjectType objectType) {
+    public static SObject sObjectOfType(SObjectType objectType) {
         return (SObject) matches(new fflib_MatcherDefinitions.SObjectOfType(objectType));
     }
     /**

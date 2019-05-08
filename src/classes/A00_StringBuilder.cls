@@ -117,7 +117,7 @@ public virtual class A00_StringBuilder {
 
             if (fieldSets != null)
                 for (Schema.Fieldset fieldSet : fieldSets)
-                    for (Schema.FieldSetMember fieldSetMember : fieldSet.getFields())
+                    for (FieldSetMember fieldSetMember : fieldSet.getFields())
                         add(fieldSetMember.getFieldPath());
         }
     }
@@ -130,7 +130,7 @@ public virtual class A00_StringBuilder {
             this(values, null);
         }
 
-        public MultiCurrencyFieldListBuilder(List<Schema.SObjectField> values, List<Schema.FieldSet> fieldSets) {
+        public MultiCurrencyFieldListBuilder(List<Schema.SObjectField> values, List<FieldSet> fieldSets) {
             super(values, fieldSets);
 
             // Dynamically add CurrencyIsoCode field for mult-currency organisations

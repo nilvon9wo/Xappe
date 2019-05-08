@@ -21,14 +21,14 @@ public class XAP_DAO_SOQL_QueryFactoryFieldHelper {
         return instance;
     }
 
-    public Set<String> addFields(XAP_DAO_SOQL_Query query, Schema.FieldSet fieldSet, Boolean allowCrossObject) {
+    public Set<String> addFields(XAP_DAO_SOQL_Query query, FieldSet fieldSet, Boolean allowCrossObject) {
         if (fieldSet.getSObjectType() != query.sObjectType) {
             throw new XAP_DAO_SOQL_InvalidFieldSetException(
                     'Field set "' + fieldSet.getName() + '" is not for SObject type "' + query.sObjectType + '"'
             );
         }
 
-        for (Schema.FieldSetMember field : fieldSet.getFields()) {
+        for (FieldSetMember field : fieldSet.getFields()) {
             if (!allowCrossObject && field.getFieldPath().contains('.')) {
                 throw new XAP_DAO_SOQL_InvalidFieldSetException(
                         'Cross-object query.fieldSet not allowed and field "'

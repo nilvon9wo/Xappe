@@ -6,14 +6,14 @@ public class XAP_DAO_SOQL_Query {
     private static transient final Boolean UNSORTTED_SELECT_FIELDS = false;
 
     private XAP_DAO_SOQL_SecurityUtils securityUtils;
-    public Schema.SObjectType sObjectType { get; private set; }
+    public SObjectType sObjectType { get; private set; }
 
-    public XAP_DAO_SOQL_Query(Schema.SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
+    public XAP_DAO_SOQL_Query(SObjectType sObjectType, XAP_DAO_SOQL_SecurityUtils securityUtils) {
         this.securityUtils = securityUtils;
         this.sObjectType = sObjectType;
     }
 
-    public XAP_DAO_SOQL_Query(Schema.SObjectType sObjectType) {
+    public XAP_DAO_SOQL_Query(SObjectType sObjectType) {
         this(sObjectType, XAP_DAO_SOQL_SecurityUtils.getInstance());
     }
 

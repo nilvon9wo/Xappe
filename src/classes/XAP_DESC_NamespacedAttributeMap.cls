@@ -7,7 +7,7 @@ public abstract class XAP_DESC_NamespacedAttributeMap {
     protected XAP_DESC_NamespacedAttributeMap(Map<String, Object> valueByNameMap) {
         this.currentNamespace = XAP_DESC_SObjectDescribe.class
                 .getName()
-                .substringBefore('XAP_DESC_SObjectDescribe')
+                .substringBefore('XAP_DESC_NamespacedAttributeMap')
                 .removeEnd('.')
                 .toLowerCase();
 

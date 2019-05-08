@@ -35,13 +35,13 @@ public virtual class XAP_UTIL_SObjectListExtractor {
                 .extractFrom(sObjectList);
     }
 
-    public virtual List<SObject> extractWhereTrue(List<SObject> sObjectList, SObjectField booleanField) {
-        return new ListExtractor(new XAP_PRED_SObjectFieldTargetFieldIsTrue(booleanField))
+    public virtual List<SObject> extractWhereTrue(List<SObject> sObjectList, SObjectField BooleanField) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldTargetFieldIsTrue(BooleanField))
                 .extractFrom(sObjectList);
     }
 
-    public virtual List<SObject> extractWhereFalse(List<SObject> sObjectList, SObjectField booleanField) {
-        return new ListExtractor(new XAP_PRED_SObjectFieldTargetFieldIsFalse(booleanField))
+    public virtual List<SObject> extractWhereFalse(List<SObject> sObjectList, SObjectField BooleanField) {
+        return new ListExtractor(new XAP_PRED_SObjectFieldTargetFieldIsFalse(BooleanField))
                 .extractFrom(sObjectList);
     }
 

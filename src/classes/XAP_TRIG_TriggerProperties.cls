@@ -73,10 +73,10 @@ public class XAP_TRIG_TriggerProperties {
                 : null;
     }
 
-    public List<SObject> collectListForNewlyTrue(SObjectField booleanField) {
+    public List<SObject> collectListForNewlyTrue(SObjectField BooleanField) {
         return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
-                new XAP_PRED_SObjectFieldTargetFieldIsTrue(booleanField),
-                new XAP_PRED_SObjectFieldHasChanged(booleanField, this.oldSObjectByIdMap)
+                new XAP_PRED_SObjectFieldTargetFieldIsTrue(BooleanField),
+                new XAP_PRED_SObjectFieldHasChanged(BooleanField, this.oldSObjectByIdMap)
         });
     }
 

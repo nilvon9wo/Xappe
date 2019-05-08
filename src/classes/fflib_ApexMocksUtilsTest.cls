@@ -23,11 +23,11 @@
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-@isTest
+@IsTest
 public class fflib_ApexMocksUtilsTest {
-    public static Schema.FieldSet findAnyFieldSet() {
-        for (Schema.SObjectType objectType : Schema.getGlobalDescribe().values()) {
-            for (Schema.FieldSet fs : objectType.getDescribe().FieldSets.getMap().values()) {
+    public static FieldSet findAnyFieldSet() {
+        for (SObjectType objectType : Schema.getGlobalDescribe().values()) {
+            for (FieldSet fs : objectType.getDescribe().FieldSets.getMap().values()) {
                 return fs;
             }
         }
@@ -35,7 +35,7 @@ public class fflib_ApexMocksUtilsTest {
         return null;
     }
 
-    @isTest
+    @IsTest
     private static void makeRelationship_returnsObjectsWithRelationFieldSet() {
         //Given
         Account acc = new Account(

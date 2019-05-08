@@ -29,7 +29,7 @@
  * user does not have the proper security granted.
  **/
 public class A00_SecurityUtils {
-    @testVisible
+    @TestVisible
     private Enum OperationType {
         CREATE, READ, MODIFY, DEL
     } //UPDATE and DELETE are reserved words
@@ -41,7 +41,7 @@ public class A00_SecurityUtils {
     **/
     public virtual class SecurityException extends Exception {
         protected OperationType m_operation;
-        protected Schema.SObjectType m_objectType;
+        protected SObjectType m_objectType;
     }
 
     /**
@@ -50,7 +50,7 @@ public class A00_SecurityUtils {
      **/
     public class CrudException extends SecurityException {
 
-        private CrudException(OperationType operation, Schema.SObjectType objectType) {
+        private CrudException(OperationType operation, SObjectType objectType) {
             this.m_operation = operation;
             this.m_objectType = objectType;
             if (operation == OperationType.CREATE)
@@ -76,7 +76,7 @@ public class A00_SecurityUtils {
     public class FlsException extends SecurityException {
         private Schema.SObjectField m_fieldToken;
 
-        private FlsException(OperationType operation, Schema.SObjectType objectType, Schema.SObjectField fieldToken) {
+        private FlsException(OperationType operation, SObjectType objectType, Schema.SObjectField fieldToken) {
             this.m_operation = operation;
             this.m_objectType = objectType;
             this.m_fieldToken = fieldToken;
@@ -103,7 +103,7 @@ public class A00_SecurityUtils {
      * FLS and CRUD checks exists and is enabled.
      * Per security best practices setting BYPASS should be an a opt-in, and not the default behavior.
      **/
-    public static boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
+    public static Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
 
     /**
 	 * Check{Insert,Read,Update} methods check both FLS and CRUD
@@ -190,7 +190,7 @@ public class A00_SecurityUtils {
      * @exception FlsException if the running user does not have insert rights to the {@code fieldName} field.
     **/
     public static void checkFieldIsInsertable(SObjectType objType, String fieldName) {
-        checkFieldIsInsertable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
+        checkFieldIsInsertable(objType, XAP_DESC_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**
@@ -217,7 +217,7 @@ public class A00_SecurityUtils {
      * @exception FlsException if the running user does not have read rights to the {@code fieldName} field.
     **/
     public static void checkFieldIsReadable(SObjectType objType, String fieldName) {
-        checkFieldIsReadable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
+        checkFieldIsReadable(objType, XAP_DESC_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**
@@ -245,7 +245,7 @@ public class A00_SecurityUtils {
      * @exception FlsException if the running user does not have update rights to the {@code fieldName} field.
     **/
     public static void checkFieldIsUpdateable(SObjectType objType, String fieldName) {
-        checkFieldIsUpdateable(objType, A00_SObjectDescribe.getDescribe(objType).getField(fieldName));
+        checkFieldIsUpdateable(objType, XAP_DESC_SObjectDescribe.getDescribe(objType).getField(fieldName));
     }
 
     /**

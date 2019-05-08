@@ -46,4 +46,13 @@ public class XAP_DAO_SOQL_QuerySortOrdering {
                 + (this.direction == XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING ? 'ASC' : 'DESC')
                 + ' NULLS ' + (this.nullsLast ? 'LAST' : 'FIRST') + ' ';
     }
+
+    public Boolean equals(Object obj) {
+        return obj instanceof XAP_DAO_SOQL_QuerySortOrdering
+                && ((XAP_DAO_SOQL_QuerySortOrdering) obj).direction == this.direction
+                && ((XAP_DAO_SOQL_QuerySortOrdering) obj).nullsLast == this.nullsLast
+                && ((XAP_DAO_SOQL_QuerySortOrdering) obj).field == this.field;
+    }
+
+
 }

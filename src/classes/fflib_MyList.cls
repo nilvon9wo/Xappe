@@ -5,7 +5,7 @@
 /**
  * @nodoc
  */
-@isTest
+@IsTest
 public with sharing class fflib_MyList implements IList {
     public interface IList {
         void add(String value);

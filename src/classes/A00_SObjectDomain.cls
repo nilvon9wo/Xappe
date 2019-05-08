@@ -48,7 +48,7 @@ public virtual with sharing class A00_SObjectDomain
     /**
      * Derived from the records provided during construction, provides the native describe for the standard or custom object
      **/
-    public Schema.DescribeSObjectResult SObjectDescribe { get; private set; }
+    public DescribeSObjectResult SObjectDescribe { get; private set; }
 
     /**
      * Exposes the configuration for this domain class instance
@@ -99,7 +99,7 @@ public virtual with sharing class A00_SObjectDomain
      * Constructs the domain class with the data and type on which to apply the behaviour implemented within
      *
      * @param sObjectList A list (e.g. List<Opportunity>, List<Account>, etc.) of records
-     * @param sObjectType The Schema.SObjectType of the records contained in the list
+     * @param sObjectType The SObjectType of the records contained in the list
      *
      * @remark Will support List<SObject> but all records in the list will be assumed to be of
      *         the type specified in sObjectType
@@ -418,14 +418,14 @@ public virtual with sharing class A00_SObjectDomain
     }
 
     public class TriggerEvent {
-        public boolean BeforeInsertEnabled { get; private set; }
-        public boolean BeforeUpdateEnabled { get; private set; }
-        public boolean BeforeDeleteEnabled { get; private set; }
+        public Boolean BeforeInsertEnabled { get; private set; }
+        public Boolean BeforeUpdateEnabled { get; private set; }
+        public Boolean BeforeDeleteEnabled { get; private set; }
 
-        public boolean AfterInsertEnabled { get; private set; }
-        public boolean AfterUpdateEnabled { get; private set; }
-        public boolean AfterDeleteEnabled { get; private set; }
-        public boolean AfterUndeleteEnabled { get; private set; }
+        public Boolean AfterInsertEnabled { get; private set; }
+        public Boolean AfterUpdateEnabled { get; private set; }
+        public Boolean AfterDeleteEnabled { get; private set; }
+        public Boolean AfterUndeleteEnabled { get; private set; }
 
         public TriggerEvent() {
             this.enableAll();
@@ -504,7 +504,7 @@ public virtual with sharing class A00_SObjectDomain
             return this.disableAfterInsert().disableAfterUpdate().disableAfterDelete().disableAfterUndelete();
         }
 
-        public boolean isEnabled(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate, Boolean isDelete, Boolean isUndelete) {
+        public Boolean isEnabled(Boolean isBefore, Boolean isAfter, Boolean isInsert, Boolean isUpdate, Boolean isDelete, Boolean isUndelete) {
             if (isBefore) {
                 if (isInsert) return BeforeInsertEnabled; else if (isUpdate) return BeforeUpdateEnabled; else if (isDelete) return BeforeDeleteEnabled;
             } else if (isAfter) {

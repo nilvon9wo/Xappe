@@ -4,9 +4,9 @@
 /**
  * @nodoc
  */
-@isTest
+@IsTest
 private class fflib_ArgumentCaptorTest {
-    @isTest
+    @IsTest
     static void thatArgumentValueIsCaptured() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -22,7 +22,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Fred', (String) argument.getValue(), 'the argument captured is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCanPerformFurtherAssertionsOnCapturedArgumentValue() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -51,7 +51,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('5', testValueCaptured.s, 'the values inside the argument captured should be the same of the original one');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureArgumentOnlyFromVerifiedMethod() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -72,7 +72,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals(1, argument.getAllValues().size(), 'the argument captured should be only one');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArgumentsForTheVerifiedMethods() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -102,7 +102,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Fred', (String) argsCaptured[0], 'the first value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureArgumentFromRequestedParameter() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -125,7 +125,7 @@ private class fflib_ArgumentCaptorTest {
                 'the argument captured is not as expected, should be Wilma because is the 3rd parameter in the call');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureLastArgument() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -143,7 +143,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Fred', (String) argument.getValue(), 'the argument captured is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArguments() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -170,7 +170,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Betty', (String) argsCaptured[3], 'the forth value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArgumentsFromMultipleMethods() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -201,7 +201,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('pebble', (String) argsCaptured[2], 'the third value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCanHandleMultipleCapturesInOneMethodCall() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -229,7 +229,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Wilma', (String) argsCaptured[1], 'the second value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatDoesNotCaptureIfNotVerified() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -251,7 +251,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals(null, argument.getValue(), 'no value should be captured, so must return null');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureOnlyMethodsThatMatchesWithOtherMatcherAsWell() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -273,7 +273,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('First call', (String) argument.getValue());
     }
 
-    @isTest
+    @IsTest
     static void thatDoesNotCaptureAnythingWhenCaptorIsWrappedInAMatcher() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -311,7 +311,7 @@ private class fflib_ArgumentCaptorTest {
                 'nothing should have been capture because the matcher it not really a capture type, but a allOf()');
     }
 
-    @isTest
+    @IsTest
     static void thatArgumentValueIsCapturedWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -331,7 +331,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Fred', (String) argument.getValue(), 'the argument captured is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCanPerformFurtherAssertionsOnCapturedArgumentValueWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -364,7 +364,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('5', testValueCaptured.s, 'the values inside the argument captured should be the same of the original one');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureArgumentOnlyFromVerifiedMethodWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -389,7 +389,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals(1, argument.getAllValues().size(), 'the argument captured should be only one');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArgumentsForTheVerifiedMethodsWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -423,7 +423,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Fred', (String) argsCaptured[0], 'the first value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureArgumentFromRequestedParameterWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -450,7 +450,7 @@ private class fflib_ArgumentCaptorTest {
                 'the argument captured is not as expected, should be Wilma because is the 3rd parameter in the call');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureLastArgumentWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -472,7 +472,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Fred', (String) argument.getValue(), 'the argument captured is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArgumentsWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -503,7 +503,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Betty', (String) argsCaptured[3], 'the forth value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArgumentsFromMultipleMethodsWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -538,7 +538,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('pebble', (String) argsCaptured[2], 'the third value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatCanHandleMultipleCapturesInOneMethodCallWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -570,7 +570,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('Wilma', (String) argsCaptured[1], 'the second value is not as expected');
     }
 
-    @isTest
+    @IsTest
     static void thatDoesNotCaptureIfNotVerifiedWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -596,7 +596,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals(null, argument.getValue(), 'no value should be captured, so must return null');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureOnlyMethodsThatMatchesWithOtherMatcherAsWellWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -622,7 +622,7 @@ private class fflib_ArgumentCaptorTest {
         System.assertEquals('First call', (String) argument.getValue());
     }
 
-    @isTest
+    @IsTest
     static void thatDoesNotCaptureAnythingWhenCaptorIsWrappedInAMatcherWithInOrderVerification() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();
@@ -664,7 +664,7 @@ private class fflib_ArgumentCaptorTest {
                 'nothing should have been capture because the matcher it not really a capture type, but a allOf()');
     }
 
-    @isTest
+    @IsTest
     static void thatCaptureAllArgumentswhenMethodIsCalledWithTheSameArgument() {
         // Given
         fflib_ApexMocks mocks = new fflib_ApexMocks();

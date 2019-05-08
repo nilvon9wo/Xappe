@@ -43,7 +43,7 @@ public class XAP_DAO_SOQL_QueryFactoryRelationHelper {
 
     public List<String> transverseRelationships(XAP_DAO_SOQL_Query query, String fieldName) {
         List<String> fieldPath = new List<String>();
-        Schema.SObjectType lastSObjectType = query.sObjectType;
+        SObjectType lastSObjectType = query.sObjectType;
         Iterator<String> fieldIterator = fieldName.split('\\.').iterator();
         while (fieldIterator.hasNext()) {
             String field = fieldIterator.next();

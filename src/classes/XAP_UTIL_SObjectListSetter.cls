@@ -10,20 +10,20 @@ public virtual class XAP_UTIL_SObjectListSetter {
         return instance;
     }
 
-    public virtual List<SObject> setAllTrue(List<SObject> sObjectList, Set<SObjectField> booleanFieldSet) {
-        return this.setAllToValue(sObjectList, booleanFieldSet, true);
+    public virtual List<SObject> setAllTrue(List<SObject> sObjectList, Set<SObjectField> BooleanFieldSet) {
+        return this.setAllToValue(sObjectList, BooleanFieldSet, true);
     }
 
-    public virtual List<SObject> setAllTrue(List<SObject> sObjectList, SObjectField booleanField) {
-        return this.setAllToValue(sObjectList, booleanField, true);
+    public virtual List<SObject> setAllTrue(List<SObject> sObjectList, SObjectField BooleanField) {
+        return this.setAllToValue(sObjectList, BooleanField, true);
     }
 
-    public virtual List<SObject> setAllFalse(List<SObject> sObjectList, Set<SObjectField> booleanFieldSet) {
-        return this.setAllToValue(sObjectList, booleanFieldSet, false);
+    public virtual List<SObject> setAllFalse(List<SObject> sObjectList, Set<SObjectField> BooleanFieldSet) {
+        return this.setAllToValue(sObjectList, BooleanFieldSet, false);
     }
 
-    public virtual List<SObject> setAllFalse(List<SObject> sObjectList, SObjectField booleanField) {
-        return this.setAllToValue(sObjectList, booleanField, false);
+    public virtual List<SObject> setAllFalse(List<SObject> sObjectList, SObjectField BooleanField) {
+        return this.setAllToValue(sObjectList, BooleanField, false);
     }
 
     public virtual List<SObject> setAllNull(List<SObject> sObjectList, Set<SObjectField> sObjectFieldSet) {

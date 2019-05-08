@@ -87,7 +87,8 @@ private class AA0_QueryFactoryTest {
         XAP_DAO_SOQL_NonReferenceFieldException e;
         try {
             qf.addField('name.title');
-        } catch (XAP_DAO_SOQL_NonReferenceFieldException ex) {
+        }
+        catch (XAP_DAO_SOQL_NonReferenceFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e, 'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
@@ -99,7 +100,8 @@ private class AA0_QueryFactoryTest {
         XAP_DAO_SOQL_InvalidFieldException e;
         try {
             qf.addField('account.NOT_A_REAL_FIELD');
-        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e, 'Cross-object notation on a non-reference field should throw NonReferenceFieldException.');
@@ -111,28 +113,32 @@ private class AA0_QueryFactoryTest {
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         try {
             qf.addField('Not_a_field');
-        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
             qf.addFields(new Set<String>{
                     'Not_a_field', 'alsoNotreal'
             });
-        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
             qf.addFields(new Set<Schema.SObjectField>{
                     null
             });
-        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         try {
             qf.addFields(new List<Schema.SObjectField>{
                     null, Contact.title
             });
-        } catch (XAP_DAO_SOQL_InvalidFieldException e) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException e) {
             exceptions.add(e);
         }
         System.assertEquals(4, exceptions.size());
@@ -144,7 +150,16 @@ private class AA0_QueryFactoryTest {
         qf.addField('name');
         qf.addField('email');
         qf.setCondition('name = \'test\'');
-        qf.addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering(new AA0_QueryFactory.Ordering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING));
+        qf.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering(
+                'Contact',
+                'name',
+                XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING
+        ))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering(
+                'Contact',
+                'CreatedDATE',
+                XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING
+        ));
         String query = qf.toSOQL();
 
         System.assertEquals(2, qf.getOrderings().size());
@@ -164,7 +179,7 @@ private class AA0_QueryFactoryTest {
         qf.setCondition('name = \'test\'');
 
         //test base method with ordeting by OwnerId Descending
-        qf.setOrdering(new AA0_QueryFactory.Ordering('Contact', 'OwnerId', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING));
+        qf.setOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'OwnerId', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING));
 
         System.assertEquals(1, qf.getOrderings().size(), 'Unexpected order size - setOrder should replace default Orderings');
         System.assertEquals(Contact.OwnerId.getDescribe().getName(), qf.getOrderings()[0].getField(), 'Unexpected order field - should have been resolved from the field OwnerId');
@@ -207,7 +222,8 @@ private class AA0_QueryFactoryTest {
         Exception e;
         try {
             qf.addField('not_a__field');
-        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -222,7 +238,8 @@ private class AA0_QueryFactoryTest {
             qf.addFields(new List<String>{
                     'not_a__field'
             });
-        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -236,7 +253,8 @@ private class AA0_QueryFactoryTest {
         Schema.SObjectField token = null;
         try {
             qf.addField(token);
-        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -252,7 +270,8 @@ private class AA0_QueryFactoryTest {
         };
         try {
             qf.addFields(token);
-        } catch (XAP_DAO_SOQL_InvalidFieldException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException ex) {
             e = ex;
         }
         System.assertNotEquals(null, e);
@@ -263,9 +282,11 @@ private class AA0_QueryFactoryTest {
         try {
             String path = AA0_QueryFactory.getFieldTokenPath(null);
             System.assert(false, 'Expected InvalidFieldException; none was thrown');
-        } catch (XAP_DAO_SOQL_InvalidFieldException ife) {
+        }
+        catch (XAP_DAO_SOQL_InvalidFieldException ife) {
             //Expected
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             System.assert(false, 'Expected InvalidFieldException; ' + e.getTypeName() + ' was thrown instead: ' + e);
         }
     }
@@ -295,7 +316,7 @@ private class AA0_QueryFactoryTest {
 
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         qf.addField('name').addField('Id').setCondition('name like \'%test%\'').addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         //explicitly assert object accessibility when creating the subselect
         qf.subselectQuery('Tasks', true).addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
         List<AA0_QueryFactory> queries = qf.getSubselectQueries();
@@ -354,7 +375,7 @@ private class AA0_QueryFactoryTest {
 
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         qf.addField('name').addField('Id').setCondition('name like \'%test%\'').addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         Schema.ChildRelationship relationship;
         for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
@@ -391,7 +412,7 @@ private class AA0_QueryFactoryTest {
 
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         qf.addField('name').addField('Id').setCondition('name like \'%test%\'').addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         Schema.ChildRelationship relationship;
         for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
@@ -428,13 +449,14 @@ private class AA0_QueryFactoryTest {
 
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         qf.addField('name').addField('Id').setCondition('name like \'%test%\'').addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         //explicitly assert object accessibility when creating the subselect
         //
         Exception e;
         try {
             qf.subselectQuery('Tas').addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
-        } catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
         }
         System.assertNotEquals(e, null);
@@ -458,7 +480,7 @@ private class AA0_QueryFactoryTest {
 
         AA0_QueryFactory qf = new AA0_QueryFactory(Contact.SObjectType);
         qf.addField('name').addField('Id').setCondition('name like \'%test%\'').addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         //explicitly assert object accessibility when creating the subselect
         qf.subselectQuery(Task.SObjectType, true).addField('Id').addField('Subject').setCondition(' IsDeleted = false ');
         List<AA0_QueryFactory> queries = qf.getSubselectQueries();
@@ -488,8 +510,8 @@ private class AA0_QueryFactoryTest {
         qf.addField('name');
         qf.addField('Id');
         qf.setCondition('name like \'%test%\'');
-        qf.addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering('CreatedBy.Name', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        qf.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering('CreatedBy.Name', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         ChildRelationship relationship;
         for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
             if (childRow.getRelationshipName() == 'Tasks') {
@@ -521,14 +543,15 @@ private class AA0_QueryFactoryTest {
         qf.addField('name');
         qf.addField('email');
         qf.setCondition('name like \'%test%\'');
-        qf.addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
-        Schema.DescribeSObjectResult descResult = Account.SObjectType.getDescribe();
+        qf.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
+        DescribeSObjectResult descResult = Account.SObjectType.getDescribe();
         Exception e;
         try {
             SObjectType invalidType = null;
             AA0_QueryFactory childQf = qf.subselectQuery(invalidType);
             childQf.addField('Id');
-        } catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
         }
         System.assertNotEquals(e, null);
@@ -548,8 +571,8 @@ private class AA0_QueryFactoryTest {
         qf.addField('name');
         qf.addField('email');
         qf.setCondition('name like \'%test%\'');
-        qf.addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
-        Schema.DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
+        qf.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)).addOrdering('CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
+        DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
 
         AA0_QueryFactory childQf = qf.subselectQuery(Task.SObjectType);
         childQf.addField('Id');
@@ -557,7 +580,8 @@ private class AA0_QueryFactoryTest {
         Exception e;
         try {
             AA0_QueryFactory subChildQf = childQf.subselectQuery(Task.SObjectType);
-        } catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
+        }
+        catch (XAP_DAO_SOQL_InvalidSubqueryException ex) {
             e = ex;
         }
         System.assertNotEquals(e, null);
@@ -583,11 +607,11 @@ private class AA0_QueryFactoryTest {
                 .addFields(new Set<SObjectField>{
                 Contact.FirstName
         })
-                .addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
                 .addOrdering(Contact.LastModifiedDate, XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING)
                 .addOrdering(Contact.CreatedDate, XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
         Set<String> fields = qf.getSelectedFields();
-        AA0_QueryFactory.Ordering ordering = new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING);
+        XAP_DAO_SOQL_QuerySortOrdering ordering = new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING);
         System.assertEquals('Name', ordering.getField());
 
         System.assertEquals(new Set<String>{
@@ -614,7 +638,8 @@ private class AA0_QueryFactoryTest {
                 try {
                     //check to see if this record is accessible, it isn't.
                     qf.assertIsAccessible();
-                } catch (A00_SecurityUtils.CrudException e) {
+                }
+                catch (A00_SecurityUtils.CrudException e) {
                     excThrown = true;
                 }
                 System.assert(excThrown);
@@ -634,7 +659,8 @@ private class AA0_QueryFactoryTest {
                     //set field to enforce FLS, then try to add a field.
                     qf.setEnforceFLS(true);
                     qf.addField('Name');
-                } catch (A00_SecurityUtils.FlsException e) {
+                }
+                catch (A00_SecurityUtils.FlsException e) {
                     excThrown = true;
                 }
                 System.assert(excThrown);
@@ -681,8 +707,8 @@ private class AA0_QueryFactoryTest {
                 .setLimit(10)
                 .setCondition('id=12345')
                 .addField('Description')
-                .addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
-                .addOrdering(new AA0_QueryFactory.Ordering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
                 .setEnforceFLS(true);
 
         AA0_QueryFactory qf2 = qf.deepClone();
@@ -701,8 +727,8 @@ private class AA0_QueryFactoryTest {
                 .setLimit(10)
                 .setCondition('id=12345')
                 .addField('Description')
-                .addOrdering(new AA0_QueryFactory.Ordering('Account', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
-                .addOrdering(new AA0_QueryFactory.Ordering('Account', 'Description', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Account', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Account', 'Description', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
                 .setEnforceFLS(true);
 
         qf.subselectQuery('Contacts', true);
@@ -724,8 +750,8 @@ private class AA0_QueryFactoryTest {
                 .setLimit(10)
                 .setCondition('id=12345')
                 .addField('Description')
-                .addOrdering(new AA0_QueryFactory.Ordering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
-                .addOrdering(new AA0_QueryFactory.Ordering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'CreatedDATE', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING))
                 .setEnforceFLS(true);
 
 
@@ -733,7 +759,7 @@ private class AA0_QueryFactoryTest {
                 .setLimit(200)
                 .setCondition('id=54321')
                 .addField('Fax')
-                .addOrdering(new AA0_QueryFactory.Ordering('Contact', 'Fax', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
+                .addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Fax', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING))
                 .setEnforceFLS(false);
 
         qf2.getOrderings().remove(0);
@@ -775,7 +801,7 @@ private class AA0_QueryFactoryTest {
 
         AA0_QueryFactory subquery2_0 = subqueries2.get(0);
 
-        subquery2_0.addOrdering(new AA0_QueryFactory.Ordering('Contact', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING));
+        subquery2_0.addOrdering(new XAP_DAO_SOQL_QuerySortOrdering('Contact', 'Name', XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING));
 
         System.assert(subqueries.size() == 1);
         System.assert(subqueries2.size() == 2);
@@ -821,13 +847,13 @@ private class AA0_QueryFactoryTest {
                     SELECT Profile.Id, profile.name
                     FROM PermissionSet
                     WHERE IsOwnedByProfile = true
-                    AND Profile.UserType = 'Standard'
-                    AND Id NOT IN (
-                            SELECT ParentId
-                            FROM ObjectPermissions
-                            WHERE SObjectType = 'Account'
-                            AND PermissionsRead = true
-                    )
+                            AND Profile.UserType = 'Standard'
+                            AND Id NOT IN (
+                                    SELECT ParentId
+                                    FROM ObjectPermissions
+                                    WHERE SObjectType = 'Account'
+                                            AND PermissionsRead = true
+                            )
                     LIMIT 1
             ];
 
@@ -848,7 +874,8 @@ private class AA0_QueryFactoryTest {
                 );
                 insert usr;
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             //do nothing, just return null User because this test case won't work in this org.
             return null;
         }

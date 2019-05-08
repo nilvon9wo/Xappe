@@ -15,8 +15,8 @@ public virtual class AAA_Product2Selector extends AA0_SObjectSelectorAbs {
         return Product2.SObjectType;
     }
 
-    public override List<Schema.FieldSet> getSObjectFieldSetList() {
-        return new List<Schema.FieldSet>{
+    public override List<FieldSet> getSObjectFieldSetList() {
+        return new List<FieldSet>{
                 SObjectType.Product2.fieldSets.getMap()
                         .get('example_field_set')
         };
@@ -32,7 +32,7 @@ public virtual class AAA_Product2Selector extends AA0_SObjectSelectorAbs {
         };
     }
 
-    public List<Product2> selectById(Set<Id> idSet, Schema.FieldSet fieldSet) {
+    public List<Product2> selectById(Set<Id> idSet, FieldSet fieldSet) {
         return (List<Product2>) Database.query(
                 this.createQueryFactory()
                         .addFields(fieldSet)
