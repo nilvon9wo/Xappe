@@ -136,7 +136,7 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         );
     }
 
-    public void injectChildFactoryFor(XAP_DAO_SOQL_QueryFactory childQueryFactory, String relationshipFieldPath) {
+    public XAP_DAO_SOQL_SObjectSelectorAbs injectChildFactory(XAP_DAO_SOQL_QueryFactory childQueryFactory, String relationshipFieldPath) {
         for (SObjectField field : this.getSObjectFieldList()) {
             childQueryFactory.addField(relationshipFieldPath + '.' + field.getDescribe().getName());
         }
@@ -144,13 +144,17 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         if (UserInfo.isMultiCurrencyOrganization() && this.isCurrencyIsoCodeEnabled) {
             childQueryFactory.addField(relationshipFieldPath + '.' + CURRENCY_CODE_FIELDNAME);
         }
+        return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactoryFor(XAP_DAO_SOQL_QueryFactory parentQueryFactory) {
-        return this.injectParentFactoryFor(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
+    public XAP_DAO_SOQL_QueryFactory injectParentFactory(XAP_DAO_SOQL_QueryFactory parentQueryFactory) {
+        return this.injectParentFactory(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactoryFor(XAP_DAO_SOQL_QueryFactory parentQueryFactory, Boolean includeSelectorFields) {
+    public XAP_DAO_SOQL_QueryFactory injectParentFactory(
+            XAP_DAO_SOQL_QueryFactory parentQueryFactory,
+            Boolean includeSelectorFields
+    ) {
         return this.configureQueryFactory(
                 parentQueryFactory.subselectQuery(getSObjectType()),
                 isEnforcingCRUD,
@@ -159,11 +163,14 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         );
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactoryFor(XAP_DAO_SOQL_QueryFactory parentQueryFactory, String relationshipName) {
-        return this.injectParentFactoryFor(parentQueryFactory, relationshipName, INCLUDE_SELECTOR_FIELDS);
+    public XAP_DAO_SOQL_QueryFactory injectParentFactory(
+            XAP_DAO_SOQL_QueryFactory parentQueryFactory,
+            String relationshipName
+    ) {
+        return this.injectParentFactory(parentQueryFactory, relationshipName, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactoryFor(
+    public XAP_DAO_SOQL_QueryFactory injectParentFactory(
             XAP_DAO_SOQL_QueryFactory parentQueryFactory,
             String relationshipName,
             Boolean includeSelectorFields
