@@ -1,3 +1,7 @@
+/**
+ * Inspired by and derived from FinancialForce.com's Apex Commons.
+ * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_SObjectSelector.cls
+ */
 public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XAP_DAO_SOQL_SObjectSelectorIntf {
     public static final Boolean INCLUDE_FIELDSET_FIELDS = true;
     public static final Boolean EXCLUDE_FIELDSET_FIELDS = false;

@@ -1,3 +1,7 @@
+/**
+ * Inspired by and derived from FinancialForce.com's Apex Commons.
+ * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_QueryFactory.cls
+ */
 public class XAP_DAO_SOQL_QueryFactory {
     private XAP_DAO_SOQL_Querier querier;
     XAP_DAO_SOQL_SecurityUtils securityUtils;

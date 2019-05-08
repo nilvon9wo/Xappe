@@ -1,3 +1,7 @@
+/**
+ * Inspired by and derived from FinancialForce.com's Apex Commons.
+ * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_QueryFactoryTest.cls
+ */
 @IsTest
 private class XAP_DAO_SOQL_QueryFactoryTest {
     private static final XAP_DAO_SOQL_WHERE_ClauseIntf TEST_WHERE_EQUALS_CLAUSE

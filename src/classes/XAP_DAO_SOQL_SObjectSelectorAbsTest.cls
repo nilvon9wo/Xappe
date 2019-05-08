@@ -1,3 +1,7 @@
+/**
+ * Inspired by and derived from FinancialForce.com's Apex Commons.
+ * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_SObjectSelectorTest.cls
+ */
 @IsTest
 public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
 
