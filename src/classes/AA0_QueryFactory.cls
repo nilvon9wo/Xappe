@@ -439,14 +439,24 @@ public class AA0_QueryFactory {
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
         XAP_DAO_SOQL_QueryInterpolation whereInterpolation = (this.conditionExpression != null)
                 ? this.conditionExpression.toQueryInterpolation()
-                : new XAP_DAO_SOQL_QueryInterpolation('');
+                : null;
         String soqlTemplate = this.toSoqlSelect()
                 + this.toSoqlFrom()
-                + this.toSOQL('WHERE', whereInterpolation.template)
+                + (
+                (whereInterpolation != null)
+                        ? this.toSOQL('WHERE', whereInterpolation.template)
+                        : ''
+        )
                 + this.toSoqlOrderBy()
                 + this.toSOQL('LIMIT', this.limitCount)
                 + this.toSOQL('OFFSET', this.offsetCount);
-        return new XAP_DAO_SOQL_QueryInterpolation(soqlTemplate, whereInterpolation.objectsByKeyMap);
+
+        return new XAP_DAO_SOQL_QueryInterpolation(
+                soqlTemplate,
+                (whereInterpolation != null)
+                        ? whereInterpolation.objectsByKeyMap
+                        : null
+        );
     }
 
     private String toSoqlSelect() {

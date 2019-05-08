@@ -124,7 +124,7 @@ public with sharing class AA0_SObjectSelectorTest {
 
     @IsTest public static void testSOQL() {
         TestSObjectSelector selector = new TestSObjectSelector();
-        String soql = selector.createQueryFactory().toSOQL();
+        String soql = selector.createQueryFactory().toQueryInterpolation().template;
         Pattern p = Pattern.compile(
                 'SELECT (.*) FROM Account ORDER BY Name DESC NULLS FIRST , AnnualRevenue ASC NULLS LAST '
         );
@@ -172,7 +172,7 @@ public with sharing class AA0_SObjectSelectorTest {
     static void testWithoutSorting() {
         //Given
         TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
-        AA0_QueryFactory qf = selector.createQueryFactory();
+        AA0_QueryFactory queryFactory = selector.createQueryFactory();
 
         Set<String> expectedSelectFields = new Set<String>{
                 'Name', 'Id', 'AccountNumber', 'AnnualRevenue'
@@ -182,7 +182,7 @@ public with sharing class AA0_SObjectSelectorTest {
         }
 
         //When
-        String soql = qf.toSOQL();
+        String soql = queryFactory.toQueryInterpolation().template;
 
         //Then
         Pattern soqlPattern = Pattern.compile(
@@ -190,7 +190,6 @@ public with sharing class AA0_SObjectSelectorTest {
         );
         Matcher soqlMatcher = soqlPattern.matcher(soql);
         soqlMatcher.matches();
-
         List<String> actualSelectFields = soqlMatcher.group(1).deleteWhitespace().split(',');
         System.assertEquals(expectedSelectFields, new Set<String>(actualSelectFields));
     }
@@ -200,7 +199,7 @@ public with sharing class AA0_SObjectSelectorTest {
     static void testWithOrderingNullsLast() {
         // Build the selector to test with
         TestSObjectSelector selector = new TestSObjectSelector(false, false, false, false);
-        AA0_QueryFactory qf = selector.createQueryFactory();
+        AA0_QueryFactory queryFactory = selector.createQueryFactory();
 
         // Add in the expected fields
         Set<String> expectedSelectFields = new Set<String>{
@@ -211,7 +210,7 @@ public with sharing class AA0_SObjectSelectorTest {
         }
 
         // Generate the SOQL string
-        String soql = qf.toSOQL();
+        String soql = queryFactory.toQueryInterpolation().template;
 
         // Assert that the
         Pattern soqlPattern = Pattern.compile(
