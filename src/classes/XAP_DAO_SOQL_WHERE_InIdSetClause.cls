@@ -8,7 +8,7 @@ public class XAP_DAO_SOQL_WHERE_InIdSetClause implements XAP_DAO_SOQL_WHERE_Clau
     }
 
     public XAP_DAO_SOQL_WHERE_InIdSetClause(SObjectField sObjectField, Set<Id> idSet) {
-        this(XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField), idSet);
+        this(XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(sObjectField), idSet);
     }
 
     public XAP_DAO_SOQL_WHERE_InIdSetClause(Set<Id> idSet) {

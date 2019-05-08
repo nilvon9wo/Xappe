@@ -252,19 +252,11 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_Query" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_SOQL_QueryFactory" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_QueryFactoryFieldHelper" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_QueryFactoryRelationHelper" />
+                            <option name="name" value="XAP_DAO_SOQL_SObjectFieldHelper" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

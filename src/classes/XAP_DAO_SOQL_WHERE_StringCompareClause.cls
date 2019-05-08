@@ -19,7 +19,7 @@ public class XAP_DAO_SOQL_WHERE_StringCompareClause implements XAP_DAO_SOQL_WHER
             String stringValue
     ) {
         this(
-                XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField),
+                XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(sObjectField),
                 comparisonOperator,
                 stringValue
         );

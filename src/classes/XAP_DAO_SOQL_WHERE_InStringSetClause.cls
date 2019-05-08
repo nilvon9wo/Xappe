@@ -3,7 +3,7 @@ public class XAP_DAO_SOQL_WHERE_InStringSetClause implements XAP_DAO_SOQL_WHERE_
     Set<String> stringSet;
 
     public XAP_DAO_SOQL_WHERE_InStringSetClause(SObjectField sObjectField, Set<String> stringSet) {
-        this.fieldName = XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField);
+        this.fieldName = XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(sObjectField);
         this.stringSet = stringSet;
     }
 

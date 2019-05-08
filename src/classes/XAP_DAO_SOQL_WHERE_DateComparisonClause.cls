@@ -8,7 +8,7 @@ public class XAP_DAO_SOQL_WHERE_DateComparisonClause implements XAP_DAO_SOQL_WHE
             XAP_DAO_SOQL_WHERE_CompareOperatorEnum comparisonOperator,
             Date dateValue
     ) {
-        this.fieldName = XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField);
+        this.fieldName = XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(sObjectField);
         this.comparisonOperator = comparisonOperator;
         this.dateValue = dateValue;
     }

@@ -12,7 +12,7 @@ public class XAP_DAO_SOQL_QuerySortOrdering {
     }
 
     public XAP_DAO_SOQL_QuerySortOrdering(Schema.SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this(XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(field), direction, NULLS_FIRST);
+        this(XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(field), direction, NULLS_FIRST);
     }
 
     public XAP_DAO_SOQL_QuerySortOrdering(
@@ -20,7 +20,7 @@ public class XAP_DAO_SOQL_QuerySortOrdering {
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
     ) {
-        this(XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(field), direction, nullsLast);
+        this(XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(field), direction, nullsLast);
     }
 
     public XAP_DAO_SOQL_QuerySortOrdering(String field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {

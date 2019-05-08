@@ -8,7 +8,7 @@ public class XAP_DAO_SOQL_WHERE_ObjectCompareClause implements XAP_DAO_SOQL_WHER
             XAP_DAO_SOQL_WHERE_CompareOperatorEnum comparisonOperator,
             Object objectValue
     ) {
-        this.fieldName = XAP_DAO_SOQL_QueryFactoryFieldHelper.getInstance().getFieldTokenPath(sObjectField);
+        this.fieldName = XAP_DAO_SOQL_SObjectFieldHelper.getInstance().getFieldTokenPath(sObjectField);
         this.comparisonOperator = comparisonOperator;
         this.objectValue = objectValue;
     }
