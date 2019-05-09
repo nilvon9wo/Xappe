@@ -61,16 +61,16 @@ public virtual class DAO_OpportunitySelector extends XAP_DAO_SOQL_SObjectSelecto
     public List<Opportunity> selectByIdWithProducts(Set<Id> idSet) {
         XAP_DAO_SOQL_QueryFactory opportunityQueryFactory = this.createQueryFactory();
         XAP_DAO_SOQL_QueryFactory opportunityLineItemsQueryFactory = this.opportunityLineItemsSelector
-                .injectParentFactory(opportunityQueryFactory, 'OpportunityLineItems');
+                .injectParentToSelectChildFields(opportunityQueryFactory, 'OpportunityLineItems');
 
         this.pricebookEnrtrySelector
-                .injectChildFactory(opportunityLineItemsQueryFactory, 'PricebookEntry');
+                .injectChildToSelectParentFields(opportunityLineItemsQueryFactory, 'PricebookEntry');
 
         this.pricebook2Selector
-                .injectChildFactory(opportunityLineItemsQueryFactory, 'PricebookEntry.Pricebook2');
+                .injectChildToSelectParentFields(opportunityLineItemsQueryFactory, 'PricebookEntry.Pricebook2');
 
         this.product2SelectorSelector
-                .injectChildFactory(opportunityLineItemsQueryFactory, 'PricebookEntry.Product2');
+                .injectChildToSelectParentFields(opportunityLineItemsQueryFactory, 'PricebookEntry.Product2');
 
         return opportunityQueryFactory
                 .setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))

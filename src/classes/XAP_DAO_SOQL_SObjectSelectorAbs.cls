@@ -140,7 +140,7 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         );
     }
 
-    public XAP_DAO_SOQL_SObjectSelectorAbs injectChildFactory(
+    public XAP_DAO_SOQL_SObjectSelectorAbs injectChildToSelectParentFields(
             XAP_DAO_SOQL_QueryFactory childQueryFactory,
             String relationshipFieldPath
     ) {
@@ -154,11 +154,11 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactory(XAP_DAO_SOQL_QueryFactory parentQueryFactory) {
-        return this.injectParentFactory(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
+    public XAP_DAO_SOQL_QueryFactory injectParentToSelectChildFields(XAP_DAO_SOQL_QueryFactory parentQueryFactory) {
+        return this.injectParentToSelectChildFields(parentQueryFactory, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactory(
+    public XAP_DAO_SOQL_QueryFactory injectParentToSelectChildFields(
             XAP_DAO_SOQL_QueryFactory parentQueryFactory,
             Boolean includeSelectorFields
     ) {
@@ -170,14 +170,14 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
         );
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactory(
+    public XAP_DAO_SOQL_QueryFactory injectParentToSelectChildFields(
             XAP_DAO_SOQL_QueryFactory parentQueryFactory,
             String relationshipName
     ) {
-        return this.injectParentFactory(parentQueryFactory, relationshipName, INCLUDE_SELECTOR_FIELDS);
+        return this.injectParentToSelectChildFields(parentQueryFactory, relationshipName, INCLUDE_SELECTOR_FIELDS);
     }
 
-    public XAP_DAO_SOQL_QueryFactory injectParentFactory(
+    public XAP_DAO_SOQL_QueryFactory injectParentToSelectChildFields(
             XAP_DAO_SOQL_QueryFactory parentQueryFactory,
             String relationshipName,
             Boolean includeSelectorFields
