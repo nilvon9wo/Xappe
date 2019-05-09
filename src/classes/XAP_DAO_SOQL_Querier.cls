@@ -33,14 +33,6 @@ public virtual class XAP_DAO_SOQL_Querier {
     }
 
     public String toSoql(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
-        Integer requiredBindingSize = queryInterpolation.objectsByKeyMap.keySet().size();
-        if (requiredBindingSize > LAST_OBJECT_NUMBER) {
-            throw new RebindObjectsLimitException(
-                    'XAP_DAO_SOQL_Querier currently only supports ' + LAST_OBJECT_NUMBER + ' bindings.'
-                            + '  Attempted query requires ' + requiredBindingSize + ' bindings'
-            );
-        }
-
         String localizedTemplate = queryInterpolation.template;
         Integer counter = 0;
         for (String key : queryInterpolation.objectsByKeyMap.keySet()) {
@@ -55,87 +47,27 @@ public virtual class XAP_DAO_SOQL_Querier {
     }
 
     private String rebind(String localizedTemplate, String key, Object value, Integer index) {
-        Type rebinderType = Type.forName('XAP_DAO_SOQL_Querier.ObjectRebinder' + index);
-        ObjectRebinderAbs rebinder = (ObjectRebinderAbs) rebinderType.newInstance();
-        return rebinder.rebind(localizedTemplate, key, value);
+        switch on index {
+            when 0 { object0 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 1 { object1 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 2 { object2 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 3 { object3 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 4 { object4 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 5 { object5 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 6 { object6 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 7 { object7 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 8 { object8 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+            when 9 { object9 = value; return this.rebind(localizedTemplate, key, 'object' + index);}
+        }
+
+        throw new RebindObjectsLimitException(
+                'XAP_DAO_SOQL_Querier currently only supports ' + LAST_OBJECT_NUMBER + ' bindings.'
+                        + '  Attempted query requires ' + index + 1 + ' bindings'
+        );
     }
 
-    private abstract class ObjectRebinderAbs {
-        public abstract String rebind(String localizedTemplate, String key, Object value);
-
-        protected String rebind(String localizedTemplate, String oldKey, String newKey) {
-            return localizedTemplate.replace('${' + oldKey + '}', newKey);
-        }
-    }
-
-    public class ObjectRebinder0 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object0 = value;
-            return super.rebind(localizedTemplate, key, 'object0');
-        }
-    }
-
-    public class ObjectRebinder1 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object1 = value;
-            return super.rebind(localizedTemplate, key, 'object1');
-        }
-    }
-
-    public class ObjectRebinder2 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object2 = value;
-            return super.rebind(localizedTemplate, key, 'object2');
-        }
-    }
-
-    public class ObjectRebinder3 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object3 = value;
-            return super.rebind(localizedTemplate, key, 'object3');
-        }
-    }
-
-    public class ObjectRebinder4 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object4 = value;
-            return super.rebind(localizedTemplate, key, 'object4');
-        }
-    }
-
-    public class ObjectRebinder5 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object5 = value;
-            return super.rebind(localizedTemplate, key, 'object5');
-        }
-    }
-
-    private class ObjectRebinder6 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object6 = value;
-            return super.rebind(localizedTemplate, key, 'object6');
-        }
-    }
-
-    public class ObjectRebinder7 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object7 = value;
-            return super.rebind(localizedTemplate, key, 'object7');
-        }
-    }
-
-    public class ObjectRebinder8 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object8 = value;
-            return super.rebind(localizedTemplate, key, 'object8');
-        }
-    }
-
-    public class ObjectRebinder9 extends ObjectRebinderAbs {
-        public override String rebind(String localizedTemplate, String key, Object value) {
-            object9 = value;
-            return super.rebind(localizedTemplate, key, 'object9');
-        }
+    private String rebind(String localizedTemplate, String oldKey, String newKey) {
+        return localizedTemplate.replace('${' + oldKey + '}', newKey);
     }
 
     private class RebindObjectsLimitException extends Exception {
