@@ -64,12 +64,12 @@ public class XAP_DAO_SOQL_QueryFactory {
         return token;
     }
 
-    private String traverseFieldKeyRelationships(String fieldName) {
+    private String traverseFieldKeyRelationships(String fieldPathString) {
         List<String> fieldPath = new List<String>();
         SObjectType lastSObjectType = sObjectType;
-        Iterator<String> i = fieldName.split('\\.').iterator();
-        while (i.hasNext()) {
-            String field = i.next();
+        Iterator<String> fieldPathPartIterator = fieldPathString.split('\\.').iterator();
+        while (fieldPathPartIterator.hasNext()) {
+            String field = fieldPathPartIterator.next();
             Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(lastSObjectType)
                     .getField(field.toLowerCase());
             DescribeFieldResult tokenDescribe = token != null ? token.getDescribe() : null;
@@ -78,11 +78,11 @@ public class XAP_DAO_SOQL_QueryFactory {
                 this.securityUtils.checkFieldIsReadable(lastSObjectType, token);
             }
 
-            if (token != null && i.hasNext() && tokenDescribe.getSoapType() == Schema.SoapType.ID) {
+            if (token != null && fieldPathPartIterator.hasNext() && tokenDescribe.getSoapType() == Schema.SoapType.ID) {
                 lastSObjectType = tokenDescribe.getReferenceTo()[0]; //if it's polymorphic doesn't matter which one we get
                 fieldPath.add(tokenDescribe.getRelationshipName());
             }
-            else if (token != null && !i.hasNext()) {
+            else if (token != null && !fieldPathPartIterator.hasNext()) {
                 fieldPath.add(tokenDescribe.getName());
             }
             else {
