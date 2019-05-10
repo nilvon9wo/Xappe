@@ -314,7 +314,7 @@ public class XAP_DAO_SOQL_QueryFactory {
         XAP_DAO_SOQL_QueryFactory subselectQuery = new XAP_DAO_SOQL_QueryFactory(relationship);
 
         //The child queryFactory should be configured in the same way as the parent by default - can override after if required
-        subselectQuery.setSortSelectFields(sortSelectFields);
+        subselectQuery.setSortSelectFields(this.sortSelectFields);
 
         if (assertIsAccessible) {
             subselectQuery.assertIsAccessible();
