@@ -28,6 +28,11 @@ public class XAP_DAO_SOQL_QueryFactory {
         );
     }
 
+    private XAP_DAO_SOQL_QueryFactory(ChildRelationship relationship) {
+        this(relationship.getChildSObject());
+        this.childRelationship = relationship;
+    }
+
     public SObjectType sObjectType { get; private set; }
 
     @TestVisible
@@ -48,11 +53,6 @@ public class XAP_DAO_SOQL_QueryFactory {
                 && ((XAP_DAO_SOQL_QueryFactory) obj).sObjectType == this.sObjectType
                 && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSet.size() == this.fieldSet.size()
                 && ((XAP_DAO_SOQL_QueryFactory) obj).toSOQL() == this.toSOQL();
-    }
-
-    private XAP_DAO_SOQL_QueryFactory(ChildRelationship relationship) {
-        this(relationship.getChildSObject());
-        this.childRelationship = relationship;
     }
 
     public XAP_DAO_SOQL_QueryFactory assertIsAccessible() {
