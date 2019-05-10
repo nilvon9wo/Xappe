@@ -15,7 +15,7 @@ public virtual class DAO_AuthProviderSelector extends XAP_DAO_SOQL_SObjectSelect
         return AuthProvider.SObjectType;
     }
 
-    private List<Schema.SObjectField> getSObjectFieldList() {
+    private List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 AuthProvider.Id,
                 AuthProvider.SsoKickoffUrl

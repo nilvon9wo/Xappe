@@ -15,7 +15,7 @@ public virtual class DAO_AccountSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
         return Account.SObjectType;
     }
 
-    private List<Schema.SObjectField> getSObjectFieldList() {
+    private List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Account.Id,
                 Account.Name,

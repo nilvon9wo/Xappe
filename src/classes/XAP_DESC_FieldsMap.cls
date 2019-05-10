@@ -1,19 +1,19 @@
 public class XAP_DESC_FieldsMap extends XAP_DESC_NamespacedAttributeMap {
 
     @TestVisible
-    public XAP_DESC_FieldsMap(Map<String, Schema.SObjectField> valueByNameMap) {
+    public XAP_DESC_FieldsMap(Map<String, SObjectField> valueByNameMap) {
         super(valueByNameMap);
     }
 
-    public Schema.SObjectField get(String name) {
+    public SObjectField get(String name) {
         return this.get(name, true);
     }
 
-    public Schema.SObjectField get(String name, Boolean implyNamespace) {
-        return (Schema.SObjectField) this.getObject(name, implyNamespace);
+    public SObjectField get(String name, Boolean implyNamespace) {
+        return (SObjectField) this.getObject(name, implyNamespace);
     }
 
-    public List<Schema.SObjectField> values() {
-        return (List<Schema.SObjectField>) valueByNameMap.values();
+    public List<SObjectField> values() {
+        return (List<SObjectField>) valueByNameMap.values();
     }
 }

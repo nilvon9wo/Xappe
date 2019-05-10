@@ -15,7 +15,7 @@ public virtual class DAO_ThirdPartyAccountLinkSelector extends XAP_DAO_SOQL_SObj
         return ThirdPartyAccountLink.SObjectType;
     }
 
-    private List<Schema.SObjectField> getSObjectFieldList() {
+    private List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 ThirdPartyAccountLink.Id,
                 ThirdPartyAccountLink.Provider

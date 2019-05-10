@@ -15,7 +15,7 @@ public virtual class DAO_TwoFactorMethodsInfoSelector extends XAP_DAO_SOQL_SObje
         return TwoFactorMethodsInfo.SObjectType;
     }
 
-    private List<Schema.SObjectField> getSObjectFieldList() {
+    private List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 TwoFactorMethodsInfo.Id,
                 TwoFactorMethodsInfo.HasUserVerifiedEmailAddress

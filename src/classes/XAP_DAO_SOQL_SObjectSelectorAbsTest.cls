@@ -238,8 +238,8 @@ public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
             super(includeFieldSetFields, enforceCRUD, enforceFLS, sortSelectFields);
         }
 
-        public List<Schema.SObjectField> getSObjectFieldList() {
-            return new List<Schema.SObjectField>{
+        public List<SObjectField> getSObjectFieldList() {
+            return new List<SObjectField>{
                     Account.Name,
                     Account.Id,
                     Account.AccountNumber,

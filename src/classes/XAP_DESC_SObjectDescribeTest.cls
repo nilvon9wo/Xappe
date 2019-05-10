@@ -23,7 +23,7 @@ private class XAP_DESC_SObjectDescribeTest {
         //FIXME: System.assertEquals(Schema.getGlobalDescribe().size(), gdm.size());
 
         XAP_DESC_SObjectDescribe acccountDescribe = XAP_DESC_SObjectDescribe.getDescribe(accountObjType);
-        Map<String, Schema.SObjectField> fields = acccountDescribe.getFieldsMap();
+        Map<String, SObjectField> fields = acccountDescribe.getFieldsMap();
         System.assert(fields.keySet().containsAll(acccountDescribe.getFieldsMap().keySet()));
 
         System.assertEquals(fields.get('name'), Account.SObjectType.fields.Name); //behavior of FieldsMap is tested in another method
@@ -36,7 +36,7 @@ private class XAP_DESC_SObjectDescribeTest {
     @IsTest
     static void FieldsMap() {
         String fakeNamespace = 'fflib_test';
-        Map<String, Schema.SObjectField> fakeFieldData = new Map<String, Schema.SObjectField>{
+        Map<String, SObjectField> fakeFieldData = new Map<String, SObjectField>{
                 'name__c' => Contact.SObjectType.fields.Name, //re-use standard field types since we can't mock them
                 fakeNamespace + '__name__c' => Account.SObjectType.fields.Name,
                 fakeNamespace + '__otherField__c' => Account.SObjectType.fields.Name,
@@ -88,7 +88,7 @@ private class XAP_DESC_SObjectDescribeTest {
     @IsTest
     static void simpleAccountFieldDescribe() {
         XAP_DESC_SObjectDescribe sObjectDescribe = XAP_DESC_SObjectDescribe.getDescribe(Account.SObjectType);
-        Map<String, Schema.SObjectField> fields;
+        Map<String, SObjectField> fields;
         for (Integer i = 0; i < 10; i++) {
             fields = sObjectDescribe.getFieldsMap();
         }
@@ -100,7 +100,7 @@ private class XAP_DESC_SObjectDescribeTest {
     @IsTest
     static void simpleAccountGetNameField() {
         XAP_DESC_SObjectDescribe d = XAP_DESC_SObjectDescribe.getDescribe(Account.SObjectType);
-        Schema.SObjectField nameField = d.getNameField();
+        SObjectField nameField = d.getNameField();
         System.assertEquals('Name', nameField.getDescribe().getName());
     }
 

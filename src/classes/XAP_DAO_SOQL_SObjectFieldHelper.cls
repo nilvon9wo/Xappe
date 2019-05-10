@@ -27,7 +27,7 @@ public class XAP_DAO_SOQL_SObjectFieldHelper {
     }
 
     private SObjectField getFieldName(SObjectType sObjectType, String fieldName, Boolean enforceFLS) {
-        Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(sObjectType)
+        SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(sObjectType)
                 .getField(fieldName.toLowerCase());
         if (token == null) {
             throw new XAP_DAO_SOQL_InvalidFieldException(fieldName, sObjectType);
@@ -45,7 +45,7 @@ public class XAP_DAO_SOQL_SObjectFieldHelper {
         Iterator<String> fieldPathPartIterator = fieldPathString.split('\\.').iterator();
         while (fieldPathPartIterator.hasNext()) {
             String field = fieldPathPartIterator.next();
-            Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(lastSObjectType)
+            SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(lastSObjectType)
                     .getField(field.toLowerCase());
             DescribeFieldResult tokenDescribe = token != null ? token.getDescribe() : null;
 
@@ -77,7 +77,7 @@ public class XAP_DAO_SOQL_SObjectFieldHelper {
         return String.join(fieldPath, '.');
     }
 
-    public String getFieldTokenPath(Schema.SObjectField field) {
+    public String getFieldTokenPath(SObjectField field) {
         if (field == null) {
             throw new XAP_DAO_SOQL_InvalidFieldException('Invalid field: null');
         }

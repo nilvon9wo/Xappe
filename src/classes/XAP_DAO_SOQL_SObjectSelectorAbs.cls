@@ -77,7 +77,7 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
     }
 
     abstract SObjectType getSObjectType();
-    abstract List<Schema.SObjectField> getSObjectFieldList();
+    abstract List<SObjectField> getSObjectFieldList();
 
     public virtual List<FieldSet> getSObjectFieldSetList() {
         return null;

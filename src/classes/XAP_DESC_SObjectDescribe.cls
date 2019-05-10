@@ -112,17 +112,17 @@ public class XAP_DESC_SObjectDescribe {
         return this.describe;
     }
 
-    public Map<String, Schema.SObjectField> getFieldsMap() {
+    public Map<String, SObjectField> getFieldsMap() {
         return this.fieldByNameMap;
     }
 
     // nameField -------------------------------------------------------------------------
 
-    private Schema.SObjectField nameField;
+    private SObjectField nameField;
 
-    public Schema.SObjectField getNameField() {
+    public SObjectField getNameField() {
         if (this.nameField == null) {
-            for (Schema.SObjectField field : this.wrappedFields.values()) {
+            for (SObjectField field : this.wrappedFields.values()) {
                 if (field.getDescribe().isNameField()) {
                     this.nameField = field;
                     break;
@@ -142,7 +142,7 @@ public class XAP_DESC_SObjectDescribe {
         set;
     }
 
-    private Map<String, Schema.SObjectField> fieldByNameMap {
+    private Map<String, SObjectField> fieldByNameMap {
         get {
             if (this.fieldByNameMap == null) {
                 this.fieldByNameMap = this.describe.fields.getMap();
@@ -152,12 +152,12 @@ public class XAP_DESC_SObjectDescribe {
         set;
     }
 
-    public Schema.SObjectField getField(String name) {
+    public SObjectField getField(String name) {
         return this.getField(name, DEFAULT_IMPLY_NAMESPACE);
     }
 
-    public Schema.SObjectField getField(String fieldName, Boolean implyNamespace) {
-        Schema.SObjectField result = this.wrappedFields.get(
+    public SObjectField getField(String fieldName, Boolean implyNamespace) {
+        SObjectField result = this.wrappedFields.get(
                 (
                         fieldName.endsWithIgnoreCase('__r')
                                 ? (fieldName.removeEndIgnoreCase('__r') + '__c')
