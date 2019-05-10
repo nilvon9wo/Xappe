@@ -147,6 +147,61 @@ public class XAP_DAO_SOQL_QueryFactory {
         return this;
     }
 
+    public XAP_DAO_SOQL_QueryFactory addOrdering(
+            String fieldName,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
+        this.orderListWrapper.add(fieldName, direction, nullsLast, this.enforceFLS);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory addOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
+        this.orderListWrapper.add(field, direction, nullsLast);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+        this.orderListWrapper.add(fieldName, direction, this.enforceFLS);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+        this.orderListWrapper.add(field, direction, this.enforceFLS);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory setOrdering(
+            String fieldName,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
+        this.orderListWrapper.set(fieldName, direction, nullsLast, this.enforceFLS);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory setOrdering(
+            SObjectField field,
+            XAP_DAO_SOQL_QuerySortOrderEnum direction,
+            Boolean nullsLast
+    ) {
+        this.orderListWrapper.set(field, direction, nullsLast);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+        this.orderListWrapper.set(fieldName, direction, this.enforceFLS);
+        return this;
+    }
+
+    public XAP_DAO_SOQL_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+        this.orderListWrapper.set(field, direction, this.enforceFLS);
+        return this;
+    }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(XAP_DAO_SOQL_QuerySortOrdering ordering) {
         this.orderListWrapper.set(ordering);
@@ -253,62 +308,6 @@ public class XAP_DAO_SOQL_QueryFactory {
             }
         }
         return null;
-    }
-
-    public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
-        this.orderListWrapper.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction, nullsLast)
-        );
-        return this;
-    }
-
-    public XAP_DAO_SOQL_QueryFactory addOrdering(
-            SObjectField field,
-            XAP_DAO_SOQL_QuerySortOrderEnum direction,
-            Boolean nullsLast
-    ) {
-        this.orderListWrapper.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction, nullsLast)
-        );
-        return this;
-    }
-
-    public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this.orderListWrapper.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction)
-        );
-        return this;
-    }
-
-    public XAP_DAO_SOQL_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this.orderListWrapper.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction)
-        );
-        return this;
-    }
-
-    public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
-        XAP_DAO_SOQL_QuerySortOrdering ordr
-                = new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction, nullsLast);
-        return setOrdering(ordr);
-    }
-
-    public XAP_DAO_SOQL_QueryFactory setOrdering(
-            SObjectField field,
-            XAP_DAO_SOQL_QuerySortOrderEnum direction,
-            Boolean nullsLast
-    ) {
-        XAP_DAO_SOQL_QuerySortOrdering ordr
-                = new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction, nullsLast);
-        return setOrdering(ordr);
-    }
-
-    public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction));
-    }
-
-    public XAP_DAO_SOQL_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction));
     }
 
     public XAP_DAO_SOQL_QueryFactory deepClone() {
