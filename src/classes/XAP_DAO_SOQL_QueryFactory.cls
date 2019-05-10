@@ -58,7 +58,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             throw new XAP_DAO_SOQL_InvalidFieldException(fieldName, this.sObjectType);
         }
 
-        if (enforceFLS) {
+        if (this.enforceFLS) {
             this.securityUtils.checkFieldIsReadable(this.sObjectType, token);
         }
         return token;
@@ -74,7 +74,7 @@ public class XAP_DAO_SOQL_QueryFactory {
                     .getField(field.toLowerCase());
             DescribeFieldResult tokenDescribe = token != null ? token.getDescribe() : null;
 
-            if (token != null && enforceFLS) {
+            if (token != null && this.enforceFLS) {
                 this.securityUtils.checkFieldIsReadable(lastSObjectType, token);
             }
 
@@ -147,7 +147,7 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (field == null) {
             throw new XAP_DAO_SOQL_InvalidFieldException(null, this.sObjectType);
         }
-        if (enforceFLS) {
+        if (this.enforceFLS) {
             this.securityUtils.checkFieldIsReadable(sObjectType, field);
         }
         this.fieldSet.add(getFieldTokenPath(field));
@@ -173,7 +173,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             if (token == null) {
                 throw new XAP_DAO_SOQL_InvalidFieldException();
             }
-            if (enforceFLS) {
+            if (this.enforceFLS) {
                 this.securityUtils.checkFieldIsReadable(sObjectType, token);
             }
             this.fieldSet.add(getFieldTokenPath(token));
@@ -186,7 +186,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             if (token == null) {
                 throw new XAP_DAO_SOQL_InvalidFieldException();
             }
-            if (enforceFLS) {
+            if (this.enforceFLS) {
                 this.securityUtils.checkFieldIsReadable(sObjectType, token);
             }
             this.fieldSet.add(getFieldTokenPath(token));
