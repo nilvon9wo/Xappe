@@ -38,8 +38,8 @@ public class XAP_DAO_SOQL_QueryFactory {
     private Boolean enforceFLS = EXCLUDING_FIELD_LEVEL_SECURITY;
     private Boolean sortSelectFields = INCLUDING_SORTED_SELECT_FIELDS;
 
-    private Schema.ChildRelationship childRelationship;
-    private Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> factoryByChildRelationshipMap;
+    private ChildRelationship childRelationship;
+    private Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory> factoryByChildRelationshipMap;
 
     private String getFieldPath(String fieldName) {
         return (this.isSingleField(fieldName))
@@ -118,7 +118,7 @@ public class XAP_DAO_SOQL_QueryFactory {
                 && ((XAP_DAO_SOQL_QueryFactory) obj).toSOQL() == this.toSOQL();
     }
 
-    private XAP_DAO_SOQL_QueryFactory(Schema.ChildRelationship relationship) {
+    private XAP_DAO_SOQL_QueryFactory(ChildRelationship relationship) {
         this(relationship.getChildSObject());
         this.childRelationship = relationship;
     }
@@ -330,8 +330,8 @@ public class XAP_DAO_SOQL_QueryFactory {
         return null;
     }
 
-    private Schema.ChildRelationship getChildRelationship(SObjectType objType) {
-        for (Schema.ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
+    private ChildRelationship getChildRelationship(SObjectType objType) {
+        for (ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
             //if there is no relationship name, we cannot query on it, so throw an exception.
             if (childRow.getChildSObject() == objType && childRow.getRelationshipName() != null) {
@@ -344,8 +344,8 @@ public class XAP_DAO_SOQL_QueryFactory {
         );
     }
 
-    private Schema.ChildRelationship getChildRelationship(String relationshipName) {
-        for (Schema.ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
+    private ChildRelationship getChildRelationship(String relationshipName) {
+        for (ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
             if (childRow.getRelationshipName() == relationshipName) {
                 return childRow;
             }
@@ -421,11 +421,11 @@ public class XAP_DAO_SOQL_QueryFactory {
                 .setCondition(this.conditionExpression)
                 .setEnforceFLS(this.enforceFLS);
 
-        Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> subqueries = this.factoryByChildRelationshipMap;
+        Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory> subqueries = this.factoryByChildRelationshipMap;
         if (subqueries != null) {
-            Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory> clonedSubqueries
-                    = new Map<Schema.ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
-            for (Schema.ChildRelationship key : subqueries.keySet()) {
+            Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory> clonedSubqueries
+                    = new Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
+            for (ChildRelationship key : subqueries.keySet()) {
                 clonedSubqueries.put(key, subqueries.get(key).deepClone());
             }
             clone.factoryByChildRelationshipMap = clonedSubqueries;

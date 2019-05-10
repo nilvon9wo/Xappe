@@ -452,8 +452,8 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
                 .addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
         DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
-        Schema.ChildRelationship relationship;
-        for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
+        ChildRelationship relationship;
+        for (ChildRelationship childRow : descResult.getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
             //if there is no relationship name, we cannot query on it, so throw an exception.
             if (childRow.getRelationshipName() == 'Tasks') {
@@ -496,8 +496,8 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
                 .setCondition(TEST_WHERE_LIKE_CLAUSE)
                 .addOrdering('CreatedDate', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING, true);
         DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
-        Schema.ChildRelationship relationship;
-        for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
+        ChildRelationship relationship;
+        for (ChildRelationship childRow : descResult.getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
             //if there is no relationship name, we cannot query on it, so throw an exception.
             if (childRow.getRelationshipName() == 'Tasks') {
@@ -612,7 +612,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
                 .addOrdering('CreatedBy.Name', XAP_DAO_SOQL_QuerySortOrderEnum.DESCENDING);
         DescribeSObjectResult descResult = Contact.SObjectType.getDescribe();
         ChildRelationship relationship;
-        for (Schema.ChildRelationship childRow : descResult.getChildRelationships()) {
+        for (ChildRelationship childRow : descResult.getChildRelationships()) {
             if (childRow.getRelationshipName() == 'Tasks') {
                 relationship = childRow;
             }
