@@ -341,27 +341,6 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
     }
 
     @IsTest
-    static void invalidFields_noQueryField() {
-        try {
-            XAP_DAO_SOQL_QueryFactory.getFieldTokenPath(null);
-            System.assert(false, 'Expected InvalidFieldException; none was thrown');
-        }
-        catch (XAP_DAO_SOQL_InvalidFieldException ife) {
-            //Expected
-        }
-        catch (Exception e) {
-            System.assert(false, 'Expected InvalidFieldException; ' + e.getTypeName() + ' was thrown instead: ' + e);
-        }
-    }
-
-    @IsTest
-    static void queryFieldsNotEquals() {
-        String queryFactoryld = XAP_DAO_SOQL_QueryFactory.getFieldTokenPath(Contact.Name);
-        String queryFactoryld2 = XAP_DAO_SOQL_QueryFactory.getFieldTokenPath(Contact.LastName);
-        System.assert(!queryFactoryld.equals(queryFactoryld2));
-    }
-
-    @IsTest
     static void addChildQueriesWithChildRelationship_success() {
         Account acct = new Account();
         acct.Name = 'testchildqueriesacct';

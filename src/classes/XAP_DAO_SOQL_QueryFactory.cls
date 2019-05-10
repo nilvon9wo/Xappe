@@ -3,21 +3,29 @@
  * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_QueryFactory.cls
  */
 public class XAP_DAO_SOQL_QueryFactory {
-    private XAP_DAO_SOQL_Querier querier;
+    XAP_DAO_SOQL_Querier querier;
+    XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
     public XAP_DAO_SOQL_QueryFactory(
             SObjectType sObjectType,
             XAP_DAO_SOQL_Querier querier,
+            XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
     ) {
         this.sObjectType = sObjectType;
         this.querier = querier;
+        this.fieldHelper = fieldHelper;
         this.securityUtils = securityUtils;
     }
 
     public XAP_DAO_SOQL_QueryFactory(SObjectType sObjectType) {
-        this(sObjectType, XAP_DAO_SOQL_Querier.getInstance(), XAP_DAO_SOQL_SecurityUtils.getInstance());
+        this(
+                sObjectType,
+                XAP_DAO_SOQL_Querier.getInstance(),
+                XAP_DAO_SOQL_SObjectFieldHelper.getInstance(),
+                XAP_DAO_SOQL_SecurityUtils.getInstance()
+        );
     }
 
     public static final Boolean INCLUDING_FIELD_LEVEL_SECURITY = true;
@@ -40,76 +48,6 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     private ChildRelationship childRelationship;
     private Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory> factoryByChildRelationshipMap;
-
-    private String getFieldPath(String fieldName) {
-        return (this.isSingleField(fieldName))
-                ? this.getFieldName(fieldName).getDescribe().getName()
-                : this.traverseFieldKeyRelationships(fieldName);
-    }
-
-    private Boolean isSingleField(String fieldName) {
-        return !fieldName.contains('.');
-    }
-
-    private SObjectField getFieldName(String fieldName) {
-        Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(sObjectType)
-                .getField(fieldName.toLowerCase());
-        if (token == null) {
-            throw new XAP_DAO_SOQL_InvalidFieldException(fieldName, this.sObjectType);
-        }
-
-        if (this.enforceFLS) {
-            this.securityUtils.checkFieldIsReadable(this.sObjectType, token);
-        }
-        return token;
-    }
-
-    private String traverseFieldKeyRelationships(String fieldPathString) {
-        List<String> fieldPath = new List<String>();
-        SObjectType lastSObjectType = this.sObjectType;
-        Iterator<String> fieldPathPartIterator = fieldPathString.split('\\.').iterator();
-        while (fieldPathPartIterator.hasNext()) {
-            String field = fieldPathPartIterator.next();
-            Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(lastSObjectType)
-                    .getField(field.toLowerCase());
-            DescribeFieldResult tokenDescribe = token != null ? token.getDescribe() : null;
-
-            if (token != null && this.enforceFLS) {
-                this.securityUtils.checkFieldIsReadable(lastSObjectType, token);
-            }
-
-            if (token != null && fieldPathPartIterator.hasNext() && tokenDescribe.getSoapType() == Schema.SoapType.ID) {
-                lastSObjectType = tokenDescribe.getReferenceTo()[0]; //if it's polymorphic doesn't matter which one we get
-                fieldPath.add(tokenDescribe.getRelationshipName());
-            }
-            else if (token != null && !fieldPathPartIterator.hasNext()) {
-                fieldPath.add(tokenDescribe.getName());
-            }
-            else {
-                if (token == null) {
-                    throw new XAP_DAO_SOQL_InvalidFieldException(field, lastSObjectType);
-                }
-                else {
-                    throw new XAP_DAO_SOQL_NonReferenceFieldException(
-                            lastSObjectType + '.' + field
-                                    + ' is not a lookup or master-detail field'
-                                    + 'but is used in a cross-object query field.'
-                    );
-                }
-            }
-        }
-
-        return String.join(fieldPath, '.');
-    }
-
-
-    @TestVisible
-    private static String getFieldTokenPath(Schema.SObjectField field) {
-        if (field == null) {
-            throw new XAP_DAO_SOQL_InvalidFieldException('Invalid field: null');
-        }
-        return field.getDescribe().getName();
-    }
 
     public Boolean equals(Object obj) {
         return obj instanceof XAP_DAO_SOQL_QueryFactory
@@ -139,7 +77,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory addField(String fieldName) {
-        this.fieldSet.add(getFieldPath(fieldName));
+        this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS));
         return this;
     }
 
@@ -150,20 +88,20 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (this.enforceFLS) {
             this.securityUtils.checkFieldIsReadable(sObjectType, field);
         }
-        this.fieldSet.add(getFieldTokenPath(field));
+        this.fieldSet.add(this.fieldHelper.getFieldTokenPath(field));
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(Set<String> fieldNames) {
         for (String fieldName : fieldNames) {
-            this.fieldSet.add(getFieldPath(fieldName));
+            this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS));
         }
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(List<String> fieldNames) {
         for (String fieldName : fieldNames) {
-            this.fieldSet.add(getFieldPath(fieldName));
+            this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS));
         }
         return this;
     }
@@ -176,7 +114,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             if (this.enforceFLS) {
                 this.securityUtils.checkFieldIsReadable(sObjectType, token);
             }
-            this.fieldSet.add(getFieldTokenPath(token));
+            this.fieldSet.add(this.fieldHelper.getFieldTokenPath(token));
         }
         return this;
     }
@@ -189,7 +127,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             if (this.enforceFLS) {
                 this.securityUtils.checkFieldIsReadable(sObjectType, token);
             }
-            this.fieldSet.add(getFieldTokenPath(token));
+            this.fieldSet.add(this.fieldHelper.getFieldTokenPath(token));
         }
         return this;
     }
@@ -206,7 +144,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             if (!allowCrossObject && field.getFieldPath().contains('.')) {
                 throw new XAP_DAO_SOQL_InvalidFieldSetException('Cross-object fields not allowed and field "' + field.getFieldPath() + '"" is a cross-object field.');
             }
-            this.fieldSet.add(this.getFieldPath(field.getFieldPath()));
+            this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, field.getFieldPath(), this.enforceFLS));
         }
         return this;
     }
@@ -355,7 +293,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
         this.orderingList.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction, nullsLast)
+                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction, nullsLast)
         );
         return this;
     }
@@ -366,28 +304,28 @@ public class XAP_DAO_SOQL_QueryFactory {
             Boolean nullsLast
     ) {
         this.orderingList.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction, nullsLast)
+                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction, nullsLast)
         );
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         this.orderingList.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction)
+                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction)
         );
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         this.orderingList.add(
-                new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction)
+                new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction)
         );
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
         XAP_DAO_SOQL_QuerySortOrdering ordr
-                = new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction, nullsLast);
+                = new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction, nullsLast);
         return setOrdering(ordr);
     }
 
@@ -397,16 +335,16 @@ public class XAP_DAO_SOQL_QueryFactory {
             Boolean nullsLast
     ) {
         XAP_DAO_SOQL_QuerySortOrdering ordr
-                = new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction, nullsLast);
+                = new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction, nullsLast);
         return setOrdering(ordr);
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction));
+        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS), direction));
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction));
+        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction));
     }
 
     public String toSOQL() {
