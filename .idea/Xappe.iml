@@ -751,6 +751,10 @@
                             <option name="name" value="XAP_DAO_SOQL_SObjectFieldHelperTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_SOQL_QueryInterpolationBuilder" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />

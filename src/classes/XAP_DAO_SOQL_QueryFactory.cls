@@ -28,12 +28,6 @@ public class XAP_DAO_SOQL_QueryFactory {
         );
     }
 
-    public static final Boolean INCLUDING_FIELD_LEVEL_SECURITY = true;
-    public static final Boolean EXCLUDING_FIELD_LEVEL_SECURITY = false;
-
-    public static final Boolean INCLUDING_SORTED_SELECT_FIELDS = true;
-    public static final Boolean EXCLUDING_SORTED_SELECT_FIELDS = false;
-
     public SObjectType sObjectType { get; private set; }
 
     @TestVisible
@@ -43,8 +37,8 @@ public class XAP_DAO_SOQL_QueryFactory {
     private Integer offsetCount;
     private List<XAP_DAO_SOQL_QuerySortOrdering> orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>();
 
-    private Boolean enforceFLS = EXCLUDING_FIELD_LEVEL_SECURITY;
-    private Boolean sortSelectFields = INCLUDING_SORTED_SELECT_FIELDS;
+    private Boolean enforceFLS = XAP_DAO_SOQL_QueryInterpolationBuilder.EXCLUDING_FIELD_LEVEL_SECURITY;
+    private Boolean sortSelectFields = XAP_DAO_SOQL_QueryInterpolationBuilder.INCLUDING_SORTED_SELECT_FIELDS;
 
     private ChildRelationship childRelationship;
     private Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory> factoryByChildRelationshipMap;
@@ -386,80 +380,15 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        XAP_DAO_SOQL_QueryInterpolation whereInterpolation = (this.conditionExpression != null)
-                ? this.conditionExpression.toQueryInterpolation()
-                : null;
-        String soqlTemplate = this.toSoqlSelect()
-                + this.toSoqlFrom()
-                + (
-                (whereInterpolation != null)
-                        ? this.toSOQL('WHERE', whereInterpolation.template)
-                        : ''
-        )
-                + this.toSoqlOrderBy()
-                + this.toSOQL('LIMIT', this.limitCount)
-                + this.toSOQL('OFFSET', this.offsetCount);
-
-        return new XAP_DAO_SOQL_QueryInterpolation(
-                soqlTemplate,
-                (whereInterpolation != null)
-                        ? whereInterpolation.objectsByKeyMap
-                        : null
-        );
-    }
-
-    private String toSoqlSelect() {
-        String result = 'SELECT ';
-
-        if (this.fieldSet.size() == 0) {
-            if (this.enforceFLS) {
-                this.securityUtils.checkFieldIsReadable(this.sObjectType, 'Id');
-            }
-            result += 'Id';
-        }
-        else {
-            List<String> fieldSetToQuery = new List<String>(this.fieldSet);
-            if (this.sortSelectFields) {
-                fieldSetToQuery.sort();
-            }
-
-            result += String.join(fieldSetToQuery, ', ');
-        }
-
-        if (this.factoryByChildRelationshipMap != null && !this.factoryByChildRelationshipMap.isEmpty()) {
-            for (XAP_DAO_SOQL_QueryFactory childRow : this.factoryByChildRelationshipMap.values()) {
-                result += ', (' + childRow.toQueryInterpolation().template + ') ';
-            }
-        }
-        return result;
-    }
-
-    private String toSoqlFrom() {
-
-
-        return ' FROM ' + (
-                this.childRelationship != null
-                        ? this.childRelationship.getRelationshipName()
-                        : this.sObjectType.getDescribe().getName()
-        );
-    }
-
-    private String toSoqlOrderBy() {
-        String result = '';
-        if (this.orderingList.size() > 0) {
-            result += ' ORDER BY ';
-            for (XAP_DAO_SOQL_QuerySortOrdering ordering : this.orderingList) {
-                result += ordering.toSOQL() + ', ';
-            }
-
-            result = result.substring(0, result.length() - 2);
-        }
-        return result;
-    }
-
-    private String toSOQL(String keyword, Object value) {
-        return (value != null)
-                ? ' ' + keyword + ' ' + value
-                : '';
+        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSet))
+                .setConditionExpression(this.conditionExpression)
+                .setEnforceFieldLevelSecurity(this.enforceFLS)
+                .setSortSelectFields(this.sortSelectFields)
+                .setChildRelationship(this.childRelationship)
+                .setFactoryByChildRelationshipMap(this.factoryByChildRelationshipMap)
+                .setOrderingList(this.orderingList)
+                .setLimitCount(this.limitCount)
+                .setOffsetCount(this.offsetCount)
+                .toQueryInterpolation();
     }
 }
