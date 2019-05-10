@@ -37,7 +37,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
         queryFactory.addFields(new List<String>{
                 'homePhonE', 'fAX'
         });
-        queryFactory.addFields(new List<Schema.SObjectField>{
+        queryFactory.addFields(new List<SObjectField>{
                 Contact.Email, Contact.Title
         });
         System.assertEquals(new Set<String>{
@@ -106,7 +106,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
         System.assertEquals(queryFactory1, queryFactory2);
         queryFactory1.addField('name').addFields(new Set<String>{
                 'NAME', 'name'
-        }).addFields(new Set<Schema.SObjectField>{
+        }).addFields(new Set<SObjectField>{
                 Contact.Name, Contact.Name
         });
         System.assertEquals(queryFactory1, queryFactory2);
@@ -161,7 +161,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
             exceptions.add(e);
         }
         try {
-            queryFactory.addFields(new Set<Schema.SObjectField>{
+            queryFactory.addFields(new Set<SObjectField>{
                     null
             });
         }
@@ -169,7 +169,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
             exceptions.add(e);
         }
         try {
-            queryFactory.addFields(new List<Schema.SObjectField>{
+            queryFactory.addFields(new List<SObjectField>{
                     null, Contact.title
             });
         }
@@ -313,7 +313,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
         XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         Exception e;
-        Schema.SObjectField token = null;
+        SObjectField token = null;
         try {
             queryFactory.addField(token);
         }
@@ -328,7 +328,7 @@ private class XAP_DAO_SOQL_QueryFactoryTest {
         XAP_DAO_SOQL_QueryFactory queryFactory = new XAP_DAO_SOQL_QueryFactory(Contact.SObjectType);
         queryFactory.addField('name');
         Exception e;
-        List<Schema.SObjectField> token = new List<Schema.SObjectField>{
+        List<SObjectField> token = new List<SObjectField>{
                 null
         };
         try {

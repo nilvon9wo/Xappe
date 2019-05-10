@@ -4,6 +4,7 @@
  */
 public class XAP_DAO_SOQL_QueryFactory {
     XAP_DAO_SOQL_Querier querier;
+    XAP_DAO_SOQL_SObjectFieldSetWrapper fieldSetWrapper;
     XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
@@ -11,11 +12,13 @@ public class XAP_DAO_SOQL_QueryFactory {
             SObjectType sObjectType,
             XAP_DAO_SOQL_Querier querier,
             XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
+            XAP_DAO_SOQL_SObjectFieldSetWrapper fieldSetWrapper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
     ) {
         this.sObjectType = sObjectType;
         this.querier = querier;
         this.fieldHelper = fieldHelper;
+        this.fieldSetWrapper = fieldSetWrapper;
         this.securityUtils = securityUtils;
     }
 
@@ -24,6 +27,7 @@ public class XAP_DAO_SOQL_QueryFactory {
                 sObjectType,
                 XAP_DAO_SOQL_Querier.getInstance(),
                 XAP_DAO_SOQL_SObjectFieldHelper.getInstance(),
+                new XAP_DAO_SOQL_SObjectFieldSetWrapper(sObjectType),
                 XAP_DAO_SOQL_SecurityUtils.getInstance()
         );
     }
@@ -36,7 +40,6 @@ public class XAP_DAO_SOQL_QueryFactory {
     public SObjectType sObjectType { get; private set; }
 
     @TestVisible
-    private Set<String> fieldSet = new Set<String>();
     private XAP_DAO_SOQL_WHERE_ClauseIntf conditionExpression;
     private Integer limitCount;
     private Integer offsetCount;
@@ -51,7 +54,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     public Boolean equals(Object obj) {
         return obj instanceof XAP_DAO_SOQL_QueryFactory
                 && ((XAP_DAO_SOQL_QueryFactory) obj).sObjectType == this.sObjectType
-                && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSet.size() == this.fieldSet.size()
+                && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSetWrapper.fieldSet.size() == this.fieldSetWrapper.fieldSet.size()
                 && ((XAP_DAO_SOQL_QueryFactory) obj).toSOQL() == this.toSOQL();
     }
 
@@ -71,75 +74,42 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory addField(String fieldName) {
-        this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS));
+        this.fieldSetWrapper.add(fieldName, this.enforceFLS);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory addField(Schema.SObjectField field) {
-        if (field == null) {
-            throw new XAP_DAO_SOQL_InvalidFieldException(null, this.sObjectType);
-        }
-        if (this.enforceFLS) {
-            this.securityUtils.checkFieldIsReadable(sObjectType, field);
-        }
-        this.fieldSet.add(this.fieldHelper.getFieldTokenPath(field));
+    public XAP_DAO_SOQL_QueryFactory addField(SObjectField field) {
+        this.fieldSetWrapper.add(field, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(Set<String> fieldNames) {
-        for (String fieldName : fieldNames) {
-            this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS));
-        }
+        this.fieldSetWrapper.add(fieldNames, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(List<String> fieldNames) {
-        for (String fieldName : fieldNames) {
-            this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, this.enforceFLS));
-        }
+        this.fieldSetWrapper.add(fieldNames, this.enforceFLS);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory addFields(Set<Schema.SObjectField> fields) {
-        for (Schema.SObjectField token : fields) {
-            if (token == null) {
-                throw new XAP_DAO_SOQL_InvalidFieldException();
-            }
-            if (this.enforceFLS) {
-                this.securityUtils.checkFieldIsReadable(sObjectType, token);
-            }
-            this.fieldSet.add(this.fieldHelper.getFieldTokenPath(token));
-        }
+    public XAP_DAO_SOQL_QueryFactory addFields(Set<SObjectField> fields) {
+        this.fieldSetWrapper.add(fields, this.enforceFLS);
         return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory addFields(List<Schema.SObjectField> fields) {
-        for (Schema.SObjectField token : fields) {
-            if (token == null) {
-                throw new XAP_DAO_SOQL_InvalidFieldException();
-            }
-            if (this.enforceFLS) {
-                this.securityUtils.checkFieldIsReadable(sObjectType, token);
-            }
-            this.fieldSet.add(this.fieldHelper.getFieldTokenPath(token));
-        }
+    public XAP_DAO_SOQL_QueryFactory addFields(List<SObjectField> fields) {
+        this.fieldSetWrapper.add(fields, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(FieldSet fieldSet) {
-        return selectFieldSet(fieldSet, true);
+        this.fieldSetWrapper.add(fieldSet, this.enforceFLS, XAP_DAO_SOQL_SObjectFieldSetWrapper.ALLOW_CROSS_OBJECTS);
+        return this;
     }
 
-    public XAP_DAO_SOQL_QueryFactory selectFieldSet(FieldSet fieldSet, Boolean allowCrossObject) {
-        if (fieldSet.getSObjectType() != this.sObjectType) {
-            throw new XAP_DAO_SOQL_InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + this.sObjectType + '"');
-        }
-        for (FieldSetMember field : fieldSet.getFields()) {
-            if (!allowCrossObject && field.getFieldPath().contains('.')) {
-                throw new XAP_DAO_SOQL_InvalidFieldSetException('Cross-object fields not allowed and field "' + field.getFieldPath() + '"" is a cross-object field.');
-            }
-            this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, field.getFieldPath(), this.enforceFLS));
-        }
+    public XAP_DAO_SOQL_QueryFactory addFields(FieldSet fieldSet, Boolean allowCrossObject) {
+        this.fieldSetWrapper.add(fieldSet, this.enforceFLS, allowCrossObject);
         return this;
     }
 
@@ -189,7 +159,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public Set<String> getSelectedFields() {
-        return this.fieldSet;
+        return this.fieldSetWrapper.fieldSet;
     }
 
 
@@ -342,7 +312,6 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory deepClone() {
-
         XAP_DAO_SOQL_QueryFactory clone = new XAP_DAO_SOQL_QueryFactory(this.sObjectType)
                 .setLimit(this.limitCount)
                 .setOffset(this.offsetCount)
@@ -361,8 +330,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
         clone.childRelationship = this.childRelationship;
         clone.orderingList = this.orderingList.clone();
-        clone.fieldSet = this.fieldSet.clone();
-
+        clone.fieldSetWrapper.add(this.fieldSetWrapper.fieldSet.clone(), this.enforceFLS);
         return clone;
     }
 
@@ -380,7 +348,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSet))
+        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSetWrapper.fieldSet))
                 .setConditionExpression(this.conditionExpression)
                 .setEnforceFieldLevelSecurity(this.enforceFLS)
                 .setSortSelectFields(this.sortSelectFields)
