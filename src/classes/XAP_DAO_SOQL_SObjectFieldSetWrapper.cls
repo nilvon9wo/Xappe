@@ -75,7 +75,7 @@ public class XAP_DAO_SOQL_SObjectFieldSetWrapper {
     }
 
     public XAP_DAO_SOQL_SObjectFieldSetWrapper add(FieldSet fieldSet, Boolean enforceFLS) {
-        return add(fieldSet, enforceFLS, ALLOW_CROSS_OBJECTS);
+        return this.add(fieldSet, enforceFLS, ALLOW_CROSS_OBJECTS);
     }
 
     public XAP_DAO_SOQL_SObjectFieldSetWrapper add(FieldSet fieldSet, Boolean enforceFLS, Boolean allowCrossObject) {
