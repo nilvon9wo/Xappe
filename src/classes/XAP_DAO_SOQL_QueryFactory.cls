@@ -139,7 +139,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory addField(String fieldName) {
-        fieldSet.add(getFieldPath(fieldName));
+        this.fieldSet.add(getFieldPath(fieldName));
         return this;
     }
 
@@ -150,20 +150,20 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (enforceFLS) {
             this.securityUtils.checkFieldIsReadable(sObjectType, field);
         }
-        fieldSet.add(getFieldTokenPath(field));
+        this.fieldSet.add(getFieldTokenPath(field));
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(Set<String> fieldNames) {
         for (String fieldName : fieldNames) {
-            fieldSet.add(getFieldPath(fieldName));
+            this.fieldSet.add(getFieldPath(fieldName));
         }
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(List<String> fieldNames) {
         for (String fieldName : fieldNames) {
-            fieldSet.add(getFieldPath(fieldName));
+            this.fieldSet.add(getFieldPath(fieldName));
         }
         return this;
     }
