@@ -66,7 +66,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
     private String traverseFieldKeyRelationships(String fieldPathString) {
         List<String> fieldPath = new List<String>();
-        SObjectType lastSObjectType = sObjectType;
+        SObjectType lastSObjectType = this.sObjectType;
         Iterator<String> fieldPathPartIterator = fieldPathString.split('\\.').iterator();
         while (fieldPathPartIterator.hasNext()) {
             String field = fieldPathPartIterator.next();
@@ -199,8 +199,8 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory selectFieldSet(FieldSet fieldSet, Boolean allowCrossObject) {
-        if (fieldSet.getSObjectType() != sObjectType) {
-            throw new XAP_DAO_SOQL_InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + sObjectType + '"');
+        if (fieldSet.getSObjectType() != this.sObjectType) {
+            throw new XAP_DAO_SOQL_InvalidFieldSetException('Field set "' + fieldSet.getName() + '" is not for SObject type "' + this.sObjectType + '"');
         }
         for (FieldSetMember field : fieldSet.getFields()) {
             if (!allowCrossObject && field.getFieldPath().contains('.')) {
@@ -283,7 +283,7 @@ public class XAP_DAO_SOQL_QueryFactory {
         }
         throw new XAP_DAO_SOQL_InvalidSubqueryException(
                 'Invalid call to subselectQuery with relationshipName = ' + relationshipName
-                        + '.  Relationship does not exist for ' + sObjectType.getDescribe().getName()
+                        + '.  Relationship does not exist for ' + this.sObjectType.getDescribe().getName()
         );
     }
 
@@ -331,7 +331,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     private Schema.ChildRelationship getChildRelationship(SObjectType objType) {
-        for (Schema.ChildRelationship childRow : sObjectType.getDescribe().getChildRelationships()) {
+        for (Schema.ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
             //if there is no relationship name, we cannot query on it, so throw an exception.
             if (childRow.getChildSObject() == objType && childRow.getRelationshipName() != null) {
@@ -340,12 +340,12 @@ public class XAP_DAO_SOQL_QueryFactory {
         }
         throw new XAP_DAO_SOQL_InvalidSubqueryException(
                 'Invalid call to subselectQuery.  Invalid relationship for table '
-                        + sObjectType + ' and objtype=' + objType
+                        + this.sObjectType + ' and objtype=' + objType
         );
     }
 
     private Schema.ChildRelationship getChildRelationship(String relationshipName) {
-        for (Schema.ChildRelationship childRow : sObjectType.getDescribe().getChildRelationships()) {
+        for (Schema.ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
             if (childRow.getRelationshipName() == relationshipName) {
                 return childRow;
             }
