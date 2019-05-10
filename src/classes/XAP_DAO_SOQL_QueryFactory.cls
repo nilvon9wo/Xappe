@@ -238,15 +238,15 @@ public class XAP_DAO_SOQL_QueryFactory {
         return this.offsetCount;
     }
 
-    public XAP_DAO_SOQL_QueryFactory addOrdering(XAP_DAO_SOQL_QuerySortOrdering o) {
-        this.orderingList.add(o);
+    public XAP_DAO_SOQL_QueryFactory addOrdering(XAP_DAO_SOQL_QuerySortOrdering ordering) {
+        this.orderingList.add(ordering);
         return this;
     }
 
 
-    public XAP_DAO_SOQL_QueryFactory setOrdering(XAP_DAO_SOQL_QuerySortOrdering o) {
+    public XAP_DAO_SOQL_QueryFactory setOrdering(XAP_DAO_SOQL_QuerySortOrdering ordering) {
         this.orderingList = new List<XAP_DAO_SOQL_QuerySortOrdering>{
-                o
+                ordering
         };
         return this;
     }
@@ -354,7 +354,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction, Boolean nullsLast) {
-        orderingList.add(
+        this.orderingList.add(
                 new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction, nullsLast)
         );
         return this;
@@ -365,21 +365,21 @@ public class XAP_DAO_SOQL_QueryFactory {
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
     ) {
-        orderingList.add(
+        this.orderingList.add(
                 new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction, nullsLast)
         );
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        orderingList.add(
+        this.orderingList.add(
                 new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction)
         );
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        orderingList.add(
+        this.orderingList.add(
                 new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction)
         );
         return this;
@@ -402,13 +402,11 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        XAP_DAO_SOQL_QuerySortOrdering ordr = new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction);
-        return setOrdering(ordr);
+        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(getFieldPath(fieldName), direction));
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        XAP_DAO_SOQL_QuerySortOrdering ordr = new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction);
-        return setOrdering(ordr);
+        return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(getFieldTokenPath(field), direction));
     }
 
     public String toSOQL() {
