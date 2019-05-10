@@ -347,10 +347,6 @@ public class XAP_DAO_SOQL_QueryFactory {
         return setOrdering(new XAP_DAO_SOQL_QuerySortOrdering(this.fieldHelper.getFieldTokenPath(field), direction));
     }
 
-    public String toSOQL() {
-        return toQueryInterpolation().template;
-    }
-
     public XAP_DAO_SOQL_QueryFactory deepClone() {
 
         XAP_DAO_SOQL_QueryFactory clone = new XAP_DAO_SOQL_QueryFactory(this.sObjectType)
@@ -375,6 +371,19 @@ public class XAP_DAO_SOQL_QueryFactory {
 
         return clone;
     }
+
+    public String toSOQL() {
+        return toQueryInterpolation().template;
+    }
+
+    public List<SObject> query() {
+        return this.querier.selectFor(this.toQueryInterpolation());
+    }
+
+    public Database.QueryLocator getQueryLocator() {
+        return this.querier.getQueryLocatorFor(this.toQueryInterpolation());
+    }
+
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
         XAP_DAO_SOQL_QueryInterpolation whereInterpolation = (this.conditionExpression != null)
@@ -452,13 +461,5 @@ public class XAP_DAO_SOQL_QueryFactory {
         return (value != null)
                 ? ' ' + keyword + ' ' + value
                 : '';
-    }
-
-    public List<SObject> query() {
-        return this.querier.selectFor(this.toQueryInterpolation());
-    }
-
-    public Database.QueryLocator getQueryLocator() {
-        return this.querier.getQueryLocatorFor(this.toQueryInterpolation());
     }
 }
