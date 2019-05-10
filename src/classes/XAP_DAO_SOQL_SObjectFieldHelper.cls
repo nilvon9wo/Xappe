@@ -22,11 +22,11 @@ public class XAP_DAO_SOQL_SObjectFieldHelper {
                 : this.traverseFieldKeyRelationships(sObjectType, fieldName, enforceFLS);
     }
 
-    public Boolean isSingleField(String fieldName) {
+    private Boolean isSingleField(String fieldName) {
         return !fieldName.contains('.');
     }
 
-    public SObjectField getFieldName(SObjectType sObjectType, String fieldName, Boolean enforceFLS) {
+    private SObjectField getFieldName(SObjectType sObjectType, String fieldName, Boolean enforceFLS) {
         Schema.SObjectField token = XAP_DESC_SObjectDescribe.getDescribe(sObjectType)
                 .getField(fieldName.toLowerCase());
         if (token == null) {
@@ -39,7 +39,7 @@ public class XAP_DAO_SOQL_SObjectFieldHelper {
         return token;
     }
 
-    public String traverseFieldKeyRelationships(SObjectType sObjectType, String fieldPathString, Boolean enforceFLS) {
+    private String traverseFieldKeyRelationships(SObjectType sObjectType, String fieldPathString, Boolean enforceFLS) {
         List<String> fieldPath = new List<String>();
         SObjectType lastSObjectType = sObjectType;
         Iterator<String> fieldPathPartIterator = fieldPathString.split('\\.').iterator();
