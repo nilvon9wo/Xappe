@@ -308,7 +308,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             this.factoryByChildRelationshipMap = new Map<ChildRelationship, XAP_DAO_SOQL_QueryFactory>();
         }
         if (this.factoryByChildRelationshipMap.containsKey(relationship)) {
-            return factoryByChildRelationshipMap.get(relationship);
+            return this.factoryByChildRelationshipMap.get(relationship);
         }
 
         XAP_DAO_SOQL_QueryFactory subselectQuery = new XAP_DAO_SOQL_QueryFactory(relationship);
@@ -319,13 +319,13 @@ public class XAP_DAO_SOQL_QueryFactory {
         if (assertIsAccessible) {
             subselectQuery.assertIsAccessible();
         }
-        factoryByChildRelationshipMap.put(relationship, subselectQuery);
+        this.factoryByChildRelationshipMap.put(relationship, subselectQuery);
         return subselectQuery;
     }
 
     public List<XAP_DAO_SOQL_QueryFactory> getSubselectQueries() {
-        if (factoryByChildRelationshipMap != null) {
-            return factoryByChildRelationshipMap.values();
+        if (this.factoryByChildRelationshipMap != null) {
+            return this.factoryByChildRelationshipMap.values();
         }
         return null;
     }
