@@ -286,23 +286,23 @@ public class XAP_DAO_SOQL_QueryFactory {
                 : null;
     }
 
-    private ChildRelationship getChildRelationship(SObjectType objType) {
+    private ChildRelationship getChildRelationship(SObjectType childSObjectType) {
         for (ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
             //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
             //if there is no relationship name, we cannot query on it, so throw an exception.
-            if (childRow.getChildSObject() == objType && childRow.getRelationshipName() != null) {
+            if (childRow.getChildSObject() == childSObjectType && childRow.getRelationshipName() != null) {
                 return childRow;
             }
         }
         throw new XAP_DAO_SOQL_InvalidSubqueryException(
                 'Invalid call to subselectQuery.  Invalid relationship for table '
-                        + this.sObjectType + ' and objtype=' + objType
+                        + this.sObjectType + ' and objtype=' + childSObjectType
         );
     }
 
-    private ChildRelationship getChildRelationship(String relationshipName) {
+    private ChildRelationship getChildRelationship(String childRelationshipName) {
         for (ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
-            if (childRow.getRelationshipName() == relationshipName) {
+            if (childRow.getRelationshipName() == childRelationshipName) {
                 return childRow;
             }
         }
