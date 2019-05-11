@@ -219,24 +219,24 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(SObjectType related) {
-        return setSubselectQuery(getChildRelationship(related), false);
+        return this.setSubselectQuery(getChildRelationship(related), false);
     }
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(SObjectType related, Boolean assertIsAccessible) {
-        return setSubselectQuery(getChildRelationship(related), assertIsAccessible);
+        return this.setSubselectQuery(getChildRelationship(related), assertIsAccessible);
     }
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(String relationshipName) {
-        return subselectQuery(relationshipName, false);
+        return this.subselectQuery(relationshipName, false);
     }
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible) {
-        ChildRelationship relationship = getChildRelationship(relationshipName);
+        ChildRelationship relationship = this.getChildRelationship(relationshipName);
         if (relationship != null) {
-            return setSubselectQuery(relationship, assertIsAccessible);
+            return this.setSubselectQuery(relationship, assertIsAccessible);
         }
         throw new XAP_DAO_SOQL_InvalidSubqueryException(
                 'Invalid call to subselectQuery with relationshipName = ' + relationshipName
@@ -246,12 +246,12 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship) {
-        return subselectQuery(relationship, false);
+        return this.subselectQuery(relationship, false);
     }
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship, Boolean assertIsAccessible) {
-        return setSubselectQuery(relationship, assertIsAccessible);
+        return this.setSubselectQuery(relationship, assertIsAccessible);
     }
 
 
@@ -281,10 +281,9 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public List<XAP_DAO_SOQL_QueryFactory> getSubselectQueries() {
-        if (this.factoryByChildRelationshipMap != null) {
-            return this.factoryByChildRelationshipMap.values();
-        }
-        return null;
+        return (this.factoryByChildRelationshipMap != null)
+                ? this.factoryByChildRelationshipMap.values()
+                : null;
     }
 
     private ChildRelationship getChildRelationship(SObjectType objType) {
