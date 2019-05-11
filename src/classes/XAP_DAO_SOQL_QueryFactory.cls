@@ -3,23 +3,26 @@
  * @see: https://github.com/financialforcedev/fflib-apex-common/blob/master/fflib/src/classes/fflib_QueryFactory.cls
  */
 public class XAP_DAO_SOQL_QueryFactory {
-    XAP_DAO_SOQL_Querier querier;
+    XAP_DAO_SOQL_ChildRelationshipFinder childRelationshipFinder;
     XAP_DAO_SOQL_OrderingCollection orderingCollection;
+    XAP_DAO_SOQL_Querier querier;
     XAP_DAO_SOQL_SObjectFieldCollection fieldSetCollection;
     XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
     public XAP_DAO_SOQL_QueryFactory(
             SObjectType sObjectType,
-            XAP_DAO_SOQL_Querier querier,
+            XAP_DAO_SOQL_ChildRelationshipFinder childRelationshipFinder,
             XAP_DAO_SOQL_OrderingCollection orderListWrapper,
+            XAP_DAO_SOQL_Querier querier,
             XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
             XAP_DAO_SOQL_SObjectFieldCollection fieldSetWrapper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
     ) {
         this.sObjectType = sObjectType;
-        this.querier = querier;
+        this.childRelationshipFinder = childRelationshipFinder;
         this.orderingCollection = orderListWrapper;
+        this.querier = querier;
         this.fieldHelper = fieldHelper;
         this.fieldSetCollection = fieldSetWrapper;
         this.securityUtils = securityUtils;
@@ -28,8 +31,9 @@ public class XAP_DAO_SOQL_QueryFactory {
     public XAP_DAO_SOQL_QueryFactory(SObjectType sObjectType) {
         this(
                 sObjectType,
-                XAP_DAO_SOQL_Querier.getInstance(),
+                XAP_DAO_SOQL_ChildRelationshipFinder.getInstance(),
                 new XAP_DAO_SOQL_OrderingCollection(sObjectType),
+                XAP_DAO_SOQL_Querier.getInstance(),
                 XAP_DAO_SOQL_SObjectFieldHelper.getInstance(),
                 new XAP_DAO_SOQL_SObjectFieldCollection(sObjectType),
                 XAP_DAO_SOQL_SecurityUtils.getInstance()
@@ -40,6 +44,8 @@ public class XAP_DAO_SOQL_QueryFactory {
         this(childRelationship.getChildSObject());
         this.childRelationship = childRelationship;
     }
+
+    private static final Boolean DO_NOT_ASSERT_ACCESSIBLE = false;
 
     public SObjectType sObjectType { get; private set; }
 
@@ -219,12 +225,23 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(SObjectType related) {
-        return this.setSubselectQuery(getChildRelationship(related), false);
+        try {
+            return this.setSubselectQuery(
+                    this.childRelationshipFinder.getChildRelationship(this.sObjectType, related),
+                    DO_NOT_ASSERT_ACCESSIBLE
+            );
+        }
+        catch (XAP_DAO_SOQL_NoRelationshipException ex) {
+            throw new XAP_DAO_SOQL_InvalidSubqueryException(ex.getMessage());
+        }
     }
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(SObjectType related, Boolean assertIsAccessible) {
-        return this.setSubselectQuery(getChildRelationship(related), assertIsAccessible);
+        return this.setSubselectQuery(
+                this.childRelationshipFinder.getChildRelationship(this.sObjectType, related),
+                assertIsAccessible
+        );
     }
 
 
@@ -234,7 +251,8 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(String relationshipName, Boolean assertIsAccessible) {
-        ChildRelationship relationship = this.getChildRelationship(relationshipName);
+        ChildRelationship relationship
+                = this.childRelationshipFinder.getChildRelationship(this.sObjectType, relationshipName);
         if (relationship != null) {
             return this.setSubselectQuery(relationship, assertIsAccessible);
         }
@@ -243,7 +261,6 @@ public class XAP_DAO_SOQL_QueryFactory {
                         + '.  Relationship does not exist for ' + this.sObjectType.getDescribe().getName()
         );
     }
-
 
     public XAP_DAO_SOQL_QueryFactory subselectQuery(ChildRelationship relationship) {
         return this.subselectQuery(relationship, false);
@@ -284,29 +301,6 @@ public class XAP_DAO_SOQL_QueryFactory {
         return (this.factoryByChildRelationshipMap != null)
                 ? this.factoryByChildRelationshipMap.values()
                 : null;
-    }
-
-    private ChildRelationship getChildRelationship(SObjectType childSObjectType) {
-        for (ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
-            //occasionally on some standard objects (Like Contact child of Contact) do not have a relationship name.
-            //if there is no relationship name, we cannot query on it, so throw an exception.
-            if (childRow.getChildSObject() == childSObjectType && childRow.getRelationshipName() != null) {
-                return childRow;
-            }
-        }
-        throw new XAP_DAO_SOQL_InvalidSubqueryException(
-                'Invalid call to subselectQuery.  Invalid relationship for table '
-                        + this.sObjectType + ' and objtype=' + childSObjectType
-        );
-    }
-
-    private ChildRelationship getChildRelationship(String childRelationshipName) {
-        for (ChildRelationship childRow : this.sObjectType.getDescribe().getChildRelationships()) {
-            if (childRow.getRelationshipName() == childRelationshipName) {
-                return childRow;
-            }
-        }
-        return null;
     }
 
     public XAP_DAO_SOQL_QueryFactory deepClone() {
