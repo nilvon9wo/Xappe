@@ -7,7 +7,6 @@ public class XAP_DAO_SOQL_QueryFactory {
     XAP_DAO_SOQL_OrderingCollection orderingCollection;
     XAP_DAO_SOQL_Querier querier;
     XAP_DAO_SOQL_SObjectFieldCollection fieldSetCollection;
-    XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
     public XAP_DAO_SOQL_QueryFactory(
@@ -15,7 +14,6 @@ public class XAP_DAO_SOQL_QueryFactory {
             XAP_DAO_SOQL_ChildRelationshipFinder childRelationshipFinder,
             XAP_DAO_SOQL_OrderingCollection orderListWrapper,
             XAP_DAO_SOQL_Querier querier,
-            XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
             XAP_DAO_SOQL_SObjectFieldCollection fieldSetWrapper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
     ) {
@@ -23,7 +21,6 @@ public class XAP_DAO_SOQL_QueryFactory {
         this.childRelationshipFinder = childRelationshipFinder;
         this.orderingCollection = orderListWrapper;
         this.querier = querier;
-        this.fieldHelper = fieldHelper;
         this.fieldSetCollection = fieldSetWrapper;
         this.securityUtils = securityUtils;
     }
@@ -34,7 +31,6 @@ public class XAP_DAO_SOQL_QueryFactory {
                 XAP_DAO_SOQL_ChildRelationshipFinder.getInstance(),
                 new XAP_DAO_SOQL_OrderingCollection(sObjectType),
                 XAP_DAO_SOQL_Querier.getInstance(),
-                XAP_DAO_SOQL_SObjectFieldHelper.getInstance(),
                 new XAP_DAO_SOQL_SObjectFieldCollection(sObjectType),
                 XAP_DAO_SOQL_SecurityUtils.getInstance()
         );
