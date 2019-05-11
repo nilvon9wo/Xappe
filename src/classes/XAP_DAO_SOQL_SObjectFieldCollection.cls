@@ -30,10 +30,6 @@ public class XAP_DAO_SOQL_SObjectFieldCollection {
         private set;
     }
 
-    public Set<String> toSet() {
-        return this.fieldSet;
-    }
-
     public XAP_DAO_SOQL_SObjectFieldCollection add(String fieldName, Boolean enforceFLS) {
         this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, enforceFLS));
         return this;
@@ -100,5 +96,29 @@ public class XAP_DAO_SOQL_SObjectFieldCollection {
         return this;
     }
 
+    public XAP_DAO_SOQL_SObjectFieldCollection add(XAP_DAO_SOQL_SObjectFieldCollection collection, Boolean enforceFLS) {
+        return this.add(collection.toSet(), enforceFLS);
+    }
 
+    public Set<String> toSet() {
+        return this.fieldSet;
+    }
+
+    public List<String> toList() {
+        return new List<String>(this.fieldSet);
+    }
+
+    public Boolean isEmpty() {
+        return this.fieldSet.isEmpty();
+    }
+
+    public Boolean isNotEmpty() {
+        return !this.isEmpty();
+    }
+
+    public Boolean equals(Object obj) {
+        return obj instanceof XAP_DAO_SOQL_SObjectFieldCollection
+                && ((XAP_DAO_SOQL_SObjectFieldCollection) obj).sObjectType == this.sObjectType
+                && ((XAP_DAO_SOQL_SObjectFieldCollection) obj).fieldSet.size() == this.fieldSet.size();
+    }
 }

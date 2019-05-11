@@ -56,7 +56,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     public Boolean equals(Object obj) {
         return obj instanceof XAP_DAO_SOQL_QueryFactory
                 && ((XAP_DAO_SOQL_QueryFactory) obj).sObjectType == this.sObjectType
-                && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSetCollection.toSet().size() == this.fieldSetCollection.toSet().size()
+                && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSetCollection == this.fieldSetCollection
                 && ((XAP_DAO_SOQL_QueryFactory) obj).toSOQL() == this.toSOQL();
     }
 
@@ -328,7 +328,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
         clone.childRelationship = this.childRelationship;
         clone.orderingCollection.set(this.orderingCollection.toList().clone());
-        clone.fieldSetCollection.add(this.fieldSetCollection.toSet(), this.enforceFLS);
+        clone.fieldSetCollection.add(this.fieldSetCollection, this.enforceFLS);
         return clone;
     }
 
@@ -346,7 +346,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSetCollection.toSet()))
+        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSetCollection))
                 .setConditionExpression(this.conditionExpression)
                 .setEnforceFieldLevelSecurity(this.enforceFLS)
                 .setSortSelectFields(this.sortSelectFields)

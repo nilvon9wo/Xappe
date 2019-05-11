@@ -1,20 +1,20 @@
 public class XAP_DAO_SOQL_QueryInterpolationBuilder {
     SObjectType sObjectType;
-    Set<String> fieldSet;
+    XAP_DAO_SOQL_SObjectFieldCollection fieldCollection;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
     private XAP_DAO_SOQL_QueryInterpolationBuilder(
             SObjectType sObjectType,
-            Set<String> fieldSet,
+            XAP_DAO_SOQL_SObjectFieldCollection fieldCollection,
             XAP_DAO_SOQL_SecurityUtils securityUtils
     ) {
         this.sObjectType = sObjectType;
-        this.fieldSet = fieldSet;
+        this.fieldCollection = fieldCollection;
         this.securityUtils = securityUtils;
     }
 
-    public XAP_DAO_SOQL_QueryInterpolationBuilder(SObjectType sObjectType, Set<String> fieldSet) {
-        this(sObjectType, fieldSet, XAP_DAO_SOQL_SecurityUtils.getInstance());
+    public XAP_DAO_SOQL_QueryInterpolationBuilder(SObjectType sObjectType, XAP_DAO_SOQL_SObjectFieldCollection fieldCollection) {
+        this(sObjectType, fieldCollection, XAP_DAO_SOQL_SecurityUtils.getInstance());
     }
 
     public static final Boolean INCLUDING_FIELD_LEVEL_SECURITY = true;
@@ -130,14 +130,14 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
     private String toSoqlSelect() {
         String result = 'SELECT ';
 
-        if (this.fieldSet.isEmpty()) {
+        if (this.fieldCollection.isEmpty()) {
             if (this.enforceFLS) {
                 this.securityUtils.checkFieldIsReadable(this.sObjectType, 'Id');
             }
             result += 'Id';
         }
         else {
-            List<String> fieldSetToQuery = new List<String>(this.fieldSet);
+            List<String> fieldSetToQuery = this.fieldCollection.toList();
             if (this.sortSelectFields) {
                 fieldSetToQuery.sort();
             }

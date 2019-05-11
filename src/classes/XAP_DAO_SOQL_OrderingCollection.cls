@@ -139,8 +139,12 @@ public class XAP_DAO_SOQL_OrderingCollection {
         return this;
     }
 
+    public Boolean isEmpty() {
+        return this.orderingList.isEmpty();
+    }
+
     public Boolean isNotEmpty() {
-        return !this.orderingList.isEmpty();
+        return !this.isEmpty();
     }
 
     public List<XAP_DAO_SOQL_QuerySortOrdering> toList() {
