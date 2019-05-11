@@ -771,6 +771,10 @@
                             <option name="name" value="XAP_DAO_SOQL_NoRelationshipException" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_SOQL_Subselector" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
                         </list>
                       </option>
                       <option name="name" value="ApexClass" />
