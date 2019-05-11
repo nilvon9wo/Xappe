@@ -1,9 +1,9 @@
-public class XAP_DAO_SOQL_SObjectFieldSetWrapper {
+public class XAP_DAO_SOQL_SObjectFieldCollection {
     SObjectType sObjectType;
     XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
-    private XAP_DAO_SOQL_SObjectFieldSetWrapper(
+    private XAP_DAO_SOQL_SObjectFieldCollection(
             SObjectType sObjectType,
             XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
@@ -13,14 +13,14 @@ public class XAP_DAO_SOQL_SObjectFieldSetWrapper {
         this.securityUtils = securityUtils;
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper(SObjectType sObjectType) {
+    public XAP_DAO_SOQL_SObjectFieldCollection(SObjectType sObjectType) {
         this(sObjectType, XAP_DAO_SOQL_SObjectFieldHelper.getInstance(), XAP_DAO_SOQL_SecurityUtils.getInstance());
     }
 
     public static final Boolean ALLOW_CROSS_OBJECTS = true;
     public static final Boolean PROHIBIT_CROSS_OBJECTS = false;
 
-    public Set<String> fieldSet {
+    private Set<String> fieldSet {
         get {
             if (this.fieldSet == null) {
                 this.fieldSet = new Set<String>();
@@ -30,12 +30,16 @@ public class XAP_DAO_SOQL_SObjectFieldSetWrapper {
         private set;
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(String fieldName, Boolean enforceFLS) {
+    public Set<String> toSet() {
+        return this.fieldSet;
+    }
+
+    public XAP_DAO_SOQL_SObjectFieldCollection add(String fieldName, Boolean enforceFLS) {
         this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, enforceFLS));
         return this;
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(SObjectField field, Boolean enforceFLS) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(SObjectField field, Boolean enforceFLS) {
         if (field == null) {
             throw new XAP_DAO_SOQL_InvalidFieldException(null, this.sObjectType);
         }
@@ -46,18 +50,18 @@ public class XAP_DAO_SOQL_SObjectFieldSetWrapper {
         return this;
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(Set<String> fieldNames, Boolean enforceFLS) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(Set<String> fieldNames, Boolean enforceFLS) {
         for (String fieldName : fieldNames) {
             this.fieldSet.add(this.fieldHelper.getFieldPath(this.sObjectType, fieldName, enforceFLS));
         }
         return this;
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(List<String> fieldNames, Boolean enforceFLS) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(List<String> fieldNames, Boolean enforceFLS) {
         return this.add(new Set<String>(fieldNames), enforceFLS);
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(Set<SObjectField> fields, Boolean enforceFLS) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(Set<SObjectField> fields, Boolean enforceFLS) {
         for (SObjectField token : fields) {
             if (token == null) {
                 throw new XAP_DAO_SOQL_InvalidFieldException();
@@ -70,15 +74,15 @@ public class XAP_DAO_SOQL_SObjectFieldSetWrapper {
         return this;
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(List<SObjectField> fields, Boolean enforceFLS) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(List<SObjectField> fields, Boolean enforceFLS) {
         return this.add(new Set<SObjectField>(fields), enforceFLS);
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(FieldSet fieldSet, Boolean enforceFLS) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(FieldSet fieldSet, Boolean enforceFLS) {
         return this.add(fieldSet, enforceFLS, ALLOW_CROSS_OBJECTS);
     }
 
-    public XAP_DAO_SOQL_SObjectFieldSetWrapper add(FieldSet fieldSet, Boolean enforceFLS, Boolean allowCrossObject) {
+    public XAP_DAO_SOQL_SObjectFieldCollection add(FieldSet fieldSet, Boolean enforceFLS, Boolean allowCrossObject) {
         if (fieldSet.getSObjectType() != this.sObjectType) {
             throw new XAP_DAO_SOQL_InvalidFieldSetException(
                     'Field set "' + fieldSet.getName() + '" is not for SObject type "' + this.sObjectType + '"'

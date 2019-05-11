@@ -4,24 +4,24 @@
  */
 public class XAP_DAO_SOQL_QueryFactory {
     XAP_DAO_SOQL_Querier querier;
-    XAP_DAO_SOQL_QuerySortOrderListWrapper orderListWrapper;
-    XAP_DAO_SOQL_SObjectFieldSetWrapper fieldSetWrapper;
+    XAP_DAO_SOQL_OrderingCollection orderingCollection;
+    XAP_DAO_SOQL_SObjectFieldCollection fieldSetCollection;
     XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
     public XAP_DAO_SOQL_QueryFactory(
             SObjectType sObjectType,
             XAP_DAO_SOQL_Querier querier,
-            XAP_DAO_SOQL_QuerySortOrderListWrapper orderListWrapper,
+            XAP_DAO_SOQL_OrderingCollection orderListWrapper,
             XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
-            XAP_DAO_SOQL_SObjectFieldSetWrapper fieldSetWrapper,
+            XAP_DAO_SOQL_SObjectFieldCollection fieldSetWrapper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
     ) {
         this.sObjectType = sObjectType;
         this.querier = querier;
-        this.orderListWrapper = orderListWrapper;
+        this.orderingCollection = orderListWrapper;
         this.fieldHelper = fieldHelper;
-        this.fieldSetWrapper = fieldSetWrapper;
+        this.fieldSetCollection = fieldSetWrapper;
         this.securityUtils = securityUtils;
     }
 
@@ -29,9 +29,9 @@ public class XAP_DAO_SOQL_QueryFactory {
         this(
                 sObjectType,
                 XAP_DAO_SOQL_Querier.getInstance(),
-                new XAP_DAO_SOQL_QuerySortOrderListWrapper(sObjectType),
+                new XAP_DAO_SOQL_OrderingCollection(sObjectType),
                 XAP_DAO_SOQL_SObjectFieldHelper.getInstance(),
-                new XAP_DAO_SOQL_SObjectFieldSetWrapper(sObjectType),
+                new XAP_DAO_SOQL_SObjectFieldCollection(sObjectType),
                 XAP_DAO_SOQL_SecurityUtils.getInstance()
         );
     }
@@ -56,7 +56,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     public Boolean equals(Object obj) {
         return obj instanceof XAP_DAO_SOQL_QueryFactory
                 && ((XAP_DAO_SOQL_QueryFactory) obj).sObjectType == this.sObjectType
-                && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSetWrapper.fieldSet.size() == this.fieldSetWrapper.fieldSet.size()
+                && ((XAP_DAO_SOQL_QueryFactory) obj).fieldSetCollection.toSet().size() == this.fieldSetCollection.toSet().size()
                 && ((XAP_DAO_SOQL_QueryFactory) obj).toSOQL() == this.toSOQL();
     }
 
@@ -76,42 +76,42 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory addField(String fieldName) {
-        this.fieldSetWrapper.add(fieldName, this.enforceFLS);
+        this.fieldSetCollection.add(fieldName, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addField(SObjectField field) {
-        this.fieldSetWrapper.add(field, this.enforceFLS);
+        this.fieldSetCollection.add(field, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(Set<String> fieldNames) {
-        this.fieldSetWrapper.add(fieldNames, this.enforceFLS);
+        this.fieldSetCollection.add(fieldNames, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(List<String> fieldNames) {
-        this.fieldSetWrapper.add(fieldNames, this.enforceFLS);
+        this.fieldSetCollection.add(fieldNames, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(Set<SObjectField> fields) {
-        this.fieldSetWrapper.add(fields, this.enforceFLS);
+        this.fieldSetCollection.add(fields, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(List<SObjectField> fields) {
-        this.fieldSetWrapper.add(fields, this.enforceFLS);
+        this.fieldSetCollection.add(fields, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(FieldSet fieldSet) {
-        this.fieldSetWrapper.add(fieldSet, this.enforceFLS, XAP_DAO_SOQL_SObjectFieldSetWrapper.ALLOW_CROSS_OBJECTS);
+        this.fieldSetCollection.add(fieldSet, this.enforceFLS, XAP_DAO_SOQL_SObjectFieldCollection.ALLOW_CROSS_OBJECTS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addFields(FieldSet fieldSet, Boolean allowCrossObject) {
-        this.fieldSetWrapper.add(fieldSet, this.enforceFLS, allowCrossObject);
+        this.fieldSetCollection.add(fieldSet, this.enforceFLS, allowCrossObject);
         return this;
     }
 
@@ -143,7 +143,7 @@ public class XAP_DAO_SOQL_QueryFactory {
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(XAP_DAO_SOQL_QuerySortOrdering ordering) {
-        this.orderListWrapper.add(ordering);
+        this.orderingCollection.add(ordering);
         return this;
     }
 
@@ -152,7 +152,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
     ) {
-        this.orderListWrapper.add(fieldName, direction, nullsLast, this.enforceFLS);
+        this.orderingCollection.add(fieldName, direction, nullsLast, this.enforceFLS);
         return this;
     }
 
@@ -161,17 +161,17 @@ public class XAP_DAO_SOQL_QueryFactory {
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
     ) {
-        this.orderListWrapper.add(field, direction, nullsLast);
+        this.orderingCollection.add(field, direction, nullsLast);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this.orderListWrapper.add(fieldName, direction, this.enforceFLS);
+        this.orderingCollection.add(fieldName, direction, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory addOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this.orderListWrapper.add(field, direction, this.enforceFLS);
+        this.orderingCollection.add(field, direction, this.enforceFLS);
         return this;
     }
 
@@ -180,7 +180,7 @@ public class XAP_DAO_SOQL_QueryFactory {
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
     ) {
-        this.orderListWrapper.set(fieldName, direction, nullsLast, this.enforceFLS);
+        this.orderingCollection.set(fieldName, direction, nullsLast, this.enforceFLS);
         return this;
     }
 
@@ -189,32 +189,32 @@ public class XAP_DAO_SOQL_QueryFactory {
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
     ) {
-        this.orderListWrapper.set(field, direction, nullsLast);
+        this.orderingCollection.set(field, direction, nullsLast);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(String fieldName, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this.orderListWrapper.set(fieldName, direction, this.enforceFLS);
+        this.orderingCollection.set(fieldName, direction, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
-        this.orderListWrapper.set(field, direction, this.enforceFLS);
+        this.orderingCollection.set(field, direction, this.enforceFLS);
         return this;
     }
 
     public XAP_DAO_SOQL_QueryFactory setOrdering(XAP_DAO_SOQL_QuerySortOrdering ordering) {
-        this.orderListWrapper.set(ordering);
+        this.orderingCollection.set(ordering);
         return this;
     }
 
     public List<XAP_DAO_SOQL_QuerySortOrdering> getOrderings() {
-        return this.orderListWrapper.get();
+        return this.orderingCollection.toList();
     }
 
 
     public Set<String> getSelectedFields() {
-        return this.fieldSetWrapper.fieldSet;
+        return this.fieldSetCollection.toSet();
     }
 
 
@@ -327,8 +327,8 @@ public class XAP_DAO_SOQL_QueryFactory {
         }
 
         clone.childRelationship = this.childRelationship;
-        clone.orderListWrapper.set(this.orderListWrapper.get().clone());
-        clone.fieldSetWrapper.add(this.fieldSetWrapper.fieldSet.clone(), this.enforceFLS);
+        clone.orderingCollection.set(this.orderingCollection.toList().clone());
+        clone.fieldSetCollection.add(this.fieldSetCollection.toSet(), this.enforceFLS);
         return clone;
     }
 
@@ -346,13 +346,13 @@ public class XAP_DAO_SOQL_QueryFactory {
 
 
     public XAP_DAO_SOQL_QueryInterpolation toQueryInterpolation() {
-        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSetWrapper.fieldSet))
+        return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSetCollection.toSet()))
                 .setConditionExpression(this.conditionExpression)
                 .setEnforceFieldLevelSecurity(this.enforceFLS)
                 .setSortSelectFields(this.sortSelectFields)
                 .setChildRelationship(this.childRelationship)
                 .setFactoryByChildRelationshipMap(this.factoryByChildRelationshipMap)
-                .setOrderingList(this.orderListWrapper.get())
+                .setOrderingList(this.orderingCollection.toList())
                 .setLimitCount(this.limitCount)
                 .setOffsetCount(this.offsetCount)
                 .toQueryInterpolation();

@@ -1,9 +1,9 @@
-public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
+public class XAP_DAO_SOQL_OrderingCollection {
     SObjectType sObjectType;
     XAP_DAO_SOQL_SObjectFieldHelper fieldHelper;
     XAP_DAO_SOQL_SecurityUtils securityUtils;
 
-    private XAP_DAO_SOQL_QuerySortOrderListWrapper(
+    private XAP_DAO_SOQL_OrderingCollection(
             SObjectType sObjectType,
             XAP_DAO_SOQL_SObjectFieldHelper fieldHelper,
             XAP_DAO_SOQL_SecurityUtils securityUtils
@@ -13,7 +13,7 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         this.securityUtils = securityUtils;
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper(SObjectType sObjectType) {
+    public XAP_DAO_SOQL_OrderingCollection(SObjectType sObjectType) {
         this(sObjectType, XAP_DAO_SOQL_SObjectFieldHelper.getInstance(), XAP_DAO_SOQL_SecurityUtils.getInstance());
     }
     private List<XAP_DAO_SOQL_QuerySortOrdering> orderingList {
@@ -26,13 +26,13 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         private set;
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper add(XAP_DAO_SOQL_QuerySortOrdering ordering) {
+    public XAP_DAO_SOQL_OrderingCollection add(XAP_DAO_SOQL_QuerySortOrdering ordering) {
         this.orderingList.add(ordering);
         return this;
     }
 
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper add(
+    public XAP_DAO_SOQL_OrderingCollection add(
             String fieldName,
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast,
@@ -48,7 +48,7 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         return this;
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper add(
+    public XAP_DAO_SOQL_OrderingCollection add(
             SObjectField field,
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
@@ -63,7 +63,7 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         return this;
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper add(
+    public XAP_DAO_SOQL_OrderingCollection add(
             String fieldName,
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean enforceFLS
@@ -77,7 +77,7 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         return this;
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper add(
+    public XAP_DAO_SOQL_OrderingCollection add(
             SObjectField field,
             XAP_DAO_SOQL_QuerySortOrderEnum direction
     ) {
@@ -87,11 +87,11 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         return this;
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper set(XAP_DAO_SOQL_QuerySortOrdering ordering) {
+    public XAP_DAO_SOQL_OrderingCollection set(XAP_DAO_SOQL_QuerySortOrdering ordering) {
         return this.set(new List<XAP_DAO_SOQL_QuerySortOrdering>{ordering});
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper set(
+    public XAP_DAO_SOQL_OrderingCollection set(
             String fieldName,
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast,
@@ -104,7 +104,7 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         ));
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper set(
+    public XAP_DAO_SOQL_OrderingCollection set(
             SObjectField field,
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean nullsLast
@@ -116,7 +116,7 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         ));
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper set(
+    public XAP_DAO_SOQL_OrderingCollection set(
             String fieldName,
             XAP_DAO_SOQL_QuerySortOrderEnum direction,
             Boolean enforceFLS
@@ -127,19 +127,19 @@ public class XAP_DAO_SOQL_QuerySortOrderListWrapper {
         ));
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper set(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
+    public XAP_DAO_SOQL_OrderingCollection set(SObjectField field, XAP_DAO_SOQL_QuerySortOrderEnum direction) {
         return set(new XAP_DAO_SOQL_QuerySortOrdering(
                 this.fieldHelper.getFieldTokenPath(field),
                 direction
         ));
     }
 
-    public XAP_DAO_SOQL_QuerySortOrderListWrapper set(List<XAP_DAO_SOQL_QuerySortOrdering> orderingList) {
+    public XAP_DAO_SOQL_OrderingCollection set(List<XAP_DAO_SOQL_QuerySortOrdering> orderingList) {
         this.orderingList = orderingList;
         return this;
     }
 
-    public List<XAP_DAO_SOQL_QuerySortOrdering> get() {
+    public List<XAP_DAO_SOQL_QuerySortOrdering> toList() {
         return this.orderingList;
     }
 }

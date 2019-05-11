@@ -756,11 +756,11 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_SObjectFieldSetWrapper" />
+                            <option name="name" value="XAP_DAO_SOQL_SObjectFieldCollection" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SOQL_QuerySortOrderListWrapper" />
+                            <option name="name" value="XAP_DAO_SOQL_OrderingCollection" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                         </list>
