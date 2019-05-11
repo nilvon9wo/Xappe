@@ -36,9 +36,9 @@ public class XAP_DAO_SOQL_QueryFactory {
         );
     }
 
-    private XAP_DAO_SOQL_QueryFactory(ChildRelationship relationship) {
-        this(relationship.getChildSObject());
-        this.childRelationship = relationship;
+    private XAP_DAO_SOQL_QueryFactory(ChildRelationship childRelationship) {
+        this(childRelationship.getChildSObject());
+        this.childRelationship = childRelationship;
     }
 
     public SObjectType sObjectType { get; private set; }
