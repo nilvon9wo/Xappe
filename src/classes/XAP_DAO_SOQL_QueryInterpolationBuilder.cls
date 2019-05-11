@@ -49,11 +49,11 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
     }
 
 
-    private List<XAP_DAO_SOQL_QuerySortOrdering> orderingList;
+    private XAP_DAO_SOQL_OrderingCollection orderingCollection;
     public XAP_DAO_SOQL_QueryInterpolationBuilder setOrderingList(
-            List<XAP_DAO_SOQL_QuerySortOrdering> orderingList
+            XAP_DAO_SOQL_OrderingCollection orderingCollection
     ) {
-        this.orderingList = orderingList;
+        this.orderingCollection = orderingCollection;
         return this;
     }
 
@@ -104,7 +104,7 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
                         : ''
         )
                 + (
-                this.orderingList != null && !this.orderingList.isEmpty()
+                this.orderingCollection.isNotEmpty()
                         ? this.toSoqlOrderBy()
                         : ''
         )
@@ -165,7 +165,7 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
 
     private String toSoqlOrderBy() {
         String result = ' ORDER BY ';
-        for (XAP_DAO_SOQL_QuerySortOrdering ordering : this.orderingList) {
+        for (XAP_DAO_SOQL_QuerySortOrdering ordering : this.orderingCollection.toList()) {
             result += ordering.toSOQL() + ', ';
         }
 

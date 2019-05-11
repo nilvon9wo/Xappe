@@ -352,7 +352,7 @@ public class XAP_DAO_SOQL_QueryFactory {
                 .setSortSelectFields(this.sortSelectFields)
                 .setChildRelationship(this.childRelationship)
                 .setFactoryByChildRelationshipMap(this.factoryByChildRelationshipMap)
-                .setOrderingList(this.orderingCollection.toList())
+                .setOrderingList(this.orderingCollection)
                 .setLimitCount(this.limitCount)
                 .setOffsetCount(this.offsetCount)
                 .toQueryInterpolation();
