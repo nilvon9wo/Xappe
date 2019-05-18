@@ -344,11 +344,11 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TransactionHelper" />
+                            <option name="name" value="XAP_DAO_TRANS_TransactionHelper" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TransactionHelperMock" />
+                            <option name="name" value="XAP_DAO_TRANS_TransactionHelperMock" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

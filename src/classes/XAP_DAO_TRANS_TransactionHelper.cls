@@ -1,4 +1,4 @@
-public virtual class XAP_DAO_TransactionHelper {
+public virtual class XAP_DAO_TRANS_TransactionHelper {
     public virtual Savepoint createSavePoint() {
         return Database.setSavepoint();
     }
