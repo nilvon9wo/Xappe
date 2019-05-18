@@ -1,4 +1,4 @@
-public class XAP_DAO_DML_UndeleteResultListWrapper implements XAP_DAO_DML_ResultListWrapperIntf {
+public class XAP_DAO_DML_UndeleteResultListWrapper  extends XAP_DAO_DML_ResultListWrapperAbs {
     @TestVisible private List<Database.UndeleteResult> undeleteResultList;
     @TestVisible private List<XAP_DAO_DML_UndeleteResultWrapper> resultWrapperList;
 
@@ -6,7 +6,7 @@ public class XAP_DAO_DML_UndeleteResultListWrapper implements XAP_DAO_DML_Result
         this.undeleteResultList = undeleteResultList;
     }
 
-    public List<XAP_DAO_DML_UndeleteResultWrapper> getResultWrapperList() {
+    public override List<XAP_DAO_DML_ResultWrapperIntf> getResultWrapperList() {
         if (this.resultWrapperList == null) {
             this.resultWrapperList = new List<XAP_DAO_DML_UndeleteResultWrapper>();
             for (Database.UndeleteResult undeleteResult : undeleteResultList) {

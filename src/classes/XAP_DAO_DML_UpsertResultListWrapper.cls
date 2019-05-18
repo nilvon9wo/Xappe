@@ -1,4 +1,4 @@
-public class XAP_DAO_DML_UpsertResultListWrapper implements XAP_DAO_DML_ResultListWrapperIntf {
+public class XAP_DAO_DML_UpsertResultListWrapper  extends XAP_DAO_DML_ResultListWrapperAbs {
     @TestVisible private List<Database.UpsertResult> upsertResultList;
     @TestVisible private List<XAP_DAO_DML_UpsertResultWrapper> resultWrapperList;
 
@@ -6,7 +6,7 @@ public class XAP_DAO_DML_UpsertResultListWrapper implements XAP_DAO_DML_ResultLi
         this.upsertResultList = upsertResultList;
     }
 
-    public List<XAP_DAO_DML_UpsertResultWrapper> getResultWrapperList() {
+    public override List<XAP_DAO_DML_ResultWrapperIntf> getResultWrapperList() {
         if (this.resultWrapperList == null) {
             this.resultWrapperList = new List<XAP_DAO_DML_UpsertResultWrapper>();
             for (Database.UpsertResult upsertResult : upsertResultList) {

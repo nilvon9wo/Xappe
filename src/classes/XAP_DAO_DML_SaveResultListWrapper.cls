@@ -1,4 +1,4 @@
-public class XAP_DAO_DML_SaveResultListWrapper implements XAP_DAO_DML_ResultListWrapperIntf {
+public class XAP_DAO_DML_SaveResultListWrapper extends XAP_DAO_DML_ResultListWrapperAbs {
     @TestVisible private List<Database.SaveResult> saveResultList;
     @TestVisible private List<XAP_DAO_DML_SaveResultWrapper> resultWrapperList;
 
@@ -6,7 +6,7 @@ public class XAP_DAO_DML_SaveResultListWrapper implements XAP_DAO_DML_ResultList
         this.saveResultList = saveResultList;
     }
 
-    public List<XAP_DAO_DML_SaveResultWrapper> getResultWrapperList() {
+    public override List<XAP_DAO_DML_ResultWrapperIntf> getResultWrapperList() {
         if (this.resultWrapperList == null) {
             this.resultWrapperList = new List<XAP_DAO_DML_SaveResultWrapper>();
             for (Database.SaveResult saveResult : saveResultList) {
