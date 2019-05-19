@@ -1,2 +1,2 @@
-global class XAP_DAO_DML_AccessCtrlDmlException extends Exception {
+public class XAP_DAO_DML_AccessCtrlDmlException extends Exception {
 }
