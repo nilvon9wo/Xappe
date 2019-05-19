@@ -33,6 +33,7 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
         Map<String, List<SObject>> prerequisitSObjectsByKeyMap = new Map<String, List<SObject>>();
         for (XAP_DAO_TRANS_DmlOperationIntf dmlOperation : dmlOperatonList) {
             XAP_DAO_TRANS_DmlResultIntf result;
+
             try {
                 result = dmlOperation.doDml(prerequisitSObjectsByKeyMap);
             }
@@ -40,15 +41,21 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
             // implementation, so we really do want to catch absolutely everything to be able to
             // guarantee the rollback.
             catch (Exception ex) {
-                result = new XAP_DAO_TRANS_DmlFailure();
+                result = new XAP_DAO_TRANS_DmlFailure(dmlOperation, ex);
             }
+
+            if (this.wasPartialSuccess(result)) {
+                this.wasCompleteSuccess = false;
+                if (this.rollbackOnPartialSuccess) {
+                    result = new XAP_DAO_TRANS_DmlFailure(dmlOperation, (XAP_DAO_TRANS_DmlPartialSuccess) result);
+                }
+            }
+
             if (this.wasFailure(result)) {
                 this.transactionHelper.rollback(savepoint);
                 return result;
             }
-            if (this.wasPartialSuccess(result)) {
-                this.wasCompleteSuccess = false;
-            }
+
             prerequisitSObjectsByKeyMap.putAll(result.getResultSObjectsByKeyMap());
         }
         return wasCompleteSuccess
@@ -57,12 +64,7 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
     }
 
     private Boolean wasFailure(XAP_DAO_TRANS_DmlResultIntf result) {
-        XAP_DAO_DML_SuccessLevelEnum successLevel = result.getSuccessLevel();
-        return successLevel == XAP_DAO_DML_SuccessLevelEnum.NONE
-                || (
-                this.rollbackOnPartialSuccess
-                        && successLevel == XAP_DAO_DML_SuccessLevelEnum.PARTIAL
-        );
+        return result.getSuccessLevel() == XAP_DAO_DML_SuccessLevelEnum.NONE;
     }
 
     private Boolean wasPartialSuccess(XAP_DAO_TRANS_DmlResultIntf result) {

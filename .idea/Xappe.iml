@@ -124,6 +124,10 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_AccessCtrlDmlException" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_DatabaseErrorHelperIntTest" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
@@ -156,7 +160,7 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_DML_GenericDml" />
+                            <option name="name" value="XAP_DAO_DML_GenericDmlIntf" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -165,6 +169,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_GenericDmlMock" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_InheritedSharingDml" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -240,11 +248,15 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SDML_AbsInternalAccessCtrl" />
+                            <option name="name" value="XAP_DAO_DML_WithoutSharingDml" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_DML_AccessCtrlDmlException" />
+                            <option name="name" value="XAP_DAO_DML_WithSharingDml" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_SDML_AbsInternalAccessCtrl" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -477,6 +489,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="XAP_DAO_TRANS_SimpleUpsert" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_TRANS_TransactionException" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

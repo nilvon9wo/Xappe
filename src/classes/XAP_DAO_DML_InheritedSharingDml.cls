@@ -1,21 +1,21 @@
-public virtual inherited sharing class XAP_DAO_DML_GenericDml {
+public virtual inherited sharing class XAP_DAO_DML_InheritedSharingDml implements XAP_DAO_DML_GenericDmlIntf{
     XAP_DAO_DML_OperationModeHelper operationModeHelper;
 
     @TestVisible
-    private XAP_DAO_DML_GenericDml(XAP_DAO_DML_OperationModeHelper operationModeHelper) {
+    private XAP_DAO_DML_InheritedSharingDml(XAP_DAO_DML_OperationModeHelper operationModeHelper) {
         this.operationModeHelper = operationModeHelper;
     }
 
     @TestVisible
-    protected XAP_DAO_DML_GenericDml() {
+    protected XAP_DAO_DML_InheritedSharingDml() {
         this(XAP_DAO_DML_OperationModeHelper.getInstance());
     }
 
-    private static XAP_DAO_DML_GenericDml instance;
+    private static XAP_DAO_DML_InheritedSharingDml instance;
 
-    public static XAP_DAO_DML_GenericDml getInstance() {
+    public static XAP_DAO_DML_InheritedSharingDml getInstance() {
         if (instance == null) {
-            instance = new XAP_DAO_DML_GenericDml();
+            instance = new XAP_DAO_DML_InheritedSharingDml();
         }
         return instance;
     }
@@ -26,22 +26,22 @@ public virtual inherited sharing class XAP_DAO_DML_GenericDml {
         return new XAP_DAO_DML_SaveResultListWrapper(Database.insert(sObjectList, dmlOptions));
     }
 
-    public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
-        return new XAP_DAO_DML_SaveResultListWrapper(Database.insert(objectList, this.convert(operationMode)));
+    public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_SaveResultListWrapper(Database.insert(sObjectList, this.convert(operationMode)));
     }
 
-    public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> objectList) {
-        return this.doInsert(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
+    public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> sObjectList) {
+        return this.doInsert(sObjectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Update Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
-        return new XAP_DAO_DML_SaveResultListWrapper(Database.update(objectList, this.convert(operationMode)));
+    public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_SaveResultListWrapper(Database.update(sObjectList, this.convert(operationMode)));
     }
 
-    public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> objectList) {
-        return this.doUpdate(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
+    public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> sObjectList) {
+        return this.doUpdate(sObjectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Upsert Methods -----------------------------------------------------------------------------------------
@@ -65,22 +65,22 @@ public virtual inherited sharing class XAP_DAO_DML_GenericDml {
 
     // Delete Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
-        return new XAP_DAO_DML_DeleteResultListWrapper(Database.delete(objectList, this.convert(operationMode)));
+    public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_DeleteResultListWrapper(Database.delete(sObjectList, this.convert(operationMode)));
     }
 
-    public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> objectList) {
-        return this.doDelete(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
+    public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> sObjectList) {
+        return this.doDelete(sObjectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Undelete Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
-        return new XAP_DAO_DML_UndeleteResultListWrapper(Database.undelete(objectList, this.convert(operationMode)));
+    public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_UndeleteResultListWrapper(Database.undelete(sObjectList, this.convert(operationMode)));
     }
 
-    public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> objectList) {
-        return this.doUndelete(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
+    public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> sObjectList) {
+        return this.doUndelete(sObjectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
     // Helper Methods -----------------------------------------------------------------------------------------
 

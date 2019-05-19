@@ -1,5 +1,5 @@
 @IsTest
-public class XAP_DAO_DML_GenericDmlMock extends XAP_DAO_DML_GenericDml {
+public class XAP_DAO_DML_GenericDmlMock extends XAP_DAO_DML_InheritedSharingDml {
     // These need to be lists in case there are multiple DML operations during your test.
     // Otherwise, only the last operation would be verifiable.
     public List<List<SObject>> insertedSObjectListList = new List<List<SObject>>();

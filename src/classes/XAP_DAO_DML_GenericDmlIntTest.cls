@@ -1,7 +1,7 @@
 @IsTest
 public class XAP_DAO_DML_GenericDmlIntTest {
     private static final User TEST_RUNNER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
-    private static final XAP_DAO_DML_GenericDml DML_HANDLER = XAP_DAO_DML_GenericDml.getInstance();
+    private static final XAP_DAO_DML_InheritedSharingDml DML_HANDLER = XAP_DAO_DML_InheritedSharingDml.getInstance();
 
     // Insert Tests -------------------------------------------------------------------------------------------------
 
