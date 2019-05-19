@@ -8,7 +8,7 @@ public class XAP_DAO_DML_GenericDmlIntTest {
     @IsTest public static void testDoInsertShouldReturnAppropriateWrappedResult() {
         // Arrange
         Account testAccount = new Account();
-        Boolean isAllOrNone = false;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.BEST_EFFORT;
 
         // Act
         XAP_DAO_DML_SaveResultListWrapper resultListWrapper;
@@ -16,15 +16,15 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         System.runAs(TEST_RUNNER) {
             resultListWrapper = DML_HANDLER.doInsert(new List<Account>{
                     testAccount
-            }, isAllOrNone);
+            }, testOperationMode);
         }
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_SaveResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList(); 
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_SaveResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(null, resultWrapper.getId());
         System.assertEquals(false, resultWrapper.isSuccess());
         System.assertEquals(1, resultWrapper.getErrorList().size());
@@ -59,7 +59,7 @@ public class XAP_DAO_DML_GenericDmlIntTest {
     @IsTest public static void testDoUpdateShouldReturnAppropriateWrappedResult() {
         // Arrange
         Account testAccount = new Account();
-        Boolean isAllOrNone = false;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.BEST_EFFORT;
 
         // Act
         XAP_DAO_DML_SaveResultListWrapper resultListWrapper;
@@ -67,15 +67,15 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         System.runAs(TEST_RUNNER) {
             resultListWrapper = DML_HANDLER.doUpdate(new List<Account>{
                     testAccount
-            }, isAllOrNone);
+            }, testOperationMode);
         }
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_SaveResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList();
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_SaveResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(null, resultWrapper.getId());
         System.assertEquals(false, resultWrapper.isSuccess());
         System.assertEquals(1, resultWrapper.getErrorList().size());
@@ -110,7 +110,7 @@ public class XAP_DAO_DML_GenericDmlIntTest {
     @IsTest public static void testDoUpsertShouldReturnAppropriateWrappedResult() {
         // Arrange
         Account testAccount = new Account();
-        Boolean isAllOrNone = false;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.BEST_EFFORT;
 
         // Act
         XAP_DAO_DML_UpsertResultListWrapper resultListWrapper;
@@ -118,15 +118,15 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         System.runAs(TEST_RUNNER) {
             resultListWrapper = DML_HANDLER.doUpsert(new List<Account>{
                     testAccount
-            }, isAllOrNone);
+            }, testOperationMode);
         }
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_UpsertResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList();
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_UpsertResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(null, resultWrapper.getId());
         System.assertEquals(false, resultWrapper.isSuccess());
         System.assertEquals(1, resultWrapper.getErrorList().size());
@@ -158,14 +158,14 @@ public class XAP_DAO_DML_GenericDmlIntTest {
 
     @IsTest public static void testDoUpsertShouldReturnNullWhenProvidedEmptyList() {
         // Arrange
-        Boolean isAllOrNone = true;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE;
 
         // Act
         XAP_DAO_DML_UpsertResultListWrapper resultListWrapper;
         Test.startTest();
         System.runAs(TEST_RUNNER) {
             resultListWrapper = DML_HANDLER.doUpsert(new List<Account>{
-            }, isAllOrNone);
+            }, testOperationMode);
         }
         Test.stopTest();
 
@@ -175,13 +175,13 @@ public class XAP_DAO_DML_GenericDmlIntTest {
 
     @IsTest public static void testDoUpsertShouldReturnNullWhenProvidedWithNull() {
         // Arrange
-        Boolean isAllOrNone = true;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE;
 
         // Act
         XAP_DAO_DML_UpsertResultListWrapper resultListWrapper;
         Test.startTest();
         System.runAs(TEST_RUNNER) {
-            resultListWrapper = DML_HANDLER.doUpsert(null, isAllOrNone);
+            resultListWrapper = DML_HANDLER.doUpsert(null, testOperationMode);
         }
         Test.stopTest();
 
@@ -202,7 +202,7 @@ public class XAP_DAO_DML_GenericDmlIntTest {
                 .setInsertMode(XFTY_InsertModeEnum.NOW)
                 .supply();
         Id testAccountId = testAccount.Id;
-        Boolean isAllOrNone = false;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.BEST_EFFORT;
 
         // Act
         XAP_DAO_DML_DeleteResultListWrapper resultListWrapper;
@@ -210,15 +210,15 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         System.runAs(TEST_RUNNER) {
             resultListWrapper = DML_HANDLER.doDelete(new List<Account>{
                     testAccount
-            }, isAllOrNone);
+            }, testOperationMode);
         }
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_DeleteResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList();
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_DeleteResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(testAccountId, resultWrapper.getId());
         System.assertEquals(true, resultWrapper.isSuccess());
         System.assert(resultWrapper.getErrorList().isEmpty());
@@ -243,11 +243,11 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_DeleteResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList();
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_DeleteResultWrapper resultWrapper = resultWrapperList[0];
-        System.assertEquals(testAccountId, resultWrapper.id);
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
+        System.assertEquals(testAccountId, resultWrapper.getId());
         System.assertEquals(true, resultWrapper.isSuccess());
         System.assert(resultWrapper.getErrorList().isEmpty());
     }
@@ -264,7 +264,7 @@ public class XAP_DAO_DML_GenericDmlIntTest {
                 .supply();
         Id testAccountId = testAccount.Id;
         delete (testAccount);
-        Boolean isAllOrNone = false;
+        XAP_DAO_DML_OperationModeEnum testOperationMode = XAP_DAO_DML_OperationModeEnum.BEST_EFFORT;
 
         // Act
         XAP_DAO_DML_UndeleteResultListWrapper resultListWrapper;
@@ -272,15 +272,15 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         System.runAs(TEST_RUNNER) {
             resultListWrapper = DML_HANDLER.doUndelete(new List<Account>{
                     testAccount
-            }, isAllOrNone);
+            }, testOperationMode);
         }
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_UndeleteResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList();
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_UndeleteResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(testAccountId, resultWrapper.getId());
         System.assertEquals(true, resultWrapper.isSuccess());
         System.assert(resultWrapper.getErrorList().isEmpty());
@@ -306,10 +306,10 @@ public class XAP_DAO_DML_GenericDmlIntTest {
         Test.stopTest();
 
         // Assert
-        List<XAP_DAO_DML_UndeleteResultWrapper> resultWrapperList = resultListWrapper.getResultWrapperList();
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList = resultListWrapper.getResultWrapperList();
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_UndeleteResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(testAccountId, resultWrapper.getId());
         System.assertEquals(true, resultWrapper.isSuccess());
         System.assert(resultWrapper.getErrorList().isEmpty());

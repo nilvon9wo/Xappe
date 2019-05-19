@@ -168,6 +168,14 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_OperationModeEnum" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_OperationModeHelper" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_ResultListWrapperAbs" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
@@ -232,11 +240,11 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SDML_AccessCtrlDmlException" />
+                            <option name="name" value="XAP_DAO_SDML_AbsInternalAccessCtrl" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SDML_AbsInternalAccessCtrl" />
+                            <option name="name" value="XAP_DAO_DML_AccessCtrlDmlException" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -244,19 +252,7 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SDML_WithSharingAccessCtrl" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_SDML_InheritSharingAccessCtrl" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SDML_WithoutSharingAccessCtrl" />
-                            <option name="selected" value="true" />
-                          </MetadataEntry>
-                          <MetadataEntry>
-                            <option name="name" value="XAP_DAO_SDML_OperationModeEnum" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -265,6 +261,14 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="XAP_DAO_SDML_SharingModeEnum" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_SDML_WithoutSharingAccessCtrl" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_SDML_WithSharingAccessCtrl" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

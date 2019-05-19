@@ -6,8 +6,8 @@ global class XAP_DAO_SDML_SecureDml {
 
     global XAP_DAO_SDML_SecureDml(
             XAP_DAO_SDML_SharingModeEnum sharingMode,
-            XAP_DAO_SDML_OperationModeEnum operationMode,
-            XAP_DAO_SDML_OperationModeEnum arrayOperationMode
+            XAP_DAO_DML_OperationModeEnum operationMode,
+            XAP_DAO_DML_OperationModeEnum arrayOperationMode
     ) {
         this.withSharingAccessCtrl = new XAP_DAO_SDML_WithSharingAccessCtrl();
         this.withoutSharingAccessCtrl = new XAP_DAO_SDML_WithoutSharingAccessCtrl();
@@ -17,15 +17,15 @@ global class XAP_DAO_SDML_SecureDml {
         setArrayOperationMode(arrayOperationMode);
     }
 
-    global XAP_DAO_SDML_SecureDml(XAP_DAO_SDML_SharingModeEnum sharingMode, XAP_DAO_SDML_OperationModeEnum operationMode) {
-        this(sharingMode, operationMode, XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE);
+    global XAP_DAO_SDML_SecureDml(XAP_DAO_SDML_SharingModeEnum sharingMode, XAP_DAO_DML_OperationModeEnum operationMode) {
+        this(sharingMode, operationMode, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     global XAP_DAO_SDML_SecureDml() {
         this(
                 XAP_DAO_SDML_SharingModeEnum.WITH,
-                XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE,
-                XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE
+                XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE,
+                XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE
         );
     }
 
@@ -43,7 +43,7 @@ global class XAP_DAO_SDML_SecureDml {
 
     global void setSharingMode(XAP_DAO_SDML_SharingModeEnum sharingMode) {
         if (sharingMode == null) {
-            throw new XAP_DAO_SDML_AccessCtrlDmlException('SharingMode must not be null');
+            throw new XAP_DAO_DML_AccessCtrlDmlException('SharingMode must not be null');
         }
 
         if (
@@ -54,17 +54,17 @@ global class XAP_DAO_SDML_SecureDml {
             this.sharingMode = sharingMode;
         }
         else {
-            throw new XAP_DAO_SDML_AccessCtrlDmlException('Invalid value for SharingMode');
+            throw new XAP_DAO_DML_AccessCtrlDmlException('Invalid value for SharingMode');
         }
     }
 
-    global void setOperationMode(XAP_DAO_SDML_OperationModeEnum omode) {
+    global void setOperationMode(XAP_DAO_DML_OperationModeEnum omode) {
         withSharingAccessCtrl.setOperationMode(omode);
         withoutSharingAccessCtrl.setOperationMode(omode);
         inheritSharingAccessCtrl.setOperationMode(omode);
     }
 
-    global void setArrayOperationMode(XAP_DAO_SDML_OperationModeEnum oarrmode) {
+    global void setArrayOperationMode(XAP_DAO_DML_OperationModeEnum oarrmode) {
         withSharingAccessCtrl.setArrayOperationMode(oarrmode);
         withoutSharingAccessCtrl.setArrayOperationMode(oarrmode);
         inheritSharingAccessCtrl.setArrayOperationMode(oarrmode);
@@ -163,7 +163,7 @@ global class XAP_DAO_SDML_SecureDml {
 
     private abstract class XAP_DAO_SDML_AccessControllerInternalAbs implements XAP_DAO_SDML_AccessCtrlIntf {
 
-        private XAP_DAO_SDML_OperationModeEnum omode; // the current operation mode of this instance.
+        private XAP_DAO_DML_OperationModeEnum omode; // the current operation mode of this instance.
         private Boolean arrayAllOrNoneParam; // the current array operation mode param of this instance. (as provided to the database methods second argument)
 
         private abstract void dbInsert(SObject obj);
@@ -173,32 +173,32 @@ global class XAP_DAO_SDML_SecureDml {
         private abstract void dbDelete(SObject obj);
         private abstract Database.DeleteResult[] dbDelete(SObject [] objs);
 
-        private void setOperationMode(XAP_DAO_SDML_OperationModeEnum omode) {
+        private void setOperationMode(XAP_DAO_DML_OperationModeEnum omode) {
             if (omode == null) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('OperationMode must not be null');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('OperationMode must not be null');
             }
 
-            if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE || omode == XAP_DAO_SDML_OperationModeEnum.BEST_EFFORT) {
+            if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE || omode == XAP_DAO_DML_OperationModeEnum.BEST_EFFORT) {
                 this.omode = omode;
             }
             else {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Invalid value for OperationMode');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Invalid value for OperationMode');
             }
         }
 
-        private void setArrayOperationMode(XAP_DAO_SDML_OperationModeEnum oarrmode) {
+        private void setArrayOperationMode(XAP_DAO_DML_OperationModeEnum oarrmode) {
             if (oarrmode == null) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('OperationMode must not be null');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('OperationMode must not be null');
             }
 
-            if (oarrmode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+            if (oarrmode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                 this.arrayAllOrNoneParam = true;
             }
-            else if (oarrmode == XAP_DAO_SDML_OperationModeEnum.BEST_EFFORT) {
+            else if (oarrmode == XAP_DAO_DML_OperationModeEnum.BEST_EFFORT) {
                 this.arrayAllOrNoneParam = false;
             }
             else {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Invalid value for OperationMode');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Invalid value for OperationMode');
             }
         }
 
@@ -366,7 +366,7 @@ global class XAP_DAO_SDML_SecureDml {
 
         public SObject insertAsUser(SObject devObj, List<String> fieldsToSet) {
             if (devObj == null || fieldsToSet == null || fieldsToSet.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
@@ -386,7 +386,7 @@ global class XAP_DAO_SDML_SecureDml {
             for (String fieldName : fieldsToSet) {
                 fieldName = fieldName.toLowerCase();
                 if (creatableFields == null || creatableFields.contains(fieldName) == false) {
-                    if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                    if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                         throw new SFDCAccessControlException('Access Violation',
                                 SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                 SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -403,14 +403,14 @@ global class XAP_DAO_SDML_SecureDml {
                 dbInsert(cleanObj);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to insert object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to insert object');
             }
             return cleanObj;
         }
 
         public SObject insertAsUser(SObject devObj, List<Schema.SObjectField> fieldsToSet) {
             if (devObj == null || fieldsToSet == null || fieldsToSet.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
@@ -426,7 +426,7 @@ global class XAP_DAO_SDML_SecureDml {
 
             for (Schema.SObjectField field : fieldsToSet) {
                 if (field.getDescribe().isCreateable() == false) {
-                    if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                    if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                         throw new SFDCAccessControlException('Access Violation',
                                 SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                 SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -443,14 +443,14 @@ global class XAP_DAO_SDML_SecureDml {
                 dbInsert(cleanObj);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to insert object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to insert object');
             }
             return cleanObj;
         }
 
         public SFDCAccessControlResults.InsertResults insertAsUser(SObject [] devObjs, List<String> fieldsToSet) {
             if (devObjs == null || devObjs.size() == 0 || fieldsToSet == null || fieldsToSet.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
@@ -473,7 +473,7 @@ global class XAP_DAO_SDML_SecureDml {
                 for (String fieldName : fieldsToSet) {
                     fieldName = fieldName.toLowerCase();
                     if (creatableFields == null || creatableFields.contains(fieldName) == false) {
-                        if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                        if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                             throw new SFDCAccessControlException('Access Violation',
                                     SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                     SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -494,7 +494,7 @@ global class XAP_DAO_SDML_SecureDml {
                 results = dbInsert(cleanObjs);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to insert objects');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to insert objects');
             }
 
             return new SFDCAccessControlResults.InsertResults(cleanObjs, results);
@@ -502,7 +502,7 @@ global class XAP_DAO_SDML_SecureDml {
 
         public SFDCAccessControlResults.InsertResults insertAsUser(SObject [] devObjs, List<Schema.SObjectField> fieldsToSet) {
             if (devObjs == null || devObjs.size() == 0 || fieldsToSet == null || fieldsToSet.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
@@ -522,7 +522,7 @@ global class XAP_DAO_SDML_SecureDml {
 
                 for (Schema.SObjectField field : fieldsToSet) {
                     if (field.getDescribe().isCreateable() == false) {
-                        if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                        if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                             throw new SFDCAccessControlException('Access Violation',
                                     SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                     SFDCAccessControlException.ExceptionReason.NO_CREATE,
@@ -543,7 +543,7 @@ global class XAP_DAO_SDML_SecureDml {
                 results = dbInsert(cleanObjs);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to insert objects');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to insert objects');
             }
 
             return new SFDCAccessControlResults.InsertResults(cleanObjs, results);
@@ -551,7 +551,7 @@ global class XAP_DAO_SDML_SecureDml {
 
         public SObject updateAsUser(SObject devObj, List<String> fieldsToUpdate) {
             if (devObj == null || fieldsToUpdate == null || fieldsToUpdate.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
@@ -579,7 +579,7 @@ global class XAP_DAO_SDML_SecureDml {
             for (String fieldName : fieldsToUpdate) {
                 fieldName = fieldName.toLowerCase();
                 if (updateableFields == null || updateableFields.contains(fieldName) == false) {
-                    if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                    if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                         throw new SFDCAccessControlException('Access Violation',
                                 SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                 SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -596,14 +596,14 @@ global class XAP_DAO_SDML_SecureDml {
                 dbUpdate(cleanObj);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to update object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to update object');
             }
             return cleanObj;
         }
 
         public SObject updateAsUser(SObject devObj, List<Schema.SObjectField> fieldsToUpdate) {
             if (devObj == null || fieldsToUpdate == null || fieldsToUpdate.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
@@ -626,7 +626,7 @@ global class XAP_DAO_SDML_SecureDml {
 
             for (Schema.SObjectField field : fieldsToUpdate) {
                 if (field.getDescribe().isUpdateable() == false) {
-                    if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                    if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                         throw new SFDCAccessControlException('Access Violation',
                                 SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                 SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -643,14 +643,14 @@ global class XAP_DAO_SDML_SecureDml {
                 dbUpdate(cleanObj);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to update object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to update object');
             }
             return cleanObj;
         }
 
         public SFDCAccessControlResults.UpdateResults updateAsUser(Map<Id, SObject> devMap, List<String> fieldsToUpdate) {
             if (devMap == null || devMap.size() == 0 || fieldsToUpdate == null || fieldsToUpdate.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devMap.getSObjectType().getDescribe();
@@ -689,7 +689,7 @@ global class XAP_DAO_SDML_SecureDml {
                 for (String fieldName : fieldsToUpdate) {
                     fieldName = fieldName.toLowerCase();
                     if (updateableFields == null || updateableFields.contains(fieldName) == false) {
-                        if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                        if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                             throw new SFDCAccessControlException('Access Violation',
                                     SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                     SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -708,7 +708,7 @@ global class XAP_DAO_SDML_SecureDml {
                 results = dbUpdate(cleanObjs);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to update objects');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to update objects');
             }
 
             return new SFDCAccessControlResults.UpdateResults(cleanObjs, results);
@@ -716,7 +716,7 @@ global class XAP_DAO_SDML_SecureDml {
 
         public SFDCAccessControlResults.UpdateResults updateAsUser(Map<Id, SObject> devMap, List<Schema.SObjectField> fieldsToUpdate) {
             if (devMap == null || devMap.size() == 0 || fieldsToUpdate == null || fieldsToUpdate.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null or empty parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null or empty parameter');
             }
 
             Schema.DescribeSObjectResult d = devMap.getSObjectType().getDescribe();
@@ -750,7 +750,7 @@ global class XAP_DAO_SDML_SecureDml {
 
                 for (Schema.SObjectField field : fieldsToUpdate) {
                     if (field.getDescribe().isUpdateable() == false) {
-                        if (omode == XAP_DAO_SDML_OperationModeEnum.ALL_OR_NONE) {
+                        if (omode == XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE) {
                             throw new SFDCAccessControlException('Access Violation',
                                     SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                     SFDCAccessControlException.ExceptionReason.NO_UPDATE,
@@ -769,7 +769,7 @@ global class XAP_DAO_SDML_SecureDml {
                 results = dbUpdate(cleanObjs);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to update objects');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to update objects');
             }
 
             return new SFDCAccessControlResults.UpdateResults(cleanObjs, results);
@@ -777,7 +777,7 @@ global class XAP_DAO_SDML_SecureDml {
 
         public void deleteAsUser(SObject devObj) {
             if (devObj == null) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null parameter');
             }
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
@@ -793,13 +793,13 @@ global class XAP_DAO_SDML_SecureDml {
                 dbDelete(devObj);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to delete object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to delete object');
             }
         }
 
         public SFDCAccessControlResults.DeleteResults deleteAsUser(SObject [] devObjs) {
             if (devObjs == null || devObjs.size() == 0) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('null parameter');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('null parameter');
             }
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
@@ -816,7 +816,7 @@ global class XAP_DAO_SDML_SecureDml {
                 results = dbDelete(devObjs);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to delete objects');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to delete objects');
             }
 
             return new SFDCAccessControlResults.DeleteResults(results);
@@ -836,7 +836,7 @@ global class XAP_DAO_SDML_SecureDml {
                 res = dbQuery(Soql);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to query object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to query object');
             }
 
             if (res.isEmpty() == True) {
@@ -869,7 +869,7 @@ global class XAP_DAO_SDML_SecureDml {
                 res = dbQuery(Soql);
             }
             catch (Exception e) {
-                throw new XAP_DAO_SDML_AccessCtrlDmlException('Failed to query object');
+                throw new XAP_DAO_DML_AccessCtrlDmlException('Failed to query object');
             }
 
             return res;

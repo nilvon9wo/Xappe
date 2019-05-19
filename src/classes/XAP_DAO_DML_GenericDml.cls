@@ -1,9 +1,14 @@
-public virtual class XAP_DAO_DML_GenericDml {
-    public static Boolean IS_ALL_OR_NONE = true;
-    public static Boolean NOT_ALL_OR_NONE = false;
+public virtual inherited sharing class XAP_DAO_DML_GenericDml {
+    XAP_DAO_DML_OperationModeHelper operationModeHelper;
+
+    @TestVisible
+    private XAP_DAO_DML_GenericDml(XAP_DAO_DML_OperationModeHelper operationModeHelper) {
+        this.operationModeHelper = operationModeHelper;
+    }
 
     @TestVisible
     protected XAP_DAO_DML_GenericDml() {
+        this(XAP_DAO_DML_OperationModeHelper.getInstance());
     }
 
     private static XAP_DAO_DML_GenericDml instance;
@@ -21,27 +26,27 @@ public virtual class XAP_DAO_DML_GenericDml {
         return new XAP_DAO_DML_SaveResultListWrapper(Database.insert(sObjectList, dmlOptions));
     }
 
-    public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> objectList, Boolean isAllOrNone) {
-        return new XAP_DAO_DML_SaveResultListWrapper(Database.insert(objectList, isAllOrNone));
+    public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_SaveResultListWrapper(Database.insert(objectList, this.convert(operationMode)));
     }
 
     public virtual XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> objectList) {
-        return this.doInsert(objectList, IS_ALL_OR_NONE);
+        return this.doInsert(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Update Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> objectList, Boolean isAllOrNone) {
-        return new XAP_DAO_DML_SaveResultListWrapper(Database.update(objectList, isAllOrNone));
+    public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_SaveResultListWrapper(Database.update(objectList, this.convert(operationMode)));
     }
 
     public virtual XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> objectList) {
-        return this.doUpdate(objectList, IS_ALL_OR_NONE);
+        return this.doUpdate(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Upsert Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList, Boolean isAllOrNone) {
+    public virtual XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
         if (homogeneousSObjectList == null || homogeneousSObjectList.isEmpty()) {
             return null;
         }
@@ -51,30 +56,35 @@ public virtual class XAP_DAO_DML_GenericDml {
         List<SObject> concreteSObjectList = (List<SObject>) Type.forName(listType).newInstance();
         concreteSObjectList.addAll(homogeneousSObjectList);
 
-        return new XAP_DAO_DML_UpsertResultListWrapper(Database.upsert(homogeneousSObjectList, isAllOrNone));
+        return new XAP_DAO_DML_UpsertResultListWrapper(Database.upsert(homogeneousSObjectList, this.convert(operationMode)));
     }
 
     public virtual XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList) {
-        return this.doUpsert(homogeneousSObjectList, IS_ALL_OR_NONE);
+        return this.doUpsert(homogeneousSObjectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Delete Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> objectList, Boolean isAllOrNone) {
-        return new XAP_DAO_DML_DeleteResultListWrapper(Database.delete(objectList, isAllOrNone));
+    public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_DeleteResultListWrapper(Database.delete(objectList, this.convert(operationMode)));
     }
 
     public virtual XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> objectList) {
-        return this.doDelete(objectList, IS_ALL_OR_NONE);
+        return this.doDelete(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
     }
 
     // Undelete Methods -----------------------------------------------------------------------------------------
 
-    public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> objectList, Boolean isAllOrNone) {
-        return new XAP_DAO_DML_UndeleteResultListWrapper(Database.undelete(objectList, isAllOrNone));
+    public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
+        return new XAP_DAO_DML_UndeleteResultListWrapper(Database.undelete(objectList, this.convert(operationMode)));
     }
 
     public virtual XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> objectList) {
-        return this.doUndelete(objectList, IS_ALL_OR_NONE);
+        return this.doUndelete(objectList, XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE);
+    }
+    // Helper Methods -----------------------------------------------------------------------------------------
+
+    private Boolean convert(XAP_DAO_DML_OperationModeEnum operationMode) {
+        return this.operationModeHelper.toBoolean(operationMode);
     }
 }
