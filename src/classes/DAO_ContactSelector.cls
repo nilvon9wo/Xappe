@@ -1,5 +1,5 @@
 public virtual class DAO_ContactSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
-        implements XAP_DAO_ByContactIdSelectorIntf {
+        implements XAP_DAO_SOQL_ByContactIdSelectorIntf {
     private DAO_ContactSelector() {
     }
 

@@ -120,11 +120,11 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_ByContactIdSelectorIntf" />
+                            <option name="name" value="XAP_DAO_DML_AccessCtrlDmlException" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_DML_AccessCtrlDmlException" />
+                            <option name="name" value="XAP_DAO_DML_CrudException" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -160,6 +160,14 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_DmlLookup" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_FieldLevelSecurityException" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_GenericDmlIntf" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
@@ -181,6 +189,10 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_OperationModeHelper" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_OperationTypeEnum" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -209,6 +221,18 @@
                           </MetadataEntry>
                           <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_SaveResultWrapperIntTest" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_SecureDml" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_SecurityException" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_SecurityUtils" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
@@ -260,7 +284,7 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_DML_SecureDml" />
+                            <option name="name" value="XAP_DAO_SOQL_ByContactIdSelectorIntf" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

@@ -106,8 +106,8 @@ private class XAP_DESC_SObjectDescribeTest {
 
     @IsTest
     static void rawGlobalDescribeCheck() {
-        Map<String, Schema.SObjectType> systemGd = Schema.getGlobalDescribe();
-        Map<String, Schema.SObjectType> cachedGd = XAP_DESC_SObjectDescribe.RAW_GLOBAL_DESCRIBE;
+        Map<String, SObjectType> systemGd = Schema.getGlobalDescribe();
+        Map<String, SObjectType> cachedGd = XAP_DESC_SObjectDescribe.RAW_GLOBAL_DESCRIBE;
         //FIXME: System.assertEquals(systemGd.size(), cachedGd.size());
     }
 
