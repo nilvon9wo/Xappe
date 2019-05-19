@@ -228,6 +228,10 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_SecurityChecker" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_SecurityCheckModeEnum" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
