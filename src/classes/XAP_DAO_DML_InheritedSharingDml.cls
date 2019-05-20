@@ -1,4 +1,4 @@
-public virtual inherited sharing class XAP_DAO_DML_InheritedSharingDml implements XAP_DAO_DML_GenericDmlIntf{
+public virtual inherited sharing class XAP_DAO_DML_InheritedSharingDml implements XAP_DAO_DML_GenericDmlIntf {
     XAP_DAO_DML_OperationModeHelper operationModeHelper;
 
     @TestVisible
@@ -11,13 +11,9 @@ public virtual inherited sharing class XAP_DAO_DML_InheritedSharingDml implement
         this(XAP_DAO_DML_OperationModeHelper.getInstance());
     }
 
-    private static XAP_DAO_DML_InheritedSharingDml instance;
-
+    // Not a singleton so inheritance can be different from different classes.
     public static XAP_DAO_DML_InheritedSharingDml getInstance() {
-        if (instance == null) {
-            instance = new XAP_DAO_DML_InheritedSharingDml();
-        }
-        return instance;
+        return new XAP_DAO_DML_InheritedSharingDml();
     }
 
     // Insert Methods -----------------------------------------------------------------------------------------

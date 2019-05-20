@@ -236,6 +236,10 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
+                            <option name="name" value="XAP_DAO_DML_SecurityConfig" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
                             <option name="name" value="XAP_DAO_DML_SecurityException" />
                             <option name="selected" value="true" />
                           </MetadataEntry>

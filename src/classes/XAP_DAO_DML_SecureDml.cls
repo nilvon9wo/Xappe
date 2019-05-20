@@ -1,4 +1,4 @@
-public virtual class XAP_DAO_DML_SecureDml implements XAP_DAO_DML_GenericDmlIntf{
+public virtual inherited sharing class XAP_DAO_DML_SecureDml implements XAP_DAO_DML_GenericDmlIntf{
     XAP_DAO_DML_DmlLookup dmlLookup;
     XAP_DAO_DML_SecurityChecker securityChecker;
 
@@ -34,15 +34,8 @@ public virtual class XAP_DAO_DML_SecureDml implements XAP_DAO_DML_GenericDmlIntf
         return this;
     }
 
-    private XAP_DAO_DML_SecurityCheckModeEnum securityCheckMode = XAP_DAO_DML_SecurityCheckModeEnum.ALL_CRUD_AND_FLS_FOR_EVERY_SOBJECT;
-    public XAP_DAO_DML_SecureDml setSecurityCheckMode(XAP_DAO_DML_SecurityCheckModeEnum checkMode) {
-        this.securityCheckMode = checkMode;
-        return this;
-    }
-
-    private List<SObjectField> sObjectFieldsToCheckList;
-    public XAP_DAO_DML_SecureDml setSObjectFieldsToCheckList(List<SObjectField> sObjectFieldsToCheckList) {
-        this.sObjectFieldsToCheckList = sObjectFieldsToCheckList;
+    public XAP_DAO_DML_SecureDml setSecurityConfig (XAP_DAO_DML_SecurityConfig securityConfig) {
+        this.securityChecker.setSecurityConfig(securityConfig);
         return this;
     }
 
@@ -152,9 +145,7 @@ public virtual class XAP_DAO_DML_SecureDml implements XAP_DAO_DML_GenericDmlIntf
     private Boolean checkPermissions(List<SObject> sObjectList, Set<XAP_DAO_DML_OperationTypeEnum> operationTypeSet) {
         return this.securityChecker.check(
                 sObjectList,
-                operationTypeSet,
-                this.securityCheckMode,
-                this.sObjectFieldsToCheckList
+                operationTypeSet
         );
     }
 
