@@ -34,7 +34,7 @@ public virtual class XAP_DAO_DML_SecureDml implements XAP_DAO_DML_GenericDmlIntf
         return this;
     }
 
-    private XAP_DAO_DML_SecurityCheckModeEnum securityCheckMode = XAP_DAO_DML_SecurityCheckModeEnum.ALL_SOBJECTS;
+    private XAP_DAO_DML_SecurityCheckModeEnum securityCheckMode = XAP_DAO_DML_SecurityCheckModeEnum.ALL_CRUD_AND_FLS_FOR_EVERY_SOBJECT;
     public XAP_DAO_DML_SecureDml setSecurityCheckMode(XAP_DAO_DML_SecurityCheckModeEnum checkMode) {
         this.securityCheckMode = checkMode;
         return this;
