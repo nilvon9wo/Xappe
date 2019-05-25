@@ -15,7 +15,7 @@ public class XAP_DAO_DML_SaveResultListWrapperIntTest {
         XAP_DAO_DML_SaveResultListWrapper wrapperUnderTest = new XAP_DAO_DML_SaveResultListWrapper(testSaveResultList);
 
         // Act
-        List<XAP_DAO_DML_SaveResultWrapper> resultWrapperList;
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList;
         Test.startTest();
         System.runAs(TEST_RUNNER) {
             resultWrapperList = wrapperUnderTest.getResultWrapperList();
@@ -25,7 +25,7 @@ public class XAP_DAO_DML_SaveResultListWrapperIntTest {
         // Assert
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_SaveResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(testSaveResult.id, resultWrapper.getId());
         System.assertEquals(testSaveResult.isSuccess(), resultWrapper.isSuccess());
         System.assert(resultWrapper.getErrorList().isEmpty());

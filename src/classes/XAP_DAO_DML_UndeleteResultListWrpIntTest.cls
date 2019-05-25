@@ -17,7 +17,7 @@ public class XAP_DAO_DML_UndeleteResultListWrpIntTest {
         XAP_DAO_DML_UndeleteResultListWrapper wrapperUnderTest = new XAP_DAO_DML_UndeleteResultListWrapper(testUndeleteResultList);
 
         // Act
-        List<XAP_DAO_DML_UndeleteResultWrapper> resultWrapperList;
+        List<XAP_DAO_DML_ResultWrapperIntf> resultWrapperList;
         Test.startTest();
         System.runAs(TEST_RUNNER) {
             resultWrapperList = wrapperUnderTest.getResultWrapperList();
@@ -27,7 +27,7 @@ public class XAP_DAO_DML_UndeleteResultListWrpIntTest {
         // Assert
         System.assertEquals(1, resultWrapperList.size());
 
-        XAP_DAO_DML_UndeleteResultWrapper resultWrapper = resultWrapperList[0];
+        XAP_DAO_DML_ResultWrapperIntf resultWrapper = resultWrapperList[0];
         System.assertEquals(testUndeleteResult.id, resultWrapper.getId());
         System.assertEquals(testUndeleteResult.isSuccess(), resultWrapper.isSuccess());
         System.assert(resultWrapper.getErrorList().isEmpty());
