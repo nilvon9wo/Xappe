@@ -15,47 +15,55 @@ public class XAP_DAO_DML_SecurityUtils {
         return instance;
     }
 
-    public static Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
 
-    public static void checkInsert(SObjectType sObjectType, List<String> fieldNames) {
-        checkSObjectIsInsertable(sObjectType);
-        for (String fieldName : fieldNames) {
-            checkFieldIsInsertable(sObjectType, fieldName);
+    public static Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
+    public static final Boolean OPERATION_IS_PERMITTED = true;
+
+    public Boolean checkInsert(SObjectType sObjectType, List<String> fieldNameList) {
+        this.checkSObjectIsInsertable(sObjectType);
+        for (String fieldName : fieldNameList) {
+            this.checkFieldIsInsertable(sObjectType, fieldName);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkInsert(SObjectType sObjectType, List<SObjectField> fieldTokens) {
-        checkSObjectIsInsertable(sObjectType);
-        for (SObjectField fieldToken : fieldTokens) {
+    public Boolean checkInsert(SObjectType sObjectType, List<SObjectField> sObjectFieldList) {
+        this.checkSObjectIsInsertable(sObjectType);
+        for (SObjectField fieldToken : sObjectFieldList) {
             checkFieldIsInsertable(sObjectType, fieldToken);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkUpdate(SObjectType sObjectType, List<String> fieldNames) {
-        checkSObjectIsUpdateable(sObjectType);
-        for (String fieldName : fieldNames) {
-            checkFieldIsUpdateable(sObjectType, fieldName);
+    public Boolean checkUpdate(SObjectType sObjectType, List<String> fieldNameList) {
+        this.checkSObjectIsUpdateable(sObjectType);
+        for (String fieldName : fieldNameList) {
+            this.checkFieldIsUpdateable(sObjectType, fieldName);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkUpdate(SObjectType sObjectType, List<SObjectField> fieldTokens) {
-        checkSObjectIsUpdateable(sObjectType);
-        for (SObjectField fieldToken : fieldTokens) {
-            checkFieldIsUpdateable(sObjectType, fieldToken);
+    public Boolean checkUpdate(SObjectType sObjectType, List<SObjectField> sObjectFieldList) {
+        this.checkSObjectIsUpdateable(sObjectType);
+        for (SObjectField fieldToken : sObjectFieldList) {
+            this.checkFieldIsUpdateable(sObjectType, fieldToken);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkFieldIsInsertable(SObjectType sObjectType, String fieldName) {
-        checkFieldIsInsertable(sObjectType, XAP_DESC_SObjectDescribe.getDescribe(sObjectType).getField(fieldName));
+    public Boolean checkFieldIsInsertable(SObjectType sObjectType, String fieldName) {
+        return this.checkFieldIsInsertable(
+                sObjectType, XAP_DESC_SObjectDescribe.getDescribe(sObjectType).getField(fieldName)
+        );
     }
 
-    public static void checkFieldIsInsertable(SObjectType sObjectType, SObjectField fieldToken) {
-        checkFieldIsInsertable(sObjectType, fieldToken.getDescribe());
+    public Boolean checkFieldIsInsertable(SObjectType sObjectType, SObjectField sObjectField) {
+        return this.checkFieldIsInsertable(sObjectType, sObjectField.getDescribe());
     }
 
-    public static void checkFieldIsInsertable(SObjectType sObjectType, DescribeFieldResult fieldDescribe) {
+    public Boolean checkFieldIsInsertable(SObjectType sObjectType, DescribeFieldResult fieldDescribe) {
         if (BYPASS_INTERNAL_FLS_AND_CRUD) {
-            return;
+            return OPERATION_IS_PERMITTED;
         }
         if (!fieldDescribe.isCreateable()) {
             throw new XAP_DAO_DML_FieldLevelSecurityException(
@@ -63,19 +71,22 @@ public class XAP_DAO_DML_SecurityUtils {
                     sObjectType, fieldDescribe.getSobjectField()
             );
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkFieldIsUpdateable(SObjectType sObjectType, String fieldName) {
-        checkFieldIsUpdateable(sObjectType, XAP_DESC_SObjectDescribe.getDescribe(sObjectType).getField(fieldName));
+    public Boolean checkFieldIsUpdateable(SObjectType sObjectType, String fieldName) {
+        return this.checkFieldIsUpdateable(
+                sObjectType, XAP_DESC_SObjectDescribe.getDescribe(sObjectType).getField(fieldName)
+        );
     }
 
-    public static void checkFieldIsUpdateable(SObjectType sObjectType, SObjectField fieldToken) {
-        checkFieldIsUpdateable(sObjectType, fieldToken.getDescribe());
+    public Boolean checkFieldIsUpdateable(SObjectType sObjectType, SObjectField sObjectField) {
+        return this.checkFieldIsUpdateable(sObjectType, sObjectField.getDescribe());
     }
 
-    public static void checkFieldIsUpdateable(SObjectType sObjectType, DescribeFieldResult fieldDescribe) {
+    public Boolean checkFieldIsUpdateable(SObjectType sObjectType, DescribeFieldResult fieldDescribe) {
         if (BYPASS_INTERNAL_FLS_AND_CRUD) {
-            return;
+            return OPERATION_IS_PERMITTED;
         }
         if (!fieldDescribe.isUpdateable()) {
             throw new XAP_DAO_DML_FieldLevelSecurityException(
@@ -84,41 +95,46 @@ public class XAP_DAO_DML_SecurityUtils {
                     fieldDescribe.getSobjectField()
             ); 
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkSObjectIsInsertable(SObjectType sObjectType) {
+    public Boolean checkSObjectIsInsertable(SObjectType sObjectType) {
         if (BYPASS_INTERNAL_FLS_AND_CRUD) {
-            return;
+            return OPERATION_IS_PERMITTED;
         }
         if (!sObjectType.getDescribe().isCreateable()) {
             throw new XAP_DAO_DML_CrudException(XAP_DAO_DML_OperationTypeEnum.CREATE, sObjectType);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkSObjectIsUpdateable(SObjectType sObjectType) {
+    public Boolean checkSObjectIsUpdateable(SObjectType sObjectType) {
         if (BYPASS_INTERNAL_FLS_AND_CRUD) {
-            return;
+            return OPERATION_IS_PERMITTED;
         }
         if (!sObjectType.getDescribe().isUpdateable()) {
             throw new XAP_DAO_DML_CrudException(XAP_DAO_DML_OperationTypeEnum.MODIFY, sObjectType);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkSObjectIsDeletable(SObjectType sObjectType) {
+    public Boolean checkSObjectIsDeletable(SObjectType sObjectType) {
         if (BYPASS_INTERNAL_FLS_AND_CRUD) {
-            return;
+            return OPERATION_IS_PERMITTED;
         }
         if (!sObjectType.getDescribe().isDeletable()) {
             throw new XAP_DAO_DML_CrudException(XAP_DAO_DML_OperationTypeEnum.REMOVE, sObjectType);
         }
+        return OPERATION_IS_PERMITTED;
     }
 
-    public static void checkSObjectIsUndeletable(SObjectType sObjectType) {
+    public Boolean checkSObjectIsUndeletable(SObjectType sObjectType) {
         if (BYPASS_INTERNAL_FLS_AND_CRUD) {
-            return;
+            return OPERATION_IS_PERMITTED;
         }
         if (!sObjectType.getDescribe().isUndeletable()) {
             throw new XAP_DAO_DML_CrudException(XAP_DAO_DML_OperationTypeEnum.RESTORE, sObjectType);
         }
+        return OPERATION_IS_PERMITTED;
     }
 }

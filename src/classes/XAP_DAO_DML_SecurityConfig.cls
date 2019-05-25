@@ -20,27 +20,27 @@ public class XAP_DAO_DML_SecurityConfig {
         this(DEFAULT_FLS_MODE);
     }
 
-    private XAP_DAO_DML_SecurityCheckModeEnum crudMode;
+    public XAP_DAO_DML_SecurityCheckModeEnum crudMode {get; private set;}
     public XAP_DAO_DML_SecurityConfig setCrudMode(XAP_DAO_DML_SecurityCheckModeEnum securityCrudCheckMode) {
         this.crudMode = crudMode;
         return this;
     }
 
-    private XAP_DAO_DML_SecurityCheckModeEnum fieldLevelMode;
+    public XAP_DAO_DML_SecurityCheckModeEnum fieldLevelMode {get; private set;}
     public XAP_DAO_DML_SecurityConfig setFieldLevelMode(XAP_DAO_DML_SecurityCheckModeEnum securityFieldLevelCheckMode) {
         this.fieldLevelMode = fieldLevelMode;
         return this;
     }
 
-    private List<SObjectType> sObjectTypesToCheckList;
-    public XAP_DAO_DML_SecurityConfig setSObjectTypesToCheckList(List<SObjectType> sObjectTypesToCheckList) {
-        this.sObjectTypesToCheckList = sObjectTypesToCheckList;
+    public Set<SObjectType> sObjectTypesToCheckSet {get; private set;}
+    public XAP_DAO_DML_SecurityConfig setSObjectTypesToCheckList(Set<SObjectType> sObjectTypesToCheckSet) {
+        this.sObjectTypesToCheckSet = sObjectTypesToCheckSet;
         return this;
     }
 
-    private List<SObjectField> sObjectFieldsToCheckList;
-    public XAP_DAO_DML_SecurityConfig setSObjectFieldsToCheckList(List<SObjectField> sObjectFieldsToCheckList) {
-        this.sObjectFieldsToCheckList = sObjectFieldsToCheckList;
+    public Set<SObjectField> sObjectFieldsToCheckSet {get; private set;}
+    public XAP_DAO_DML_SecurityConfig setSObjectFieldsToCheckList(Set<SObjectField> sObjectFieldsToCheckSet) {
+        this.sObjectFieldsToCheckSet = sObjectFieldsToCheckSet;
         return this;
     }
 }

@@ -1,4 +1,18 @@
 public virtual class XAP_UTIL_Randomizer {
+    @TestVisible
+    protected XAP_UTIL_Randomizer() {
+    }
+
+    private static XAP_UTIL_Randomizer instance;
+
+    public static XAP_UTIL_Randomizer getInstance() {
+        if (instance == null) {
+            instance = new XAP_UTIL_Randomizer();
+        }
+        return instance;
+    }
+
+
     private static final String CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     private static final Integer NUMBER_OF_POSSIBIITIES = CHARACTERS.length();
 
