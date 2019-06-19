@@ -1,6 +1,6 @@
 public abstract class XAP_DAO_TRANS_DmlResultAbs implements XAP_DAO_TRANS_DmlResultIntf {
-	protected Map<String, List<SObject>> resultSObjectsByKeyMap;
-	public Map<String, List<SObject>> getResultSObjectsByKeyMap() {
+	protected Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> resultSObjectsByKeyMap;
+	public Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> getResultSObjectsByKeyMap() {
 		return this.resultSObjectsByKeyMap;
 	}
 

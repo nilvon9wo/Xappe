@@ -488,23 +488,27 @@
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TRANS_SimpleDelete" />
+                            <option name="name" value="XAP_DAO_TRANS_SimpleDeleter" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TRANS_SimpleInsert" />
+                            <option name="name" value="XAP_DAO_TRANS_SimpleInserter" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TRANS_SimpleUndelete" />
+                            <option name="name" value="XAP_DAO_TRANS_SimpleUndeleter" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TRANS_SimpleUpdate" />
+                            <option name="name" value="XAP_DAO_TRANS_SimpleUpdater" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>
-                            <option name="name" value="XAP_DAO_TRANS_SimpleUpsert" />
+                            <option name="name" value="XAP_DAO_TRANS_SimpleUpserter" />
+                            <option name="selected" value="true" />
+                          </MetadataEntry>
+                          <MetadataEntry>
+                            <option name="name" value="XAP_DAO_TRANS_SObjectListKeyEnum" />
                             <option name="selected" value="true" />
                           </MetadataEntry>
                           <MetadataEntry>

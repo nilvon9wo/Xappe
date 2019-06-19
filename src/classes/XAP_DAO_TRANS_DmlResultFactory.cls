@@ -13,7 +13,7 @@ public virtual class XAP_DAO_TRANS_DmlResultFactory {
 	}
 
 	public virtual XAP_DAO_TRANS_DmlResultIntf createFor(
-			Map<String, List<SObject>> resultSObjectListByKeyMap,
+			Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> resultSObjectListByKeyMap,
 			XAP_DAO_DML_ResultListWrapperIntf resultListWrapper
 	) {
 		return resultListWrapper.getSuccessLevel() == XAP_DAO_DML_SuccessLevelEnum.PERFECT

@@ -30,7 +30,9 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 
 	public XAP_DAO_TRANS_DmlResultIntf process(List<XAP_DAO_TRANS_DmlOperationIntf> dmlOperatonList) {
 		Savepoint savepoint = this.transactionHelper.createSavePoint();
-		Map<String, List<SObject>> prerequisitSObjectsByKeyMap = new Map<String, List<SObject>>();
+		Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisitSObjectsByKeyMap
+				= new Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>>();
+
 		for (XAP_DAO_TRANS_DmlOperationIntf dmlOperation : dmlOperatonList) {
 			XAP_DAO_TRANS_DmlResultIntf result;
 
