@@ -49,7 +49,7 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 			if (this.wasPartialSuccess(result)) {
 				this.wasCompleteSuccess = false;
 				if (this.rollbackOnPartialSuccess) {
-					return new XAP_DAO_TRANS_DmlFailure(dmlOperation, (XAP_DAO_TRANS_DmlPartialSuccess) result);
+					result = new XAP_DAO_TRANS_DmlFailure(dmlOperation, (XAP_DAO_TRANS_DmlPartialSuccess) result);
 				}
 			}
 
