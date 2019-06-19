@@ -40,7 +40,7 @@ public class XAP_DAO_TRANS_SimpleUpdate implements XAP_DAO_TRANS_DmlOperationInt
                 ? new XAP_DAO_TRANS_DmlPerfectSuccess(revisedSObjectListByKeyMap)
                 : this.dmlResultFactory.createFor(
                         revisedSObjectListByKeyMap,
-                        this.genericDml.doUndelete(this.sObjectList, this.operationModeEnum)
+                        this.genericDml.doUpdate(this.sObjectList, this.operationModeEnum)
                 );
     }
 
