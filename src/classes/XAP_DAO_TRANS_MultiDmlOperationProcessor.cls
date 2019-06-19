@@ -58,6 +58,7 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 
             prerequisitSObjectsByKeyMap.putAll(result.getResultSObjectsByKeyMap());
         }
+
         return wasCompleteSuccess
                 ? (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPerfectSuccess(prerequisitSObjectsByKeyMap)
                 : (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPartialSuccess(prerequisitSObjectsByKeyMap);

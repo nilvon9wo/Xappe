@@ -33,9 +33,14 @@ public class XAP_DAO_TRANS_SimpleUpsert implements XAP_DAO_TRANS_DmlOperationInt
     }
 
     public XAP_DAO_TRANS_DmlResultIntf doDml(Map<String, List<SObject>> prerequisitSObjectsByKeyMap) {
-        return this.dmlResultFactory.createFor(
-                new Map<String, List<SObject>>{this.key => this.sObjectList},
-                this.genericDml.doUpsert(this.sObjectList, this.operationModeEnum)
-        );
+        Map<String, List<SObject>> revisedSObjectListByKeyMap
+                = new Map<String, List<SObject>>{this.key => this.sObjectList};
+
+        return (this.sObjectList.isEmpty())
+                ? new XAP_DAO_TRANS_DmlPerfectSuccess(revisedSObjectListByKeyMap)
+                : this.dmlResultFactory.createFor(
+                        revisedSObjectListByKeyMap,
+                        this.genericDml.doUpsert(this.sObjectList, this.operationModeEnum)
+                );
     }
 }
