@@ -1,22 +1,22 @@
 @IsTest
 public class XFTY_DummyDefaultRelationshipRequired implements XFTY_DummyDefaultRelationshipIntf {
-    private SObject overrideTemplate;
-    private SObjectField relatedField;
+	private SObject overrideTemplate;
+	private SObjectField relatedField;
 
-    public XFTY_DummyDefaultRelationshipRequired(SObject overrideTemplate, SObjectField relatedField) {
-        this.overrideTemplate = overrideTemplate;
-        this.relatedField = relatedField;
-    }
+	public XFTY_DummyDefaultRelationshipRequired(SObject overrideTemplate, SObjectField relatedField) {
+		this.overrideTemplate = overrideTemplate;
+		this.relatedField = relatedField;
+	}
 
-    public XFTY_DummyDefaultRelationshipRequired(SObject overrideTemplate) {
-        this(overrideTemplate, null);
-    }
+	public XFTY_DummyDefaultRelationshipRequired(SObject overrideTemplate) {
+		this(overrideTemplate, null);
+	}
 
-    public SObject getOverrideTemplate() {
-        return this.overrideTemplate;
-    }
+	public SObject getOverrideTemplate() {
+		return this.overrideTemplate;
+	}
 
-    public SObjectField getRelatedField() {
-        return this.relatedField;
-    }
+	public SObjectField getRelatedField() {
+		return this.relatedField;
+	}
 }

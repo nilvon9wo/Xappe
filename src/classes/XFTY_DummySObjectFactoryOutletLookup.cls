@@ -1,34 +1,34 @@
 @IsTest
 public class XFTY_DummySObjectFactoryOutletLookup {
-    private static final Map<SObjectType, Type> OUTLET_TYPE_BY_SOBJECT_TYPE
-            = new Map<SObjectType, Type>{
-                    Account.SObjectType => TEST_DummyAccountFactoryOutlet.class,
-                    Contact.SObjectType => TEST_DummyContactFactoryOutlet.class,
-                    Product2.SObjectType => TEST_DummyProduct2FactoryOutlet.class,
-                    // QueueSobject => Can NOT be created because SFDC gets confused about QueueSobject.SObjectType
-                    User.SObjectType => TEST_DummyUserFactoryOutlet.class,
-                    XAP_TRIG_TriggerSetting__c.SObjectType => TEST_DummyXapTriggerSettingFactoryOutlet.class
-            };
+	private static final Map<SObjectType, Type> OUTLET_TYPE_BY_SOBJECT_TYPE
+			= new Map<SObjectType, Type>{
+					Account.SObjectType => TEST_DummyAccountFactoryOutlet.class,
+					Contact.SObjectType => TEST_DummyContactFactoryOutlet.class,
+					Product2.SObjectType => TEST_DummyProduct2FactoryOutlet.class,
+					// QueueSobject => Can NOT be created because SFDC gets confused about QueueSobject.SObjectType
+					User.SObjectType => TEST_DummyUserFactoryOutlet.class,
+					XAP_TRIG_TriggerSetting__c.SObjectType => TEST_DummyXapTriggerSettingFactoryOutlet.class
+			};
 
-    private static final Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf> OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP
-            = new Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf>();
+	private static final Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf> OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP
+			= new Map<SObjectType, XFTY_DummyQueueSobjectFactoryOutletIntf>();
 
-    public static XFTY_DummyQueueSobjectFactoryOutletIntf get(SObjectType sObjectType) {
-        if (!OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.containsKey(sObjectType)) {
-            if (!(OUTLET_TYPE_BY_SOBJECT_TYPE.containsKey(sObjectType))) {
-                new LookupException('No factory outlet found for : ' + sObjectType);
-            }
-            OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.put(
-                    sObjectType,
-                    (XFTY_DummyQueueSobjectFactoryOutletIntf) (OUTLET_TYPE_BY_SOBJECT_TYPE.get(sObjectType))
-                            .newInstance()
-            );
-        }
-        return OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.get(sObjectType);
-    }
+	public static XFTY_DummyQueueSobjectFactoryOutletIntf get(SObjectType sObjectType) {
+		if (!OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.containsKey(sObjectType)) {
+			if (!(OUTLET_TYPE_BY_SOBJECT_TYPE.containsKey(sObjectType))) {
+				new LookupException('No factory outlet found for : ' + sObjectType);
+			}
+			OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.put(
+					sObjectType,
+					(XFTY_DummyQueueSobjectFactoryOutletIntf) (OUTLET_TYPE_BY_SOBJECT_TYPE.get(sObjectType))
+							.newInstance()
+			);
+		}
+		return OUTLET_INSTANCE_BY_SOBJECT_TYPE_MAP.get(sObjectType);
+	}
 
-    // --------------------------------------------------------------------------
+	// --------------------------------------------------------------------------
 
-    public class LookupException extends Exception {
-    }
+	public class LookupException extends Exception {
+	}
 }

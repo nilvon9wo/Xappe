@@ -1,34 +1,34 @@
 public virtual class DAO_AccountSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
-    private DAO_AccountSelector() {
-    }
+	private DAO_AccountSelector() {
+	}
 
-    private static DAO_AccountSelector instance;
+	private static DAO_AccountSelector instance;
 
-    public static DAO_AccountSelector getInstance() {
-        if (instance == null) {
-            instance = new DAO_AccountSelector();
-        }
-        return instance;
-    }
+	public static DAO_AccountSelector getInstance() {
+		if (instance == null) {
+			instance = new DAO_AccountSelector();
+		}
+		return instance;
+	}
 
-    public SObjectType getSObjectType() {
-        return Account.SObjectType;
-    }
+	public SObjectType getSObjectType() {
+		return Account.SObjectType;
+	}
 
-    private List<SObjectField> getSObjectFieldList() {
-        return new List<SObjectField>{
-                Account.Id,
-                Account.Name,
-                Account.BillingState
-        };
-    }
+	private List<SObjectField> getSObjectFieldList() {
+		return new List<SObjectField>{
+				Account.Id,
+				Account.Name,
+				Account.BillingState
+		};
+	}
 
-    public List<Account> selectByBillingState(Set<String> stateSet) {
-        return this.createQueryFactory()
-                .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
-                        Account.BillingState,
-                        stateSet
-                ))
-                .query();
-    }
+	public List<Account> selectByBillingState(Set<String> stateSet) {
+		return this.createQueryFactory()
+				.setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
+						Account.BillingState,
+						stateSet
+				))
+				.query();
+	}
 }

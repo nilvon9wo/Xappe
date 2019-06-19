@@ -1,7 +1,7 @@
 //@IsTest 
 public enum XFTY_InsertInclusivityEnum {
-    ALL,
-    REQUIRED,
-    PREVENT_CASCADE,
-    NONE
+	ALL,
+	REQUIRED,
+	PREVENT_CASCADE,
+	NONE
 }
