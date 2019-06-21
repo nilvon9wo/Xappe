@@ -1,6 +1,14 @@
 public class XAP_DAO_TRANS_DmlFailure extends XAP_DAO_TRANS_DmlResultAbs {
 	public XAP_DAO_TRANS_DmlOperationIntf dmlOperation { get; private set; }
-	public Exception causeOfFailure { get; private set; }
+	public Exception causeOfFailure {
+		get {
+			if (this.causeOfFailure == null) {
+				return new XAP_DAO_TRANS_DmlException('Unknown Error');
+			}
+			return this.causeOfFailure;
+		}
+		private set;
+	}
 
 	public XAP_DAO_TRANS_DmlFailure(XAP_DAO_TRANS_DmlOperationIntf dmlOperation, Exception ex) {
 		super.successLevel = XAP_DAO_DML_SuccessLevelEnum.NONE;

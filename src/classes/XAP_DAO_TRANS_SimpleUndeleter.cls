@@ -1,50 +1,14 @@
-public class XAP_DAO_TRANS_SimpleUndeleter implements XAP_DAO_TRANS_DmlOperationIntf {
-	XAP_DAO_TRANS_SObjectListKeyEnum key;
-	List<SObject> sObjectList;
-	XAP_DAO_DML_InheritedSharingDml genericDml;
-	XAP_DAO_TRANS_DmlResultFactory dmlResultFactory;
-
-	public XAP_DAO_TRANS_SimpleUndeleter(
-			XAP_DAO_TRANS_SObjectListKeyEnum key,
-			List<SObject> sObjectList,
-			XAP_DAO_DML_InheritedSharingDml genericDml,
-			XAP_DAO_TRANS_DmlResultFactory dmlResultFactory
-	) {
-		this.key = key;
-		this.sObjectList = sObjectList;
-		this.genericDml = genericDml;
-		this.dmlResultFactory = dmlResultFactory;
-	}
-
+public class XAP_DAO_TRANS_SimpleUndeleter extends XAP_DAO_TRANS_SimpleAbstractDmlable {
 	public XAP_DAO_TRANS_SimpleUndeleter(XAP_DAO_TRANS_SObjectListKeyEnum key, List<SObject> sObjectList) {
-		this(
-				key,
-				sObjectList,
-				XAP_DAO_DML_InheritedSharingDml.getInstance(),
-				XAP_DAO_TRANS_DmlResultFactory.getInstance()
-		);
+		super(key, sObjectList);
 	}
 
 	public XAP_DAO_TRANS_SimpleUndeleter(List<SObject> sObjectList) {
-		this(XAP_DAO_TRANS_SObjectListKeyEnum.NO_CALLBACK_REQUIRED, sObjectList);
+		super(sObjectList);
 	}
 
-	private XAP_DAO_DML_OperationModeEnum operationModeEnum = XAP_DAO_DML_OperationModeEnum.ALL_OR_NONE;
-
-	public XAP_DAO_TRANS_SimpleUndeleter setOperationalMode(XAP_DAO_DML_OperationModeEnum operationModeEnum) {
-		this.operationModeEnum = operationModeEnum;
-		return this;
-	}
-
-	public XAP_DAO_TRANS_DmlResultIntf doDml(Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisitSObjectsByKeyMap) {
-		Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> revisedSObjectListByKeyMap
-				= new Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>>{this.key => this.sObjectList};
-
-		return (this.sObjectList.isEmpty())
-				? new XAP_DAO_TRANS_DmlPerfectSuccess(revisedSObjectListByKeyMap)
-				: this.dmlResultFactory.createFor(
-						revisedSObjectListByKeyMap,
-						this.genericDml.doUndelete(this.sObjectList, this.operationModeEnum)
-				);
+	public override XAP_DAO_DML_ResultListWrapperIntf doDml(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationModeEnum) {
+		return super.genericDml.doUndelete(sObjectList, operationModeEnum);
 	}
 }
+

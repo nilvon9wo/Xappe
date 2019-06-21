@@ -22,5 +22,4 @@ public virtual class XAP_DAO_TRANS_DmlResultFactory {
 						? (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPartialSuccess(resultSObjectListByKeyMap)
 						: (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlFailure();
 	}
-
 }
