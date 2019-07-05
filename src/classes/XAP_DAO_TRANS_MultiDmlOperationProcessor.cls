@@ -20,15 +20,16 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 		return instance;
 	}
 
+	@TestVisible
 	private Boolean rollbackOnPartialSuccess = true;
-	public XAP_DAO_TRANS_MultiDmlOperationProcessor enablePartialSuccess() {
+	public virtual XAP_DAO_TRANS_MultiDmlOperationProcessor enablePartialSuccess() {
 		this.rollbackOnPartialSuccess = false;
 		return this;
 	}
 
 	private Boolean wasCompleteSuccess = true;
 
-	public XAP_DAO_TRANS_DmlResultIntf process(List<XAP_DAO_TRANS_DmlOperationIntf> dmlOperatonList) {
+	public virtual XAP_DAO_TRANS_DmlResultIntf process(List<XAP_DAO_TRANS_DmlOperationIntf> dmlOperatonList) {
 		Savepoint savepoint = this.transactionHelper.createSavePoint();
 		Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisitSObjectsByKeyMap
 				= new Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>>();
@@ -66,10 +67,12 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 				: (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPartialSuccess(prerequisitSObjectsByKeyMap);
 	}
 
+	@TestVisible
 	private Boolean wasFailure(XAP_DAO_TRANS_DmlResultIntf result) {
 		return result.getSuccessLevel() == XAP_DAO_DML_SuccessLevelEnum.NONE;
 	}
 
+	@TestVisible
 	private Boolean wasPartialSuccess(XAP_DAO_TRANS_DmlResultIntf result) {
 		return result.getSuccessLevel() == XAP_DAO_DML_SuccessLevelEnum.PARTIAL;
 	}

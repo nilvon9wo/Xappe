@@ -23,7 +23,7 @@ public class XFTY_DummySObjectFactory {
 				insertSObjectList.addAll(sobjectList);
 			}
 			when MOCK {
-				XFTY_InsertMocker.addIds(sobjectList);
+				XFTY_IdMocker.addIds(sobjectList);
 			}
 		}
 		insert insertSObjectList;
@@ -102,6 +102,7 @@ public class XFTY_DummySObjectFactory {
 		return bundle.put(sObjectField, innerBundle)
 				.put(sObjectField, innerBundle.getList(factoryOutlet.getPrimaryTargetField()));
 	}
+
 
 	private static List<SObject> createClonedTemplateList(Integer quantity, SObject sObjectTemplate) {
 		List<SObject> clonedList = new List<SObject>();

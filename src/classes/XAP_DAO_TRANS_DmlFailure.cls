@@ -1,5 +1,7 @@
 public class XAP_DAO_TRANS_DmlFailure extends XAP_DAO_TRANS_DmlResultAbs {
 	public XAP_DAO_TRANS_DmlOperationIntf dmlOperation { get; private set; }
+
+	@TestVisible
 	public Exception causeOfFailure {
 		get {
 			if (this.causeOfFailure == null) {
