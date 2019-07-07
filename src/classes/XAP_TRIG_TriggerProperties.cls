@@ -45,6 +45,8 @@ public class XAP_TRIG_TriggerProperties {
 		this.newSObjectList = Trigger.new;
 		this.oldSObjectByIdMap = Trigger.oldMap;
 		this.newSObjectByIdMap = Trigger.newMap;
+		
+		this.operationType = Trigger.operationType;
 	}
 
 	public XAP_TRIG_TriggerProperties() {
