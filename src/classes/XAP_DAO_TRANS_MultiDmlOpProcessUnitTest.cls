@@ -6,7 +6,7 @@ public class XAP_DAO_TRANS_MultiDmlOpProcessUnitTest {
 	private static final XAP_DAO_TRANS_MultiDmlOperationProcessor PROCESSOR_UNDER_TEST
 			= new XAP_DAO_TRANS_MultiDmlOperationProcessor(MOCK_TRANSACTION_HELPER);
 
-	@IsTest public static void testEnablePartialSuccessShouldSetRollbackOnPartialSuccessToFalse() {/* TODO */
+	@IsTest public static void testEnablePartialSuccessShouldSetRollbackOnPartialSuccessToFalse() {
 		// Arrange : Nothing to do here
 
 		// Act

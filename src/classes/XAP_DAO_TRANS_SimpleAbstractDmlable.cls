@@ -36,15 +36,15 @@ public abstract class XAP_DAO_TRANS_SimpleAbstractDmlable implements XAP_DAO_TRA
 		return this;
 	}
 
-	public XAP_DAO_TRANS_DmlResultIntf doDml(Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisitSObjectsByKeyMap) {
+	public XAP_DAO_TRANS_DmlResultIntf doDml(Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisiteSObjectsByKeyMap) {
 		Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> revisedSObjectListByKeyMap
 				= new Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>>{this.key => this.sObjectList};
 
 		return (this.sObjectList.isEmpty())
 				? new XAP_DAO_TRANS_DmlPerfectSuccess(revisedSObjectListByKeyMap)
 				: this.dmlResultFactory.createFor(
-						revisedSObjectListByKeyMap,
-						this.doDml(this.sObjectList, this.operationModeEnum)
+						this.doDml(this.sObjectList, this.operationModeEnum),
+						revisedSObjectListByKeyMap
 				);
 	}
 

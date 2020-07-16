@@ -12,14 +12,23 @@ public virtual class XAP_DAO_TRANS_DmlResultFactory {
 		return instance;
 	}
 
+	private static final Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> NO_CALLBACKS_REQUIRED
+			= new Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>>();
+
 	public virtual XAP_DAO_TRANS_DmlResultIntf createFor(
-			Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> resultSObjectListByKeyMap,
-			XAP_DAO_DML_ResultListWrapperIntf resultListWrapper
+			XAP_DAO_DML_ResultListWrapperIntf resultListWrapper,
+			Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> resultSObjectListByKeyMap
 	) {
 		return resultListWrapper.getSuccessLevel() == XAP_DAO_DML_SuccessLevelEnum.PERFECT
 				? (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPerfectSuccess(resultSObjectListByKeyMap)
 				: resultListWrapper.getSuccessLevel() == XAP_DAO_DML_SuccessLevelEnum.PARTIAL
 						? (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPartialSuccess(resultSObjectListByKeyMap)
 						: (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlFailure();
+	}
+
+	public virtual XAP_DAO_TRANS_DmlResultIntf createFor(
+			XAP_DAO_DML_ResultListWrapperIntf resultListWrapper
+	) {
+		return this.createFor(resultListWrapper, NO_CALLBACKS_REQUIRED);
 	}
 }

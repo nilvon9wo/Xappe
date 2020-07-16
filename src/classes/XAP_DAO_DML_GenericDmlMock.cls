@@ -20,6 +20,8 @@ public class XAP_DAO_DML_GenericDmlMock extends XAP_DAO_DML_InheritedSharingDml 
 	public List<XAP_DAO_DML_ResultListWrapperIntf> dmlResultListWrapperList;
 	private Integer returnedResult = 0;
 
+	public Map<Integer, Exception> exceptionByResultIndexMap;
+
 	public override XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> objectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		if (objectList != null && !objectList.isEmpty()) {
 			this.insertedSObjectListList.add(objectList);
@@ -61,6 +63,10 @@ public class XAP_DAO_DML_GenericDmlMock extends XAP_DAO_DML_InheritedSharingDml 
 	}
 
 	private XAP_DAO_DML_ResultListWrapperIntf getNextResultList() {
+		if (exceptionByResultIndexMap != null && exceptionByResultIndexMap.containsKey(returnedResult)) {
+			throw exceptionByResultIndexMap.get(returnedResult);
+		}
+
 		return (dmlResultListWrapperList != null)
 				? dmlResultListWrapperList[returnedResult++]
 				: null;

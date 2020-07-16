@@ -31,14 +31,14 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 
 	public virtual XAP_DAO_TRANS_DmlResultIntf process(List<XAP_DAO_TRANS_DmlOperationIntf> dmlOperatonList) {
 		Savepoint savepoint = this.transactionHelper.createSavePoint();
-		Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisitSObjectsByKeyMap
+		Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisiteSObjectsByKeyMap
 				= new Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>>();
 
 		for (XAP_DAO_TRANS_DmlOperationIntf dmlOperation : dmlOperatonList) {
 			XAP_DAO_TRANS_DmlResultIntf result;
 
 			try {
-				result = dmlOperation.doDml(prerequisitSObjectsByKeyMap);
+				result = dmlOperation.doDml(prerequisiteSObjectsByKeyMap);
 			}
 			// We can't anticipate what might be thrown in someone else's XAP_DAO_TRANS_DmlOperationIntf
 			// implementation, so we really do want to catch absolutely everything to be able to
@@ -55,16 +55,27 @@ public virtual class XAP_DAO_TRANS_MultiDmlOperationProcessor {
 			}
 
 			if (this.wasFailure(result)) {
-				this.transactionHelper.rollback(savepoint);
+				XAP_DAO_TRANS_DmlFailure dmlFailure = (XAP_DAO_TRANS_DmlFailure) result;
+				this.transactionHelper.rollback(savepoint, dmlFailure.causeOfFailure);
 				return result;
 			}
 
-			prerequisitSObjectsByKeyMap.putAll(result.getResultSObjectsByKeyMap());
+			prerequisiteSObjectsByKeyMap.putAll(result.getResultSObjectsByKeyMap());
 		}
 
 		return wasCompleteSuccess
-				? (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPerfectSuccess(prerequisitSObjectsByKeyMap)
-				: (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPartialSuccess(prerequisitSObjectsByKeyMap);
+				? (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPerfectSuccess(prerequisiteSObjectsByKeyMap)
+				: (XAP_DAO_TRANS_DmlResultIntf) new XAP_DAO_TRANS_DmlPartialSuccess(prerequisiteSObjectsByKeyMap);
+	}
+
+	private String toErrorMessage(XAP_DAO_TRANS_DmlFailure failure) {
+		String failureMessage = 'FAILURE: ';
+		Exception causeOfFailure = failure.causeOfFailure;
+		while (causeOfFailure != null) {
+			failureMessage += '\n' + causeOfFailure.getMessage() + ':' + causeOfFailure.getStackTraceString();
+			causeOfFailure = causeOfFailure.getCause();
+		}
+		return failureMessage + '\n!!!!';
 	}
 
 	@TestVisible

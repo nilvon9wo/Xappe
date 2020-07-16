@@ -245,7 +245,7 @@ public class XAP_DAO_TRANS_MultiDmlOpProcessIntTest {
 
 	private class ArbitraryFailer implements XAP_DAO_TRANS_DmlOperationIntf {
 		public XAP_DAO_TRANS_DmlResultIntf doDml(
-				Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisitSObjectsByKeyMap
+				Map<XAP_DAO_TRANS_SObjectListKeyEnum, List<SObject>> prerequisiteSObjectsByKeyMap
 		) {
 			throw new TestException('Expected Exception');
 		}
