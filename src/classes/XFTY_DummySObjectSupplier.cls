@@ -17,7 +17,7 @@ public class XFTY_DummySObjectSupplier {
     private XFTY_InsertInclusivityEnum inclusivity = XFTY_InsertInclusivityEnum.NONE;
     private Boolean hasCustomMasterTemplate = false;
 
-    private XFTY_DummyQueueSobjectFactoryOutletIntf factoryOutlet {
+    private XFTY_DummySobjectFactoryOutletIntf factoryOutlet {
         get {
             if (this.factoryOutlet == null) {
                 if (this.sObjectType == null) {

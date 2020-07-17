@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
+public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
 	public static final Boolean DEFAULT_TRIGGER_ENABLED = true;
 	public static final Boolean DEFAULT_ACCOUNT_TRIGGER_ENABLED = true;
 
@@ -22,5 +22,12 @@ public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummyQueue
 			XFTY_InsertInclusivityEnum inclusivity
 	) {
 		return XFTY_DummySObjectFactory.createBundle(MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
+	}
+
+	public static XAP_TRIG_TriggerSetting__c prepareIntegrationTest() {
+		return (XAP_TRIG_TriggerSetting__c) new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
+				.setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
+				.setInsertMode(XFTY_InsertModeEnum.NOW)
+				.supply();
 	}
 }

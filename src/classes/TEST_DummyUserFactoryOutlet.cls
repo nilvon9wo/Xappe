@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyUserFactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
+public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
 	public static final String DEFAULT_FIRST_NAME_PREFIX = 'User First Name';
 	public static final String DEFAULT_LAST_NAME_PREFIX = 'User Last Name';
 	public static final String DEFAULT_FEDERATION_ID_PREFIX = 'User Federation Id';

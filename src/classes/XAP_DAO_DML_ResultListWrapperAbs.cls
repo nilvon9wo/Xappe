@@ -1,7 +1,8 @@
 public abstract class XAP_DAO_DML_ResultListWrapperAbs implements XAP_DAO_DML_ResultListWrapperIntf {
 	public abstract List<XAP_DAO_DML_ResultWrapperIntf> getResultWrapperList();
 
-	XAP_DAO_DML_SuccessLevelEnum successLevel {
+	@TestVisible
+	private XAP_DAO_DML_SuccessLevelEnum successLevel {
 		get {
 			if(this.successLevel == null) {
 				this.successLevel = this.calculateSuccessLevel();
@@ -15,6 +16,7 @@ public abstract class XAP_DAO_DML_ResultListWrapperAbs implements XAP_DAO_DML_Re
 		return this.successLevel;
 	}
 
+	@TestVisible
 	private XAP_DAO_DML_SuccessLevelEnum calculateSuccessLevel() {
 		Boolean hasSuccess = false;
 		Boolean hasFailure = false;

@@ -20,15 +20,11 @@ private class XAP_DESC_SObjectDescribeTest {
 		XAP_DESC_GlobalDescribeMap gdm = XAP_DESC_SObjectDescribe.WRAPPED_GLOBAL_DESCRIBE;
 		SObjectType accountObjType = gdm.get('AccOunT');
 		System.assertEquals(accountObjType, Account.SObjectType);
-		//FIXME: System.assertEquals(Schema.getGlobalDescribe().size(), gdm.size());
 
 		XAP_DESC_SObjectDescribe acccountDescribe = XAP_DESC_SObjectDescribe.getDescribe(accountObjType);
 		Map<String, SObjectField> fields = acccountDescribe.getFieldsMap();
 		System.assert(fields.keySet().containsAll(acccountDescribe.getFieldsMap().keySet()));
-
-		System.assertEquals(fields.get('name'), Account.SObjectType.fields.Name); //behavior of FieldsMap is tested in another method
-		System.assertEquals(SObjectType.Account.fields.getMap().size(), fields.size());
-
+		System.assertEquals(fields.get('name'), Account.SObjectType.fields.Name);
 		System.assertEquals(null, fields.get(null), 'Null input should result in null ouput.');
 		System.assertEquals(null, fields.get(''), 'Invalid fieldname input should result in null ouput.');
 	}
@@ -103,12 +99,4 @@ private class XAP_DESC_SObjectDescribeTest {
 		SObjectField nameField = d.getNameField();
 		System.assertEquals('Name', nameField.getDescribe().getName());
 	}
-
-	@IsTest
-	static void rawGlobalDescribeCheck() {
-		Map<String, SObjectType> systemGd = Schema.getGlobalDescribe();
-		Map<String, SObjectType> cachedGd = XAP_DESC_SObjectDescribe.RAW_GLOBAL_DESCRIBE;
-		//FIXME: System.assertEquals(systemGd.size(), cachedGd.size());
-	}
-
 }
