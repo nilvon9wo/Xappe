@@ -7,7 +7,6 @@ public class XFTY_DummySObjectFactoryOutletLookup {
 					Product2.SObjectType => TEST_DummyProduct2FactoryOutlet.class,
 					User.SObjectType => TEST_DummyUserFactoryOutlet.class,
 					XAP_TRIG_TriggerSetting__c.SObjectType => TEST_DummyXapTriggerSettingFactoryOutlet.class
-
 			};
 
 	private static final Map<SObjectType, XFTY_DummySobjectFactoryOutletIntf> OUTLET_INSTANCE_BY_SOBJECT_TYPE

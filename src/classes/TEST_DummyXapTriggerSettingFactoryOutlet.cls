@@ -1,6 +1,7 @@
 @IsTest
-public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
+public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
 	public static final String DEFAULT_NAME_PREFIX = 'Test XAP Trigger Settings Name';
+	public static final Boolean DEFAULT_TRIGGER_ENABLED = true;
 	public static final Boolean DEFAULT_ACCOUNT_TRIGGER_ENABLED = true;
 
 	private static final SObjectField PRIMARY_TARGET_FIELD = XAP_TRIG_TriggerSetting__c.Id;
@@ -24,8 +25,6 @@ public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummySobje
 	) {
 		return XFTY_DummySObjectFactory.createBundle(MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
 	}
-
-
 	public static XAP_TRIG_TriggerSetting__c prepareIntegrationTest() {
 		return (XAP_TRIG_TriggerSetting__c) new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
 				.setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
@@ -33,3 +32,4 @@ public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummySobje
 				.supply();
 	}
 }
+

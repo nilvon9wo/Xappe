@@ -108,5 +108,4 @@ private class XAP_DESC_SObjectDescribeTest {
 		//FIXME: System.assertEquals(systemGd.size(), cachedGd.size());
 	}
 
-
 }

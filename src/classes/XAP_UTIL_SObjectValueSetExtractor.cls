@@ -25,8 +25,13 @@ public virtual class XAP_UTIL_SObjectValueSetExtractor {
 	}
 
 	public virtual Set<String> extractNonBlankStringsFrom(List<SObject> sObjectList, SObjectField extractedField) {
-		return this.extractStringSet(sObjectList, extractedField, new XAP_PRED_SObjectFieldHasNonBlankValue(extractedField));
-	}
+		Set<Id> idSet = new Set<Id>();
+		List<Object> objectList = new ListForSetExtractor(extractedField, predicate)
+				.extractFrom(sObjectList);
+		for (Object obj : objectList) {
+			idSet.add((Id) obj);
+		}
+		return idSet;	}
 
 	public Set<String> extractStringSet(
 			List<SObject> sObjectList,
