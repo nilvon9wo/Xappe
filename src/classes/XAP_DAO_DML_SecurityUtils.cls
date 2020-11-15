@@ -18,6 +18,10 @@ public class XAP_DAO_DML_SecurityUtils {
 	public static Boolean BYPASS_INTERNAL_FLS_AND_CRUD = false;
 	public static final Boolean OPERATION_IS_PERMITTED = true;
 
+	private static final Set<String> IGNORED_FIELD_NAME_SET = new Set<String>{
+			'Id', 'ExternalSalesforceId__c'
+	};
+
 	public Boolean checkInsert(SObjectType sObjectType, List<String> fieldNameList) {
 		this.checkSObjectIsInsertable(sObjectType);
 		for (String fieldName : fieldNameList) {
@@ -64,7 +68,7 @@ public class XAP_DAO_DML_SecurityUtils {
 		if (BYPASS_INTERNAL_FLS_AND_CRUD) {
 			return OPERATION_IS_PERMITTED;
 		}
-		if (!fieldDescribe.isCreateable()) {
+		if (!IGNORED_FIELD_NAME_SET.contains(fieldDescribe.getName()) && !fieldDescribe.isCreateable()) {
 			throw new XAP_DAO_DML_FieldLevelSecurityException(
 					XAP_DAO_DML_OperationTypeEnum.CREATE,
 					sObjectType, fieldDescribe.getSobjectField()
@@ -87,7 +91,7 @@ public class XAP_DAO_DML_SecurityUtils {
 		if (BYPASS_INTERNAL_FLS_AND_CRUD) {
 			return OPERATION_IS_PERMITTED;
 		}
-		if (!fieldDescribe.isUpdateable()) {
+		if (!IGNORED_FIELD_NAME_SET.contains(fieldDescribe.getName())  && !fieldDescribe.isUpdateable()) {
 			throw new XAP_DAO_DML_FieldLevelSecurityException(
 					XAP_DAO_DML_OperationTypeEnum.MODIFY,
 					sObjectType,

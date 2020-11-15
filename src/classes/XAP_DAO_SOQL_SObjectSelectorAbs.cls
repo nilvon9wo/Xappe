@@ -12,6 +12,9 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
 	public static final Boolean INCLUDE_ENFORCE_FLS = true;
 	public static final Boolean EXCLUDE_ENFORCE_FLS = false;
 
+	public static final Boolean INCLUDE_ENFORCE_SECURITY = true;
+	public static final Boolean EXCLUDE_ENFORCE_SECURITY = false;
+
 	public static final Boolean SORTTED_SELECT_FIELDS = true;
 	public static final Boolean UNSORTTED_SELECT_FIELDS = false;
 
@@ -23,7 +26,7 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
 	private static final String DEFAULT_SORT_DIRECTION = 'DESC';
 	private static final String DEFAULT_NULL_SORT_PLACE = 'NULLS LAST';
 
-	private String orderBy;
+	protected String orderBy;
 
 	private Boolean isIncludingFieldSetFields;
 	private Boolean isEnforcingFLS;
@@ -105,6 +108,16 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
 
 	public Boolean isEnforcingCRUD() {
 		return this.isEnforcingCRUD;
+	}
+
+	public XAP_DAO_SOQL_SObjectSelectorAbs turnCrudEnforcementOff() {
+		this.isEnforcingCRUD = EXCLUDE_ENFORCE_CRUD;
+		return this;
+	}
+
+	public XAP_DAO_SOQL_SObjectSelectorAbs turnCrudEnforcementOn() {
+		this.isEnforcingCRUD = INCLUDE_ENFORCE_CRUD;
+		return this;
 	}
 
 	public String getSObjectName() {
@@ -261,5 +274,19 @@ public abstract with sharing class XAP_DAO_SOQL_SObjectSelectorAbs implements XA
 			queryFactory.addOrdering(fieldNamePart, fieldSortOrder, orderBy.containsIgnoreCase(DEFAULT_NULL_SORT_PLACE));
 		}
 		return queryFactory;
+	}
+
+	public XAP_DAO_SOQL_SObjectSelectorAbs with(
+			XAP_DAO_SOQL_QueryFactory queryFactory,
+			XAP_DAO_SOQL_SObjectConsumerIntf consumer
+	) {
+		Database.QueryLocatorIterator queryLocatorIterator = queryFactory.getQueryLocator()
+			.iterator();
+
+		while(queryLocatorIterator.hasNext()) {
+			consumer.doWith(queryLocatorIterator.next());
+		}
+
+		return this;
 	}
 }

@@ -34,7 +34,7 @@ public abstract class XAP_DAO_SOQL_WHERE_AbsConjunctionClause implements XAP_DAO
 		for (String oldKey : objectsByKeyMap.keySet()) {
 			if (existingObjectsByKeyMap.containsKey(oldKey)) {
 				String newKey = oldKey + ':::' + NEXT_KEY_MODIFIER++;
-				template = template.replace('${' + oldKey + '}', ':${' + newKey + '}');
+				template = template.replace('${' + oldKey + '}', '${' + newKey + '}');
 				objectsByKeyMap.put(newKey, objectsByKeyMap.remove(oldKey));
 			}
 		}

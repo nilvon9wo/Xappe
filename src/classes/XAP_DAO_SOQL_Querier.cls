@@ -35,14 +35,17 @@ public virtual class XAP_DAO_SOQL_Querier {
 	public String toSoql(XAP_DAO_SOQL_QueryInterpolation queryInterpolation) {
 		String localizedTemplate = queryInterpolation.template;
 		Integer counter = 0;
-		for (String key : queryInterpolation.objectsByKeyMap.keySet()) {
-			localizedTemplate = this.rebind(
-					localizedTemplate,
-					key,
-					queryInterpolation.objectsByKeyMap.get(key),
-					counter++
-			);
+		if (queryInterpolation.objectsByKeyMap != null) {
+			for (String key : queryInterpolation.objectsByKeyMap.keySet()) {
+				localizedTemplate = this.rebind(
+						localizedTemplate,
+						key,
+						queryInterpolation.objectsByKeyMap.get(key),
+						counter++
+				);
+			}
 		}
+
 		return localizedTemplate;
 	}
 

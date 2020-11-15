@@ -50,6 +50,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 	private Integer limitCount;
 	private Integer offsetCount;
 	private Boolean enforceFLS = XAP_DAO_SOQL_QueryInterpolationBuilder.EXCLUDING_FIELD_LEVEL_SECURITY;
+	private Boolean enforceSecurity = false;
 	private Boolean sortSelectFields = XAP_DAO_SOQL_QueryInterpolationBuilder.INCLUDING_SORTED_SELECT_FIELDS;
 
 	private ChildRelationship childRelationship;
@@ -67,8 +68,21 @@ public class XAP_DAO_SOQL_QueryFactory {
 		return this;
 	}
 
+	public XAP_DAO_SOQL_QueryFactory setEnforceFLS() {
+		return this.setEnforceFLS(true);
+	}
+
 	public XAP_DAO_SOQL_QueryFactory setEnforceFLS(Boolean enforce) {
 		this.enforceFLS = enforce;
+		return this;
+	}
+
+	public XAP_DAO_SOQL_QueryFactory setSecurityEnforced() {
+		return this.setSecurityEnforced(true);
+	}
+
+	public XAP_DAO_SOQL_QueryFactory setSecurityEnforced(Boolean enforce) {
+		this.enforceSecurity = enforce;
 		return this;
 	}
 
@@ -331,6 +345,7 @@ public class XAP_DAO_SOQL_QueryFactory {
 		return (new XAP_DAO_SOQL_QueryInterpolationBuilder(this.sObjectType, this.fieldSetCollection))
 				.setConditionExpression(this.conditionExpression)
 				.setEnforceFieldLevelSecurity(this.enforceFLS)
+				.setEnforceSecurity(this.enforceSecurity)
 				.setSortSelectFields(this.sortSelectFields)
 				.setChildRelationship(this.childRelationship)
 				.setFactoryByChildRelationshipMap(this.factoryByChildRelationshipMap)

@@ -46,23 +46,34 @@ public virtual inherited sharing class XAP_DAO_DML_SecureDml implements XAP_DAO_
 
 	public XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> sObjectList, Database.DMLOptions dmlOptions) {
 		if (this.checkPermissions(sObjectList, CAN_INSERT_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doInsert(sObjectList, dmlOptions);
+			return this.withDmlFor(this.sharingModeEnum).doInsert(sObjectList, dmlOptions);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to insert ' + sObjectList[0].getSObjectType());
 	}
 
 	public XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		if (this.checkPermissions(sObjectList, CAN_INSERT_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doInsert(sObjectList, operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doInsert(sObjectList, operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to insert ' + sObjectList[0].getSObjectType());
 	}
 
 	public XAP_DAO_DML_SaveResultListWrapper doInsert(List<SObject> sObjectList) {
 		if (this.checkPermissions(sObjectList, CAN_INSERT_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doInsert(sObjectList, this.operationMode);
+			return this.withDmlFor(this.sharingModeEnum)
+					.doInsert(sObjectList, this.operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to insert ' + sObjectList[0].getSObjectType());
+	}
+
+	// Publish ---------------------------------------------------------------------------------------------------------
+
+	public XAP_DAO_DML_SaveResultListWrapper doPublish(List<SObject> sObjectList) {
+		if (this.checkPermissions(sObjectList, CAN_INSERT_SET)) {
+			return this.withDmlFor(this.sharingModeEnum)
+					.doPublish(sObjectList);
+		}
+		throw new XAP_DAO_DML_AccessCtrlDmlException('User has no permission to publish ' + sObjectList[0].getSObjectType());
 	}
 
 	// Update ---------------------------------------------------------------------------------------------------------
@@ -72,14 +83,14 @@ public virtual inherited sharing class XAP_DAO_DML_SecureDml implements XAP_DAO_
 
 	public XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		if (this.checkPermissions(sObjectList, CAN_UPDATE_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doUpdate(sObjectList, operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doUpdate(sObjectList, operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to update ' + sObjectList[0].getSObjectType());
 	}
 
 	public XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> sObjectList) {
 		if (this.checkPermissions(sObjectList, CAN_UPDATE_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doUpdate(sObjectList, this.operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doUpdate(sObjectList, this.operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to update ' + sObjectList[0].getSObjectType());
 	}
@@ -89,16 +100,28 @@ public virtual inherited sharing class XAP_DAO_DML_SecureDml implements XAP_DAO_
 	private static final Set<XAP_DAO_DML_OperationTypeEnum> CAN_UPSERT_SET
 			= new Set<XAP_DAO_DML_OperationTypeEnum>{XAP_DAO_DML_OperationTypeEnum.CREATE, XAP_DAO_DML_OperationTypeEnum.MODIFY};
 
+	public XAP_DAO_DML_UpsertResultListWrapper doUpsert(
+			List<SObject> homogeneousSObjectList,
+			SObjectField foreignKeyField,
+			XAP_DAO_DML_OperationModeEnum operationMode
+	) {
+		if (this.checkPermissions(homogeneousSObjectList, CAN_UPSERT_SET)) {
+			return this.withDmlFor(this.sharingModeEnum)
+					.doUpsert(homogeneousSObjectList, foreignKeyField, operationMode);
+		}
+		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to upsert ' + homogeneousSObjectList[0].getSObjectType());
+	}
+
 	public XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		if (this.checkPermissions(homogeneousSObjectList, CAN_UPSERT_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doUpdate(homogeneousSObjectList, operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doUpsert(homogeneousSObjectList, operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to upsert ' + homogeneousSObjectList[0].getSObjectType());
 	}
 
 	public XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList) {
 		if (this.checkPermissions(homogeneousSObjectList, CAN_UPSERT_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doUpdate(homogeneousSObjectList, this.operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doUpsert(homogeneousSObjectList, this.operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to upsert ' + homogeneousSObjectList[0].getSObjectType());
 	}
@@ -110,14 +133,14 @@ public virtual inherited sharing class XAP_DAO_DML_SecureDml implements XAP_DAO_
 
 	public XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		if (this.checkPermissions(sObjectList, CAN_DELETE_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doDelete(sObjectList, operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doDelete(sObjectList, operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to delete ' + sObjectList[0].getSObjectType());
 	}
 
 	public XAP_DAO_DML_DeleteResultListWrapper doDelete(List<SObject> sObjectList) {
 		if (this.checkPermissions(sObjectList, CAN_DELETE_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doDelete(sObjectList, this.operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doDelete(sObjectList, this.operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to delete ' + sObjectList[0].getSObjectType());
 	}
@@ -129,14 +152,14 @@ public virtual inherited sharing class XAP_DAO_DML_SecureDml implements XAP_DAO_
 
 	public XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		if (this.checkPermissions(sObjectList, CAN_UNDELETE_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doUndelete(sObjectList, operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doUndelete(sObjectList, operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to undelete ' + sObjectList[0].getSObjectType());
 	}
 
 	public XAP_DAO_DML_UndeleteResultListWrapper doUndelete(List<SObject> sObjectList) {
 		if (this.checkPermissions(sObjectList, CAN_UNDELETE_SET)) {
-			this.withDmlFor(this.sharingModeEnum).doUndelete(sObjectList, this.operationMode);
+			return this.withDmlFor(this.sharingModeEnum).doUndelete(sObjectList, this.operationMode);
 		}
 		throw new XAP_DAO_DML_AccessCtrlDmlException('Insufficient access to undelete ' + sObjectList[0].getSObjectType());
 	}

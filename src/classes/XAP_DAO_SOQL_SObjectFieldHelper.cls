@@ -18,7 +18,9 @@ public class XAP_DAO_SOQL_SObjectFieldHelper {
 
 	public String getFieldPath(SObjectType sObjectType, String fieldName, Boolean enforceFLS) {
 		return (this.isSingleField(fieldName))
-				? this.getFieldName(sObjectType, fieldName, enforceFLS).getDescribe().getName()
+				? this.getFieldName(sObjectType, fieldName, enforceFLS)
+						.getDescribe()
+						.getName()
 				: this.traverseFieldKeyRelationships(sObjectType, fieldName, enforceFLS);
 	}
 

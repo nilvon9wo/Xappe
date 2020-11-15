@@ -32,12 +32,20 @@ public virtual with sharing class XAP_DAO_DML_WithSharingDml implements XAP_DAO_
 		return this.inheritedSharingDml.doInsert(sObjectList);
 	}
 
+	public XAP_DAO_DML_SaveResultListWrapper doPublish(List<SObject> sObjectList) {
+		return this.inheritedSharingDml.doPublish(sObjectList);
+	}
+
 	public XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> sObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {
 		return this.inheritedSharingDml.doUpdate(sObjectList, operationMode);
 	}
 
 	public XAP_DAO_DML_SaveResultListWrapper doUpdate(List<SObject> sObjectList) {
 		return this.inheritedSharingDml.doUpdate(sObjectList);
+	}
+
+	public XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList, SObjectField foreignKeyField, XAP_DAO_DML_OperationModeEnum operationMode) {
+		return this.inheritedSharingDml.doUpsert(homogeneousSObjectList, foreignKeyField, operationMode);
 	}
 
 	public XAP_DAO_DML_UpsertResultListWrapper doUpsert(List<SObject> homogeneousSObjectList, XAP_DAO_DML_OperationModeEnum operationMode) {

@@ -8,6 +8,6 @@ public virtual class XAP_DAO_SOQL_QueryInterpolation {
 	}
 
 	public XAP_DAO_SOQL_QueryInterpolation(String template) {
-		this(template, null);
+		this(template, new Map<String, Object>());
 	}
 }

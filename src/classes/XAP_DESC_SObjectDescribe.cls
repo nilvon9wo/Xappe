@@ -52,7 +52,7 @@ public class XAP_DESC_SObjectDescribe {
 
 	// describe -------------------------------------------------------------------------
 
-	private DescribeSObjectResult describe {
+	private transient DescribeSObjectResult describe {
 		get {
 			if (this.describe == null) {
 				this.describe = this.sObjectType.getDescribe();

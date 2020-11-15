@@ -1,5 +1,5 @@
 //@IsTest
-public interface XFTY_DummyQueueSobjectFactoryOutletIntf {
+public interface XFTY_DummySobjectFactoryOutletIntf {
     SObjectField getPrimaryTargetField();
     XFTY_DummySObjectMasterTemplate getMasterTemplate();
 

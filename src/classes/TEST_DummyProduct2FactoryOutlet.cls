@@ -1,7 +1,29 @@
 @IsTest
-public class TEST_DummyProduct2FactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
+public class TEST_DummyProduct2FactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
 	public static final String DEFAULT_NAME_PREFIX = 'Test Product Name';
 	private static final SObjectField PRIMARY_TARGET_FIELD = Product2.Id;
+
+	public static final Product2 DEFAULT_PRODUCT {
+		get {
+			if (DEFAULT_PRODUCT == null) {
+				DEFAULT_PRODUCT = (Product2) new XFTY_DummySObjectSupplier(Product2.SObjectType)
+						.setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
+						.setInsertMode(XFTY_InsertModeEnum.NOW)
+						.supply();
+			}
+			return DEFAULT_PRODUCT;
+		}
+		set;
+	}
+	public static final Id DEFAULT_PRODUCT_ID {
+			get {
+				if (DEFAULT_PRODUCT_ID == null) {
+					DEFAULT_PRODUCT_ID = DEFAULT_PRODUCT.Id;
+				}
+				return DEFAULT_PRODUCT_ID;
+			}
+			set;
+	}
 
 	private static final XFTY_DummySObjectMasterTemplate MASTER_TEMPLATE
 			= new XFTY_DummySObjectMasterTemplate(PRIMARY_TARGET_FIELD)

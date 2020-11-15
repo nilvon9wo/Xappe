@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyContactFactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
+public class TEST_DummyContactFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
 	public static final String DEFAULT_FIRST_NAME_PREFIX = 'Contact First Name';
 	public static final String DEFAULT_LAST_NAME_PREFIX = 'Contact Last Name';
 	public static final String DEFAULT_EMAIL_PREFIX = 'test.contact';

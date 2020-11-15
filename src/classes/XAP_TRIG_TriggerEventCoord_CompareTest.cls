@@ -15,7 +15,7 @@ public with sharing class XAP_TRIG_TriggerEventCoord_CompareTest {
 		mockSObjectTypeOperationHelper.returnedSObjectTypeOperationList = returnedSObjectTypeOperationList;
 
 		// Act
-		XAP_UTIL_ListComparison resultComparison;
+		XAP_COLL_ListComparison resultComparison;
 		Test.startTest();
 		System.runAs(TEST_USER) {
 			resultComparison = coordinatorUnderTest.compare(testSObjectTypeOperationList);

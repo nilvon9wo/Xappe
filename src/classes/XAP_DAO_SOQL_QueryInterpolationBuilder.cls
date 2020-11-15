@@ -20,6 +20,9 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
 	public static final Boolean INCLUDING_FIELD_LEVEL_SECURITY = true;
 	public static final Boolean EXCLUDING_FIELD_LEVEL_SECURITY = false;
 
+	private static final Boolean INCLUDING_SECURITY = false;
+	private static final Boolean EXCLUDING_SECURITY = false;
+
 	public static final Boolean INCLUDING_SORTED_SELECT_FIELDS = true;
 	public static final Boolean EXCLUDING_SORTED_SELECT_FIELDS = false;
 
@@ -63,6 +66,14 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
 		return this;
 	}
 
+	private Boolean enforceSecurity = EXCLUDING_SECURITY;
+	public XAP_DAO_SOQL_QueryInterpolationBuilder setEnforceSecurity(
+			Boolean enforceSecurity
+	) {
+		this.enforceSecurity = enforceSecurity;
+		return this;
+	}
+
 	private Boolean sortSelectFields = INCLUDING_SORTED_SELECT_FIELDS;
 	public XAP_DAO_SOQL_QueryInterpolationBuilder setSortSelectFields(
 			Boolean sortSelectFields
@@ -97,6 +108,11 @@ public class XAP_DAO_SOQL_QueryInterpolationBuilder {
 				+ (
 				whereInterpolation != null
 						? this.toSOQL('WHERE', whereInterpolation.template)
+						: ''
+		)
+				+ (
+				this.enforceSecurity
+						? ' WITH SECURITY_ENFORCED '
 						: ''
 		)
 				+ (

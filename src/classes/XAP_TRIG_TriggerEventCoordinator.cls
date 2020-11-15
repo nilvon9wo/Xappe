@@ -165,11 +165,11 @@ public with sharing virtual class XAP_TRIG_TriggerEventCoordinator {
 
 	// Sequence checker  ---------------------------------------------------------------------------------------------------------
 
-	public XAP_UTIL_ListComparison compare(List<XAP_TRIG_TriggerSObjectTypeOperation> needleSObjectTypeOperationList) {
+	public XAP_COLL_ListComparison compare(List<XAP_TRIG_TriggerSObjectTypeOperation> needleSObjectTypeOperationList) {
 		List<XAP_TRIG_TriggerSObjectTypeOperation> inProgressSObjectTypeOperationList
 				= sObjectTypeOperationHelper.convert(TRIGGER_IN_PROGRESS_LIST);
 
-		return new XAP_UTIL_ListComparison(inProgressSObjectTypeOperationList, needleSObjectTypeOperationList);
+		return new XAP_COLL_ListComparison(inProgressSObjectTypeOperationList, needleSObjectTypeOperationList);
 	}
 
 	// Helpers  ---------------------------------------------------------------------------------------------------------

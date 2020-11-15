@@ -2,7 +2,6 @@ public virtual class XAP_DAO_DML_OperationModeHelper {
 	public static Boolean IS_ALL_OR_NONE = true;
 	public static Boolean NOT_ALL_OR_NONE = false;
 
-	@TestVisible
 	protected XAP_DAO_DML_OperationModeHelper() {
 	}
 
