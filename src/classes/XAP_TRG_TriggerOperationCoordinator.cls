@@ -1,20 +1,20 @@
-public with sharing virtual class XAP_TRG_TriggerEventCoordinator {
+public with sharing virtual class XAP_TRG_TriggerOperationCoordinator {
 	private XAP_TRG_TriggerSettingSelector triggerSettingSelector;
 
 	@TestVisible
-	private XAP_TRG_TriggerEventCoordinator(XAP_TRG_TriggerSettingSelector automationSettingSelector) {
+	private XAP_TRG_TriggerOperationCoordinator(XAP_TRG_TriggerSettingSelector automationSettingSelector) {
 		this.triggerSettingSelector = automationSettingSelector;
 	}
 
 	@TestVisible
-	private XAP_TRG_TriggerEventCoordinator() {
+	private XAP_TRG_TriggerOperationCoordinator() {
 		this(XAP_TRG_TriggerSettingSelector.getInstance());
 	}
 
-	private static XAP_TRG_TriggerEventCoordinator instance;
-	public static XAP_TRG_TriggerEventCoordinator getInstance() {
+	private static XAP_TRG_TriggerOperationCoordinator instance;
+	public static XAP_TRG_TriggerOperationCoordinator getInstance() {
 		if (instance == null) {
-			instance = new XAP_TRG_TriggerEventCoordinator();
+			instance = new XAP_TRG_TriggerOperationCoordinator();
 		}
 		return null;
 	}

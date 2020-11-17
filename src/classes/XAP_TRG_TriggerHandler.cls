@@ -1,17 +1,17 @@
 public with sharing class XAP_TRG_TriggerHandler {
-    private XAP_TRG_TriggerEventCoordinator eventCoordinator;
+    private XAP_TRG_TriggerOperationCoordinator operationCoordinator;
     private XAP_TRG_TriggerStepCache stepLookup;
 
     private XAP_TRG_TriggerHandler(
-            XAP_TRG_TriggerEventCoordinator eventCoordinator,
+            XAP_TRG_TriggerOperationCoordinator operationCoordinator,
             XAP_TRG_TriggerStepCache stepLookup
     ) {
-        this.eventCoordinator = eventCoordinator;
+        this.operationCoordinator = operationCoordinator;
         this.stepLookup = stepLookup;
     }
 
     private XAP_TRG_TriggerHandler(){
-        this(XAP_TRG_TriggerEventCoordinator.getInstance(), XAP_TRG_TriggerStepCache.getInstance());
+        this(XAP_TRG_TriggerOperationCoordinator.getInstance(), XAP_TRG_TriggerStepCache.getInstance());
     }
 
     private static XAP_TRG_TriggerHandler instance;
@@ -27,19 +27,18 @@ public with sharing class XAP_TRG_TriggerHandler {
     }
 
     public XAP_TRG_TriggerHandler execute(XAP_TRG_TriggerContext context) {
-        if (this.eventCoordinator.isExecutable(context)) {
-            this.eventCoordinator.addToInProgress(context);
-            List<XAP_TRG_TriggerSteppable> stepList = this.stepLookup.get(context);
-            this.execute(context, stepList);
-            this.eventCoordinator.removeFromInProgress(context);
+        if (this.operationCoordinator.isExecutable(context)) {
+            this.execute(context, this.stepLookup.get(context));
         }
         return this;
     }
 
     private XAP_TRG_TriggerHandler execute(XAP_TRG_TriggerContext context, List<XAP_TRG_TriggerSteppable> stepList) {
+        this.operationCoordinator.addToInProgress(context);
         for (XAP_TRG_TriggerSteppable step : stepList) {
             this.execute(context, step);
         }
+        this.operationCoordinator.removeFromInProgress(context);
         return this;
     }
 

@@ -1,7 +1,7 @@
 @IsTest
-public with sharing class XAP_TRG_TriggerEventCoordinatorIntTest {
+public with sharing class XAP_TRG_TriggerOperCoordinatorIntTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
-	private static final XAP_TRG_TriggerEventCoordinator COORDINATOR_UNDER_TEST = new XAP_TRG_TriggerEventCoordinator();
+	private static final XAP_TRG_TriggerOperationCoordinator COORDINATOR_UNDER_TEST = new XAP_TRG_TriggerOperationCoordinator();
 
 	@IsTest public static void isExecutableReturnsTrueIfEnabledForProfileAndEnabledForSObjectAndNotInProgress() {
 		// Arrange
