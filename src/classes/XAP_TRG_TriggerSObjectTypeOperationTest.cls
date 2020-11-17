@@ -1,11 +1,11 @@
 @IsTest
-public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
+public with sharing class XAP_TRG_TriggerSObjectTypeOperationTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
 	private static final SObjectType TEST_SOBJECT_TYPE = Account.SObjectType;
 	private static final System.TriggerOperation TEST_OPERATION = System.TriggerOperation.BEFORE_INSERT;
-	private static final XAP_TRIG_TriggerSObjectTypeOperation OPERATION_UNDER_TEST
-			= new XAP_TRIG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, TEST_OPERATION);
+	private static final XAP_TRG_TriggerSObjectTypeOperation OPERATION_UNDER_TEST
+			= new XAP_TRG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, TEST_OPERATION);
 
 	// Test constructors -----------------------------------------------------------------------------------------
 
@@ -14,10 +14,10 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 		// Nothing to do here
 
 		// Act
-		XAP_TRIG_TriggerSObjectTypeOperation result;
+		XAP_TRG_TriggerSObjectTypeOperation result;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			result = new XAP_TRIG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, TEST_OPERATION);
+			result = new XAP_TRG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, TEST_OPERATION);
 		}
 		Test.stopTest();
 
@@ -28,15 +28,15 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 
 	@IsTest public static void testConstructorShouldPopulatesInstancePropertiesFromTriggerProperties() {
 		// Arrange
-		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext testTriggerProperties = new XAP_TRG_TriggerContext();
 		testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
 		testTriggerProperties.operationType = TEST_OPERATION;
 
 		// Act
-		XAP_TRIG_TriggerSObjectTypeOperation result;
+		XAP_TRG_TriggerSObjectTypeOperation result;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			result = new XAP_TRIG_TriggerSObjectTypeOperation(testTriggerProperties);
+			result = new XAP_TRG_TriggerSObjectTypeOperation(testTriggerProperties);
 		}
 		Test.stopTest();
 
@@ -49,8 +49,8 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 
 	@IsTest public static void testEqualsShouldReturnTrueIfSObjecTypeAndOperationAreSame() {
 		// Arrange
-		XAP_TRIG_TriggerSObjectTypeOperation otherSObjectOperation
-				= new XAP_TRIG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, TEST_OPERATION);
+		XAP_TRG_TriggerSObjectTypeOperation otherSObjectOperation
+				= new XAP_TRG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, TEST_OPERATION);
 
 		// Act
 		Boolean result;
@@ -67,8 +67,8 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 	@IsTest public static void testEqualsShouldReturnFalseIfSObjecTypeIsDiffered() {
 		// Arrange
 		SObjectType otherSObjectType = Contact.SObjectType;
-		XAP_TRIG_TriggerSObjectTypeOperation otherSObjectOperation
-				= new XAP_TRIG_TriggerSObjectTypeOperation(otherSObjectType, TEST_OPERATION);
+		XAP_TRG_TriggerSObjectTypeOperation otherSObjectOperation
+				= new XAP_TRG_TriggerSObjectTypeOperation(otherSObjectType, TEST_OPERATION);
 
 		// Act
 		Boolean result;
@@ -85,8 +85,8 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 	@IsTest public static void testEqualsShouldReturnFalseIfOperationIsDiffered() {
 		// Arrange
 		System.TriggerOperation otherOperation = System.TriggerOperation.AFTER_INSERT;
-		XAP_TRIG_TriggerSObjectTypeOperation otherSObjectOperation
-				= new XAP_TRIG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, otherOperation);
+		XAP_TRG_TriggerSObjectTypeOperation otherSObjectOperation
+				= new XAP_TRG_TriggerSObjectTypeOperation(TEST_SOBJECT_TYPE, otherOperation);
 
 		// Act
 		Boolean result;

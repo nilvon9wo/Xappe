@@ -1,15 +1,15 @@
 @IsTest
-public with sharing class XAP_TRIG_TriggerEventCoordinatorIntTest {
+public with sharing class XAP_TRG_TriggerEventCoordinatorIntTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
-	private static final XAP_TRIG_TriggerEventCoordinator COORDINATOR_UNDER_TEST = new XAP_TRIG_TriggerEventCoordinator();
+	private static final XAP_TRG_TriggerEventCoordinator COORDINATOR_UNDER_TEST = new XAP_TRG_TriggerEventCoordinator();
 
 	@IsTest public static void isExecutableReturnsTrueIfEnabledForProfileAndEnabledForSObjectAndNotInProgress() {
 		// Arrange
-		new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
+		new XFTY_DummySObjectSupplier(XAP_TRG_Trigger_Settings__c.SObjectType)
 				.setInsertMode(XFTY_InsertModeEnum.NOW)
 				.supplyBundle();
 
-		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext testTriggerProperties = new XAP_TRG_TriggerContext();
 		testTriggerProperties.sObjectType = Account.SObjectType;
 		testTriggerProperties.operationType = System.TriggerOperation.BEFORE_INSERT;
 

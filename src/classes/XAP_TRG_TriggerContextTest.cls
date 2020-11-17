@@ -1,5 +1,5 @@
 @IsTest
-public with sharing class XAP_TRIG_TriggerPropertiesTest {
+public with sharing class XAP_TRG_TriggerContextTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final List<Account> TEST_SOBJECT_LIST = (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
 			.supplyList();
@@ -13,10 +13,10 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 		// Nothing to do here.
 
 		// Act
-		XAP_TRIG_TriggerProperties resultTriggerProperties;
+		XAP_TRG_TriggerContext resultTriggerProperties;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultTriggerProperties = new XAP_TRIG_TriggerProperties();
+			resultTriggerProperties = new XAP_TRG_TriggerContext();
 		}
 		Test.stopTest();
 
@@ -38,7 +38,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 
 	@IsTest public static void testSelectSObjectTypeShouldGetSObjectTypeFromNewListWhenAvailable() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 		wrapperUnderTest.newSObjectList = TEST_SOBJECT_LIST;
 
 		// Act
@@ -55,7 +55,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 
 	@IsTest public static void testSelectSObjectTypeShouldGetSObjectTypeFromOldListWhenNewNotAvailable() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 		wrapperUnderTest.oldSObjectList = TEST_SOBJECT_LIST;
 
 		// Act
@@ -72,7 +72,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 
 	@IsTest public static void testSelectSObjectTypeShouldSetSObjectTypeAsNullWhenNoListAvailable() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 
 		// Act
 		SObjectType resultSObjectType;
@@ -91,7 +91,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 
 	@IsTest public static void testSelectOperationTypeShouldReturnNullWhenTriggerNotExecuting() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 		wrapperUnderTest.isExecuting = false;
 
 		// Act
@@ -110,7 +110,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 	// This shouldn't represent a valid use case and is only for coverage.
 	@IsTest public static void testSelectOperationTypeShouldReturnNullWhenTriggerExecutingButNeitherBeforeNorAfter() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 		wrapperUnderTest.isExecuting = true;
 		wrapperUnderTest.isBefore = false;
 		wrapperUnderTest.isAfter = false;
@@ -132,7 +132,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 
 	@IsTest public static void testGetSObjectTypeShouldReturnAppropriateType() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 		wrapperUnderTest.newSObjectList = TEST_SOBJECT_LIST;
 
 		// Act
@@ -149,7 +149,7 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 
 	@IsTest public static void testGetOperationTypeShouldReturnNullWhenNoTestsAreRunning() {
 		// Arrange
-		XAP_TRIG_TriggerProperties wrapperUnderTest = new XAP_TRIG_TriggerProperties();
+		XAP_TRG_TriggerContext wrapperUnderTest = new XAP_TRG_TriggerContext();
 
 		// Act
 		System.TriggerOperation resultOperation;
@@ -162,5 +162,4 @@ public with sharing class XAP_TRIG_TriggerPropertiesTest {
 		// Assert
 		System.assertEquals(null, resultOperation);
 	}
-
 }

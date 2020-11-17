@@ -1,21 +1,19 @@
 @IsTest
-public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
+public with sharing class XAP_TRG_TriggerEventCoordinatorTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
-	private static final XAP_TRIG_TriggerSettingSelectorMock MOCK_TRIGGER_SELECTOR
-			= new XAP_TRIG_TriggerSettingSelectorMock();
-	private static final XAP_TRIG_SObjectTypeOperationConvertor SOBJECT_TYPE_OPERATION_CONVERTOR
-			= new XAP_TRIG_SObjectTypeOperationConvertor();
-	private static final XAP_TRIG_TriggerEventCoordinator COORDINATOR_UNDER_TEST
-			= new XAP_TRIG_TriggerEventCoordinator(SOBJECT_TYPE_OPERATION_CONVERTOR, MOCK_TRIGGER_SELECTOR);
+	private static final XAP_TRG_TriggerSettingSelectorMock MOCK_TRIGGER_SELECTOR
+			= new XAP_TRG_TriggerSettingSelectorMock();
+	private static final XAP_TRG_TriggerEventCoordinator COORDINATOR_UNDER_TEST
+			= new XAP_TRG_TriggerEventCoordinator(MOCK_TRIGGER_SELECTOR);
 
-	private static final XAP_TRIG_TriggerSetting__c TEST_TRIGGER_SETTINGS
-			= (XAP_TRIG_TriggerSetting__c) new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
+	private static final XAP_TRG_Trigger_Settings__c TEST_TRIGGER_SETTINGS
+			= (XAP_TRG_Trigger_Settings__c) new XFTY_DummySObjectSupplier(XAP_TRG_Trigger_Settings__c.SObjectType)
 					.supply();
 
 	private static final SObjectType TEST_SOBJECT_TYPE = Account.SObjectType;
 	private static final System.TriggerOperation TEST_OPERATION = System.TriggerOperation.BEFORE_INSERT;
-	private static final XAP_TRIG_TriggerProperties TEST_TRIGGER_WRAPPER = createTriggerProperties();
+	private static final XAP_TRG_TriggerContext TEST_TRIGGER_WRAPPER = createTriggerProperties();
 
 	// isExecutable tests --------------------------------------------------------------------------------------------
 
@@ -39,7 +37,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 		// Arrange
 		MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
 
-		XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
+		XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
 				TEST_TRIGGER_WRAPPER.sObjectType, new Set<System.TriggerOperation>{
 						TEST_TRIGGER_WRAPPER.operationType
 				}
@@ -60,7 +58,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 	@IsTest public static void isExecutableReturnsTrueIfEnabledForProfileAndNotInProgressButNotEnabledForSObject() {
 		// Arrange
 		MOCK_TRIGGER_SELECTOR.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
-		XAP_TRIG_TriggerEventCoordinator.IS_ENABLED_BY_SOBJECT_TYPE_MAP = new Map<SObjectType, Boolean>{
+		XAP_TRG_TriggerEventCoordinator.IS_ENABLED_BY_SOBJECT_TYPE_MAP = new Map<SObjectType, Boolean>{
 				TEST_SOBJECT_TYPE => false
 		};
 
@@ -78,12 +76,11 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	@IsTest public static void isExecutableReturnsTrueIfEnabledForSObjectAndNotInProgressButNotEnabledForProfile() {
 		// Arrange
-		XAP_TRIG_TriggerSettingSelectorMock mockTriggerSettingSelector = new XAP_TRIG_TriggerSettingSelectorMock();
-		TEST_TRIGGER_SETTINGS.TriggersEnabled__c = false;
+		XAP_TRG_TriggerSettingSelectorMock mockTriggerSettingSelector = new XAP_TRG_TriggerSettingSelectorMock();
+		TEST_TRIGGER_SETTINGS.All_Triggers_Enabled__c = false;
 		mockTriggerSettingSelector.returnedTriggerSetting = TEST_TRIGGER_SETTINGS;
-		XAP_TRIG_SObjectTypeOperationConvertor sObjectTypeOperationHelper = new XAP_TRIG_SObjectTypeOperationConvertor();
-		XAP_TRIG_TriggerEventCoordinator coordinatorUnderTest
-				= new XAP_TRIG_TriggerEventCoordinator(sObjectTypeOperationHelper, mockTriggerSettingSelector);
+		XAP_TRG_TriggerEventCoordinator coordinatorUnderTest
+				= new XAP_TRG_TriggerEventCoordinator(mockTriggerSettingSelector);
 
 		// Act
 		Boolean result;
@@ -175,7 +172,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	@IsTest public static void testIsNotAlreadyInProgressShouldReteurnTrueWhenNotContainedInProgressSet() {
 		// Arrange
-		XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.remove(TEST_TRIGGER_WRAPPER.sObjectType);
+		XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.remove(TEST_TRIGGER_WRAPPER.sObjectType);
 
 		// Act
 		Boolean resultValue;
@@ -191,7 +188,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	@IsTest public static void testIsNotAlreadyInProgressShouldReteurnFalseWhenIsContainedInProgressSet() {
 		// Arrange
-		XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
+		XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
 				TEST_TRIGGER_WRAPPER.sObjectType, new Set<System.TriggerOperation>{
 						TEST_TRIGGER_WRAPPER.operationType
 				}
@@ -213,7 +210,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	@IsTest public static void testAddToInProgressShouldAddSpecifiedTypeToInProgressSet() {
 		// Arrange
-		XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.remove(TEST_TRIGGER_WRAPPER.sObjectType);
+		XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.remove(TEST_TRIGGER_WRAPPER.sObjectType);
 
 		// Act
 		Map<SObjectType, Set<System.TriggerOperation>> resultOperationSetBySObjectMap;
@@ -225,7 +222,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 		// Assert
 		System.assertEquals(
-				XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP, resultOperationSetBySObjectMap
+				XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP, resultOperationSetBySObjectMap
 		);
 		System.assert(resultOperationSetBySObjectMap.get(TEST_SOBJECT_TYPE) != null);
 	}
@@ -234,12 +231,12 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	@IsTest public static void testRemoveFromInProgressShouldRemoveSpecifiedTypeToInProgressSet() {
 		// Arrange
-		XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
+		XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
 				TEST_TRIGGER_WRAPPER.sObjectType, new Set<System.TriggerOperation>{
 						TEST_TRIGGER_WRAPPER.operationType
 				}
 		);
-		XAP_TRIG_TriggerEventCoordinator.TRIGGER_IN_PROGRESS_LIST.add(TEST_TRIGGER_WRAPPER);
+		XAP_TRG_TriggerEventCoordinator.TRIGGER_IN_PROGRESS_LIST.add(TEST_TRIGGER_WRAPPER);
 
 		// Act
 		Map<SObjectType, Set<System.TriggerOperation>> resultOperationSetBySObjectMap;
@@ -251,7 +248,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 		// Assert
 		Set<System.TriggerOperation> resultOperationSet
-				= XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(TEST_SOBJECT_TYPE);
+				= XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(TEST_SOBJECT_TYPE);
 		System.assertEquals(null, resultOperationSet);
 	}
 
@@ -261,10 +258,10 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 		Set<System.TriggerOperation> operationSet = new Set<System.TriggerOperation>{
 				TEST_TRIGGER_WRAPPER.operationType, otherOperation
 		};
-		XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
+		XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.put(
 				TEST_TRIGGER_WRAPPER.sObjectType, operationSet
 		);
-		XAP_TRIG_TriggerEventCoordinator.TRIGGER_IN_PROGRESS_LIST.add(TEST_TRIGGER_WRAPPER);
+		XAP_TRG_TriggerEventCoordinator.TRIGGER_IN_PROGRESS_LIST.add(TEST_TRIGGER_WRAPPER);
 
 		// Act
 		Map<SObjectType, Set<System.TriggerOperation>> resultOperationSetBySObjectMap;
@@ -276,7 +273,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 		// Assert
 		Set<System.TriggerOperation> resultOperationSet
-				= XAP_TRIG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(TEST_SOBJECT_TYPE);
+				= XAP_TRG_TriggerEventCoordinator.OPERATION_SET_IN_PROGRESS_BY_SOBJECT_TYPE_MAP.get(TEST_SOBJECT_TYPE);
 		System.assertNotEquals(null, resultOperationSet);
 		System.assert(!resultOperationSet.contains(TEST_OPERATION));
 		System.assert(resultOperationSet.contains(otherOperation));
@@ -351,8 +348,8 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	// Helpers ------------------------------------------------------------------------------------------------------
 
-	private static XAP_TRIG_TriggerProperties createTriggerProperties() {
-		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+	private static XAP_TRG_TriggerContext createTriggerProperties() {
+		XAP_TRG_TriggerContext testTriggerProperties = new XAP_TRG_TriggerContext();
 		testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
 		testTriggerProperties.operationType = TEST_OPERATION;
 		return testTriggerProperties;
