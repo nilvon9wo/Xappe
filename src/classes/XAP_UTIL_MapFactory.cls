@@ -16,21 +16,24 @@ public virtual class XAP_UTIL_MapFactory {
 			return null;
 		}
 
-		Map<Id, List<SObject>> sObjectListBySpecifiedIdMap = new Map<Id, List<SObject>>();
-		for (SObject sObj : homogeneousSObjectList) {
-			Id specifiedId = (Id) sObj.get(idField);
-			if (!String.isBlank(specifiedId)) {
-				if (!sObjectListBySpecifiedIdMap.containsKey(specifiedId)) {
-					sObjectListBySpecifiedIdMap.put(specifiedId, new List<SObject>());
-				}
-				sObjectListBySpecifiedIdMap.get(specifiedId).add(sObj);
-			}
-		}
+        String sObjectTypeString = String.valueOf(homogenousSObjectList[0]?.getSObjectType());
+        String sObjectListTypeString = 'List<' + sObjectTypeString + '>';
+        Type dynamicListType = Type.forName(sObjectListTypeString);
+        Type dynamicMapType = Type.forName('Map<Id, ' + sObjectListTypeString + '>');
 
-		String mapType = 'Map<Id, List<' + homogeneousSObjectList[0].getSObjectType() + '>>';
-		Map<Id, List<SObject>> concreteSObjectListByIdMap = (Map<Id, List<SObject>>) Type.forName(mapType).newInstance();
-		concreteSObjectListByIdMap.putAll(sObjectListBySpecifiedIdMap);
-		return concreteSObjectListByIdMap;
+        Map<Id, List<SObject>> valueListByIdMap = (Map<Id, List<SObject>>) dynamicMapType.newInstance();
+        for (SObject current : homogenousSObjectList) {
+            Id currentId = (Id) current.get(idField);
+            if (currentId != null) {
+                List<SObject> sObjectList = valueListByIdMap.get(currentId);
+                if (sObjectList == null) {
+                    sObjectList = (List<SObject>) dynamicListType.newInstance();
+                    valueListByIdMap.put(currentId, sObjectList);
+                }
+                sObjectList.add(current);
+            }
+        }
+        return valueListByIdMap;
 	}
 
 	public Map<Id, SObject> mapByUniqueSpecifiedIdField(List<SObject> sObjectList, SObjectField idField) {
@@ -57,6 +60,19 @@ public virtual class XAP_UTIL_MapFactory {
 		return sObjectBySpecifiedIdMap;
 	}
 
+    public static Map<Id, SObject> mapLastQualifiedSObjectBySpecifiedIdField(List<SObject> homogenousSObjectList, SObjectField idField) {
+        String sObjectTypeString = String.valueOf(homogenousSObjectList[0]?.getSObjectType());
+        Type dynamicMapType = Type.forName('Map<Id,' + sObjectTypeString + '>');
+
+        Map<Id, SObject> returnValues = (Map<Id, SObject>) dynamicMapType.newInstance();
+        for (SObject current : homogenousSObjectList) {
+            if (current.get(idField) != null) {
+                returnValues.put((Id) current.get(idField), current);
+            }
+        }
+        return returnValues;
+    }
+	
 	public Map<String, SObject> mapByUniqueSpecifiedStringField(List<SObject> sObjectList, SObjectField stringField) {
 		if (sObjectList == null || sObjectList.isEmpty()) {
 			return null;
@@ -81,6 +97,21 @@ public virtual class XAP_UTIL_MapFactory {
 		return sObjectBySpecifiedStringMap;
 	}
 
+    public static Map<String, SObject> mapLastQualifiedSObjectBySpecifiedStringField(
+            List<SObject> homogenousSObjectList,
+            SObjectField stringField
+    ) {
+        String objType = String.valueOf(homogenousSObjectList[0]?.getSObjectType());
+        Type dynamicMapType = Type.forName('Map<String,' + objType + '>');
+        Map<String, SObject> returnValues = (Map<String, SObject>) dynamicMapType.newInstance();
+        for (SObject current : homogenousSObjectList) {
+            if (current.get(stringField) != null) {
+                returnValues.put((String) current.get(stringField), current);
+            }
+        }
+        return returnValues;
+    }
+	
 	// NOTE: This method ignores duplicate values.
 	// The last SObject to be placed into the Map "wins".
 	// We need this because (for example) the multiple Cases may reference the same client order.

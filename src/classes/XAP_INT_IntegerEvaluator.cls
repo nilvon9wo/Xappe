@@ -10,7 +10,7 @@ public with sharing class XAP_INT_IntegerEvaluator {
         return instance;
     }
 
-    private static Map<Type, XAP_INT_2IntegersToIntegerInterpIntf> INTERPRETER_BY_TYPE_MAP
+    private static final Map<Type, XAP_INT_2IntegersToIntegerInterpIntf> INTERPRETER_BY_TYPE_MAP
             = new Map<Type, XAP_INT_2IntegersToIntegerInterpIntf>();
 
     public Integer evaluate(Type functionType, List<Integer> integerList, Integer initialValue) {

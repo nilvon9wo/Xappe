@@ -86,7 +86,7 @@ public class XFTY_DummySObjectFactory {
 			XFTY_InsertModeEnum insertMode,
 			XFTY_InsertInclusivityEnum inclusivity
 	) {
-		XFTY_DummySobjectFactoryOutletIntf factoryOutlet
+		XFTY_DummyQueueSobjectFactoryOutletIntf factoryOutlet
 				= XFTY_DummySObjectFactoryOutletLookup.get(sObjectTemplate.getSObjectType());
 
 		XFTY_DummySObjectBundle innerBundle = factoryOutlet.createBundle(

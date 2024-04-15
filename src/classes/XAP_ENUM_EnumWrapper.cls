@@ -1,10 +1,10 @@
 public class XAP_ENUM_EnumWrapper {
-	private List<Object> enumValues;
+	private final List<Object> enumValues;
 	public XAP_ENUM_EnumWrapper(List<Object> enumValues) {
 		this.enumValues = enumValues;
 	}
 
-	private Map<String, Object> enumValuesByStringMap {
+	private final Map<String, Object> enumValuesByStringMap {
 		get {
 			if (this.enumValuesByStringMap == null) {
 				this.enumValuesByStringMap = new Map<String, Object>();
