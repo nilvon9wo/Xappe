@@ -38,11 +38,11 @@ public virtual class DAO_OpportunitySelector extends XAP_DAO_SOQL_SObjectSelecto
         return instance;
     }
 
-    public SObjectType getSObjectType() {
+    public override SObjectType getSObjectType() {
         return Opportunity.SObjectType;
     }
 
-    private List<SObjectField> getSObjectFieldList() {
+    protected override List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Opportunity.Amount,
                 Opportunity.Id,

@@ -4,7 +4,7 @@ public class XAP_UTIL_SObjectListExtrAbstractTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
 	private static final List<Account> TEST_ACCOUNT_LIST
-			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
+			= new XFTY_DummySObjectSupplier(Account.SObjectType)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
@@ -46,13 +46,13 @@ public class XAP_UTIL_SObjectListExtrAbstractTest {
 	}
 
 	private class TestExtractor extends XAP_UTIL_SObjectListExtractor.ListExtractor {
-		Boolean returnTrue;
+		final Boolean returnTrue;
 
 		public TestExtractor(Boolean returnTrue) {
 			this.returnTrue = returnTrue;
 		}
 
-		private Boolean isTrueFor(SObject sObj) {
+		protected override Boolean isTrueFor(SObject sObj) {
 			return this.returnTrue;
 		}
 	}

@@ -11,18 +11,19 @@ public virtual class DAO_ThirdPartyAccountLinkSelector extends XAP_DAO_SOQL_SObj
 		return instance;
 	}
 
-	public SObjectType getSObjectType() {
+	public override SObjectType getSObjectType() {
 		return ThirdPartyAccountLink.SObjectType;
 	}
 
-	private List<SObjectField> getSObjectFieldList() {
+	protected override List<SObjectField> getSObjectFieldList() {
 		return new List<SObjectField>{
 				ThirdPartyAccountLink.Id,
 				ThirdPartyAccountLink.Provider
 		};
 	}
 
-	public List<ThirdPartyAccountLink> selectByHandle(Set<String> handleSet) {
+    //noinspection ApexUnusedDeclaration
+    public List<ThirdPartyAccountLink> selectByHandle(Set<String> handleSet) {
 		return this.createQueryFactory()
 				.setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
 						ThirdPartyAccountLink.Handle,

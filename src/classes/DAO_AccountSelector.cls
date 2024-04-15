@@ -18,11 +18,11 @@ public virtual with sharing class DAO_AccountSelector extends XAP_DAO_SOQL_SObje
         return INSTANCE;
     }
 
-    public SObjectType getSObjectType() {
+    public override SObjectType getSObjectType() {
         return Account.SObjectType;
     }
 
-    public List<SObjectField> getSObjectFieldList() {
+    public override List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Account.AnnualRevenue,
                 Account.BillingState,
@@ -35,6 +35,7 @@ public virtual with sharing class DAO_AccountSelector extends XAP_DAO_SOQL_SObje
         };
     }
 
+    //noinspection ApexUnusedDeclaration
     public List<Account> selectAll() {
         return this.createQueryFactory()
                 .addOrdering(Account.Name, XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)

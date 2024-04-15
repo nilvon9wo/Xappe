@@ -11,11 +11,11 @@ public class DAO_PricebookEntrySelector extends XAP_DAO_SOQL_SObjectSelectorAbs 
 		return instance;
 	}
 
-	public SObjectType getSObjectType() {
+	public override SObjectType getSObjectType() {
 		return PricebookEntry.SObjectType;
 	}
 
-	private List<SObjectField> getSObjectFieldList() {
+	protected override List<SObjectField> getSObjectFieldList() {
 		return new List<SObjectField>{
 				PricebookEntry.Id
 		};

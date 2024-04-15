@@ -11,11 +11,11 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
 		return instance;
 	}
 
-	public SObjectType getSObjectType() {
+	public override SObjectType getSObjectType() {
 		return User.SObjectType;
 	}
 
-	private List<SObjectField> getSObjectFieldList() {
+	protected override List<SObjectField> getSObjectFieldList() {
 		return new List<SObjectField>{
 				User.ContactId,
 				User.Email,
@@ -39,18 +39,21 @@ public virtual class DAO_UserSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
 				.query();
 	}
 
-	public virtual List<User> selectByUsername(Set<String> usernameSet) {
+    //noinspection ApexUnusedDeclaration
+    public virtual List<User> selectByUsername(Set<String> usernameSet) {
 		return this.createQueryFactory()
 				.setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.Username, usernameSet))
 				.query();
 	}
 
+    //noinspection ApexUnusedDeclaration
 	public virtual List<User> selectByEmail(Set<String> emailSet) {
 		return this.createQueryFactory()
 				.setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.Email, emailSet))
 				.query();
 	}
 
+    //noinspection ApexUnusedDeclaration
 	public virtual List<User> selectByMobilePhone(Set<String> mobilePhoneSet) {
 		return this.createQueryFactory()
 				.setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(User.MobilePhone, mobilePhoneSet))

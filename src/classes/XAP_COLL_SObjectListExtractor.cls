@@ -38,13 +38,13 @@ public virtual class XAP_COLL_SObjectListExtractor {
 	}
 
 	private class AllPredicateListExtractor extends ListExtractor {
-		List<XAP_PRED_SObjectPredicateIntf> predicateList;
+		final List<XAP_PRED_SObjectPredicateIntf> predicateList;
 
 		AllPredicateListExtractor(List<XAP_PRED_SObjectPredicateIntf> predicateList) {
 			this.predicateList = predicateList;
 		}
 
-		override Boolean isTrueFor(SObject sObj) {
+		protected override Boolean isTrueFor(SObject sObj) {
 			for (XAP_PRED_SObjectPredicateIntf predicate : predicateList) {
 				if (!predicate.isTrueFor(sObj)) {
 					return false;
@@ -67,6 +67,6 @@ public virtual class XAP_COLL_SObjectListExtractor {
 			return resultList;
 		}
 
-		abstract Boolean isTrueFor(SObject sObj);
+        protected abstract Boolean isTrueFor(SObject sObj);
 	}
 }

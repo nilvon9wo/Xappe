@@ -11,18 +11,19 @@ public virtual class DAO_AuthProviderSelector extends XAP_DAO_SOQL_SObjectSelect
 		return instance;
 	}
 
-	public SObjectType getSObjectType() {
+	public override SObjectType getSObjectType() {
 		return AuthProvider.SObjectType;
 	}
 
-	private List<SObjectField> getSObjectFieldList() {
+	protected override List<SObjectField> getSObjectFieldList() {
 		return new List<SObjectField>{
 				AuthProvider.Id,
 				AuthProvider.SsoKickoffUrl
 		};
 	}
 
-	public List<AuthProvider> selectByDeveloperName(Set<String> developerNameIdSet) {
+    //noinspection ApexUnusedDeclaration
+    public List<AuthProvider> selectByDeveloperName(Set<String> developerNameIdSet) {
 		return this.createQueryFactory()
 				.setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
 						AuthProvider.DeveloperName,

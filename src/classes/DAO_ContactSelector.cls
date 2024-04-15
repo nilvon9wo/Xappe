@@ -11,11 +11,11 @@ public virtual with sharing class DAO_ContactSelector extends XAP_DAO_SOQL_SObje
         return INSTANCE;
     }
 
-    public SObjectType getSObjectType() {
+    public override SObjectType getSObjectType() {
         return Contact.SObjectType;
     }
 
-    public List<SObjectField> getSObjectFieldList() {
+    public override List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Contact.AccountId,
                 Contact.Email,
@@ -62,6 +62,7 @@ public virtual with sharing class DAO_ContactSelector extends XAP_DAO_SOQL_SObje
                 .query();
     }
 
+    //noinspection ApexUnusedDeclaration
     public List<Contact> selectBornAfter(Date birthDate) {
         return this.createQueryFactory()
                 .setCondition(new XAP_DAO_SOQL_WHERE_ObjectCompareClause(

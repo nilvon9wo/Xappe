@@ -1,6 +1,6 @@
 public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SOQL_SObjectSelectorAbs {
-	CTM_RegionTypeEnumHelper regionTypeEnumHelper;
-	CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
+	final CTM_RegionTypeEnumHelper regionTypeEnumHelper;
+	final CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
 
 	private DAO_TerritoryAssignmentSelector(
 			CTM_RegionTypeEnumHelper regionTypeEnumHelper,
@@ -24,11 +24,11 @@ public class DAO_TerritoryAssignmentSelector extends XAP_DAO_SOQL_SObjectSelecto
 		return instance;
 	}
 
-	public SObjectType getSObjectType() {
+	public override SObjectType getSObjectType() {
 		return Territory_Assignment__c.SObjectType;
 	}
 
-	public List<SObjectField> getSObjectFieldList() {
+	public override List<SObjectField> getSObjectFieldList() {
 		return new List<SObjectField>{
 				Territory_Assignment__c.Id,
 				Territory_Assignment__c.Territory__c,

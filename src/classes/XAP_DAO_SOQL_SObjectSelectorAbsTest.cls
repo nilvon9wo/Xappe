@@ -25,7 +25,7 @@ public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
 
 		Test.startTest();
 		TestSObjectSelector selector = new TestSObjectSelector();
-		List<Account> result = (List<Account>) selector.selectById(idSet);
+		List<Account> result = selector.selectById(idSet);
 		Test.stopTest();
 
 		System.assertEquals(2, result.size());
@@ -237,7 +237,7 @@ public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
 			super(includeFieldSetFields, enforceCRUD, enforceFLS, sortSelectFields);
 		}
 
-		public List<SObjectField> getSObjectFieldList() {
+		public override List<SObjectField> getSObjectFieldList() {
 			return new List<SObjectField>{
 					Account.Name,
 					Account.Id,
@@ -246,7 +246,7 @@ public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
 			};
 		}
 
-		public SObjectType getSObjectType() {
+		public override SObjectType getSObjectType() {
 			return Account.SObjectType;
 		}
 
@@ -255,9 +255,6 @@ public with sharing class XAP_DAO_SOQL_SObjectSelectorAbsTest {
 		}
 	}
 
-	/**
-	 * Create test user
-	 **/
 	private static User createChatterExternalUser() {
 		// Can only proceed with test if we have a suitable profile - Chatter External license has no access to Opportunity
 		List<Profile> testProfiles = [SELECT Id FROM Profile WHERE UserLicense.Name = 'Chatter External' LIMIT 1];

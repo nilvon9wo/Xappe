@@ -11,11 +11,11 @@ public class DAO_OpportunityLineItemsSelector extends XAP_DAO_SOQL_SObjectSelect
         return instance;
     }
 
-    public SObjectType getSObjectType() {
+    public override SObjectType getSObjectType() {
         return OpportunityLineItem.SObjectType;
     }
 
-    private List<SObjectField> getSObjectFieldList() {
+    protected override List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 OpportunityLineItem.Id
         };

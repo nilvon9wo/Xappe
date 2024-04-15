@@ -1,5 +1,6 @@
 public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAbs {
-	public DAO_Product2Selector(Boolean includeFieldSetFields) {
+    //noinspection ApexUnusedDeclaration
+    public DAO_Product2Selector(Boolean includeFieldSetFields) {
 		super(includeFieldSetFields);
 	}
 
@@ -11,7 +12,7 @@ public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAb
 		return new DAO_Product2Selector();
 	}
 
-	public SObjectType getSObjectType() {
+	public override SObjectType getSObjectType() {
 		return Product2.SObjectType;
 	}
 
@@ -22,7 +23,7 @@ public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAb
 		};
 	}
 
-	private List<SObjectField> getSObjectFieldList() {
+	protected override List<SObjectField> getSObjectFieldList() {
 		return new List<SObjectField>{
 				Product2.Description,
 				Product2.Id,
@@ -32,14 +33,16 @@ public virtual class DAO_Product2Selector extends XAP_DAO_SOQL_SObjectSelectorAb
 		};
 	}
 
-	public List<Product2> selectById(Set<Id> idSet, FieldSet fieldSet) {
+    //noinspection ApexUnusedDeclaration
+    public List<Product2> selectById(Set<Id> idSet, FieldSet fieldSet) {
 		return this.createQueryFactory()
 				.addFields(fieldSet)
 				.setCondition(new XAP_DAO_SOQL_WHERE_InIdSetClause(idSet))
 				.query();
 	}
 
-	public List<Product2> selectRecentlyUpdated(Integer recordLimit) {
+    //noinspection ApexUnusedDeclaration
+    public List<Product2> selectRecentlyUpdated(Integer recordLimit) {
 		return this.createQueryFactory()
 				.setCondition(new XAP_DAO_SOQL_WHERE_StringCompareClause(
 						Product2.SystemModstamp,
