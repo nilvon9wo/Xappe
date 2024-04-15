@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyUserFactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
+public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
     public static final String DEFAULT_FIRST_NAME_PREFIX = 'User First Name';
     public static final String DEFAULT_LAST_NAME_PREFIX = 'User Last Name';
     public static final String DEFAULT_FEDERATION_ID_PREFIX = 'User Federation Id';
@@ -21,18 +21,19 @@ public class TEST_DummyUserFactoryOutlet implements XFTY_DummyQueueSobjectFactor
     private static final Id CEO_USERROLE_ID = USERROLE_ID_BY_USERROLE_NAME_MAP.get(CEO);
 
     private static final SObjectField PRIMARY_TARGET_FIELD = User.Id;
-    private static final XFTY_DummySObjectMasterTemplate MASTER_TEMPLATE = new XFTY_DummySObjectMasterTemplate(PRIMARY_TARGET_FIELD)
-            .put(User.Alias, new XFTY_DummyDefaultValueIncrementingString(DEFAULT_ALIAS_PREFIX))
-            .put(User.EmailEncodingKey, new XFTY_DummyDefaultValueExact(DEFAULT_EMAIL_ENCODING))
-            .put(User.Email, new XFTY_DummyDefaultValueUniqueEmail(DEFAULT_EMAIL_PREFIX))
-            .put(User.FederationIdentifier, new XFTY_DummyDefaultValueUniqueString(DEFAULT_FEDERATION_ID_PREFIX))
-            .put(User.FirstName, new XFTY_DummyDefaultValueIncrementingString(DEFAULT_FIRST_NAME_PREFIX))
-            .put(User.LanguageLocaleKey, new XFTY_DummyDefaultValueExact(DEFAULT_LANGUAGE_LOCAL))
-            .put(User.LastName, new XFTY_DummyDefaultValueIncrementingString(DEFAULT_LAST_NAME_PREFIX))
-            .put(User.LocaleSidKey, new XFTY_DummyDefaultValueExact(DEFAULT_LOCALE_SID))
-            .put(User.ProfileId, new XFTY_DummyDefaultValueExact(SYSTEM_ADMIN_ID))
-            .put(User.TimeZoneSidKey, new XFTY_DummyDefaultValueExact(DEFAULT_TIME_ZONE))
-            .put(User.Username, new XFTY_DummyDefaultValueUniqueEmail(DEFAULT_USERNAME_PREFIX));
+    private static final XFTY_DummySObjectMasterTemplate MASTER_TEMPLATE
+            = new XFTY_DummySObjectMasterTemplate(PRIMARY_TARGET_FIELD)
+                    .put(User.Alias, new XFTY_DummyDefaultValueIncrementingString(DEFAULT_ALIAS_PREFIX))
+                    .put(User.EmailEncodingKey, new XFTY_DummyDefaultValueExact(DEFAULT_EMAIL_ENCODING))
+                    .put(User.Email, new XFTY_DummyDefaultValueUniqueEmail(DEFAULT_EMAIL_PREFIX))
+                    .put(User.FederationIdentifier, new XFTY_DummyDefaultValueUniqueString(DEFAULT_FEDERATION_ID_PREFIX))
+                    .put(User.FirstName, new XFTY_DummyDefaultValueIncrementingString(DEFAULT_FIRST_NAME_PREFIX))
+                    .put(User.LanguageLocaleKey, new XFTY_DummyDefaultValueExact(DEFAULT_LANGUAGE_LOCAL))
+                    .put(User.LastName, new XFTY_DummyDefaultValueIncrementingString(DEFAULT_LAST_NAME_PREFIX))
+                    .put(User.LocaleSidKey, new XFTY_DummyDefaultValueExact(DEFAULT_LOCALE_SID))
+                    .put(User.ProfileId, new XFTY_DummyDefaultValueExact(SYSTEM_ADMIN_ID))
+                    .put(User.TimeZoneSidKey, new XFTY_DummyDefaultValueExact(DEFAULT_TIME_ZONE))
+                    .put(User.Username, new XFTY_DummyDefaultValueUniqueEmail(DEFAULT_USERNAME_PREFIX));
 
     private static final Map<Id, User> TEST_USER_BY_PROFILE_MAP = createStandardTestUserByProfileMap();
     public static final User TEST_ADMIN_USER = TEST_USER_BY_PROFILE_MAP.get(SYSTEM_ADMIN_ID);

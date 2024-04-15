@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummyQueueSobjectFactoryOutletIntf {
+public class TEST_DummyXapTriggerSettingFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
 	public static final String DEFAULT_NAME_PREFIX = 'Test XAP Trigger Settings Name';
 	public static final Boolean DEFAULT_TRIGGER_ENABLED = true;
 	public static final Boolean DEFAULT_ACCOUNT_TRIGGER_ENABLED = true;
