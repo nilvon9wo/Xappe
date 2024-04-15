@@ -25,7 +25,9 @@ public virtual with sharing class DAO_AccountSelector extends XAP_DAO_SOQL_SObje
     public List<SObjectField> getSObjectFieldList() {
         return new List<SObjectField>{
                 Account.AnnualRevenue,
+                Account.BillingState,
                 Account.CreatedDate,
+                Account.Id,
                 Account.Industry,
                 Account.Name,
                 Account.Phone,
@@ -37,6 +39,17 @@ public virtual with sharing class DAO_AccountSelector extends XAP_DAO_SOQL_SObje
         return this.createQueryFactory()
                 .addOrdering(Account.Name, XAP_DAO_SOQL_QuerySortOrderEnum.ASCENDING)
                 .setSecurityEnforced()
+                .query();
+    }
+
+
+    //noinspection ApexUnusedDeclaration
+    public List<Account> selectByBillingState(Set<String> stateSet) {
+        return this.createQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(
+                        Account.BillingState,
+                        stateSet
+                ))
                 .query();
     }
 

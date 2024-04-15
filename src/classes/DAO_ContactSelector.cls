@@ -1,5 +1,5 @@
 public virtual with sharing class DAO_ContactSelector extends XAP_DAO_SOQL_SObjectSelectorAbs
-        implements XAP_DAO_SOSL_SObjectFieldsProviderIntf {
+        implements XAP_DAO_SOSL_SObjectFieldsProviderIntf, XAP_DAO_SOQL_ByContactIdSelectorIntf {
     private DAO_ContactSelector() {
     }
 
@@ -25,6 +25,17 @@ public virtual with sharing class DAO_ContactSelector extends XAP_DAO_SOQL_SObje
                 Contact.Phone,
                 Contact.Title
         };
+    }
+
+    public List<SObject> selectByContactId(Set<Id> contactIdSet) {
+        return super.selectById(contactIdSet);
+    }
+
+    //noinspection ApexUnusedDeclaration
+    public virtual List<Contact> selectByEmail(Set<String> emailSet) {
+        return this.createQueryFactory()
+                .setCondition(new XAP_DAO_SOQL_WHERE_InStringSetClause(Contact.Email, emailSet))
+                .query();
     }
 
     //noinspection ApexUnusedDeclaration
