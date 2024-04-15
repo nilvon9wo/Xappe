@@ -16,6 +16,6 @@ public with sharing class XAP_ENV_UrlWrapperTest {
         Test.stopTest();
 
         // Assert
-        System.assertEquals(Url.getSalesforceBaseUrl().getHost(), result);
+        System.assertEquals(Url.getOrgDomainUrl().toString(), result);
     }
 }

@@ -17,7 +17,7 @@ public class XFTY_DummySObjectSupplier {
     private XFTY_InsertInclusivityEnum inclusivity = XFTY_InsertInclusivityEnum.NONE;
     private Boolean hasCustomMasterTemplate = false;
 
-    private XFTY_DummySobjectFactoryOutletIntf factoryOutlet {
+    private final XFTY_DummySobjectFactoryOutletIntf factoryOutlet {
         get {
             if (this.factoryOutlet == null) {
                 if (this.sObjectType == null) {
@@ -30,7 +30,7 @@ public class XFTY_DummySObjectSupplier {
         private set;
     }
 
-    private XFTY_DummySObjectMasterTemplate masterTemplate {
+    private final XFTY_DummySObjectMasterTemplate masterTemplate {
         get {
             if (this.masterTemplate == null) {
                 if (this.sObjectType == null) {
@@ -46,6 +46,7 @@ public class XFTY_DummySObjectSupplier {
 
     //  Setters -----------------------------------------------------------------------------------------------------------------
 
+    //noinspection ApexUnusedDeclaration
     public XFTY_DummySObjectSupplier setQuantityPerTemplate(Integer quantityPerListedTemplate) {
         if (quantityPerListedTemplate < 1) {
             throw new SanityException('It makes no sense to supply ' + quantityPerListedTemplate);
@@ -64,6 +65,7 @@ public class XFTY_DummySObjectSupplier {
         return this;
     }
 
+    //noinspection ApexUnusedDeclaration
     public XFTY_DummySObjectSupplier setOverrideTemplate(SObject overrideTemplate) {
         return this.setOverrideTemplateList(new List<SObject>{
                 overrideTemplate
@@ -105,6 +107,7 @@ public class XFTY_DummySObjectSupplier {
         return this;
     }
 
+    //noinspection ApexUnusedDeclaration
     public XFTY_DummySObjectSupplier removeFromMasterTemplate(SObjectField sObjectField){
         this.masterTemplate.remove(sObjectField);
         return this;

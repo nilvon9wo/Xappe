@@ -10,7 +10,7 @@ public class XAP_COLL_SObjectListExtrOnePredicateTest {
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
-	private static final Account TEST_SALES_ORDER = TEST_ACCOUNT_LIST[0];
+	private static final Account TEST_ACCOUNT = TEST_ACCOUNT_LIST[0];
 
 	@IsTest
 	public static void testExtractWhereTrueForReturnsValueWhenPredicateIsTrue() {
@@ -27,7 +27,7 @@ public class XAP_COLL_SObjectListExtrOnePredicateTest {
 
 		// Assert
 		System.assertEquals(1, resultList.size());
-		System.assertEquals(TEST_SALES_ORDER, resultList[0]);
+		System.assertEquals(TEST_ACCOUNT, resultList[0]);
 	}
 
 	@IsTest
@@ -62,7 +62,7 @@ public class XAP_COLL_SObjectListExtrOnePredicateTest {
 	@IsTest
 	public static void testExtractWhereNotNullForReturnsValueWhenSpecifiedValueExists() {
 		// Arrange
-		TEST_SALES_ORDER.Description = 'Wuhan';
+		TEST_ACCOUNT.Description = 'Wuhan';
 		SObjectField testField = Account.Description;
 
 		// Act
@@ -75,13 +75,13 @@ public class XAP_COLL_SObjectListExtrOnePredicateTest {
 
 		// Assert
 		System.assertEquals(1, resultList.size());
-		System.assertEquals(TEST_SALES_ORDER, resultList[0]);
+		System.assertEquals(TEST_ACCOUNT, resultList[0]);
 	}
 
 	@IsTest
 	public static void testExtractWhereNotNullForReturnsNoValueWhenSpecifiedValueDoesNotExist() {
 		// Arrange
-		TEST_SALES_ORDER.Description = null;
+		TEST_ACCOUNT.Description = null;
 		SObjectField testField = Account.Description;
 
 		// Act

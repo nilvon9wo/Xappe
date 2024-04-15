@@ -152,7 +152,8 @@ public class XFTY_DummySObjectSupplierTests {
         Test.startTest();
         System.runAs(TEST_ADMIN) {
             try {
-                (new XFTY_DummySObjectSupplier(null));
+                //noinspection ApexUnusedDeclaration
+                XFTY_DummySObjectSupplier supplier = (new XFTY_DummySObjectSupplier(null));
             } catch (XFTY_DummySObjectSupplier.SanityException ex) {
                 caughtException = ex;
             }

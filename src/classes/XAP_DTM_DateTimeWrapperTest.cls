@@ -46,7 +46,7 @@ public with sharing class XAP_DTM_DateTimeWrapperTest {
         Datetime originalNow = WRAPPER_UNDER_TEST.now;
         String serializedWrapper = JSON.serialize(WRAPPER_UNDER_TEST);
         Integer delayInSeconds = 1;
-        XAP_TEST_TimeHelper.sleep();
+        // FIXME? XAP_TEST_TimeHelper.sleep();
 
         // Act
         XAP_DTM_DateTimeWrapper resultWrapper;

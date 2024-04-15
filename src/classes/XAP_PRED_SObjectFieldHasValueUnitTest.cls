@@ -2,10 +2,10 @@
 public class XAP_PRED_SObjectFieldHasValueUnitTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
-	private static final PBSI__PBSI_Sales_Order__c TEST_SALES_ORDER
-			= (PBSI__PBSI_Sales_Order__c) new XFTY_DummySObjectSupplier(PBSI__PBSI_Sales_Order__c.SObjectType)
-					.setOverrideTemplate(new PBSI__PBSI_Sales_Order__c(
-							PBSI__Delivery_City__c = 'GoodCity'
+	private static final Account TEST_ACCOUNT
+			= (Account) new XFTY_DummySObjectSupplier(Account.SObjectType)
+					.setOverrideTemplate(new Account(
+							Name = 'GoodCity'
 					))
 			.setInsertMode(XFTY_InsertModeEnum.MOCK)
 			.supply();
@@ -14,7 +14,7 @@ public class XAP_PRED_SObjectFieldHasValueUnitTest {
 	public static void testIsTrueForShouldReturnTrueForCorrectData() {
 		// Arrange
 		XAP_PRED_SObjectFieldHasValue testObjectFieldHasValue = new XAP_PRED_SObjectFieldHasValue(
-				PBSI__PBSI_Sales_Order__c.PBSI__Delivery_City__c,
+				Account.Name,
 				'GoodCity'
 		);
 
@@ -22,7 +22,7 @@ public class XAP_PRED_SObjectFieldHasValueUnitTest {
 		Test.startTest();
 		Boolean result;
 		System.runAs(TEST_USER) {
-			result = testObjectFieldHasValue.isTrueFor(TEST_SALES_ORDER);
+			result = testObjectFieldHasValue.isTrueFor(TEST_ACCOUNT);
 		}
 		Test.stopTest();
 
@@ -34,7 +34,7 @@ public class XAP_PRED_SObjectFieldHasValueUnitTest {
 	public static void testIsTrueForShouldReturnFalseForWrongCity() {
 		// Arrange
 		XAP_PRED_SObjectFieldHasValue testObjectFieldHasValue = new XAP_PRED_SObjectFieldHasValue(
-				PBSI__PBSI_Sales_Order__c.PBSI__Delivery_City__c,
+				Account.Name,
 				'BadCity'
 		);
 
@@ -42,7 +42,7 @@ public class XAP_PRED_SObjectFieldHasValueUnitTest {
 		Test.startTest();
 		Boolean result;
 		System.runAs(TEST_USER) {
-			result = testObjectFieldHasValue.isTrueFor(TEST_SALES_ORDER);
+			result = testObjectFieldHasValue.isTrueFor(TEST_ACCOUNT);
 		}
 		Test.stopTest();
 
