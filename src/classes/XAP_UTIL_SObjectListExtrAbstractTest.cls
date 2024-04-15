@@ -3,12 +3,12 @@
 public class XAP_UTIL_SObjectListExtrAbstractTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
-	private static final List<Account> TEST_SALES_ORDER_LIST
+	private static final List<Account> TEST_ACCOUNT_LIST
 			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
-	private static final Account TEST_SALES_ORDER = TEST_SALES_ORDER_LIST[0];
+	private static final Account TEST_ACCOUNT = TEST_ACCOUNT_LIST[0];
 
 	@IsTest public static void testShouldReturnValueWhenPredicatesTrue() {
 		// Arrange
@@ -19,13 +19,13 @@ public class XAP_UTIL_SObjectListExtrAbstractTest {
 		List<SObject> resultList;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultList = extractorUnderTest.extractFrom(TEST_SALES_ORDER_LIST);
+			resultList = extractorUnderTest.extractFrom(TEST_ACCOUNT_LIST);
 		}
 		Test.stopTest();
 
 		// Assert
 		System.assertEquals(1, resultList.size());
-		System.assertEquals(TEST_SALES_ORDER, resultList[0]);
+		System.assertEquals(TEST_ACCOUNT, resultList[0]);
 	}
 
 	@IsTest public static void testShouldReturnEmptyWhenPredicateFalse() {
@@ -37,7 +37,7 @@ public class XAP_UTIL_SObjectListExtrAbstractTest {
 		List<SObject> resultList;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultList = extractorUnderTest.extractFrom(TEST_SALES_ORDER_LIST);
+			resultList = extractorUnderTest.extractFrom(TEST_ACCOUNT_LIST);
 		}
 		Test.stopTest();
 

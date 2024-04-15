@@ -4,12 +4,12 @@ public class XAP_UTIL_SObjectListExtrAllPredicateTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final XAP_UTIL_SObjectListExtractor EXTRACTOR_UNDER_TEST = XAP_UTIL_SObjectListExtractor.getInstance();
 
-	private static final List<Account> TEST_SALES_ORDER_LIST
+	private static final List<Account> TEST_ACCOUNT_LIST
 			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
-	private static final Account TEST_SALES_ORDER = TEST_SALES_ORDER_LIST[0];
+	private static final Account TEST_ACCOUNT = TEST_ACCOUNT_LIST[0];
 
 	@IsTest public static void testShouldReturnValueWhenBothPredicatesTrue() {
 		// Arrange
@@ -22,13 +22,13 @@ public class XAP_UTIL_SObjectListExtrAllPredicateTest {
 		List<SObject> resultList;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultList = EXTRACTOR_UNDER_TEST.extractWhereAllPredicatesTrue(TEST_SALES_ORDER_LIST, testPredicateList);
+			resultList = EXTRACTOR_UNDER_TEST.extractWhereAllPredicatesTrue(TEST_ACCOUNT_LIST, testPredicateList);
 		}
 		Test.stopTest();
 
 		// Assert
 		System.assertEquals(1, resultList.size());
-		System.assertEquals(TEST_SALES_ORDER, resultList[0]);
+		System.assertEquals(TEST_ACCOUNT, resultList[0]);
 	}
 
 	@IsTest public static void testShouldReturnEmptyWhenFirstPredicateFalse() {
@@ -42,7 +42,7 @@ public class XAP_UTIL_SObjectListExtrAllPredicateTest {
 		List<SObject> resultList;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultList = EXTRACTOR_UNDER_TEST.extractWhereAllPredicatesTrue(TEST_SALES_ORDER_LIST, testPredicateList);
+			resultList = EXTRACTOR_UNDER_TEST.extractWhereAllPredicatesTrue(TEST_ACCOUNT_LIST, testPredicateList);
 		}
 		Test.stopTest();
 
@@ -61,7 +61,7 @@ public class XAP_UTIL_SObjectListExtrAllPredicateTest {
 		List<SObject> resultList;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultList = EXTRACTOR_UNDER_TEST.extractWhereAllPredicatesTrue(TEST_SALES_ORDER_LIST, testPredicateList);
+			resultList = EXTRACTOR_UNDER_TEST.extractWhereAllPredicatesTrue(TEST_ACCOUNT_LIST, testPredicateList);
 		}
 		Test.stopTest();
 

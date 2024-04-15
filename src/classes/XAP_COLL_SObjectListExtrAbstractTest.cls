@@ -8,7 +8,7 @@ public class XAP_COLL_SObjectListExtrAbstractTest {
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
-	private static final Account TEST_SALES_ORDER = TEST_ACCOUNT_LIST[0];
+	private static final Account TEST_ACCOUNT = TEST_ACCOUNT_LIST[0];
 
 	@IsTest public static void testShouldReturnValueWhenPredicatesTrue() {
 		// Arrange
@@ -25,7 +25,7 @@ public class XAP_COLL_SObjectListExtrAbstractTest {
 
 		// Assert
 		System.assertEquals(1, resultList.size());
-		System.assertEquals(TEST_SALES_ORDER, resultList[0]);
+		System.assertEquals(TEST_ACCOUNT, resultList[0]);
 	}
 
 	@IsTest public static void testShouldReturnEmptyWhenPredicateFalse() {
