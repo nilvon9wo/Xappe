@@ -3,12 +3,12 @@
 public class XAP_UTIL_SObjectListExtrAbstractTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
-	private static final List<PBSI__PBSI_Sales_Order__c> TEST_SALES_ORDER_LIST
-			= (List<PBSI__PBSI_Sales_Order__c>) new XFTY_DummySObjectSupplier(PBSI__PBSI_Sales_Order__c.SObjectType)
+	private static final List<Account> TEST_SALES_ORDER_LIST
+			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
-	private static final PBSI__PBSI_Sales_Order__c TEST_SALES_ORDER = TEST_SALES_ORDER_LIST[0];
+	private static final Account TEST_SALES_ORDER = TEST_SALES_ORDER_LIST[0];
 
 	@IsTest public static void testShouldReturnValueWhenPredicatesTrue() {
 		// Arrange

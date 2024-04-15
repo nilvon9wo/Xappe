@@ -33,6 +33,11 @@ public virtual class XAP_COLL_SObjectValueSetExtractor {
 		return this.extractStringSet(sObjectList, extractedField, new XAP_PRED_SObjectFieldHasNonNullValue(extractedField));
 	}
 
+
+	public virtual Set<String> extractNonBlankStringsFrom(List<SObject> sObjectList, SObjectField extractedField) {
+		return this.extractStringSet(sObjectList, extractedField, new XAP_PRED_SObjectFieldHasNonBlankValue(extractedField));
+	}
+
 	public Set<String> extractStringSet(
 			List<SObject> sObjectList,
 			SObjectField extractedField,

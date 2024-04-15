@@ -3,8 +3,8 @@ public class XAP_UTIL_SetHelperTest {
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final XAP_UTIL_SetHelper HELPER_UNDER_TEST = XAP_UTIL_SetHelper.getInstance();
 
-	private static final List<PBSI__PBSI_Sales_Order__c> TEST_SALES_ORDER_LIST
-			= (List<PBSI__PBSI_Sales_Order__c>) new XFTY_DummySObjectSupplier(PBSI__PBSI_Sales_Order__c.SObjectType)
+	private static final List<Account> TEST_ACCOUNT_LIST
+			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 	@IsTest
@@ -15,12 +15,12 @@ public class XAP_UTIL_SetHelperTest {
 		Set<Id> resultSet;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			resultSet = HELPER_UNDER_TEST.extractIdsFrom(TEST_SALES_ORDER_LIST, PBSI__PBSI_Sales_Order__c.Id);
+			resultSet = HELPER_UNDER_TEST.extractIdsFrom(TEST_ACCOUNT_LIST, Account.Id);
 		}
 		Test.stopTest();
 
 		// Assert
-		System.assertEquals(TEST_SALES_ORDER_LIST.size(), resultSet.size());
-		System.assertEquals(TEST_SALES_ORDER_LIST[0].Id, new List<Id>(resultSet)[0]);
+		System.assertEquals(TEST_ACCOUNT_LIST.size(), resultSet.size());
+		System.assertEquals(TEST_ACCOUNT_LIST[0].Id, new List<Id>(resultSet)[0]);
 	}
 }
