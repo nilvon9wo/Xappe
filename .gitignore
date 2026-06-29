@@ -31,3 +31,4 @@ node_modules/
 **/tsconfig*.json
 **/*.tsbuildinfo
 **/graphql.config.yml
+.idea/
