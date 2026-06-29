@@ -1,5 +1,5 @@
 @IsTest
-public class XFTY_DummyAccountDataProvider implements XFTY_DummySobjectProviderIntf {
+public class XFTY_DefaultAccountDataProvider implements XFTY_DummySobjectProviderIntf {
 	public static final String DEFAULT_NAME_PREFIX = 'Test Account Name';
 	public static final String DEFAULT_INDUSTRY = 'Test Account Industry';
 	public static final String DEFAULT_TYPE = 'Test Account Type';

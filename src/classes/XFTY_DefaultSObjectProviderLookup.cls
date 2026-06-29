@@ -2,9 +2,9 @@
 public class XFTY_DefaultSObjectProviderLookup implements XFTY_DummySObjectProviderLookupIntf {
 	private static final Map<SObjectType, Type> OUTLET_TYPE_BY_SOBJECT_TYPE
 			= new Map<SObjectType, Type>{
-					Account.SObjectType => XFTY_DummyAccountDataProvider.class,
-					Contact.SObjectType => XFTY_DummyContactDataProvider.class,
-					User.SObjectType => XFTY_DummyUserDataProvider.class
+					Account.SObjectType => XFTY_DefaultAccountDataProvider.class,
+					Contact.SObjectType => XFTY_DefaultContactDataProvider.class,
+					User.SObjectType => XFTY_DefaultUserDataProvider.class
 			};
 
 	private static final Map<SObjectType, XFTY_DummySobjectProviderIntf> OUTLET_INSTANCE_BY_SOBJECT_TYPE

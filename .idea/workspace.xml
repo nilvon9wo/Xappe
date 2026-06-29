@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="Renamed default SObject Providers to make them distinctive from core XFTY files.">
+      <change beforePath="$PROJECT_DIR$/src/classes/XFTY_DefaultSObjectProviderLookup.cls" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/XFTY_DefaultSObjectProviderLookup.cls" afterDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,6 +98,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nilvon9wo"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nilvon9wo/Xappe.git",
+    "accountId": "98e695ae-10d4-4ccf-ae88-1140a91a7252"
+  }
+}]]></component>
   <component name="IlluminatedCloudWorkspaceSettings">
     <option name="moduleWorkspaceSettings">
       <map>
@@ -596,6 +608,382 @@
                 </ConnectionWorkspaceSettings>
               </value>
             </entry>
+            <entry key="kesslerbm">
+              <value>
+                <ConnectionWorkspaceSettings>
+                  <option name="buildSuccessDatesBySourceRootRelativePath">
+                    <map>
+                      <entry key="APEXCLASS:CTM_ACCOUNTOWNERASSIGNMENT" value="1782736330000" />
+                      <entry key="APEXCLASS:CTM_AMBIGUOUSTERRITORYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:CTM_REGIONTYPEENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:CTM_REGIONTYPEENUMHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:CTM_TERRITORYREGIONFIELDHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_ACCOUNTSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_ACCOUNTWITHCONTACTSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_AUTHPROVIDERSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_CONTACTSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_OPPORTUNITYLINEITEMSSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_OPPORTUNITYSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_PRICEBOOK2SELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_PRICEBOOKENTRYSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_PRODUCT2SELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_PRODUCT2SELECTORINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_TERRITORYASSIGNMENTSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_THIRDPARTYACCOUNTLINKSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:DAO_USERSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:J2O_JSONTOAPEXOBJECTPARSER" value="1782736330000" />
+                      <entry key="APEXCLASS:J2O_PARSERCONFIG" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_DOMHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_LISTSIMPLENODE" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_LISTSIMPLENODEUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_SIMPLEDOCUMENTBUILDERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_SIMPLENODEBUILDERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_TEXTSIMPLENODE" value="1782736330000" />
+                      <entry key="APEXCLASS:SXML_TEXTSIMPLENODEUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_DUMMYACCOUNTFACTORYOUTLET" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_DUMMYCONTACTFACTORYOUTLET" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_DUMMYPRODUCT2FACTORYOUTLET" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_DUMMYSOBJECTFACTORYOUTLETLOOKUP" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_DUMMYUSERFACTORYOUTLET" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_DUMMYXAPTRIGGERSETTINGFACTORYOUTLET" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_HTTPCALLOUTMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:TEST_READONLYHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:TRIG_ACCOUNTTRIGGERHANDLER" value="1782736330000" />
+                      <entry key="APEXCLASS:X2O_PARSERCONFIG" value="1782736330000" />
+                      <entry key="APEXCLASS:X2O_PARSERCONFIGUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:X2O_XMLTOAPEXOBJECTPARSER" value="1782736330000" />
+                      <entry key="APEXCLASS:X2O_XMLTOAPEXOBJECTPARSERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:X2O_XMLTOAPEXOBJECTPARSERUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_ASYNC_ENQUEUER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_CONTIGUOUSTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_EXACTMATCHTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_ILLMATCHEDTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_SAMEENDTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_SAMEMEMBERTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_SAMEORDERTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_SAMESIZETESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_LISTCOMPARISON_SAMESTARTTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_SOBJECTLISTEXTRABSTRACTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_SOBJECTLISTEXTRACTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_SOBJECTLISTEXTRALLPREDICATETEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_SOBJECTLISTEXTRONEPREDICATETEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_SOBJECTVALUESETEXTRACTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_COLL_STRINGSETBUILDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_APEXEMAILNOTIFICATIONSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_APEXEMAILNOTIFICATIONSELINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_APEXEMAILNOTIFICATIONSELMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_BATCHABLEHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_ACCESSCTRLDMLEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_CRUDEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DATABASEERRORHELPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DATABASEERRORREWRAPINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DATABASEERRORREWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DATABASEERRORWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DATABASEERRORWRAPPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DELETERESULTLISTWRAPINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DELETERESULTLISTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DELETERESULTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DELETERESULTWRAPPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_DMLLOOKUP" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_FIELDLEVELSECURITYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_GENERICDMLINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_GENERICDMLINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_GENERICDMLMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_INHERITEDSHARINGDML" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_OPERATIONMODEENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_OPERATIONMODEHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_OPERATIONTYPEENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_RESULTLISTWRAPPERABS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_RESULTLISTWRAPPERABSUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_RESULTLISTWRAPPERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_RESULTLISTWRAPPERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_RESULTWRAPPERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SAVERESULTLISTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SAVERESULTLISTWRAPPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SAVERESULTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SAVERESULTWRAPPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SECUREDML" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SECURITYCHECKER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SECURITYCHECKMODEENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SECURITYCONFIG" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SECURITYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SECURITYUTILS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SHARINGMODEENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_SUCCESSLEVELENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UNDELETERESULTLISTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UNDELETERESULTLISTWRPINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UNDELETERESULTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UNDELETERESULTWRAPPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UPSERTRESULTLISTWRAPINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UPSERTRESULTLISTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UPSERTRESULTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_UPSERTRESULTWRAPPERINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_WITHOUTSHARINGDML" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_DML_WITHSHARINGDML" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_AGGREGATERESULTMAPCONVERTER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_BYCONTACTIDSELECTORINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_CHILDRELATIONSHIPFINDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_DOMAINSECURITYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_FIELDLEVELSECURITYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_INVALIDFIELDEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_INVALIDFIELDSETEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_INVALIDSUBQUERYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_NONREFERENCEFIELDEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_NORELATIONSHIPEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_ORDERINGCOLLECTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERIER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERYFACTORY" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERYFACTORYTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERYINTERPOLATION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERYINTERPOLATIONBUILDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERYSORTORDERENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_QUERYSORTORDERING" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SECURITYEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SECURITYUTILS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SECURITYUTILSTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTCONSUMERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTFIELDCOLLECTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTFIELDHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTFIELDHELPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTREADEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTSELECTORABS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTSELECTORABSTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_SOBJECTSELECTORINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_ABSCONJUNCTIONCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_ANDCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_CLAUSEINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_COMPAREOPENUMHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_COMPAREOPERATORENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_DATECOMPARISONCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_INIDSETCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_INSTRINGSETCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_ISSTRINGCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_MORETHANCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_OBJECTCOMPARECLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_ORCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_RAWCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_RAWINTERPOL8IONCLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_STRINGCOMPARECLAUSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOQL_WHERE_TRUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOSL_QUERYFACTORY" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOSL_RESULTTOMAPCONVERTER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_SOSL_SOBJECTFIELDSPROVIDERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLFAILURE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLOPERATIONINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLPARTIALSUCCESS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLPERFECTSUCCESS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLRESULTABS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLRESULTFACTORY" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLRESULTFACTORYMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLRESULTINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_DMLRESULTMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_MULTIDMLOPER8NPROCESSMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_MULTIDMLOPERATIONPROCESSOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_MULTIDMLOPPROCESSINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_MULTIDMLOPPROCESSORMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_MULTIDMLOPPROCESSUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_RESULTENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SIMPLEABSTRACTDMLABLE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SIMPLEDELETER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SIMPLEINSERTER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SIMPLEUNDELETER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SIMPLEUPDATER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SIMPLEUPSERTER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_SOBJECTLISTKEYENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_TRANSACTIONEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_TRANSACTIONHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DAO_TRANS_TRANSACTIONHELPERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_DESCRIBEEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_DUPLICATEDESCRIBEEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_FIELDSMAP" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_GLOBALDESCRIBEMAP" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_INVALIDDESCRIBEEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_NAMESPACEDATTRIBUTEMAP" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_SOBJECTDESCRIBE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DESC_SOBJECTDESCRIBETEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DTM_DATETIMEWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_DTM_DATETIMEWRAPPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_EMAILALERTABLE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_EMAILALERTABLEMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_EMAILMAILER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_EMAILMAILERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_EMAILMAILERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILERRORREWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILERRORREWRAPPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILERRORWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILERRORWRAPPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTLISTWRAPABSTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTLISTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTLISTWRAPPERABS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTLISTWRAPPERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTLISTWRAPPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTWRAPPERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_EML_SENDEMAILRESULTWRAPPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_ENC_ENCODINGUTILWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_ENUM_ENUMCONVERTER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_ENUM_ENUMWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_ENV_URLWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_ENV_URLWRAPPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_HTTP_HTTPHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_HTTP_HTTPHELPERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_HTTP_HTTPHELPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_HTTP_HTTPMULTICALLOUTMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_HTTP_HTTPSINGLECALLOUTMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_INT_2INTEGERSTOINTEGERINTERPINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_INT_INTEGEREVALUATOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_INT_INTEGERLIST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_INT_MAXIMUMCALCULATOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_INT_PRODUCTCALCULATOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_INT_SUMCALCULATOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_ALLPREDICATESFALSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_ALLPREDICATESTRUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_ANYPREDICATESFALSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_ANYPREDICATESTRUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_NOT" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASBLANKVALUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASCHANGED" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASCHANGEDUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASNONBLANKVALUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASNONNULLVALUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASNULLVALUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASTARGETVALUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASVALUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDHASVALUEUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDISBLANK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDISCHANGED" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDISNOTNULL" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDISNOTNULLTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDTARGETFIELDISFALSE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTFIELDTARGETFIELDISTRUE" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_PRED_SOBJECTPREDICATEINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_REST_HTTPVERB" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_REST_RESTCLIENT" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_REST_RESTCLIENT_TESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_REST_RESTREQUEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_REST_RESTREQUESTEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_REST_RESTREQUEST_TESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TEST_MOCKINSERTHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TEST_READONLYHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_SOBJECTTYPEOPERATIONCNVTMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_SOBJECTTYPEOPERATIONCNVTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_SOBJECTTYPEOPERATIONCONVERTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERCONTEXT" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERCONTEXTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTCOORDINATOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTCOORDINATORINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTCOORDINATORMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTCOORDINATORTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTCOORD_COMPARETEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTCOORD_CONTEXTTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGEREVENTHANDLERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERHANDLERABS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERHANDLERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERSETTINGSELECTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERSETTINGSELECTORINTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERSETTINGSELECTORMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERSOBJECTTYPEOPERATION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_TRIGGERSOBJECTTYPEOPERATIONTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_TRIG_UNASSIGNEDTRIGGEROPEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_CLASSHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_INTERPOLATIONINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_JSONHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_CONTIGUOUSTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_EXACTMATCHTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_ILLMATCHEDTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_SAMEENDTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_SAMEMEMBERTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_SAMEORDERTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_SAMESIZETESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTCOMPARISON_SAMESTARTTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTFLATTENER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTFLATTENERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_LISTFLATTENERUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPFACTORY" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPFACTORYMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPFACTORYUNITTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPINTERPOLATION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPMANYTOONEEXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPREVERSEINDEXER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_MAPSWAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_RANDOMIZER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_RANDOMIZERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SETHELPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SETHELPERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SETHELPERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTBLENDERABS" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTBLENDERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTBLENDRESULT" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTCENSUSTAKER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTCLONEFACTORY" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTFIELDNONNULLTRANSCRIBER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTFIELDNONNULLTRSBMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTFIELDSYNCER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTLISTEXTRABSTRACTTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTLISTEXTRACTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTLISTEXTRALLPREDICATETEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTLISTEXTRONEPREDICATETEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTLISTSETTER" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTLISTSETTERMOCK" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTMAPSHAREDKEYEXTRACTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTMAPUNIQUEKEYEXTRACTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_SOBJECTVALUESETEXTRACTOR" value="1782736330000" />
+                      <entry key="APEXCLASS:XAP_UTIL_USERINFOWRAPPER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DEFAULTACCOUNTDATAPROVIDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DEFAULTCONTACTDATAPROVIDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DEFAULTCONTACTDATAPROVIDERTEST" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DEFAULTSOBJECTPROVIDERLOOKUP" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DEFAULTUSERDATAPROVIDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTINCREMENTINGDECIMAL" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTRELATIONSHIPINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTRELATIONSHIPOPTIONAL" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTRELATIONSHIPREQUIRED" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTVALUEEXACT" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTVALUEINCREMENTINGSTRING" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTVALUEINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTVALUEUNIQUEEMAIL" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTVALUEUNIQUESTRING" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYDEFAULTVALUEUNIQUESTRINGLENGTH" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTBUNDLE" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTFACTORY" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTFTYPROVIDEREXCEPTION" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTMASTERTEMPLATE" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTPROVIDER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTPROVIDERINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTPROVIDERLOOKUPINTF" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_DUMMYSOBJECTPROVIDERTESTS" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_IDMOCKER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_INSERTINCLUSIVITYENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_INSERTMOCKER" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_INSERTMODEENUM" value="1782736330000" />
+                      <entry key="APEXCLASS:XFTY_RECORDTYPEDATAPROVIDER" value="1782736330000" />
+                    </map>
+                  </option>
+                  <option name="lastBuildScope" value="CONTEXT" />
+                  <option name="lastBuildViewToggles">
+                    <map>
+                      <entry key="DEPLOY">
+                        <value>
+                          <BuildViewToggles>
+                            <option name="showLocalAndServer" value="true" />
+                            <option name="showLocalOnly" value="true" />
+                            <option name="showServerOnly" value="false" />
+                            <option name="showSubscribedByParent" value="true" />
+                            <option name="showSubscribedOnly" value="true" />
+                          </BuildViewToggles>
+                        </value>
+                      </entry>
+                    </map>
+                  </option>
+                  <option name="lastDeploymentOptions">
+                    <DeploymentOptions />
+                  </option>
+                </ConnectionWorkspaceSettings>
+              </value>
+            </entry>
           </map>
         </option>
         <option name="retrieveAndMergeDefault" value="false" />
@@ -606,8 +994,12 @@
     <option name="directoryName" value="rsQdImYP" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3,
+  "fromUser": false
+}]]></component>
   <component name="ProjectId" id="1kHZANfCCeaEXMd08F5fMxd8tW2" />
   <component name="ProjectReloadState">
     <option name="STATE" value="1" />
@@ -616,40 +1008,49 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/projects/SFDC/Xappe/src/classes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\tutorials\sfdc2019\Xappe\etc" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\projects\SFDC\Xappe\src\classes" />
       <recent name="D:\tutorials\sfdc2019\Xappe" />
       <recent name="D:\tutorials\sfdc2019\Xappe\src\objects" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\tutorials\sfdc2019\Xappe\etc" />
     </key>
   </component>
   <component name="RunManager" selected="Apex Unit Tests.XAP_DAO_DML_GenericDmlIntTest">
     <configuration name="DAO_Product2SelectorIntTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -664,14 +1065,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="DAO_Product2SelectorIntTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -679,14 +1123,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_DML_GenericDmlIntTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -701,14 +1150,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_DML_GenericDmlIntTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -716,14 +1208,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_SOQL_QueryFactoryTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -738,14 +1235,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_SOQL_QueryFactoryTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -753,14 +1293,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_SOQL_SObjectFieldHelperTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -775,14 +1320,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_SOQL_SObjectFieldHelperTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -790,14 +1378,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_SOQL_SObjectSelectorAbsTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -812,14 +1405,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_SOQL_SObjectSelectorAbsTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -835,6 +1471,14 @@
         <item itemvalue="Apex Unit Tests.XAP_DAO_SOQL_SObjectFieldHelperTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -1264,7 +1908,7 @@
       <option name="project" value="LOCAL" />
       <updated>1560976450692</updated>
     </task>
-    <option name="localTasksCounter" value="169" />
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1327,7 +1971,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Moved more logic into Collections." />
     <MESSAGE value="Renamed input parameter." />
     <MESSAGE value="Renamed child relationship valaribles." />
     <MESSAGE value="Created caching class for finding relationships" />
@@ -1352,10 +1995,11 @@
     <MESSAGE value="Changed map to use enums for keys." />
     <MESSAGE value="Fixed bug where partial failure was not returning." />
     <MESSAGE value="Unfixed non-bug where partial failure was not returning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Unfixed non-bug where partial failure was not returning." />
+    <MESSAGE value="Renamed default SObject Providers to make them distinctive from core XFTY files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed default SObject Providers to make them distinctive from core XFTY files." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Xappe$XAP_DAO_DML_GenericDmlIntTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1558299790406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
+    <SUITE FILE_PATH="coverage/Xappe$XAP_DAO_DML_GenericDmlIntTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1558299790406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
   </component>
   <component name="masterDetails">
     <states>
