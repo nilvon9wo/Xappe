@@ -1,5 +1,5 @@
 @IsTest
-public class XFTY_DummyUserDataProvider implements XFTY_DummySobjectProviderIntf {
+public class XFTY_DefaultUserDataProvider implements XFTY_DummySobjectProviderIntf {
     public static final String DEFAULT_FIRST_NAME_PREFIX = 'User First Name';
     public static final String DEFAULT_LAST_NAME_PREFIX = 'User Last Name';
     public static final String DEFAULT_FEDERATION_ID_PREFIX = 'User Federation Id';
@@ -63,7 +63,7 @@ public class XFTY_DummyUserDataProvider implements XFTY_DummySobjectProviderIntf
         List<User> templateUserList = new List<User>{
                 new User(ProfileId = SYSTEM_ADMIN_ID)
         };
-        List<User> userList = (new XFTY_DummyUserDataProvider()).createBundle(
+        List<User> userList = (new XFTY_DefaultUserDataProvider()).createBundle(
                 DEFAULT_SOBJECT_PROVIDER_LOOKUP,
                 templateUserList,
                 XFTY_InsertModeEnum.NOW,

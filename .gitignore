@@ -19,3 +19,15 @@ salesforce.schema
 /src/roles
 /src/settings
 /src/workflows
+
+# Added by Illuminated Cloud
+.sf/
+.sfdx/
+.localdev/
+/IlluminatedCloud/
+target/
+node_modules/
+/.illuminatedCloud/
+**/tsconfig*.json
+**/*.tsbuildinfo
+**/graphql.config.yml

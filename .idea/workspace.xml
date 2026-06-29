@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a0843cfc-ad19-4a03-b8a2-0be69847a407" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Xappe_lwc_types.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/XFTY_DefaultAccountDataProvider.cls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/XFTY_DefaultContactDataProvider.cls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/XFTY_DefaultContactDataProviderTest.cls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/classes/XFTY_DefaultUserDataProvider.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Xappe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Xappe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/illuminatedCloud.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/illuminatedCloud.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/XFTY_DefaultSObjectProviderLookup.cls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/classes/XFTY_DefaultSObjectProviderLookup.cls-meta.xml" beforeDir="false" />
     </list>
     <list id="d1b92cfd-6d53-4b5c-aafd-f1c86ec040a5" name="Oops!" comment="Oops!" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,6 +108,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "nilvon9wo"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nilvon9wo/Xappe.git",
+    "accountId": "98e695ae-10d4-4ccf-ae88-1140a91a7252"
+  }
+}]]></component>
   <component name="IlluminatedCloudWorkspaceSettings">
     <option name="moduleWorkspaceSettings">
       <map>
@@ -596,6 +618,11 @@
                 </ConnectionWorkspaceSettings>
               </value>
             </entry>
+            <entry key="kesslerbm">
+              <value>
+                <ConnectionWorkspaceSettings />
+              </value>
+            </entry>
           </map>
         </option>
         <option name="retrieveAndMergeDefault" value="false" />
@@ -606,8 +633,12 @@
     <option name="directoryName" value="rsQdImYP" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3,
+  "fromUser": false
+}]]></component>
   <component name="ProjectId" id="1kHZANfCCeaEXMd08F5fMxd8tW2" />
   <component name="ProjectReloadState">
     <option name="STATE" value="1" />
@@ -616,40 +647,49 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/projects/SFDC/Xappe/src/classes",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\tutorials\sfdc2019\Xappe\etc" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\projects\SFDC\Xappe\src\classes" />
       <recent name="D:\tutorials\sfdc2019\Xappe" />
       <recent name="D:\tutorials\sfdc2019\Xappe\src\objects" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\tutorials\sfdc2019\Xappe\etc" />
     </key>
   </component>
   <component name="RunManager" selected="Apex Unit Tests.XAP_DAO_DML_GenericDmlIntTest">
     <configuration name="DAO_Product2SelectorIntTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -664,14 +704,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="DAO_Product2SelectorIntTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -679,14 +762,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_DML_GenericDmlIntTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -701,14 +789,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_DML_GenericDmlIntTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -716,14 +847,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_SOQL_QueryFactoryTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -738,14 +874,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_SOQL_QueryFactoryTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -753,14 +932,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_SOQL_SObjectFieldHelperTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -775,14 +959,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_SOQL_SObjectFieldHelperTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -790,14 +1017,19 @@
       <method v="2" />
     </configuration>
     <configuration name="XAP_DAO_SOQL_SObjectSelectorAbsTest" type="com.illuminatedcloud.intellij" factoryName="Apex Unit Tests" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="aerCommandLineOptions" value="" />
       <option name="allTests" value="false" />
       <option name="allowRunningInParallel" value="false" />
       <option name="apexLogLevel" value="DEBUG" />
       <option name="calloutsLogLevel" value="INFO" />
-      <option name="connectionName" value="TrailheadPlayground15" />
-      <option name="connectionType" value="MDAPI" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
       <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
       <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
       <option name="logLevelsInitialized" value="false" />
       <option name="moduleToTestClassNames">
         <map>
@@ -812,14 +1044,57 @@
       </option>
       <option name="nbaLogLevel" value="INFO" />
       <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <option name="systemLogLevel" value="DEBUG" />
       <option name="testClassToTestMethodNames">
         <map />
       </option>
       <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
+      <option name="validationLogLevel" value="INFO" />
+      <option name="visualforceLogLevel" value="INFO" />
+      <option name="waveLogLevel" value="INFO" />
+      <option name="workflowLogLevel" value="INFO" />
+      <option name="aerCommandLineOptions" value="" />
+      <option name="allTests" value="false" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="apexLogLevel" value="DEBUG" />
+      <option name="calloutsLogLevel" value="INFO" />
+      <option name="changedOnly" value="false" />
+      <option name="connectionName" value="kesslerbm" />
+      <option name="connectionType" value="OAUTH" />
+      <option name="contextConfiguration" value="true" />
+      <option name="dataAccessLogLevel" value="INFO" />
+      <option name="databaseLogLevel" value="INFO" />
+      <option name="dependencyUniqueFullName" />
+      <option name="directoryPath" />
+      <option name="logLevelsInitialized" value="false" />
+      <option name="moduleToTestClassNames">
+        <map>
+          <entry key="Xappe">
+            <value>
+              <set>
+                <option value="XAP_DAO_SOQL_SObjectSelectorAbsTest" />
+              </set>
+            </value>
+          </entry>
+        </map>
+      </option>
+      <option name="nbaLogLevel" value="INFO" />
+      <option name="profilingLogLevel" value="INFO" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="systemLogLevel" value="DEBUG" />
+      <option name="testClassToTestMethodNames">
+        <map />
+      </option>
+      <option name="testSuiteName" />
+      <option name="testType" value="UNIT" />
       <option name="validationLogLevel" value="INFO" />
       <option name="visualforceLogLevel" value="INFO" />
       <option name="waveLogLevel" value="INFO" />
@@ -835,6 +1110,14 @@
         <item itemvalue="Apex Unit Tests.XAP_DAO_SOQL_SObjectFieldHelperTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -1355,7 +1638,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Unfixed non-bug where partial failure was not returning." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Xappe$XAP_DAO_DML_GenericDmlIntTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1558299790406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" PROJECT_NAME="Xappe" CONNECTION_NAME="TrailheadPlayground15" CONNECTION_TYPE="MDAPI" />
+    <SUITE FILE_PATH="coverage/Xappe$XAP_DAO_DML_GenericDmlIntTest.null" NAME="TrailheadPlayground15 Coverage Results" MODIFIED="1558299790406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="Apex" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true" />
   </component>
   <component name="masterDetails">
     <states>
