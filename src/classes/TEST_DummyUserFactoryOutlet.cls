@@ -1,5 +1,7 @@
 @IsTest
-public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
+public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectProviderIntf {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
+
     public static final String DEFAULT_FIRST_NAME_PREFIX = 'User First Name';
     public static final String DEFAULT_LAST_NAME_PREFIX = 'User Last Name';
     public static final String DEFAULT_FEDERATION_ID_PREFIX = 'User Federation Id';
@@ -47,11 +49,12 @@ public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectFactoryOutl
     }
 
     public XFTY_DummySObjectBundle createBundle(
+            XFTY_DummySObjectProviderLookupIntf providerLookup,
             List<SObject> templateSObjectList,
             XFTY_InsertModeEnum insertMode,
             XFTY_InsertInclusivityEnum inclusivity
     ) {
-        return XFTY_DummySObjectFactory.createBundle(MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
+        return XFTY_DummySObjectFactory.createBundle(providerLookup, MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
     }
 
     // Helpers ----------------------------------------------------------------------------------------------
@@ -61,6 +64,7 @@ public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectFactoryOutl
                 new User(ProfileId = SYSTEM_ADMIN_ID)
         };
         List<User> userList = (new TEST_DummyUserFactoryOutlet()).createBundle(
+                PROVIDER_LOOKUP,
                 templateUserList,
                 XFTY_InsertModeEnum.NOW,
                 XFTY_InsertInclusivityEnum.REQUIRED

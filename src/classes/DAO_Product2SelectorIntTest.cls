@@ -1,5 +1,6 @@
 @IsTest
 public class DAO_Product2SelectorIntTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final DAO_Product2Selector SELECTOR_UNDER_TEST = new DAO_Product2Selector();
 
@@ -9,7 +10,7 @@ public class DAO_Product2SelectorIntTest {
 		String testDescription = 'Something cool';
 		String testCode = 'PC235';
 		Boolean testIsActive = true;
-		Product2 testProduct = (Product2) new XFTY_DummySObjectSupplier(Product2.SObjectType)
+		Product2 testProduct = (Product2) new XFTY_DummySObjectProvider(Product2.SObjectType, PROVIDER_LOOKUP)
 				.setOverrideTemplate(new Product2(
 						Name = testName,
 						Description = testDescription,

@@ -1,16 +1,17 @@
 @IsTest
 public class XAP_UTIL_MapFactoryUnitTest {
-    private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
+        private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
     private static final XAP_UTIL_MapFactory MAP_FACTORY_UNDER_TEST = XAP_UTIL_MapFactory.getInstance();
 
     private static final Case TEST_RMA_CASE
-            = (Case) (new XFTY_DummySObjectSupplier(Case.SObjectType))
+            = (Case) (new XFTY_DummySObjectProvider(Case.SObjectType, PROVIDER_LOOKUP))
                     .setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
                     .setInsertMode(XFTY_InsertModeEnum.MOCK)
                     .supply();
 
     private static final Case TEST_RMA_CASE_NEW
-            = (Case) (new XFTY_DummySObjectSupplier(Case.SObjectType))
+            = (Case) (new XFTY_DummySObjectProvider(Case.SObjectType, PROVIDER_LOOKUP))
                     .setOverrideTemplate(new Case(
                             AccountId = TEST_RMA_CASE.AccountId
                     ))

@@ -1,8 +1,8 @@
 @IsTest
 public with sharing class XAP_TRIG_TriggerEventCoordinatorMock extends XAP_TRIG_TriggerEventCoordinator {
-	public XAP_TRIG_TriggerProperties receivedTriggerProperties;
+	public XAP_TRIG_TriggerContext receivedTriggerProperties;
 	public Boolean returnIsExecutable;
-	public override Boolean isExecutable(XAP_TRIG_TriggerProperties triggerProperties) {
+	public override Boolean isExecutable(XAP_TRIG_TriggerContext triggerProperties) {
 		this.receivedTriggerProperties = triggerProperties;
 		return this.returnIsExecutable;
 	}

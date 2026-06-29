@@ -1,9 +1,9 @@
 public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerIntf {
-	XAP_UTIL_SObjectValueSetExtractor setHelper;
+	final XAP_UTIL_SObjectValueSetExtractor setHelper;
 
-	CTM_RegionTypeEnumHelper regionTypeEnumHelper;
-	CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
-	DAO_TerritoryAssignmentSelector territoryAssignmentSelector;
+	final CTM_RegionTypeEnumHelper regionTypeEnumHelper;
+	final CTM_TerritoryRegionFieldHelper territoryRegionFieldHelper;
+	final DAO_TerritoryAssignmentSelector territoryAssignmentSelector;
 
 	public CTM_AccountOwnerAssignment(
 			XAP_UTIL_SObjectValueSetExtractor setHelper,
@@ -19,7 +19,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 		this.territoryAssignmentSelector = territoryAssignmentSelector;
 	}
 
-	public CTM_AccountOwnerAssignment() {
+    //noinspection ApexUnusedDeclaration
+    public CTM_AccountOwnerAssignment() {
 		this(
 				XAP_UTIL_SObjectValueSetExtractor.getInstance(),
 
@@ -29,8 +30,8 @@ public class CTM_AccountOwnerAssignment implements XAP_TRIG_TriggerEventHandlerI
 		);
 	}
 
-	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerProperties triggerProperties) {
-		List<Account> newAccountList = (List<Account>) triggerProperties.newSObjectList;
+	public XAP_TRIG_TriggerEventHandlerIntf handle(XAP_TRIG_TriggerContext triggerProperties) {
+		List<Account> newAccountList = triggerProperties.newSObjectList;
 		Map<CTM_RegionTypeEnum, Set<String>> regionSetByRegionTypeMap = this.buildRegionSetByRegionTypeMap(newAccountList);
 		this.assignTerritories(newAccountList, this.territoryAssignmentSelector.selectCurrentByRegion(regionSetByRegionTypeMap));
 		return this;

@@ -8,6 +8,6 @@ public class XFTY_DummyDefaultValueUniqueEmail implements XFTY_DummyDefaultValue
     }
 
     public Object get() {
-        return this.prefix + counter++ + '@on-running.example.com';
+        return this.prefix + counter++ + '@example.com';
     }
 }

@@ -1,11 +1,11 @@
 @IsTest
 public class XAP_UTIL_ListFlattenerUnitTest {
-
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final XAP_UTIL_ListFlattener HELPER_UNDER_TEST = XAP_UTIL_ListFlattener.getInstance();
 
 	private static final List<Case> TEST_CASE_LIST =
-			(List<Case>) new XFTY_DummySObjectSupplier(Case.SObjectType)
+			new XFTY_DummySObjectProvider(Case.SObjectType, PROVIDER_LOOKUP)
 					.setQuantityPerTemplate(5)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)

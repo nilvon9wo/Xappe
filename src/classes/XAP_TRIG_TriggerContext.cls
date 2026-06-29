@@ -1,4 +1,4 @@
-public class XAP_TRIG_TriggerProperties {
+public class XAP_TRIG_TriggerContext {
 	@TestVisible public Boolean isExecuting { get; private set; }
 	@TestVisible public Boolean isInsert { get; private set; }
 	@TestVisible public Boolean isUpdate { get; private set; }
@@ -24,11 +24,11 @@ public class XAP_TRIG_TriggerProperties {
 		private set;
 	}
 
-	private XAP_COLL_SObjectListExtractor listExtractor;
+	private final XAP_COLL_SObjectListExtractor listExtractor;
 
-	private XAP_COLL_SObjectValueSetExtractor setExtractor;
+	private final XAP_COLL_SObjectValueSetExtractor setExtractor;
 
-	private XAP_TRIG_TriggerProperties(XAP_COLL_SObjectListExtractor listExtractor) {
+	private XAP_TRIG_TriggerContext(XAP_COLL_SObjectListExtractor listExtractor) {
 		this.isExecuting = Trigger.isExecuting;
 		this.isInsert = Trigger.isInsert;
 		this.isUpdate = Trigger.isUpdate;
@@ -52,7 +52,7 @@ public class XAP_TRIG_TriggerProperties {
 
 	}
 
-	public XAP_TRIG_TriggerProperties() {
+	public XAP_TRIG_TriggerContext() {
 		this(XAP_COLL_SObjectListExtractor.getInstance());
 	}
 
@@ -71,7 +71,8 @@ public class XAP_TRIG_TriggerProperties {
 				: null;
 	}
 
-	public List<SObject> collectChangedFor(SObjectField sObjectField) {
+    //noinspection ApexUnusedDeclaration
+    public List<SObject> collectChangedFor(SObjectField sObjectField) {
 		return (this.isInsert)
 				? this.newSObjectList
 				: this.collectChangedOnUpdate(sObjectField);
@@ -83,34 +84,35 @@ public class XAP_TRIG_TriggerProperties {
 		return  this.listExtractor.extractWhereTrue(this.newSObjectList, predicate);
 	}
 
-
-
-
-	public List<SObject> collectListForNewlyTrue(SObjectField BooleanField) {
+    //noinspection ApexUnusedDeclaration
+    public List<SObject> collectListForNewlyTrue(SObjectField BooleanField) {
 		return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
 				new XAP_PRED_SObjectFieldTargetFieldIsTrue(BooleanField),
 				new XAP_PRED_SObjectFieldHasChanged(BooleanField, this.oldSObjectByIdMap)
 		});
 	}
 
+    //noinspection ApexUnusedDeclaration
 	public List<SObject> collectListForNewlyHavingValue(SObjectField targetField, Object targetValue) {
 		return this.listExtractor.extractWhereAllPredicatesTrue(this.newSObjectList, new List<XAP_PRED_SObjectPredicateIntf>{
 				new XAP_PRED_SObjectFieldHasTargetValue(targetField, targetValue),
 				new XAP_PRED_SObjectFieldHasChanged(targetField, this.oldSObjectByIdMap)
 		});
-	}	
+	}
+
+    //noinspection ApexUnusedDeclaration
 	public List<SObject> collectNewBlanksFor(SObjectField sObjectField) {
 		return (this.isInsert)
 				? this.newSObjectList
 				: this.listExtractor.extractWhereBlank(this.newSObjectList, sObjectField);
 	}
 
-
-
+    //noinspection ApexUnusedDeclaration
 	public Set<Id> collectNonNullIdSetForNew(SObjectField targetField) {
 		return this.setExtractor.extractNonNullIdsFrom(this.newSObjectList, targetField);
 	}
 
+    //noinspection ApexUnusedDeclaration
 	public Set<String> collectNonBlankStringSetForNew(SObjectField targetField) {
 		return this.setExtractor.extractNonBlankStringsFrom(this.newSObjectList, targetField);
 	}

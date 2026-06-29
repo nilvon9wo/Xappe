@@ -1,12 +1,13 @@
 // SObject List Extractor - Single Predicate Extractor Test
 @IsTest
 public class XAP_COLL_SObjectListExtrOnePredicateTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final XAP_COLL_SObjectListExtractor EXTRACTOR_UNDER_TEST
 			= XAP_COLL_SObjectListExtractor.getInstance();
 
 	private static final List<Account> TEST_ACCOUNT_LIST
-			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
+			= new XFTY_DummySObjectProvider(Account.SObjectType, PROVIDER_LOOKUP)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 
@@ -48,7 +49,7 @@ public class XAP_COLL_SObjectListExtrOnePredicateTest {
 	}
 
 	private class TestPredicateAlwaysReturning implements XAP_PRED_SObjectPredicateIntf {
-		Boolean returnTrue;
+		final Boolean returnTrue;
 
 		public TestPredicateAlwaysReturning(Boolean returnTrue) {
 			this.returnTrue = returnTrue;

@@ -1,9 +1,10 @@
 @IsTest
 public class XAP_PRED_SObjectFieldHasValueUnitTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
 	private static final Account TEST_ACCOUNT
-			= (Account) new XFTY_DummySObjectSupplier(Account.SObjectType)
+			= (Account) new XFTY_DummySObjectProvider(Account.SObjectType, PROVIDER_LOOKUP)
 					.setOverrideTemplate(new Account(
 							Name = 'GoodCity'
 					))

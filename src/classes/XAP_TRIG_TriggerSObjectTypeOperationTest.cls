@@ -28,7 +28,7 @@ public with sharing class XAP_TRIG_TriggerSObjectTypeOperationTest {
 
 	@IsTest public static void testConstructorShouldPopulatesInstancePropertiesFromTriggerProperties() {
 		// Arrange
-		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+		XAP_TRIG_TriggerContext testTriggerProperties = new XAP_TRIG_TriggerContext();
 		testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
 		testTriggerProperties.operationType = TEST_OPERATION;
 

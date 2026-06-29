@@ -1,5 +1,6 @@
 @IsTest
 public class XAP_DAO_DML_UpsertResultWrapperIntTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_RUNNER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final Database.UpsertResult UPSERT_RESULT = createUpsertResult();
 	private static final XAP_DAO_DML_UpsertResultWrapper WRAPPER_UNDER_TEST = new XAP_DAO_DML_UpsertResultWrapper(UPSERT_RESULT);
@@ -85,7 +86,7 @@ public class XAP_DAO_DML_UpsertResultWrapperIntTest {
 	}
 
 	private static Database.UpsertResult createUpsertResult() {
-		Account testAccount = (Account) (new XFTY_DummySObjectSupplier(Account.SObjectType))
+		Account testAccount = (Account) (new XFTY_DummySObjectProvider(Account.SObjectType, PROVIDER_LOOKUP))
 				.setInsertMode(XFTY_InsertModeEnum.LATER)
 				.supply();
 		Boolean notAllOrNone = false;

@@ -1,10 +1,11 @@
 @IsTest
 public class XAP_UTIL_SetHelperTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final XAP_UTIL_SetHelper HELPER_UNDER_TEST = XAP_UTIL_SetHelper.getInstance();
 
 	private static final List<Account> TEST_ACCOUNT_LIST
-			= (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
+			= new XFTY_DummySObjectProvider(Account.SObjectType, PROVIDER_LOOKUP)
 					.setInsertMode(XFTY_InsertModeEnum.MOCK)
 					.supplyList();
 	@IsTest

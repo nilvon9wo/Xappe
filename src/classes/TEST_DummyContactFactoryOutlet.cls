@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyContactFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
+public class TEST_DummyContactFactoryOutlet implements XFTY_DummySobjectProviderIntf {
     public static final String DEFAULT_FIRST_NAME_PREFIX = 'Contact First Name';
     public static final String DEFAULT_LAST_NAME_PREFIX = 'Contact Last Name';
     public static final String DEFAULT_EMAIL_PREFIX = 'test.contact';
@@ -23,10 +23,11 @@ public class TEST_DummyContactFactoryOutlet implements XFTY_DummySobjectFactoryO
     }
 
     public XFTY_DummySObjectBundle createBundle(
+            XFTY_DummySObjectProviderLookupIntf providerLookup,
             List<SObject> templateSObjectList,
             XFTY_InsertModeEnum insertMode,
             XFTY_InsertInclusivityEnum inclusivity
     ) {
-        return XFTY_DummySObjectFactory.createBundle(MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
+        return XFTY_DummySObjectFactory.createBundle(providerLookup, MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
     }
 }
