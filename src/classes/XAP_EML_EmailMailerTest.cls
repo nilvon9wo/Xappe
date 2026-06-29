@@ -1,5 +1,6 @@
 @IsTest
 public with sharing class XAP_EML_EmailMailerTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
     private static final User TEST_RUNNER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
     private static final List<User> TEST_USER_LIST = new List<User>{
             TEST_RUNNER
@@ -12,7 +13,7 @@ public with sharing class XAP_EML_EmailMailerTest {
 
     private static final String TEST_EMAIL_ADDRESS = 'test@example.com';
     private static final List<ApexEmailNotification> TEST_APEX_EMAIL_NOTIFICATION_LIST
-            = (List<ApexEmailNotification>) new XFTY_DummySObjectSupplier(ApexEmailNotification.SObjectType)
+            = new XFTY_DummySObjectProvider(ApexEmailNotification.SObjectType, PROVIDER_LOOKUP)
                     .setOverrideTemplateList(new List<ApexEmailNotification>{
                             new ApexEmailNotification(),
                             new ApexEmailNotification(Email = TEST_EMAIL_ADDRESS)

@@ -1,15 +1,16 @@
 @IsTest
 public class XAP_DAO_TRANS_MultiDmlOpProcessIntTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
     private static final User TEST_RUNNER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
     private static final XAP_DAO_TRANS_MultiDmlOperationProcessor PROCESSOR_UNDER_TEST
             = XAP_DAO_TRANS_MultiDmlOperationProcessor.getInstance();
 
-    private static final List<Account> TEST_ACCOUNT_LIST = (List<Account>) new XFTY_DummySObjectSupplier(Account.SObjectType)
+    private static final List<Account> TEST_ACCOUNT_LIST = new XFTY_DummySObjectProvider(Account.SObjectType, PROVIDER_LOOKUP)
             .setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
             .setInsertMode(XFTY_InsertModeEnum.RELATED_ONLY)
             .supplyList();
 
-    private static final List<Case> TEST_CASE_LIST = (List<Case>) new XFTY_DummySObjectSupplier(Case.SObjectType)
+    private static final List<Case> TEST_CASE_LIST = new XFTY_DummySObjectProvider(Case.SObjectType, PROVIDER_LOOKUP)
             .setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
             .setInsertMode(XFTY_InsertModeEnum.RELATED_ONLY)
             .supplyList();

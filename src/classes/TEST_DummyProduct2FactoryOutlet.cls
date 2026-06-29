@@ -1,12 +1,13 @@
 @IsTest
-public class TEST_DummyProduct2FactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
+public class TEST_DummyProduct2FactoryOutlet implements XFTY_DummySobjectProviderIntf {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	public static final String DEFAULT_NAME_PREFIX = 'Test Product Name';
 	private static final SObjectField PRIMARY_TARGET_FIELD = Product2.Id;
 
 	public static final Product2 DEFAULT_PRODUCT {
 		get {
 			if (DEFAULT_PRODUCT == null) {
-				DEFAULT_PRODUCT = (Product2) new XFTY_DummySObjectSupplier(Product2.SObjectType)
+				DEFAULT_PRODUCT = (Product2) new XFTY_DummySObjectProvider(Product2.SObjectType, PROVIDER_LOOKUP)
 						.setInclusivity(XFTY_InsertInclusivityEnum.REQUIRED)
 						.setInsertMode(XFTY_InsertModeEnum.NOW)
 						.supply();
@@ -15,7 +16,8 @@ public class TEST_DummyProduct2FactoryOutlet implements XFTY_DummySobjectFactory
 		}
 		set;
 	}
-	public static final Id DEFAULT_PRODUCT_ID {
+    //noinspection ApexUnusedDeclaration
+    public static final Id DEFAULT_PRODUCT_ID {
 			get {
 				if (DEFAULT_PRODUCT_ID == null) {
 					DEFAULT_PRODUCT_ID = DEFAULT_PRODUCT.Id;
@@ -38,11 +40,12 @@ public class TEST_DummyProduct2FactoryOutlet implements XFTY_DummySobjectFactory
 		return MASTER_TEMPLATE;
 	}
 
-	public XFTY_DummySObjectBundle createBundle(
-			List<SObject> templateSObjectList,
-			XFTY_InsertModeEnum insertMode,
-			XFTY_InsertInclusivityEnum inclusivity
-	) {
-		return XFTY_DummySObjectFactory.createBundle(MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
-	}
+    public XFTY_DummySObjectBundle createBundle(
+            XFTY_DummySObjectProviderLookupIntf providerLookup,
+            List<SObject> templateSObjectList,
+            XFTY_InsertModeEnum insertMode,
+            XFTY_InsertInclusivityEnum inclusivity
+    ) {
+        return XFTY_DummySObjectFactory.createBundle(providerLookup, MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
+    }
 }

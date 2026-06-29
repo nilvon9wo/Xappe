@@ -8,10 +8,10 @@ public with sharing class XAP_TRIG_SObjectTypeOperationCnvtTest {
 
 		SObjectType testSObjectType = Account.SObjectType;
 		System.TriggerOperation testOperation = System.TriggerOperation.BEFORE_INSERT;
-		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+		XAP_TRIG_TriggerContext testTriggerProperties = new XAP_TRIG_TriggerContext();
 		testTriggerProperties.sObjectType = testSObjectType;
 		testTriggerProperties.operationType = testOperation;
-		List<XAP_TRIG_TriggerProperties> testTriggerPropertiesList = new List<XAP_TRIG_TriggerProperties>{
+		List<XAP_TRIG_TriggerContext> testTriggerPropertiesList = new List<XAP_TRIG_TriggerContext>{
 				testTriggerProperties
 		};
 

@@ -1,5 +1,6 @@
 @IsTest
 public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_USER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 
 	private static final XAP_TRIG_TriggerSettingSelectorMock MOCK_TRIGGER_SELECTOR
@@ -10,12 +11,12 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 			= new XAP_TRIG_TriggerEventCoordinator(SOBJECT_TYPE_OPERATION_CONVERTOR, MOCK_TRIGGER_SELECTOR);
 
 	private static final XAP_TRIG_TriggerSetting__c TEST_TRIGGER_SETTINGS
-			= (XAP_TRIG_TriggerSetting__c) new XFTY_DummySObjectSupplier(XAP_TRIG_TriggerSetting__c.SObjectType)
+			= (XAP_TRIG_TriggerSetting__c) new XFTY_DummySObjectProvider(XAP_TRIG_TriggerSetting__c.SObjectType, PROVIDER_LOOKUP)
 					.supply();
 
 	private static final SObjectType TEST_SOBJECT_TYPE = Account.SObjectType;
 	private static final System.TriggerOperation TEST_OPERATION = System.TriggerOperation.BEFORE_INSERT;
-	private static final XAP_TRIG_TriggerProperties TEST_TRIGGER_WRAPPER = createTriggerProperties();
+	private static final XAP_TRIG_TriggerContext TEST_TRIGGER_WRAPPER = createTriggerProperties();
 
 	// isExecutable tests --------------------------------------------------------------------------------------------
 
@@ -341,7 +342,7 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 		Integer result;
 		Test.startTest();
 		System.runAs(TEST_USER) {
-			result = COORDINATOR_UNDER_TEST.findInProgressIndex(TEST_TRIGGER_WRAPPER);
+			result = XAP_TRIG_TriggerEventCoordinator.findInProgressIndex(TEST_TRIGGER_WRAPPER);
 		}
 		Test.stopTest();
 
@@ -351,8 +352,8 @@ public with sharing class XAP_TRIG_TriggerEventCoordinatorTest {
 
 	// Helpers ------------------------------------------------------------------------------------------------------
 
-	private static XAP_TRIG_TriggerProperties createTriggerProperties() {
-		XAP_TRIG_TriggerProperties testTriggerProperties = new XAP_TRIG_TriggerProperties();
+	private static XAP_TRIG_TriggerContext createTriggerProperties() {
+		XAP_TRIG_TriggerContext testTriggerProperties = new XAP_TRIG_TriggerContext();
 		testTriggerProperties.sObjectType = TEST_SOBJECT_TYPE;
 		testTriggerProperties.operationType = TEST_OPERATION;
 		return testTriggerProperties;

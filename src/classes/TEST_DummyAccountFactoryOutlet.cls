@@ -1,5 +1,5 @@
 @IsTest
-public class TEST_DummyAccountFactoryOutlet implements XFTY_DummySobjectFactoryOutletIntf {
+public class TEST_DummyAccountFactoryOutlet implements XFTY_DummySobjectProviderIntf {
 	public static final String DEFAULT_NAME_PREFIX = 'Test Account Name';
 	private static final SObjectField PRIMARY_TARGET_FIELD = Account.Id;
 
@@ -15,11 +15,12 @@ public class TEST_DummyAccountFactoryOutlet implements XFTY_DummySobjectFactoryO
 		return MASTER_TEMPLATE;
 	}
 
-	public XFTY_DummySObjectBundle createBundle(
-			List<SObject> templateSObjectList,
-			XFTY_InsertModeEnum insertMode,
-			XFTY_InsertInclusivityEnum inclusivity
-	) {
-		return XFTY_DummySObjectFactory.createBundle(MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
-	}
+    public XFTY_DummySObjectBundle createBundle(
+            XFTY_DummySObjectProviderLookupIntf providerLookup,
+            List<SObject> templateSObjectList,
+            XFTY_InsertModeEnum insertMode,
+            XFTY_InsertInclusivityEnum inclusivity
+    ) {
+        return XFTY_DummySObjectFactory.createBundle(providerLookup, MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
+    }
 }

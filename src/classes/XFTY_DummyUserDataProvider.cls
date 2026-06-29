@@ -1,7 +1,5 @@
 @IsTest
-public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectProviderIntf {
-    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
-
+public class XFTY_DummyUserDataProvider implements XFTY_DummySobjectProviderIntf {
     public static final String DEFAULT_FIRST_NAME_PREFIX = 'User First Name';
     public static final String DEFAULT_LAST_NAME_PREFIX = 'User Last Name';
     public static final String DEFAULT_FEDERATION_ID_PREFIX = 'User Federation Id';
@@ -37,6 +35,7 @@ public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectProviderInt
                     .put(User.TimeZoneSidKey, new XFTY_DummyDefaultValueExact(DEFAULT_TIME_ZONE))
                     .put(User.Username, new XFTY_DummyDefaultValueUniqueEmail(DEFAULT_USERNAME_PREFIX));
 
+    private static final XFTY_DummySObjectProviderLookupIntf DEFAULT_SOBJECT_PROVIDER_LOOKUP = new XFTY_DefaultSObjectProviderLookup();
     private static final Map<Id, User> TEST_USER_BY_PROFILE_MAP = createStandardTestUserByProfileMap();
     public static final User TEST_ADMIN_USER = TEST_USER_BY_PROFILE_MAP.get(SYSTEM_ADMIN_ID);
 
@@ -57,14 +56,15 @@ public class TEST_DummyUserFactoryOutlet implements XFTY_DummySobjectProviderInt
         return XFTY_DummySObjectFactory.createBundle(providerLookup, MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
     }
 
+
     // Helpers ----------------------------------------------------------------------------------------------
 
     private static Map<Id, User> createStandardTestUserByProfileMap() {
         List<User> templateUserList = new List<User>{
                 new User(ProfileId = SYSTEM_ADMIN_ID)
         };
-        List<User> userList = (new TEST_DummyUserFactoryOutlet()).createBundle(
-                PROVIDER_LOOKUP,
+        List<User> userList = (new XFTY_DummyUserDataProvider()).createBundle(
+                DEFAULT_SOBJECT_PROVIDER_LOOKUP,
                 templateUserList,
                 XFTY_InsertModeEnum.NOW,
                 XFTY_InsertInclusivityEnum.REQUIRED

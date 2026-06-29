@@ -1,13 +1,20 @@
 @IsTest
 public class XFTY_DummySObjectFactory {
     public static XFTY_DummySObjectBundle createBundle(
+            XFTY_DummySObjectProviderLookupIntf sObjectProviderLookup,
             XFTY_DummySObjectMasterTemplate masterTemplate,
             List<SObject> testSpecificTemplateList,
             XFTY_InsertModeEnum insertMode,
             XFTY_InsertInclusivityEnum inclusivity
     ) {
         XFTY_DummySObjectBundle bundle
-                = createRelatedRecords(masterTemplate, testSpecificTemplateList.size(), insertMode, inclusivity);
+                = createRelatedRecords(
+                        sObjectProviderLookup,
+                        masterTemplate,
+                        testSpecificTemplateList.size(),
+                        insertMode,
+                        inclusivity
+                );
 
         List<SObject> sobjectList = new List<SObject>();
         for (SObject testSpecificTemplate : testSpecificTemplateList) {
@@ -33,6 +40,7 @@ public class XFTY_DummySObjectFactory {
     // Create related records --------------------------------------------------------------------------------
 
     private static XFTY_DummySObjectBundle createRelatedRecords(
+            XFTY_DummySObjectProviderLookupIntf sObjectProviderLookup,
             XFTY_DummySObjectMasterTemplate masterTemplate,
             Integer quantity,
             XFTY_InsertModeEnum insertMode,
@@ -46,6 +54,7 @@ public class XFTY_DummySObjectFactory {
         createRelatedRecords(
                 bundle,
                 quantity,
+                sObjectProviderLookup,
                 masterTemplate.requiredRelationshipBySObjectFieldMap,
                 insertMode,
                 inclusivity
@@ -57,6 +66,7 @@ public class XFTY_DummySObjectFactory {
         return createRelatedRecords(
                 bundle,
                 quantity,
+                sObjectProviderLookup,
                 masterTemplate.optionalRelationshipBySObjectFieldMap,
                 insertMode,
                 inclusivity
@@ -66,6 +76,7 @@ public class XFTY_DummySObjectFactory {
     private static XFTY_DummySObjectBundle createRelatedRecords(
             XFTY_DummySObjectBundle bundle,
             Integer quantity,
+            XFTY_DummySObjectProviderLookupIntf sObjectProviderLookup,
             Map<SObjectField, XFTY_DummyDefaultRelationshipIntf> relationshipsBySObjectField,
             XFTY_InsertModeEnum insertMode,
             XFTY_InsertInclusivityEnum inclusivity
@@ -73,7 +84,7 @@ public class XFTY_DummySObjectFactory {
         for (SObjectField sObjectField : relationshipsBySObjectField.keySet()) {
             XFTY_DummyDefaultRelationshipIntf relationshipTemplate = relationshipsBySObjectField.get(sObjectField);
             SObject sObjectTemplate = relationshipTemplate.getOverrideTemplate();
-            createRelatedRecords(bundle, quantity, sObjectField, sObjectTemplate, insertMode, inclusivity);
+            createRelatedRecords(bundle, quantity, sObjectField, sObjectProviderLookup, sObjectTemplate, insertMode, inclusivity);
         }
         return bundle;
     }
@@ -82,14 +93,16 @@ public class XFTY_DummySObjectFactory {
             XFTY_DummySObjectBundle bundle,
             Integer quantity,
             SObjectField sObjectField,
+            XFTY_DummySObjectProviderLookupIntf sObjectProviderLookup,
             SObject sObjectTemplate,
             XFTY_InsertModeEnum insertMode,
             XFTY_InsertInclusivityEnum inclusivity
     ) {
-        XFTY_DummySobjectFactoryOutletIntf factoryOutlet
-                = XFTY_DummySObjectFactoryOutletLookup.get(sObjectTemplate.getSObjectType());
+        XFTY_DummySobjectProviderIntf factoryOutlet
+                = sObjectProviderLookup.get(sObjectTemplate.getSObjectType());
 
         XFTY_DummySObjectBundle innerBundle = factoryOutlet.createBundle(
+                sObjectProviderLookup,
                 createClonedTemplateList(quantity, sObjectTemplate),
                 (XFTY_InsertModeEnum.RELATED_ONLY.equals(insertMode))
                         ? XFTY_InsertModeEnum.NOW
@@ -181,5 +194,4 @@ public class XFTY_DummySObjectFactory {
     private static SObject perfectClone(SObject sObj) {
         return sObj.clone(true, true, true, true);
     }
-
 }

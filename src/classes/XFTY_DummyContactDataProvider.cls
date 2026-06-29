@@ -1,9 +1,10 @@
 @IsTest
-public class TEST_DummyContactFactoryOutlet implements XFTY_DummySobjectProviderIntf {
+public class XFTY_DummyContactDataProvider implements XFTY_DummySobjectProviderIntf {
     public static final String DEFAULT_FIRST_NAME_PREFIX = 'Contact First Name';
     public static final String DEFAULT_LAST_NAME_PREFIX = 'Contact Last Name';
     public static final String DEFAULT_EMAIL_PREFIX = 'test.contact';
     public static final String DEFAULT_ACCOUNT_DESCRIPTION = 'Account for contact';
+    public static final String DEFAULT_MARKET = 'DEB';
 
     private static final SObjectField PRIMARY_TARGET_FIELD = Contact.Id;
     private static final XFTY_DummySObjectMasterTemplate MASTER_TEMPLATE = new XFTY_DummySObjectMasterTemplate(PRIMARY_TARGET_FIELD)
@@ -30,4 +31,5 @@ public class TEST_DummyContactFactoryOutlet implements XFTY_DummySobjectProvider
     ) {
         return XFTY_DummySObjectFactory.createBundle(providerLookup, MASTER_TEMPLATE, templateSObjectList, insertMode, inclusivity);
     }
+
 }

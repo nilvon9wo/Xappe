@@ -1,5 +1,6 @@
 @IsTest
 public with sharing class XAP_DAO_DML_DeleteResultWrapperIntTest {
+    private static final XFTY_DummySObjectProviderLookupIntf PROVIDER_LOOKUP = new TEST_DummySObjectFactoryOutletLookup();
 	private static final User TEST_RUNNER = TEST_DummyUserFactoryOutlet.TEST_ADMIN_USER;
 	private static final Database.DeleteResult DELETE_RESULT = createDeleteResult();
 	private static final XAP_DAO_DML_DeleteResultWrapper WRAPPER_UNDER_TEST = new XAP_DAO_DML_DeleteResultWrapper(DELETE_RESULT);
@@ -69,7 +70,7 @@ public with sharing class XAP_DAO_DML_DeleteResultWrapperIntTest {
 	}
 
 	private static Database.DeleteResult createDeleteResult() {
-		Account testAccount = (Account) (new XFTY_DummySObjectSupplier(Account.SObjectType))
+		Account testAccount = (Account) (new XFTY_DummySObjectProvider(Account.SObjectType, PROVIDER_LOOKUP))
 				.setInsertMode(XFTY_InsertModeEnum.NOW)
 				.supply();
 		Boolean notAllOrNone = false;
